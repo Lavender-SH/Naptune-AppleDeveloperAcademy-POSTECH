@@ -8,17 +8,18 @@
 import SwiftUI
 
 struct FeedLargeCard: View {
+    @Binding var showInformation: Bool
     
     // MARK: Body
     
     var body: some View {
-        FeedImage
-            .overlay(alignment: .topLeading) {
-                UserProfile
-            }
-            .overlay(alignment: .bottomLeading) {
-                SleepResult
-            }
+            FeedImage
+                .overlay(alignment: .topLeading) {
+                    showInformation ? AnyView(UserProfile) : AnyView(EmptyView())
+                }
+                .overlay(alignment: .bottomLeading) {
+                    showInformation ? AnyView(SleepResult) : AnyView(EmptyView())
+                }
     }
 }
 
@@ -29,7 +30,7 @@ extension FeedLargeCard {
         Image(.feedImage1)
             .resizable()
             .scaledToFill()
-            .frame(width: 300, height: 400)
+        
             .clipShape(RoundedRectangle(cornerRadius: 20.0))
     }
     
@@ -97,6 +98,6 @@ extension FeedLargeCard {
 // MARK: - Previews
 
 #Preview {
-    FeedLargeCard()
+    FeedLargeCard(showInformation: .constant(true))
 }
 
