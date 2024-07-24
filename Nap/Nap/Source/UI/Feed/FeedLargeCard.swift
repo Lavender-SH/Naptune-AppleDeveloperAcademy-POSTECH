@@ -9,6 +9,8 @@ import SwiftUI
 
 struct FeedLargeCard: View {
     
+    // MARK: Body
+    
     var body: some View {
         FeedImage
             .overlay(alignment: .topLeading) {
@@ -21,6 +23,8 @@ struct FeedLargeCard: View {
 }
 
 extension FeedLargeCard {
+    // MARK: View
+    
     var FeedImage: some View {
         Image(.feedImage1)
             .resizable()
@@ -89,6 +93,8 @@ extension FeedLargeCard {
             }
     }
 }
+
+// MARK: - Previews
 
 #Preview {
     FeedLargeCard()
