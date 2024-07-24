@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct Feed: View {
-    @State var isLargeCard: Bool = false
+    @State var isLargeCard: Bool = true
     
     var columns: [GridItem] {
         isLargeCard ? [GridItem()] : [GridItem(), GridItem()]
@@ -21,7 +21,7 @@ struct Feed: View {
     var body: some View {
         GeometryReader { proxy in
             let cardWidth = isLargeCard ? proxy.size.width :
-                                     (proxy.size.width-12)/2
+                                         (proxy.size.width-20)/2
             ScrollView {
                 LazyVGrid(columns: columns, spacing: spacing) {
                     ForEach(0..<10) { _ in
