@@ -33,6 +33,10 @@ struct Feed: View {
             .scrollIndicators(.never)
         }
         .padding(.horizontal, 20)
+        .background {
+            Image(.feedBackground)
+                .ignoresSafeArea()
+        }
     }
 }
 
