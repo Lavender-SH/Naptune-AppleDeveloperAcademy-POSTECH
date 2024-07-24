@@ -10,20 +10,25 @@ import SwiftUI
 struct FeedLargeCard: View {
     
     var body: some View {
+        FeedImage
+            .overlay(alignment: .topLeading) {
+                UserProfile
+            }
+            .overlay(alignment: .bottomLeading) {
+                SleepResult
+            }
+    }
+}
+
+extension FeedLargeCard {
+    var FeedImage: some View {
         Image(.feedImage1)
             .resizable()
             .scaledToFill()
             .frame(width: 300, height: 400)
             .clipShape(RoundedRectangle(cornerRadius: 20.0))
-            .overlay(alignment: .topLeading) {
-                UserProfile
-                    .padding(16)
-            }
-            
     }
-}
-
-extension FeedLargeCard {
+    
     var UserProfile: some View {
         HStack {
             Image(.feedImage6)
@@ -46,6 +51,42 @@ extension FeedLargeCard {
             BackgroundBlur(radius: 6)
                 .clipShape(Capsule())
         }
+        .padding(16)
+    }
+    
+    var SleepResult: some View {
+        HStack(spacing: 8) {
+            SleepComment
+            SleepStatus
+        }
+        .padding(16)
+    }
+    
+    var SleepComment: some View {
+        VStack(alignment: .leading, spacing: 5) {
+            Text("30분 쿨쿨")
+                .font(.system(size: 10, weight: .medium))
+                .foregroundStyle(.napPurple100)
+            Text("오늘 너무 피곤했어요...")
+                .font(.system(size: 14, weight: .semibold))
+                .foregroundStyle(.white)
+        }
+        .padding(.vertical, 10)
+        .padding(.horizontal, 24)
+        .background {
+            BackgroundBlur(radius: 6)
+                .clipShape(Capsule())
+        }
+    }
+    
+    var SleepStatus: some View {
+        Text("😑")
+            .font(.system(size: 32))
+            .padding(10)
+            .background {
+                BackgroundBlur(radius: 6)
+                    .clipShape(Circle())
+            }
     }
 }
 
