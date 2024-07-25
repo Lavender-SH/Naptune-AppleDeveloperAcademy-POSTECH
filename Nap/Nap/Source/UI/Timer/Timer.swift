@@ -12,6 +12,7 @@ struct Timer: View {
         Text("Hello, n!")
         Text("nanananana")
         Text("ssss")
+        Text("ggg")
     }
 }
 
