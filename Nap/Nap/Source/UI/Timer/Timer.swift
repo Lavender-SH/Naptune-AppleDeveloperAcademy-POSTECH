@@ -9,7 +9,7 @@ import SwiftUI
 
 struct Timer: View {
     var body: some View {
-        Text("Hello, Lavendr!")
+        Text("Hello, n!")
     }
 }
 
