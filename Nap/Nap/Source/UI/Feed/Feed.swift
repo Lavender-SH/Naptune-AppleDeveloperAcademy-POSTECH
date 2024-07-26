@@ -25,17 +25,22 @@ struct Feed: View {
         }
         .scrollIndicators(.never)
         .contentMargins(.top, topMargin, for: .scrollContent)
-        .padding(.horizontal,20)
+        .padding(.horizontal, 20)
         .background {
-            Image(.feedBackground)
-                .resizable()
-                .scaledToFill()
-                .ignoresSafeArea()
+            BackgroundImage(image: Image(.feedBackground))
         }
         .overlay(alignment: .bottomTrailing) {
             FloatingButton
                 .padding(.trailing, 28)
                 .padding(.bottom, 18)
+        }
+        .overlay(alignment: .top) {
+            ZStack {
+                BackgroundBlur(radius: 10, opaque: false)
+                LinearGradient(colors: [Color.black.opacity(0.8), Color.black.opacity(0.3), Color.black.opacity(0.0)], startPoint: .top, endPoint: .bottom)
+            }
+            .frame(height: topMargin)
+            .ignoresSafeArea()
         }
         .animation(.spring,
                    value: isLargeCard)

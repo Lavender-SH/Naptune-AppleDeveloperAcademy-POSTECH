@@ -9,10 +9,11 @@ import SwiftUI
 
 /// A transparent View that blurs its background
 struct BackgroundBlur: View {
-    let radius: CGFloat
+    var radius: CGFloat
+    var opaque: Bool = true
     
     var body: some View {
-            BackdropView().blur(radius: radius, opaque: true)
+            BackdropView().blur(radius: radius, opaque: opaque)
     }
 }
 

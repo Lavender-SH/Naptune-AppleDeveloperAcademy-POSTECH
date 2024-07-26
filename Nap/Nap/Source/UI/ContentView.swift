@@ -12,10 +12,7 @@ struct ContentView: View {
         GeometryReader {proxy in
             ScrollView {
                 VStack(spacing: 0) {
-                    Image(.timerBackground)
-                        .resizable()
-                        .scaledToFill()
-                        .ignoresSafeArea()
+                    BackgroundImage(image: Image(.timerBackground))
                         .frame(width: proxy.size.width, height: proxy.size.height)
                     Feed()
                         .frame(width: proxy.size.width, height: proxy.size.height)
@@ -24,7 +21,7 @@ struct ContentView: View {
             .scrollTargetBehavior(.paging)
         }
         .ignoresSafeArea()
-        .background(Image(.timerBackground).resizable().ignoresSafeArea())
+        .background(BackgroundImage(image: Image(.feedBackground)))
     }
 }
 
