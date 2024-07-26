@@ -10,17 +10,11 @@ import SwiftUI
 struct Feed: View {
     @State var isLargeCard: Bool = true
     
-    var columns: [GridItem] {
-        isLargeCard ? [GridItem(.flexible())] : [GridItem(.flexible(), spacing: 12), GridItem(.flexible(), spacing: 12)]
-    }
-    
-    var spacing: CGFloat {
-        isLargeCard ? 24 : 12
-    }
+    // MARK: Body
     
     var body: some View {
         ScrollView(.vertical) {
-            VStack {
+            VStack(spacing: 0) {
                 SlideHeader
                 LazyVGrid(columns: columns, spacing: spacing) {
                     ForEach(0..<10) { _ in
@@ -30,14 +24,12 @@ struct Feed: View {
             }
         }
         .scrollIndicators(.never)
-        //.contentMargins(.top, 94, for: .scrollContent)
-        // .padding(.top, 18)
+        .contentMargins(.top, topMargin, for: .scrollContent)
         .padding(.horizontal,20)
-        // 기본 padding 16으로 줄이는건 어떤지
         .background {
             Image(.feedBackground)
                 .resizable()
-                .aspectRatio(contentMode: .fill)
+                .scaledToFill()
                 .ignoresSafeArea()
         }
         .overlay(alignment: .bottomTrailing) {
@@ -45,31 +37,12 @@ struct Feed: View {
                 .padding(.trailing, 28)
                 .padding(.bottom, 18)
         }
-        .overlay(alignment: .top) {
-            
-//            .background {
-//                ZStack{
-//                    BackgroundBlur(radius: 6)
-//                }
-//                .ignoresSafeArea()
-//            }
-        }
+        .animation(.spring,
+                   value: isLargeCard)
     }
-        
-    //
-    //            .navigationTitle("")
-    //            .navigationBarTitleDisplayMode(.inline)
-    //            .toolbar {
-    //                ToolbarItem(placement: .topBarLeading) {
-    //                    Header
-    //                }
-    //                ToolbarItem(placement: .topBarTrailing) {
-    //                    FriendCount
-    //                }
-    //            }
 }
 
-extension Feed {
+private extension Feed {
     var SlideHeader: some View {
         HStack {
             Spacer()
@@ -81,7 +54,6 @@ extension Feed {
                     .foregroundStyle(.white.opacity(0.6))
             }
             .padding(.vertical, 13)
-            .padding(.top, 24)
             Spacer()
         }
         
@@ -101,7 +73,6 @@ extension Feed {
             Text("친구")
                 .foregroundStyle(.white)
                 .font(.system(size: 14, weight: .bold))
-            // figma 폰트에서는 한글은 bold - nonbold 두가지 밖에 안되는듯 ?
             Spacer().frame(width: 12)
             Text("4")
                 .foregroundStyle(.white)
@@ -140,9 +111,28 @@ extension Feed {
                 }
         }
         .onTapGesture {
-            isLargeCard.toggle()
+            changFeedMode()
         }
-        .animation(.easeInOut(duration: 0.2), value: isLargeCard)
+    }
+    
+    // MARK: Computed Values
+    
+    var columns: [GridItem] {
+        isLargeCard ? [GridItem(.flexible())] : [GridItem(.flexible(), spacing: 12), GridItem(.flexible(), spacing: 12)]
+    }
+    
+    var spacing: CGFloat {
+        isLargeCard ? 24 : 12
+    }
+    
+    var topMargin: CGFloat {
+        UIScreen.isSE ? 24 : 54
+    }
+    
+    // MARK: Action
+    
+    func changFeedMode() {
+        isLargeCard.toggle()
     }
 }
 

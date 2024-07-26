@@ -14,6 +14,8 @@ struct ContentView: View {
                 VStack(spacing: 0) {
                     Image(.timerBackground)
                         .resizable()
+                        .scaledToFill()
+                        .ignoresSafeArea()
                         .frame(width: proxy.size.width, height: proxy.size.height)
                     Feed()
                         .frame(width: proxy.size.width, height: proxy.size.height)
