@@ -9,13 +9,20 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        GeometryReader {proxy in
+            ScrollView {
+                VStack(spacing: 0) {
+                    Image(.timerBackground)
+                        .resizable()
+                        .frame(width: proxy.size.width, height: proxy.size.height)
+                    Feed()
+                        .frame(width: proxy.size.width, height: proxy.size.height)
+                }
+            }
+            .scrollTargetBehavior(.paging)
         }
-        .padding()
+        .ignoresSafeArea()
+        .background(Image(.timerBackground).resizable().ignoresSafeArea())
     }
 }
 

@@ -19,46 +19,73 @@ struct Feed: View {
     }
     
     var body: some View {
-        NavigationStack {
-            ZStack(alignment: .bottomTrailing) {
-                ScrollView {
-                    LazyVGrid(columns: columns, spacing: spacing) {
-                        ForEach(0..<10) { _ in
-                            FeedLargeCard(showInformation: $isLargeCard)
-                        }
+        ScrollView(.vertical) {
+            VStack {
+                SlideHeader
+                LazyVGrid(columns: columns, spacing: spacing) {
+                    ForEach(0..<10) { _ in
+                        FeedLargeCard(showInformation: $isLargeCard)
                     }
-                }
-                .scrollIndicators(.never)
-                .contentMargins(12, for: .scrollContent)
-                .padding(.top, 18)
-                .padding(.horizontal, 4)
-                // 기본 padding 16으로 줄이는건 어떤지
-                
-                FloatingButton
-                    .padding(.trailing, 28)
-            }
-            .background {
-                Image(.feedBackground)
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .ignoresSafeArea()
-            }
-            
-            .navigationTitle("")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    Header
-                }
-                ToolbarItem(placement: .topBarTrailing) {
-                    FriendCount
                 }
             }
         }
+        .scrollIndicators(.never)
+        //.contentMargins(.top, 94, for: .scrollContent)
+        // .padding(.top, 18)
+        .padding(.horizontal,20)
+        // 기본 padding 16으로 줄이는건 어떤지
+        .background {
+            Image(.feedBackground)
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .ignoresSafeArea()
+        }
+        .overlay(alignment: .bottomTrailing) {
+            FloatingButton
+                .padding(.trailing, 28)
+                .padding(.bottom, 18)
+        }
+        .overlay(alignment: .top) {
+            
+//            .background {
+//                ZStack{
+//                    BackgroundBlur(radius: 6)
+//                }
+//                .ignoresSafeArea()
+//            }
+        }
     }
+        
+    //
+    //            .navigationTitle("")
+    //            .navigationBarTitleDisplayMode(.inline)
+    //            .toolbar {
+    //                ToolbarItem(placement: .topBarLeading) {
+    //                    Header
+    //                }
+    //                ToolbarItem(placement: .topBarTrailing) {
+    //                    FriendCount
+    //                }
+    //            }
 }
 
 extension Feed {
+    var SlideHeader: some View {
+        HStack {
+            Spacer()
+            VStack {
+                Text("낮잠 자러가기")
+                    .foregroundStyle(.white.opacity(0.5))
+                    .font(.system(size: 12, weight: .medium))
+                Image(.chevronUp)
+                    .foregroundStyle(.white.opacity(0.6))
+            }
+            .padding(.vertical, 13)
+            .padding(.top, 24)
+            Spacer()
+        }
+        
+    }
     var Header: some View {
         Text("Feed")
             .foregroundStyle(.white)

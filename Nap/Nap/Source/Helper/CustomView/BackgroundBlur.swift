@@ -12,10 +12,7 @@ struct BackgroundBlur: View {
     let radius: CGFloat
     
     var body: some View {
-        ZStack {
             BackdropView().blur(radius: radius, opaque: true)
-            Color.black.opacity(0.2)
-        }
     }
 }
 

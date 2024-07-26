@@ -52,10 +52,12 @@ extension FeedLargeCard {
         }
         .padding(6)
         .padding(.trailing, 10)
-        .background {
-            BackgroundBlur(radius: 6)
-                .clipShape(Capsule())
-        }
+        .background(.ultraThinMaterial)
+        .clipShape(Capsule())
+//        .background {
+//            BackgroundBlackBlur
+//                .clipShape(Capsule())
+//        }
         .padding(16)
     }
     
@@ -79,7 +81,7 @@ extension FeedLargeCard {
         .padding(.vertical, 10)
         .padding(.horizontal, 24)
         .background {
-            BackgroundBlur(radius: 6)
+            BackgroundBlackBlur
                 .clipShape(Capsule())
         }
     }
@@ -89,9 +91,16 @@ extension FeedLargeCard {
             .font(.system(size: 32))
             .padding(10)
             .background {
-                BackgroundBlur(radius: 6)
+                BackgroundBlackBlur
                     .clipShape(Circle())
             }
+    }
+    
+    var BackgroundBlackBlur: some View {
+        ZStack {
+            BackgroundBlur(radius: 6)
+            Color.black.opacity(0.2)
+        }
     }
 }
 
