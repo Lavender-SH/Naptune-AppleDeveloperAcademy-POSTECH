@@ -24,7 +24,7 @@ struct Feed: View {
                 SlideHeader
                 LazyVGrid(columns: columns, spacing: spacing) {
                     ForEach(0..<10) { _ in
-                        FeedLargeCard(showInformation: $isLargeCard)
+                        FeedCard(showInformation: $isLargeCard)
                     }
                 }
             }

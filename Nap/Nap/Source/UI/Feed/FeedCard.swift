@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct FeedLargeCard: View {
+struct FeedCard: View {
     @Binding var showInformation: Bool
     
     // MARK: Body
@@ -23,7 +23,7 @@ struct FeedLargeCard: View {
     }
 }
 
-extension FeedLargeCard {
+extension FeedCard {
     // MARK: View
     
     var FeedImage: some View {
@@ -107,6 +107,6 @@ extension FeedLargeCard {
 // MARK: - Previews
 
 #Preview {
-    FeedLargeCard(showInformation: .constant(true))
+    FeedCard(showInformation: .constant(true))
 }
 
