@@ -37,7 +37,7 @@ struct Feed: View {
         .overlay(alignment: .top) {
             ZStack {
                 BackgroundBlur(radius: 10, opaque: false)
-                LinearGradient(colors: [Color.black.opacity(0.8), Color.black.opacity(0.3), Color.black.opacity(0.0)], startPoint: .top, endPoint: .bottom)
+                LinearGradient(colors: [Color.black.opacity(0.8), Color.black.opacity(0.5), Color.black.opacity(0.0)], startPoint: .top, endPoint: .bottom)
             }
             .frame(height: topMargin)
             .ignoresSafeArea()

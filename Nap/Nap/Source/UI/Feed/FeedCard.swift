@@ -54,10 +54,6 @@ extension FeedCard {
         .padding(.trailing, 10)
         .background(.ultraThinMaterial)
         .clipShape(Capsule())
-//        .background {
-//            BackgroundBlackBlur
-//                .clipShape(Capsule())
-//        }
         .padding(16)
     }
     
@@ -80,27 +76,16 @@ extension FeedCard {
         }
         .padding(.vertical, 10)
         .padding(.horizontal, 24)
-        .background {
-            BackgroundBlackBlur
-                .clipShape(Capsule())
-        }
+        .background(.ultraThinMaterial)
+        .clipShape(Capsule())
     }
     
     var SleepStatus: some View {
         Text("😑")
             .font(.system(size: 32))
             .padding(10)
-            .background {
-                BackgroundBlackBlur
-                    .clipShape(Circle())
-            }
-    }
-    
-    var BackgroundBlackBlur: some View {
-        ZStack {
-            BackgroundBlur(radius: 6)
-            Color.black.opacity(0.2)
-        }
+            .background(.ultraThinMaterial)
+            .clipShape(Circle())
     }
 }
 
