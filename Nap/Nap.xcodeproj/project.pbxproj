@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		390283952C5389C500D8ACF5 /* UIScreen+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390283942C5389C500D8ACF5 /* UIScreen+.swift */; };
 		390283992C53C9F600D8ACF5 /* BackgroundImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390283982C53C9F600D8ACF5 /* BackgroundImage.swift */; };
+		3902839D2C553F7A00D8ACF5 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3902839A2C553F7A00D8ACF5 /* Pretendard-SemiBold.otf */; };
+		3902839E2C553F7A00D8ACF5 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3902839B2C553F7A00D8ACF5 /* Pretendard-Medium.otf */; };
+		3902839F2C553F7A00D8ACF5 /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3902839C2C553F7A00D8ACF5 /* Pretendard-Bold.otf */; };
+		390283A22C55407C00D8ACF5 /* Font+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390283A12C55407C00D8ACF5 /* Font+.swift */; };
 		3928CA312C509EC200A5A823 /* NapApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928CA302C509EC200A5A823 /* NapApp.swift */; };
 		3928CA332C509EC200A5A823 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928CA322C509EC200A5A823 /* ContentView.swift */; };
 		3928CA352C509EC300A5A823 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3928CA342C509EC300A5A823 /* Assets.xcassets */; };
@@ -28,6 +32,11 @@
 /* Begin PBXFileReference section */
 		390283942C5389C500D8ACF5 /* UIScreen+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+.swift"; sourceTree = "<group>"; };
 		390283982C53C9F600D8ACF5 /* BackgroundImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundImage.swift; sourceTree = "<group>"; };
+		3902839A2C553F7A00D8ACF5 /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
+		3902839B2C553F7A00D8ACF5 /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
+		3902839C2C553F7A00D8ACF5 /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
+		390283A02C553F8A00D8ACF5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		390283A12C55407C00D8ACF5 /* Font+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+.swift"; sourceTree = "<group>"; };
 		3928CA2D2C509EC200A5A823 /* Nap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3928CA302C509EC200A5A823 /* NapApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NapApp.swift; sourceTree = "<group>"; };
 		3928CA322C509EC200A5A823 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -115,6 +124,7 @@
 		3928CA402C509FC300A5A823 /* Supporting File */ = {
 			isa = PBXGroup;
 			children = (
+				390283A02C553F8A00D8ACF5 /* Info.plist */,
 				3928CA4F2C50A63100A5A823 /* Launch Screen.storyboard */,
 			);
 			path = "Supporting File";
@@ -123,6 +133,10 @@
 		3928CA422C509FE700A5A823 /* Font */ = {
 			isa = PBXGroup;
 			children = (
+				3902839C2C553F7A00D8ACF5 /* Pretendard-Bold.otf */,
+				3902839B2C553F7A00D8ACF5 /* Pretendard-Medium.otf */,
+				3902839A2C553F7A00D8ACF5 /* Pretendard-SemiBold.otf */,
+				390283A12C55407C00D8ACF5 /* Font+.swift */,
 			);
 			path = Font;
 			sourceTree = "<group>";
@@ -282,8 +296,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				3928CA502C50A63100A5A823 /* Launch Screen.storyboard in Resources */,
+				3902839F2C553F7A00D8ACF5 /* Pretendard-Bold.otf in Resources */,
+				3902839E2C553F7A00D8ACF5 /* Pretendard-Medium.otf in Resources */,
 				3928CA382C509EC300A5A823 /* Preview Assets.xcassets in Resources */,
 				3928CA352C509EC300A5A823 /* Assets.xcassets in Resources */,
+				3902839D2C553F7A00D8ACF5 /* Pretendard-SemiBold.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,6 +319,7 @@
 				3928CA5F2C50E32D00A5A823 /* FeedCard.swift in Sources */,
 				3928CA552C50A69200A5A823 /* Onboarding.swift in Sources */,
 				390283952C5389C500D8ACF5 /* UIScreen+.swift in Sources */,
+				390283A22C55407C00D8ACF5 /* Font+.swift in Sources */,
 				390283992C53C9F600D8ACF5 /* BackgroundImage.swift in Sources */,
 				3928CA4E2C50A58900A5A823 /* HapticManager.swift in Sources */,
 				3928CA572C50A6B000A5A823 /* Timer.swift in Sources */,
@@ -444,6 +462,7 @@
 				DEVELOPMENT_TEAM = D23XDL6TZZ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Nap/Supporting File/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Nap;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -482,6 +501,7 @@
 				DEVELOPMENT_TEAM = D23XDL6TZZ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Nap/Supporting File/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Nap;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
