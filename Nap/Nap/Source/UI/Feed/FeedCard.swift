@@ -9,10 +9,12 @@ import SwiftUI
 
 struct FeedCard: View {
     @Binding var showInformation: Bool
+    let image: Image
     
     // MARK: Body
     
     var body: some View {
+            
             FeedImage
                 .overlay(alignment: .topLeading) {
                     showInformation ? AnyView(UserProfile) : AnyView(EmptyView())
@@ -20,6 +22,7 @@ struct FeedCard: View {
                 .overlay(alignment: .bottomLeading) {
                     showInformation ? AnyView(SleepResult) : AnyView(EmptyView())
                 }
+        
     }
 }
 
@@ -27,16 +30,15 @@ extension FeedCard {
     // MARK: View
     
     var FeedImage: some View {
-        Image(.feedImage1)
+        image
             .resizable()
             .scaledToFill()
-        
             .clipShape(RoundedRectangle(cornerRadius: 20.0))
     }
     
     var UserProfile: some View {
         HStack {
-            Image(.feedImage6)
+            image
                 .resizable()
                 .scaledToFill()
                 .clipShape(Circle())
@@ -92,6 +94,6 @@ extension FeedCard {
 // MARK: - Previews
 
 #Preview {
-    FeedCard(showInformation: .constant(true))
+    FeedCard(showInformation: .constant(true), image: Image(.feedImage1))
 }
 

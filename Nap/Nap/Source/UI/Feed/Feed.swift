@@ -18,7 +18,7 @@ struct Feed: View {
                 SlideHeader
                 LazyVGrid(columns: columns, spacing: spacing) {
                     ForEach(0..<10) { _ in
-                        FeedCard(showInformation: $isLargeCard)
+                        FeedCard(showInformation: $isLargeCard, image: Image(.feedImage1))
                     }
                 }
             }
@@ -42,7 +42,7 @@ struct Feed: View {
             .frame(height: topMargin)
             .ignoresSafeArea()
         }
-        .animation(.spring,
+        .animation(.snappy(duration: 0.35),
                    value: isLargeCard)
     }
 }
