@@ -48,6 +48,9 @@ struct Feed: View {
 }
 
 private extension Feed {
+    
+    // MARK: View
+    
     var SlideHeader: some View {
         HStack {
             Spacer()
