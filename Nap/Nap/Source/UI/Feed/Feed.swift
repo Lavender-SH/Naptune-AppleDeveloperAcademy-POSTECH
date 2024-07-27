@@ -29,10 +29,8 @@ struct Feed: View {
         .background {
             BackgroundImage(image: Image(.feedBackground))
         }
-        .overlay(alignment: .bottomTrailing) {
+        .overlay(alignment: .bottom) {
             FloatingButton
-                .padding(.trailing, 28)
-                .padding(.bottom, 18)
         }
         .overlay(alignment: .top) {
             ZStack {
@@ -42,8 +40,9 @@ struct Feed: View {
             .frame(height: topMargin)
             .ignoresSafeArea()
         }
-        .animation(.snappy(duration: 0.35),
-                   value: isLargeCard)
+        // 애니메이션 넣으면 깨질때가 있음.
+//        .animation(.snappy(duration: 0.35),
+//                   value: isLargeCard)
     }
 }
 
@@ -54,13 +53,12 @@ private extension Feed {
     var SlideHeader: some View {
         HStack {
             Spacer()
-            VStack {
+            VStack(spacing: 1) {
                 Text("낮잠 자러가기")
                     .font(.napCaption1)
-                    .foregroundStyle(.white.opacity(0.5))
                 Image(.chevronUp)
-                    .foregroundStyle(.white.opacity(0.6))
             }
+            .foregroundStyle(.napWhite60)
             .padding(.vertical, 13)
             Spacer()
         }
@@ -103,30 +101,56 @@ private extension Feed {
     }
     
     var FloatingButton: some View {
-        Image(systemName: isLargeCard ? "arrow.up.right.and.arrow.down.left" :
-                "arrow.down.backward.and.arrow.up.forward")
-        .resizable()
-        .scaledToFit()
-        .foregroundStyle(.white)
-        .frame(width: 27, height: 27)
-        .padding(20)
-        .background {
-            Circle()
-                .foregroundStyle(.ultraThinMaterial)
-                .overlay {
-                    Circle()
-                        .stroke(.white.opacity(0.2), lineWidth: 2.0)
-                }
+        HStack {
+            FriendListButton
+            Spacer()
+            ChangeSizeButton
         }
-        .onTapGesture {
-            changFeedMode()
-        }
+        .padding(.horizontal, 28)
+        .padding(.bottom, 18)
+    }
+    
+    var ChangeSizeButton: some View {
+        Image(isLargeCard ? .minimize : .maximize)
+            .foregroundStyle(.napWhite100)
+            .frame(width: 27, height: 27)
+            .padding(20)
+            .background {
+                Circle()
+                    .foregroundStyle(.ultraThinMaterial)
+                    .overlay {
+                        Circle()
+                            .stroke(.napWhite20, lineWidth: 2.0)
+                    }
+            }
+            .onTapGesture {
+                changFeedMode()
+            }
+    }
+    
+    var FriendListButton: some View {
+        Image(.friend)
+            .foregroundStyle(.napWhite100)
+            .frame(width: 27, height: 27)
+            .padding(20)
+            .background {
+                Circle()
+                    .foregroundStyle(.ultraThinMaterial)
+                    .overlay {
+                        Circle()
+                            .stroke(.napWhite20, lineWidth: 2.0)
+                    }
+            }
+            .onTapGesture {
+                // 화면 전환 코드 작성
+            }
     }
     
     // MARK: Computed Values
     
     var columns: [GridItem] {
-        isLargeCard ? [GridItem(.flexible())] : [GridItem(.flexible(), spacing: 12), GridItem(.flexible(), spacing: 12)]
+        isLargeCard ? [GridItem(.flexible())] :
+                      [GridItem(.flexible(), spacing: 12), GridItem(.flexible(), spacing: 12)]
     }
     
     var spacing: CGFloat {

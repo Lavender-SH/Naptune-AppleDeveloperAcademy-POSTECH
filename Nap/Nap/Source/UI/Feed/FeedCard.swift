@@ -46,11 +46,10 @@ extension FeedCard {
             VStack(alignment: .leading, spacing: 1) {
                 Text("hash.jung")
                     .font(.napCaption1)
-                    .foregroundStyle(.white)
                 Text("2시간 전")
                     .font(.napFootnote2)
-                    .foregroundStyle(.white)
             }
+            .foregroundStyle(.napWhite100)
         }
         .padding(6)
         .padding(.trailing, 10)
@@ -71,10 +70,10 @@ extension FeedCard {
         VStack(alignment: .leading, spacing: 5) {
             Text("30분 쿨쿨")
                 .font(.napFootnote1)
-                .foregroundStyle(.napPurple100)
+                .foregroundStyle(.napBlue100)
             Text("오늘 너무 피곤했어요...")
                 .font(.napCaption1)
-                .foregroundStyle(.white)
+                .foregroundStyle(.napWhite100)
         }
         .padding(.vertical, 10)
         .padding(.horizontal, 24)
