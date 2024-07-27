@@ -56,8 +56,8 @@ private extension Feed {
             Spacer()
             VStack {
                 Text("낮잠 자러가기")
+                    .font(.napCaption1)
                     .foregroundStyle(.white.opacity(0.5))
-                    .font(.system(size: 12, weight: .medium))
                 Image(.chevronUp)
                     .foregroundStyle(.white.opacity(0.6))
             }

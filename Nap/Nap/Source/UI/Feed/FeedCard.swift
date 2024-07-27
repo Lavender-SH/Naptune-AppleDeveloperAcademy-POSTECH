@@ -45,10 +45,10 @@ extension FeedCard {
                 .frame(width: 32, height: 32)
             VStack(alignment: .leading, spacing: 1) {
                 Text("hash.jung")
-                    .font(.system(size: 14, weight: .semibold))
+                    .font(.napCaption1)
                     .foregroundStyle(.white)
                 Text("2시간 전")
-                    .font(.system(size: 10, weight: .regular))
+                    .font(.napFootnote2)
                     .foregroundStyle(.white)
             }
         }
@@ -70,10 +70,10 @@ extension FeedCard {
     var SleepComment: some View {
         VStack(alignment: .leading, spacing: 5) {
             Text("30분 쿨쿨")
-                .font(.system(size: 10, weight: .medium))
+                .font(.napFootnote1)
                 .foregroundStyle(.napPurple100)
             Text("오늘 너무 피곤했어요...")
-                .font(.system(size: 14, weight: .semibold))
+                .font(.napCaption1)
                 .foregroundStyle(.white)
         }
         .padding(.vertical, 10)
