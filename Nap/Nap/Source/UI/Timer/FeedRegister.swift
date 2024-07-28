@@ -73,6 +73,8 @@ private extension FeedRegister {
                 .foregroundStyle(.napBlue100)
             TextField(text: $sleepComent) {
                 Text("오늘 낮잠은 어떠셨나요?")
+                    .font(.napCaption1)
+                    .foregroundStyle(.napWhite60)
             }
             .font(.napCaption1)
             .foregroundStyle(.napWhite100)
