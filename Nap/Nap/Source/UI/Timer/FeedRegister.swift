@@ -24,13 +24,15 @@ struct FeedRegister: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            Spacer().frame(height: 80)
+            Spacer().frame(height: UIScreen.isSE ? 30 : 80)
             FeedImage
             Spacer().frame(height: 30)
-            isSelectingStatus ? AnyView(SleepStatusButtons) : AnyView(BottomButton)
+            isSelectingStatus ? AnyView(SleepStatusButtons) 
+                              : AnyView(BottomButton)
             Spacer()
         }
         .background(BackgroundImage(image: Image(.basicBackground)))
+        .dismissKeyboard()
     }
 }
 
@@ -77,11 +79,10 @@ private extension FeedRegister {
             .onChange(of: sleepComent) { _, _ in
                 if sleepComent.count > textLimit {
                     sleepComent = String(sleepComent.prefix(textLimit))
-                    
                 }
             }
         }
-        //.frame(width: 196)
+        .frame(width: 200)
         .padding(.vertical, 10)
         .padding(.horizontal, 24)
         .background(.ultraThinMaterial)
@@ -118,11 +119,12 @@ private extension FeedRegister {
                 .padding(20)
                 .background {
                     Circle()
-                        .foregroundStyle(.ultraThinMaterial)
-                        .overlay {
-                            Circle()
-                                .stroke(.napWhite10, lineWidth: 1.0)
-                        }
+                        .foregroundStyle(Color.napWhite10)
+                        .background(BackgroundBlur(radius: 10, opaque: true))
+                }
+                .overlay {
+                    Circle()
+                        .stroke(.napWhite10, lineWidth: 1.0)
                 }
         }
     }
@@ -137,11 +139,12 @@ private extension FeedRegister {
                 .padding(20)
                 .background {
                     Circle()
-                        .foregroundStyle(.ultraThinMaterial)
-                        .overlay {
-                            Circle()
-                                .stroke(.napWhite10, lineWidth: 1.0)
-                        }
+                        .foregroundStyle(Color.napWhite10)
+                        .background(BackgroundBlur(radius: 10, opaque: true))
+                }
+                .overlay {
+                    Circle()
+                        .stroke(.napWhite10, lineWidth: 1.0)
                 }
         }
     }
@@ -156,11 +159,12 @@ private extension FeedRegister {
                 .padding(20)
                 .background {
                     Circle()
-                        .foregroundStyle(.ultraThinMaterial)
-                        .overlay {
-                            Circle()
-                                .stroke(.napWhite10, lineWidth: 1.0)
-                        }
+                        .foregroundStyle(Color.napWhite10)
+                        .background(BackgroundBlur(radius: 10, opaque: true))
+                }
+                .overlay {
+                    Circle()
+                        .stroke(.napWhite10, lineWidth: 1.0)
                 }
         }
     }
@@ -186,25 +190,21 @@ private extension FeedRegister {
                     .padding(20)
                     .background {
                         Circle()
-                            .background {
-                                if status == sleepStatus {
-                                    Color.napBlue20
-                                        .clipShape(Circle())
-                                }
-                            }
-                            .foregroundStyle(.ultraThinMaterial)
-                            .overlay {
-                                Circle()
-                                    .stroke(.napWhite10, lineWidth: 1.0)
-                            }
+                            .foregroundStyle(
+                                status == sleepStatus ? Color.napBlue20 : Color.napWhite10)
+                            .background(BackgroundBlur(radius: 10, opaque: true))
                     }
                     .overlay {
                         if status == sleepStatus {
                             Circle()
                                 .stroke(.napBlue100, lineWidth: 2.0)
+                        } else {
+                            Circle()
+                                .stroke(.napWhite10, lineWidth: 1.0)
                         }
                     }
             }
+            
             if status == sleepStatus {
                 Text(description)
                     .font(.napCaption2)
