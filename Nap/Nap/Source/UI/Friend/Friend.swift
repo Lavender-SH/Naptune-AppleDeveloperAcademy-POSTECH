@@ -138,17 +138,18 @@ private extension Friend {
             ForEach(0..<friendCount, id: \.self) { _ in
                 FriendRow(isSleeping: false,
                           isAccepted: true)
-                    .listRowSeparator(.hidden)
-                    .listRowInsets(EdgeInsets())
-                    .listRowBackground(Color.clear)
-                    .swipeActions(edge: .trailing, allowsFullSwipe: false) {
-                        DeleteButton()
-                    }
+                .listRowSeparator(.hidden)
+                .listRowInsets(EdgeInsets())
+                .listRowBackground(Color.clear)
+                .swipeActions(edge: .trailing,
+                              allowsFullSwipe: false) {
+                    DeleteButton()
+                }
             }
         }
         .listStyle(.plain)
         .scrollDisabled(true)
-        .frame(height: max(CGFloat(listMaxNumber)*72, 0))
+        .frame(height: CGFloat(listMaxNumber)*72)
     }
     
     var MoreButton: some View {
@@ -173,13 +174,11 @@ private extension Friend {
                 .frame(height: 1)
                 .foregroundStyle(.napWhite20)
         }
-       
-        
     }
     
     private func DeleteButton() -> some View {
         Button(role: .destructive){
-            friendCount -= 1
+            deleteFriend()
         } label: {
             Label("삭제", systemImage: "trash")
                 .font(.subheadline)
@@ -219,6 +218,12 @@ private extension Friend {
     
     var moreButtonText: String {
         isListSuspended ? "간단히 보기" : "자세히 보기"
+    }
+    
+    // MARK: Action
+    
+    func deleteFriend() {
+        friendCount -= 1
     }
 }
 
