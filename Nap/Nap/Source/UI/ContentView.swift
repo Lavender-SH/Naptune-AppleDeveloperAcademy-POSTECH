@@ -20,6 +20,7 @@ struct ContentView: View {
                     }
                 }
                 .scrollTargetBehavior(.paging)
+                .scrollIndicators(.never)
             }
             .ignoresSafeArea()
             .background(BackgroundImage(image: Image(.feedBackground)))
