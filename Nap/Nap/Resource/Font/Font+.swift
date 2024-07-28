@@ -22,6 +22,10 @@ extension Font {
     
     static let napCaption3 = Font.custom("Pretendard-Medium", size: 12)
     
+    static let napCaption4 = Font.custom("Pretendard-Medium", size: 14)
+    
+    static let napCaption5 = Font.custom("Pretendard-SemiBold", size: 17)
+    
     static let napFootnote1 = Font.custom("Pretendard-SemiBold", size: 10)
     
     static let napFootnote2 = Font.custom("Pretendard-Medium", size: 10)

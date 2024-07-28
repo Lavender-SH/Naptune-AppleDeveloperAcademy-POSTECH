@@ -44,15 +44,7 @@ private extension FriendRequestRow {
         Button {
             print("친구 수락")
         } label: {
-            Text("수락")
-                .font(.napCaption2)
-                .foregroundStyle(.napBlue100)
-                .padding(.vertical, 6)
-                .padding(.horizontal, 14)
-                .background {
-                    Capsule()
-                        .foregroundStyle(.napBlue20)
-                }
+            BlueButtonLabel(text: "수락")
         }
     }
 }

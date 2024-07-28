@@ -11,6 +11,8 @@ struct Friend: View {
     
     @State var isListSuspended: Bool = false
     @State var friendCount: Int = 6
+    @State var isCodeCopied: Bool = false
+    @State var isFriendAdding: Bool = false
     
     var body: some View {
         ScrollView {
@@ -24,16 +26,33 @@ struct Friend: View {
                 Spacer()
             }
             .padding(.horizontal, 20)
-            .animation(.snappy,
-                       value: isListSuspended)
-            .animation(.snappy,
-                       value: friendCount)
         }
         .scrollIndicators(.never)
-        .navigationTitle("친구")
+        .overlay(alignment: .bottom) {
+            if isCodeCopied {
+                CodeCopyPopup
+                    .padding(.bottom, 40)
+                    .transition(.asymmetric(
+                        insertion: .offset(y: 150).animation(.spring),
+                        removal: .opacity.animation(.spring(duration: 0.2))))
+                    //.transition(.offset(y: 150))
+            }
+            if isFriendAdding {
+                FriendAdd(isFriendAdding: $isFriendAdding)
+                    .offset(y: 10)
+                    .ignoresSafeArea(.container, edges: .top)
+            }
+        }
         .background {
             BackgroundImage(image: Image(.basicBackground))
         }
+        .animation(.snappy,
+                   value: isListSuspended)
+        .animation(.snappy,
+                   value: friendCount)
+        .animation(.snappy,
+                   value: isCodeCopied)
+        .navigationTitle("친구")
     }
 }
 
@@ -50,13 +69,23 @@ private extension Friend {
     }
     
     var CodeCopyButton: some View {
-        HStack(spacing: 8) {
+        HStack(spacing: 0) {
             Spacer()
             Text("FQ9XH")
                 .font(.napLargeTitle)
                 .foregroundStyle(.napWhite80)
-            Image(.copy)
-                .foregroundStyle(.napBlue100)
+            Button {
+                isCodeCopied = true
+                UIPasteboard.general.string = "FQ9XH"
+                print("CodeCopied!")
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    isCodeCopied = false
+                }
+            } label: {
+                Image(.copy)
+                    .foregroundStyle(.napBlue100)
+                    .padding(8)
+            }
             Spacer()
         }
         .frame(height: 55)
@@ -68,14 +97,11 @@ private extension Friend {
             RoundedRectangle(cornerRadius: 6)
                 .stroke(Color.napWhite10, lineWidth: 1.0)
         }
-        .onTapGesture {
-            print("CodeCopied!")
-        }
     }
     
     var FriendAddButton: some View {
         Button {
-            print("Friend Add")
+            showFriendAdd()
         } label: {
             HStack(spacing: 8) {
                 Spacer()
@@ -210,6 +236,18 @@ private extension Friend {
             .foregroundStyle(.napWhite100)
     }
     
+    var CodeCopyPopup: some View {
+        Text("코드가 복사되었습니다")
+            .font(.napCaption1)
+            .foregroundStyle(.napWhite80)
+            .padding(.vertical, 8)
+            .padding(.horizontal, 14)
+            .background {
+                RoundedRectangle(cornerRadius: 6)
+                    .foregroundColor(.napWhite20)
+            }
+    }
+    
     // MARK: Computed Values
     
     var listMaxNumber: Int {
@@ -224,6 +262,10 @@ private extension Friend {
     
     func deleteFriend() {
         friendCount -= 1
+    }
+    
+    func showFriendAdd() {
+        isFriendAdding = true
     }
 }
 

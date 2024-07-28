@@ -57,15 +57,7 @@ private extension FriendRow {
         Button {
             print("낮잠 깨워주기")
         } label: {
-            Text("낮잠 깨워주기")
-                .font(.napCaption2)
-                .foregroundStyle(.napBlue100)
-                .padding(.vertical, 6)
-                .padding(.horizontal, 14)
-                .background {
-                    Capsule()
-                        .foregroundStyle(.napBlue20)
-                }
+            BlueButtonLabel(text: "낮잠 깨워주기")
         }
     }
     
@@ -94,5 +86,5 @@ private extension FriendRow {
 
 #Preview {
     FriendRow(isSleeping: true,
-              isAccepted: true)
+              isAccepted: false)
 }
