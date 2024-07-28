@@ -78,6 +78,7 @@ private extension FriendAdd {
             }
             .font(.napTitle2)
             .foregroundStyle(.napWhite100)
+            .multilineTextAlignment(.center)
             .focused($focusField, equals: .code)
             .onChange(of: codeText) { _, _ in
                 if codeText.count > textLimit {
@@ -98,7 +99,7 @@ private extension FriendAdd {
             //            .onChange(of: focusField) { _, _ in
             //                showPlaceholder = focusField == nil && codeText == ""
             //            }
-            .multilineTextAlignment(.center)
+           
             Spacer()
         }
         .padding(.vertical, 18)

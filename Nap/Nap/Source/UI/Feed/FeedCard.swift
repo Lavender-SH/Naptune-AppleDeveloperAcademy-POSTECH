@@ -14,15 +14,13 @@ struct FeedCard: View {
     // MARK: Body
     
     var body: some View {
-            
-            FeedImage
-                .overlay(alignment: .topLeading) {
-                    showInformation ? AnyView(UserProfile) : AnyView(EmptyView())
-                }
-                .overlay(alignment: .bottomLeading) {
-                    showInformation ? AnyView(SleepResult) : AnyView(EmptyView())
-                }
-        
+        FeedImage
+            .overlay(alignment: .topLeading) {
+                showInformation ? AnyView(UserProfile) : AnyView(EmptyView())
+            }
+            .overlay(alignment: .bottomLeading) {
+                showInformation ? AnyView(SleepResult) : AnyView(EmptyView())
+            }
     }
 }
 
