@@ -93,6 +93,6 @@ extension FeedCard {
 // MARK: - Previews
 
 #Preview {
-    FeedCard(showInformation: .constant(true), image: Image(.feedImage1))
+    FeedCard(showInformation: .constant(true), image: Image(.feedImage7))
 }
 
