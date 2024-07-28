@@ -12,18 +12,14 @@ struct Onboarding: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            Spacer().frame(height: 40)
+            Spacer().frame(height: topMargin)
             StageIndicator
             Spacer().frame(height: 15)
             Title
             Spacer().frame(height: 30)
             OnboardingTabView
             Spacer()
-            if currentStage == 4 {
-                
-            } else {
-                NextButton
-            }
+            NextButton
             Spacer().frame(height: 33)
         }
         .background {
@@ -75,6 +71,7 @@ private extension Onboarding {
         Text(titleText)
             .font(.napLargeTitle)
             .foregroundStyle(.napWhite100)
+            .lineLimit(2)
             .padding(.horizontal, 20)
     }
     
@@ -82,8 +79,8 @@ private extension Onboarding {
         getOnboardingImage(stage: stage)
             .resizable()
             .scaledToFill()
-            .frame(width: UIScreen.size.width-40,
-                   height: (UIScreen.size.width-40)/3*4)
+            .frame(width: imageWidth,
+                   height: imageHeight)
             .background(.napWhite10)
             .clipShape(RoundedRectangle(cornerRadius: 16))
     }
@@ -97,6 +94,7 @@ private extension Onboarding {
                     .gesture(DragGesture())
             }
         }
+        .frame(height: imageHeight)
         .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
     }
     
@@ -148,6 +146,18 @@ private extension Onboarding {
         } else {
             currentStage = 1
         }
+    }
+    
+    var topMargin: CGFloat {
+        UIScreen.isSE ? 10 : 40
+    }
+    
+    var imageWidth: CGFloat {
+        UIScreen.size.width - 40
+    }
+    
+    var imageHeight: CGFloat {
+        UIScreen.isSE ? imageWidth/7*8 : imageWidth/7*9
     }
 }
 
