@@ -10,6 +10,7 @@ import SwiftUI
 struct Friend: View {
     
     @State var isListSuspended: Bool = false
+    @State var friendCount: Int = 6
     
     var body: some View {
         ScrollView {
@@ -25,6 +26,8 @@ struct Friend: View {
             .padding(.horizontal, 20)
             .animation(.snappy,
                        value: isListSuspended)
+            .animation(.snappy,
+                       value: friendCount)
         }
         .scrollIndicators(.never)
         .navigationTitle("친구")
@@ -100,13 +103,15 @@ private extension Friend {
                 EditButton
             }
             FriendList
-            MoreButton
+            if friendCount > 3 {
+                MoreButton
+            }
         }
     }
     
     var FriendCount: some View {
         HStack(spacing: 3) {
-            Text("3")
+            Text("\(friendCount)")
                 .font(.napTitle1)
                 .foregroundStyle(.napBlue100)
             Text("/")
@@ -129,12 +134,21 @@ private extension Friend {
     }
     
     var FriendList: some View {
-        VStack(spacing: 0) {
-            ForEach(0..<friendList, id: \.self) { _ in
+        List {
+            ForEach(0..<friendCount, id: \.self) { _ in
                 FriendRow(isSleeping: false,
                           isAccepted: true)
+                    .listRowSeparator(.hidden)
+                    .listRowInsets(EdgeInsets())
+                    .listRowBackground(Color.clear)
+                    .swipeActions(edge: .trailing, allowsFullSwipe: false) {
+                        DeleteButton()
+                    }
             }
         }
+        .listStyle(.plain)
+        .scrollDisabled(true)
+        .frame(height: max(CGFloat(listMaxNumber)*72, 0))
     }
     
     var MoreButton: some View {
@@ -161,6 +175,15 @@ private extension Friend {
         }
        
         
+    }
+    
+    private func DeleteButton() -> some View {
+        Button(role: .destructive){
+            friendCount -= 1
+        } label: {
+            Label("삭제", systemImage: "trash")
+                .font(.subheadline)
+        }
     }
     
     // MARK: View-FriendRequest
@@ -190,8 +213,8 @@ private extension Friend {
     
     // MARK: Computed Values
     
-    var friendList: Int {
-        isListSuspended ? 6 : 3
+    var listMaxNumber: Int {
+        isListSuspended ? friendCount : min(3, friendCount)
     }
     
     var moreButtonText: String {
