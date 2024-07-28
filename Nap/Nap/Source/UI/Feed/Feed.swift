@@ -134,8 +134,8 @@ private extension Feed {
     }
     
     var FriendListButton: some View {
-        Button {
-            
+        NavigationLink {
+            Friend()
         } label: {
             Image(.friend)
                 .foregroundStyle(.napWhite100)

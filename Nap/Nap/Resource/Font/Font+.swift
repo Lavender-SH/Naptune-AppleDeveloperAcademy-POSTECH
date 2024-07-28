@@ -10,9 +10,11 @@ import SwiftUI
 extension Font {
     static let napDisplay = Font.custom("Pretendard-Bold", size: 40)
 
-    static let napLargeTitle1 = Font.custom("Pretendard-Bold", size: 24)
+    static let napLargeTitle = Font.custom("Pretendard-Bold", size: 24)
     
-    static let napTitle1 = Font.custom("Pretendard-Bold", size: 16)
+    static let napTitle1 = Font.custom("Pretendard-Bold", size: 20)
+    
+    static let napTitle2 = Font.custom("Pretendard-Bold", size: 16)
     
     static let napCaption1 = Font.custom("Pretendard-SemiBold", size: 14)
     
