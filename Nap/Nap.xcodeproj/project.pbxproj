@@ -15,6 +15,7 @@
 		390283A22C55407C00D8ACF5 /* Font+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390283A12C55407C00D8ACF5 /* Font+.swift */; };
 		390283A62C556DB900D8ACF5 /* FeedRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390283A52C556DB900D8ACF5 /* FeedRegister.swift */; };
 		390283A82C5607D100D8ACF5 /* FriendRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390283A72C5607D100D8ACF5 /* FriendRow.swift */; };
+		390283AA2C56165600D8ACF5 /* FriendRequestRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390283A92C56165600D8ACF5 /* FriendRequestRow.swift */; };
 		3928CA312C509EC200A5A823 /* NapApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928CA302C509EC200A5A823 /* NapApp.swift */; };
 		3928CA332C509EC200A5A823 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928CA322C509EC200A5A823 /* ContentView.swift */; };
 		3928CA352C509EC300A5A823 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3928CA342C509EC300A5A823 /* Assets.xcassets */; };
@@ -41,6 +42,7 @@
 		390283A12C55407C00D8ACF5 /* Font+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+.swift"; sourceTree = "<group>"; };
 		390283A52C556DB900D8ACF5 /* FeedRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedRegister.swift; sourceTree = "<group>"; };
 		390283A72C5607D100D8ACF5 /* FriendRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendRow.swift; sourceTree = "<group>"; };
+		390283A92C56165600D8ACF5 /* FriendRequestRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendRequestRow.swift; sourceTree = "<group>"; };
 		3928CA2D2C509EC200A5A823 /* Nap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3928CA302C509EC200A5A823 /* NapApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NapApp.swift; sourceTree = "<group>"; };
 		3928CA322C509EC200A5A823 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 			children = (
 				3928CA582C50A6B800A5A823 /* Friend.swift */,
 				390283A72C5607D100D8ACF5 /* FriendRow.swift */,
+				390283A92C56165600D8ACF5 /* FriendRequestRow.swift */,
 			);
 			path = Friend;
 			sourceTree = "<group>";
@@ -326,6 +329,7 @@
 				3928CA552C50A69200A5A823 /* Onboarding.swift in Sources */,
 				390283952C5389C500D8ACF5 /* UIScreen+.swift in Sources */,
 				390283A22C55407C00D8ACF5 /* Font+.swift in Sources */,
+				390283AA2C56165600D8ACF5 /* FriendRequestRow.swift in Sources */,
 				390283992C53C9F600D8ACF5 /* BackgroundImage.swift in Sources */,
 				390283A82C5607D100D8ACF5 /* FriendRow.swift in Sources */,
 				3928CA4E2C50A58900A5A823 /* HapticManager.swift in Sources */,

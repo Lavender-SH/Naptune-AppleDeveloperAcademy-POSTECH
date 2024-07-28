@@ -16,8 +16,10 @@ struct FriendRow: View {
             ProfileImage
             Description
             Spacer()
-            AwakeAcceptButton
+            isSleeping ? AnyView(SleepingPart)
+                       : AnyView(EmptyView())
         }
+        .padding(.vertical, 12)
     }
 }
             
@@ -36,7 +38,7 @@ private extension FriendRow {
     }
     
     var Description: some View {
-        VStack(spacing: 4) {
+        VStack(alignment: .leading, spacing: 4) {
             Text(sleepingStatus)
                 .font(.napCaption2)
                 .foregroundStyle(.napBlue100)
@@ -44,6 +46,11 @@ private extension FriendRow {
                 .font(.napTitle2)
                 .foregroundStyle(.napWhite100)
         }
+    }
+    
+    var SleepingPart: some View {
+        isAccepted ? AnyView(RemainTime)
+                   : AnyView(AwakeAcceptButton)
     }
     
     var AwakeAcceptButton: some View {
@@ -59,6 +66,22 @@ private extension FriendRow {
                     Capsule()
                         .foregroundStyle(.napBlue20)
                 }
+        }
+    }
+    
+    var RemainTime: some View {
+        HStack(spacing: 4) {
+            Image(.clock)
+                .foregroundStyle(.napBlue100)
+            Text("24:50")
+                .foregroundStyle(.napBlue100)
+                .font(.napCaption2)
+        }
+        .padding(.vertical, 6)
+        .padding(.horizontal, 14)
+        .background {
+            Capsule()
+                .foregroundStyle(.napBlue20)
         }
     }
     
