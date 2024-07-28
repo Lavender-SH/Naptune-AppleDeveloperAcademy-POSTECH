@@ -111,39 +111,49 @@ private extension Feed {
     }
     
     var ChangeSizeButton: some View {
-        Image(isLargeCard ? .minimize : .maximize)
-            .foregroundStyle(.napWhite100)
-            .frame(width: 27, height: 27)
-            .padding(20)
-            .background {
-                Circle()
-                    .foregroundStyle(.ultraThinMaterial)
-                    .overlay {
-                        Circle()
-                            .stroke(.napWhite20, lineWidth: 2.0)
-                    }
-            }
-            .onTapGesture {
-                changFeedMode()
-            }
+        Button {
+            changFeedMode()
+        } label: {
+            Image(isLargeCard ? .minimize : .maximize)
+                .foregroundStyle(.napWhite100)
+                .frame(width: 27, height: 27)
+                .padding(20)
+                .background {
+                    Circle()
+                        .foregroundStyle(.ultraThinMaterial)
+                        .overlay {
+                            Circle()
+                                .stroke(.napWhite20, lineWidth: 2.0)
+                        }
+                }
+        }
+       
+//            .onTapGesture {
+//                changFeedMode()
+//            }
     }
     
     var FriendListButton: some View {
-        Image(.friend)
-            .foregroundStyle(.napWhite100)
-            .frame(width: 27, height: 27)
-            .padding(20)
-            .background {
-                Circle()
-                    .foregroundStyle(.ultraThinMaterial)
-                    .overlay {
-                        Circle()
-                            .stroke(.napWhite20, lineWidth: 2.0)
-                    }
-            }
-            .onTapGesture {
-                // 화면 전환 코드 작성
-            }
+        Button {
+            
+        } label: {
+            Image(.friend)
+                .foregroundStyle(.napWhite100)
+                .frame(width: 27, height: 27)
+                .padding(20)
+                .background {
+                    Circle()
+                        .foregroundStyle(.ultraThinMaterial)
+                        .overlay {
+                            Circle()
+                                .stroke(.napWhite20, lineWidth: 2.0)
+                        }
+                }
+        }
+        
+//            .onTapGesture {
+//                // 화면 전환 코드 작성
+//            }
     }
     
     // MARK: Computed Values

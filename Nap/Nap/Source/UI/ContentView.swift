@@ -12,7 +12,7 @@ struct ContentView: View {
         GeometryReader {proxy in
             ScrollView {
                 VStack(spacing: 0) {
-                    BackgroundImage(image: Image(.timerBackground))
+                    BackgroundImage(image: Image(.basicBackground))
                         .frame(width: proxy.size.width, height: proxy.size.height)
                     Feed()
                         .frame(width: proxy.size.width, height: proxy.size.height)
