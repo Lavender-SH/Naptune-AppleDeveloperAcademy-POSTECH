@@ -66,7 +66,7 @@ private extension FriendAdd {
     
     var Description: some View {
         Text("친구코드로 낮잠 친구를 추가해보세요")
-            .font(.napCaption4)
+            .font(.napCaption1)
             .foregroundStyle(.napWhite60)
     }
     
