@@ -13,6 +13,7 @@ struct Friend: View {
     @State var friendCount: Int = 6
     @State var isCodeCopied: Bool = false
     @State var isFriendAdding: Bool = false
+    @State var isRequestSuccess: Bool = false
     
     var body: some View {
         ScrollView {
@@ -33,11 +34,19 @@ struct Friend: View {
                 CodeCopyPopup
                     .padding(.bottom, 40)
                     .transition(.asymmetric(
+                        insertion: .offset(y: 150).animation(.bouncy),
+                        removal: .opacity.animation(.spring(duration: 0.2))))
+            }
+            if isRequestSuccess {
+                FriendRequestSuccessPopup
+                    .padding(.bottom, 40)
+                    .transition(.asymmetric(
                         insertion: .offset(y: 150).animation(.spring),
                         removal: .opacity.animation(.spring(duration: 0.2))))
             }
             if isFriendAdding {
-                FriendAdd(isFriendAdding: $isFriendAdding)
+                FriendAdd(isFriendAdding: $isFriendAdding,
+                          isRequestSuccess: $isRequestSuccess)
                     .ignoresSafeArea(.container, edges: .top)
             }
         }
@@ -91,12 +100,7 @@ private extension Friend {
     
     var CodeCopyButton: some View {
         Button {
-            isCodeCopied = true
-            UIPasteboard.general.string = "FQ9XH"
-            print("CodeCopied!")
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                isCodeCopied = false
-            }
+            codeCopy()
         } label: {
             Image(.copy)
                 .foregroundStyle(.napBlue100)
@@ -190,7 +194,7 @@ private extension Friend {
                 .frame(height: 1)
                 .foregroundStyle(.napWhite20)
             Button {
-                isListSuspended.toggle()
+                changeListSuspended()
             } label: {
                 Text(moreButtonText)
                     .font(.napCaption2)
@@ -242,8 +246,9 @@ private extension Friend {
             .foregroundStyle(.napWhite100)
     }
     
-    var CodeCopyPopup: some View {
-        Text("코드가 복사되었습니다")
+    
+    func PopupView(text: String) -> some View {
+        Text(text)
             .font(.napCaption1)
             .foregroundStyle(.napWhite80)
             .padding(.vertical, 8)
@@ -252,6 +257,14 @@ private extension Friend {
                 RoundedRectangle(cornerRadius: 6)
                     .foregroundColor(.napWhite20)
             }
+    }
+    
+    var CodeCopyPopup: some View {
+        PopupView(text: "코드가 복사되었습니다")
+    }
+    
+    var FriendRequestSuccessPopup: some View {
+        PopupView(text: "친구 요청이 전송되었습니다")
     }
     
     // MARK: Computed Values
@@ -265,6 +278,18 @@ private extension Friend {
     }
     
     // MARK: Action
+    
+    func changeListSuspended() {
+        isListSuspended.toggle()
+    }
+    
+    func codeCopy() {
+        isCodeCopied = true
+        UIPasteboard.general.string = "FQ9XH"
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            isCodeCopied = false
+        }
+    }
     
     func deleteFriend() {
         friendCount -= 1

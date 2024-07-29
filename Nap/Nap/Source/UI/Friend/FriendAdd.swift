@@ -13,6 +13,7 @@ struct FriendAdd: View {
     @FocusState private var focusField: Field?
     @State var showPlaceholder: Bool = true
     @Binding var isFriendAdding: Bool
+    @Binding var isRequestSuccess: Bool
     
     var textLimit: Int = 5
     
@@ -86,21 +87,9 @@ private extension FriendAdd {
                     codeText = String(codeText.prefix(textLimit))
                 }
             }
-            //            .overlay {
-            //                if showPlaceholder {
-            //                    Text("친구 코드를 입력하세요")
-            //                        .font(.napCaption5)
-            //                        .foregroundStyle(.napWhite40)
-            //                        .onTapGesture {
-            //                            showPlaceholder = false
-            //                            focusField = .code
-            //                        }
-            //                }
-            //            }
-            //            .onChange(of: focusField) { _, _ in
-            //                showPlaceholder = focusField == nil && codeText == ""
-            //            }
-           
+            .onSubmit {
+                makeFriendRequest()
+            }
             Spacer()
         }
         .padding(.vertical, 18)
@@ -109,12 +98,8 @@ private extension FriendAdd {
                 .foregroundStyle(.napWhite10)
         }
         .overlay(alignment: .trailing) {
-            Button {
-                print("친구 요청")
-            } label: {
-                BlueButtonLabel(text: "요청")
-            }
-            .padding(.trailing, 20)
+            RequestFriendButton
+                .padding(.trailing, 20)
         }
         .padding(.horizontal, 20)
         .onAppear {
@@ -122,9 +107,18 @@ private extension FriendAdd {
         }
     }
     
+    var RequestFriendButton: some View {
+        Button {
+            makeFriendRequest()
+        } label: {
+            BlueButtonLabel(text: "요청")
+        }
+        .disabled(isRequestSuccess)
+    }
+    
     var CloseButton: some View {
         Button {
-            isFriendAdding = false
+            closeFriendAddView()
         } label: {
             Image(.X_2)
                 .frame(width: 30, height: 30)
@@ -134,10 +128,25 @@ private extension FriendAdd {
                 }
         }
     }
+    
+    // MARK: Action
+    
+    func closeFriendAddView() {
+        focusField = nil
+        isFriendAdding = false
+    }
+    
+    func makeFriendRequest() {
+        isRequestSuccess = true
+        closeFriendAddView()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            isRequestSuccess = false
+        }
+    }
 }
 
 #Preview {
-    FriendAdd(isFriendAdding: .constant(false))
+    FriendAdd(isFriendAdding: .constant(false), isRequestSuccess: .constant(false))
 }
 
 enum Field {
