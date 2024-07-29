@@ -10,26 +10,33 @@ import SwiftUI
 struct Onboarding: View {
     
     @State var currentStage: Int = 1
+    @State var showBasicSetting: Bool = false
     
     // MARK: Body
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            Spacer().frame(height: topMargin)
-            StageIndicator
-            Spacer().frame(height: 15)
-            Title
-            Spacer().frame(height: 30)
-            OnboardingTabView
-            Spacer()
-            NextButton
-            Spacer().frame(height: 33)
+        NavigationStack {
+            VStack(alignment: .leading, spacing: 0) {
+                Spacer().frame(height: topMargin)
+                StageIndicator
+                Spacer().frame(height: 15)
+                Title
+                Spacer().frame(height: 30)
+                OnboardingTabView
+                Spacer()
+                NextButton
+                Spacer().frame(height: 33)
+            }
+            .background {
+                BackgroundImage(image: Image(.basicBackground))
+            }
+            .animation(.easeInOut(duration: 0.1),
+                       value: currentStage)
+            .navigationTitle("")
+            .navigationDestination(isPresented: $showBasicSetting) {
+                NicknameSetting()
+            }
         }
-        .background {
-            BackgroundImage(image: Image(.basicBackground))
-        }
-        .animation(.easeInOut(duration: 0.1),
-                   value: currentStage)
     }
 }
 
@@ -39,15 +46,15 @@ private extension Onboarding {
     
     var StageIndicator: some View {
         HStack(spacing: 8) {
-            StageIndicatorButton(stage: 1)
-            StageIndicatorButton(stage: 2)
-            StageIndicatorButton(stage: 3)
-            StageIndicatorButton(stage: 4)
+            StageIndicator(stage: 1)
+            StageIndicator(stage: 2)
+            StageIndicator(stage: 3)
+            StageIndicator(stage: 4)
         }
         .padding(.horizontal, 20)
     }
     
-    func StageIndicatorButton(stage: Int) -> some View {
+    func StageIndicator(stage: Int) -> some View {
         Circle()
             .foregroundStyle(
                 currentStage == stage ? .napBlue100
@@ -150,7 +157,7 @@ private extension Onboarding {
         if currentStage < 4 {
             currentStage += 1
         } else {
-            currentStage = 1
+            showBasicSetting = true
         }
     }
     

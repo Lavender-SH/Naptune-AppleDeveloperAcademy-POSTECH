@@ -32,6 +32,8 @@
 		3928CA5D2C50A6D600A5A823 /* StringConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928CA5C2C50A6D600A5A823 /* StringConstant.swift */; };
 		3928CA5F2C50E32D00A5A823 /* FeedCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928CA5E2C50E32D00A5A823 /* FeedCard.swift */; };
 		3928CA632C50FB5E00A5A823 /* BackgroundBlur.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928CA622C50FB5E00A5A823 /* BackgroundBlur.swift */; };
+		3999BE462C57DA5A00C48F68 /* NicknameSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3999BE452C57DA5A00C48F68 /* NicknameSetting.swift */; };
+		3999BE482C5811E700C48F68 /* ProfileSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3999BE472C5811E700C48F68 /* ProfileSetting.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +64,8 @@
 		3928CA5C2C50A6D600A5A823 /* StringConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringConstant.swift; sourceTree = "<group>"; };
 		3928CA5E2C50E32D00A5A823 /* FeedCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCard.swift; sourceTree = "<group>"; };
 		3928CA622C50FB5E00A5A823 /* BackgroundBlur.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundBlur.swift; sourceTree = "<group>"; };
+		3999BE452C57DA5A00C48F68 /* NicknameSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameSetting.swift; sourceTree = "<group>"; };
+		3999BE472C5811E700C48F68 /* ProfileSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSetting.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -248,6 +252,8 @@
 			isa = PBXGroup;
 			children = (
 				3928CA542C50A69200A5A823 /* Onboarding.swift */,
+				3999BE452C57DA5A00C48F68 /* NicknameSetting.swift */,
+				3999BE472C5811E700C48F68 /* ProfileSetting.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -334,12 +340,14 @@
 				3928CA5D2C50A6D600A5A823 /* StringConstant.swift in Sources */,
 				3928CA4A2C50A48C00A5A823 /* View+.swift in Sources */,
 				3928CA5F2C50E32D00A5A823 /* FeedCard.swift in Sources */,
+				3999BE462C57DA5A00C48F68 /* NicknameSetting.swift in Sources */,
 				3928CA552C50A69200A5A823 /* Onboarding.swift in Sources */,
 				390283952C5389C500D8ACF5 /* UIScreen+.swift in Sources */,
 				390283A22C55407C00D8ACF5 /* Font+.swift in Sources */,
 				390283AA2C56165600D8ACF5 /* FriendRequestRow.swift in Sources */,
 				390283992C53C9F600D8ACF5 /* BackgroundImage.swift in Sources */,
 				390283A82C5607D100D8ACF5 /* FriendRow.swift in Sources */,
+				3999BE482C5811E700C48F68 /* ProfileSetting.swift in Sources */,
 				3928CA4E2C50A58900A5A823 /* HapticManager.swift in Sources */,
 				3928CA572C50A6B000A5A823 /* Timer.swift in Sources */,
 				390283A62C556DB900D8ACF5 /* FeedRegister.swift in Sources */,
