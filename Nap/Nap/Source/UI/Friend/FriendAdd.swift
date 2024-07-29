@@ -41,6 +41,7 @@ struct FriendAdd: View {
                 CloseButton
                     .padding(16)
             }
+            .offset(y: 10)
         }
     }
 }
@@ -126,7 +127,7 @@ private extension FriendAdd {
             isFriendAdding = false
         } label: {
             Image(.X_2)
-                .padding(10)
+                .frame(width: 30, height: 30)
                 .background {
                     Circle()
                         .foregroundStyle(.napWhite10)

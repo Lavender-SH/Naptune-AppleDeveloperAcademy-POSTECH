@@ -35,11 +35,9 @@ struct Friend: View {
                     .transition(.asymmetric(
                         insertion: .offset(y: 150).animation(.spring),
                         removal: .opacity.animation(.spring(duration: 0.2))))
-                    //.transition(.offset(y: 150))
             }
             if isFriendAdding {
                 FriendAdd(isFriendAdding: $isFriendAdding)
-                    .offset(y: 10)
                     .ignoresSafeArea(.container, edges: .top)
             }
         }
@@ -63,29 +61,21 @@ private extension Friend {
     var FriendAddSection: some View {
         VStack(alignment: .leading, spacing: 12) {
             SectionTitle("친구 추가")
-            CodeCopyButton
+            MyCode
             FriendAddButton
         }
     }
     
-    var CodeCopyButton: some View {
+    var MyCode: some View {
         HStack(spacing: 0) {
             Spacer()
             Text("FQ9XH")
                 .font(.napLargeTitle)
                 .foregroundStyle(.napWhite80)
-            Button {
-                isCodeCopied = true
-                UIPasteboard.general.string = "FQ9XH"
-                print("CodeCopied!")
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                    isCodeCopied = false
+                .overlay(alignment: .trailing) {
+                    CodeCopyButton
+                        .offset(x: 35)
                 }
-            } label: {
-                Image(.copy)
-                    .foregroundStyle(.napBlue100)
-                    .padding(8)
-            }
             Spacer()
         }
         .frame(height: 55)
@@ -97,6 +87,22 @@ private extension Friend {
             RoundedRectangle(cornerRadius: 6)
                 .stroke(Color.napWhite10, lineWidth: 1.0)
         }
+    }
+    
+    var CodeCopyButton: some View {
+        Button {
+            isCodeCopied = true
+            UIPasteboard.general.string = "FQ9XH"
+            print("CodeCopied!")
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                isCodeCopied = false
+            }
+        } label: {
+            Image(.copy)
+                .foregroundStyle(.napBlue100)
+                .padding(8)
+        }
+        .disabled(isCodeCopied)
     }
     
     var FriendAddButton: some View {
@@ -162,8 +168,8 @@ private extension Friend {
     var FriendList: some View {
         List {
             ForEach(0..<friendCount, id: \.self) { _ in
-                FriendRow(isSleeping: false,
-                          isAccepted: true)
+                FriendRow(isSleeping: true,
+                          isAccepted: false)
                 .listRowSeparator(.hidden)
                 .listRowInsets(EdgeInsets())
                 .listRowBackground(Color.clear)

@@ -23,7 +23,9 @@ struct ContentView: View {
                 .scrollIndicators(.never)
             }
             .ignoresSafeArea()
-            .background(BackgroundImage(image: Image(.feedBackground)))
+            .background(
+                BackgroundImage(image: Image(.feedBackground))
+            )
             .navigationTitle("")
         }
     }

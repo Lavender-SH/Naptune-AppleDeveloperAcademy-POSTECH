@@ -41,7 +41,7 @@ private extension FeedRegister {
     // MARK: View
     
     var FeedImage: some View {
-        Image(.feedImage7)
+        Image(.feedImage5)
             .resizable()
             .scaledToFill()
             .frame(width: imageWidth,
@@ -67,10 +67,10 @@ private extension FeedRegister {
     }
     
     var SleepComment: some View {
-        VStack(alignment: .leading, spacing: 5) {
+        VStack(alignment: .leading, spacing: 4) {
             Text("30분")
-                .font(.napFootnote1)
-                .foregroundStyle(.napBlue100)
+                .font(.napCaption2)
+                .foregroundStyle(.napWhite60)
             TextField(text: $sleepComent) {
                 Text("오늘 낮잠은 어떠셨나요?")
                     .font(.napCaption1)
@@ -84,8 +84,8 @@ private extension FeedRegister {
                 }
             }
         }
-        .frame(width: 200)
-        .padding(.vertical, 10)
+        .frame(width: 200, height: 55)
+        //.padding(.vertical, 10)
         .padding(.horizontal, 24)
         .background(.ultraThinMaterial)
         .clipShape(Capsule())
@@ -97,7 +97,7 @@ private extension FeedRegister {
         } label: {
             Text(sleepStatus)
                 .font(.system(size: 32))
-                .padding(10)
+                .frame(width: 55, height: 55)
                 .background(.ultraThinMaterial)
                 .clipShape(Circle())
         }

@@ -8,7 +8,10 @@
 import SwiftUI
 
 struct Onboarding: View {
+    
     @State var currentStage: Int = 1
+    
+    // MARK: Body
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -31,6 +34,9 @@ struct Onboarding: View {
 }
 
 private extension Onboarding {
+    
+    // MARK: View
+    
     var StageIndicator: some View {
         HStack(spacing: 8) {
             StageIndicatorButton(stage: 1)
@@ -60,7 +66,7 @@ private extension Onboarding {
                     Text("\(stage)")
                         .font(.napCaption1)
                         .foregroundStyle(
-                            currentStage == stage ? .napBlack600
+                            currentStage == stage ? .napBlack800
                                                   : .napWhite60
                         )
                 }
@@ -89,9 +95,9 @@ private extension Onboarding {
         TabView(selection: $currentStage) {
             ForEach(1..<5, id: \.self) { stage in
                 OnboardingImage(stage: stage)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .contentShape(Rectangle())
-                    .gesture(DragGesture())
+//                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+//                    .contentShape(Rectangle())
+//                    .gesture(DragGesture())
             }
         }
         .frame(height: imageHeight)
