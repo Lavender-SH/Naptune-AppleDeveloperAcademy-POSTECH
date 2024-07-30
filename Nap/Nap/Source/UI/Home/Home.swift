@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Timer: View {
+struct Home: View {
     
     // MARK: - Properties
     @State var startAngle: Double = 0
@@ -444,14 +444,8 @@ struct Timer: View {
 }
 
 
-//struct Home_Previews: PreviewProvider {
-//    static var previews: some View {
-//        Home()
-//    }
-//}
-
 #Preview {
-    Timer()
+    Home()
 }
 
 
