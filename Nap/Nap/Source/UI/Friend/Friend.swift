@@ -172,8 +172,10 @@ private extension Friend {
     var FriendList: some View {
         List {
             ForEach(0..<friendCount, id: \.self) { _ in
-                FriendRow(isSleeping: true,
-                          isAccepted: false)
+                FriendRow(isSleeping: .constant(true),
+                          isAccepted: .constant(false),
+                          profile: .constant(Image(.feedImage1)),
+                          nickName: .constant("자두자두졸린해시"))
                 .listRowSeparator(.hidden)
                 .listRowInsets(EdgeInsets())
                 .listRowBackground(Color.clear)
@@ -197,7 +199,7 @@ private extension Friend {
                 changeListSuspended()
             } label: {
                 Text(moreButtonText)
-                    .font(.napCaption2)
+                    .font(.napCaption1)
                     .foregroundStyle(.napWhite80)
                     .padding(.vertical, 6)
                     .padding(.horizontal, 14)

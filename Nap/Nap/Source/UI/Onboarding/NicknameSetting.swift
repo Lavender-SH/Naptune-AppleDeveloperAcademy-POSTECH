@@ -17,7 +17,7 @@ struct NicknameSetting: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            Spacer().frame(height: 26)
+            Spacer().frame(height: topMargin)
             StageIndicator
             Spacer().frame(height: 16)
             Header
@@ -33,7 +33,7 @@ struct NicknameSetting: View {
         .background(BackgroundImage(image: Image(.basicBackground)))
         .navigationTitle("")
         .navigationDestination(isPresented: $showProfileSetting) {
-            ProfileSetting()
+            ProfileSetting(nickname: $nickname)
         }
     }
 }
@@ -100,9 +100,7 @@ private extension NicknameSetting {
             .foregroundStyle(.napWhite100)
             .focused($focusField, equals: .code)
             .onChange(of: nickname) { _, _ in
-                if nickname.last == " " {
-                    nickname.removeLast()
-                }
+                nickname.removeAll(where: {$0 == " "})
                 if nickname.count > textLimit {
                     nickname = String(nickname.prefix(textLimit))
                 }
@@ -124,7 +122,7 @@ private extension NicknameSetting {
     }
     
     var TextFieldCaption: some View {
-        Text("* 닉네임은 2 ~ 10글자로 작성해주세요 (공백제외)")
+        Text("* 띄어쓰기 없이 닉네임을 설정해주세요 (최대 10자)")
             .font(.napCaption3)
             .foregroundStyle(.napWhite60)
     }
@@ -160,36 +158,14 @@ private extension NicknameSetting {
         .disabled(!nextAvailable)
     }
     
-    //    // MARK: Computed Values
-    //
-    //    func stageText(stage: Int) -> String {
-    //        switch stage {
-    //        case 1: return "닉네임"
-    //        case 2: return "프로필"
-    //        default: return "Error"
-    //        }
-    //    }
-    //
-    //    var subTitleText: String {
-    //        switch currentStage {
-    //        case 1: return "친구들이 나를 알아볼 수 있도록 닉네임을 설정해주세요"
-    //        case 2: return "친구들이 나를 알아볼 수 있는 사진으로 선정하면 좋아요"
-    //        default: return "Error"
-    //        }
-    //    }
-    //
-    //    var titleText: String {
-    //        switch currentStage {
-    //        case 1: return "닉네임을 알려주세요"
-    //        case 2: return "프로필 사진을 등록해요"
-    //        default: return "Error"
-    //        }
-    //    }
-    
     // MARK: Computed Values
     
+    var topMargin: CGFloat {
+        UIScreen.isSE ? 12 : 26
+    }
+    
     var nextAvailable: Bool {
-        return nickname.count <= textLimit && 2 <= nickname.count
+        return nickname != ""
     }
     
     //MARK: Action

@@ -6,35 +6,35 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 struct ProfileSetting: View {
     
-    @State var nickname: String = ""
-    @State var showProfileSetting: Bool = false
+    @State private var selectedPhotos: PhotosPickerItem? = nil
+    @State private var profile: Image = Image(.fox)
+    @Binding var nickname: String
+    
     @FocusState var focusField: Field?
     
     var textLimit = 10
     
     var body: some View {
         VStack(alignment: .leading) {
-            Spacer().frame(height: 26)
+            Spacer().frame(height: topMargin)
             StageIndicator
             Spacer().frame(height: 16)
             Header
-            Spacer().frame(height: 30)
-            NicknameTextField
-            Spacer().frame(height: 10)
-            TextFieldCaption
+            Spacer()
+            ProfileSection
+            Spacer()
+            ProfilePreview
+            Spacer()
             Spacer()
             NextButton
             Spacer().frame(height: 33)
         }
-        .padding(.horizontal, 20)
         .background(BackgroundImage(image: Image(.basicBackground)))
         .navigationTitle("")
-        .navigationDestination(isPresented: $showProfileSetting) {
-            EmptyView()
-        }
     }
 }
 
@@ -46,8 +46,8 @@ private extension ProfileSetting {
         HStack(spacing: 8) {
             PreviousStageIndicator
             ProfileStageIndicator
-            
         }
+        .padding(.horizontal, 20)
     }
     
     var PreviousStageIndicator: some View {
@@ -88,43 +88,65 @@ private extension ProfileSetting {
                 .font(.napLargeTitle)
                 .foregroundStyle(.napWhite100)
         }
+        .padding(.horizontal, 20)
     }
     
-    var NicknameTextField: some View {
-        HStack {
-            TextField(text: $nickname) {
-                Text("예시) 어린낮잠왕자")
-                    .font(.napTitle2)
-                    .foregroundStyle(.napWhite40)
+    var ProfileSection: some View {
+        ProfileImage
+            .overlay(alignment: .bottomTrailing) {
+                ImagePickerButton
             }
-            .font(.napTitle2)
-            .foregroundStyle(.napWhite100)
-            .focused($focusField, equals: .code)
-            .onChange(of: nickname) { _, _ in
-                if nickname.count > textLimit {
-                    nickname = String(nickname.prefix(textLimit))
+            .padding(.horizontal, 60)
+            
+    }
+    
+    var ProfileImage: some View {
+            profile
+                .resizable()
+                .scaledToFill()
+                .frame(width: imageWidth, height: imageHeight)
+                .clipShape(Circle())
+                .overlay {
+                    Circle()
+                        .stroke(.napWhite10, lineWidth: 2.0)
+                }
+    }
+    
+    var ImagePickerButton: some View {
+        PhotosPicker(selection: $selectedPhotos) {
+            Circle()
+                .frame(width: 66, height: 66)
+                .foregroundStyle(.napBlue100)
+                .overlay {
+                    Image(.album)
+                }
+        }
+        .onChange(of: selectedPhotos) {
+            Task {
+                if let loaded = try? await selectedPhotos?.loadTransferable(type: Data.self),
+                   let uiImage = UIImage(data: loaded) {
+                    profile = Image(uiImage: uiImage)
+                } else {
+                    profile = Image(.fox)
                 }
             }
-            .onSubmit {
-                //makeFriendRequest()
-            }
-            Spacer()
-        }
-        .padding(.vertical, 18)
-        .padding(.horizontal, 16)
-        .background {
-            RoundedRectangle(cornerRadius: 6)
-                .foregroundStyle(.napWhite10)
-        }
-        .onAppear {
-            focusField = .code
         }
     }
     
-    var TextFieldCaption: some View {
-        Text("* 닉네임은 2 ~ 10글자로 작성해주세요 (공백제외)")
-            .font(.napCaption3)
-            .foregroundStyle(.napWhite60)
+    var ProfilePreview: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text("프로필 미리보기")
+                .font(.napCaption2)
+                .foregroundStyle(.napWhite80)
+                .padding(.horizontal, 20)
+            
+            FriendRow(isSleeping: .constant(true),
+                      isAccepted: .constant(true),
+                      profile: $profile,
+                      nickName: $nickname)
+            .padding(.horizontal, 20)
+            .background(.napWhite10)
+        }
     }
     
     var NextButton: some View {
@@ -133,47 +155,61 @@ private extension ProfileSetting {
         } label: {
             HStack {
                 Spacer()
-                Text("다음")
+                Text(nextButtonText)
                     .font(.napTitle2)
                     .foregroundStyle(
-                        nextAvailable ? .napBlack800
-                                      : .napWhite30
+                        isSkipping ? .napBlue100
+                        : .napBlack800
                     )
                 Spacer()
             }
             .padding(.vertical, 18)
             .background(
-                nextAvailable ? .napBlue100
-                              : .napWhite10
+                isSkipping ? .napWhite10
+                : .napBlue100
             )
             .clipShape(RoundedRectangle(cornerRadius: 6))
             .overlay {
-                if !nextAvailable {
+                if isSkipping {
                     RoundedRectangle(cornerRadius: 6)
                         .stroke(.napWhite10,
                                 lineWidth: 1.0)
                 }
             }
         }
-
+        .padding(.horizontal, 20)
     }
     
     // MARK: Computed Values
+   
+    var topMargin: CGFloat {
+        UIScreen.isSE ? 12 : 26
+    }
     
-    // MARK: Computed Values
+    var isSkipping: Bool {
+        return profile == Image(.fox)
+    }
     
-    var nextAvailable: Bool {
-        return nickname.count <= textLimit && 2 <= nickname.count
+    var nextButtonText: String {
+        isSkipping ? "건너뛰기" : "완료"
+    }
+    
+    var imageWidth: CGFloat {
+        UIScreen.size.width - 120
+    }
+    
+    var imageHeight: CGFloat {
+        imageWidth
     }
     
     //MARK: Action
     
     func moveNextStage() {
-        showProfileSetting = true
+        
     }
 }
 
 #Preview {
-    ProfileSetting()
+    ProfileSetting(nickname: .constant("자두자두졸린해시"))
 }
 

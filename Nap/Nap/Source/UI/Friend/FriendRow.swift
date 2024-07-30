@@ -8,16 +8,22 @@
 import SwiftUI
 
 struct FriendRow: View {
-    let isSleeping: Bool
-    let isAccepted: Bool
+    
+    @Binding var isSleeping: Bool
+    @Binding var isAccepted: Bool
+    @Binding var profile: Image
+    @Binding var nickName: String
     
     var body: some View {
         HStack(spacing: 16) {
             ProfileImage
             Description
             Spacer()
-            isSleeping ? AnyView(SleepingPart)
-                       : AnyView(EmptyView())
+            if isSleeping && isAccepted {
+                RemainTime
+            } else if isSleeping && !isAccepted {
+                AwakeAcceptButton
+            }
         }
         .padding(.vertical, 12)
     }
@@ -25,13 +31,13 @@ struct FriendRow: View {
             
 private extension FriendRow {
     var ProfileImage: some View {
-        Image(.feedImage1)
+        profile
             .resizable()
             .scaledToFill()
             .frame(width: 48, height: 48)
-            .clipShape(RoundedRectangle(cornerRadius: 16))
+            .clipShape(Circle())
             .overlay {
-                RoundedRectangle(cornerRadius: 16)
+                Circle()
                     .stroke(isSleeping ? .napBlue100 : .napWhite100,
                             lineWidth: 2.0)
             }
@@ -42,7 +48,7 @@ private extension FriendRow {
             Text(sleepingStatus)
                 .font(.napCaption2)
                 .foregroundStyle(.napBlue100)
-            Text("쿨쿨나기")
+            Text(nickName)
                 .font(.napTitle2)
                 .foregroundStyle(.napWhite100)
         }
@@ -67,7 +73,7 @@ private extension FriendRow {
                 .foregroundStyle(.napBlue100)
             Text("24:50")
                 .foregroundStyle(.napBlue100)
-                .font(.napCaption2)
+                .font(.napCaption1)
         }
         .padding(.vertical, 6)
         .padding(.horizontal, 14)
@@ -85,6 +91,8 @@ private extension FriendRow {
 }
 
 #Preview {
-    FriendRow(isSleeping: true,
-              isAccepted: false)
+    FriendRow(isSleeping: .constant(true),
+              isAccepted: .constant(false),
+              profile: .constant(Image(.feedImage1)),
+              nickName: .constant("자두자두졸린해시"))
 }

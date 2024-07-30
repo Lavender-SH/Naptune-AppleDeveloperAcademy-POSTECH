@@ -14,7 +14,7 @@ struct BackgroundImage: View {
         image
             .resizable()
             .scaledToFill()
-            .ignoresSafeArea()
+            .ignoresSafeArea(.all)
     }
 }
 

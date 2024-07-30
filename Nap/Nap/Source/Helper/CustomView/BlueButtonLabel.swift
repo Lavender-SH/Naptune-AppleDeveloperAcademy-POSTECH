@@ -12,7 +12,7 @@ struct BlueButtonLabel: View {
     
     var body: some View {
         Text(text)
-            .font(.napCaption2)
+            .font(.napCaption1)
             .foregroundStyle(.napBlue100)
             .padding(.vertical, 6)
             .padding(.horizontal, 14)
