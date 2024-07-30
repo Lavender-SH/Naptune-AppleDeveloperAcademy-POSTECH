@@ -6,30 +6,41 @@
 //
 
 import SwiftUI
-import FirebaseCore
+import Firebase
+import UserNotifications
 
-
-class AppDelegate: NSObject, UIApplicationDelegate {
+class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDelegate {
   func application(_ application: UIApplication,
                    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
     FirebaseApp.configure()
+      
+      UNUserNotificationCenter.current().delegate = self
+
+      let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+      UNUserNotificationCenter.current().requestAuthorization(
+        options: authOptions,
+        completionHandler: { granted, error in
+            if let error = error {
+                print("Error requesting authorization for notifications: \(error.localizedDescription)")
+            }
+        }
+    )
+      
+    application.registerForRemoteNotifications()
 
     return true
   }
 }
 
+
 @main
 struct NapApp: App {
-  // register app delegate for Firebase setup
   @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-    @State private var loginComplete = UserDefaults.standard.bool(forKey: "loginComplete")
 
 
   var body: some Scene {
     WindowGroup {
-      NavigationView {
-        Onboarding(loginComplete: $loginComplete)
-      }
+        Onboarding()
     }
   }
 }
