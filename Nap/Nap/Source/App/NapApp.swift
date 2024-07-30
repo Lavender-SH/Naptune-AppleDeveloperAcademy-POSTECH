@@ -40,7 +40,7 @@ struct NapApp: App {
 
   var body: some Scene {
     WindowGroup {
-        Onboarding()
+        NagiOnboarding()
     }
   }
 }

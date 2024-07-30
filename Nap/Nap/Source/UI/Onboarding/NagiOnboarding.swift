@@ -19,11 +19,11 @@ struct NagiOnboarding: View {
             VStack(alignment: .leading, spacing: 0) {
                 Spacer().frame(height: topMargin)
                 StageIndicator
-                Spacer().frame(height: 15)
+                Spacer().frame(height: 16)
                 Title
-                Spacer().frame(height: 30)
+                Spacer().frame(minHeight: 20, maxHeight: 30)
                 OnboardingTabView
-                Spacer()
+                Spacer().frame(minHeight: 20)
                 NextButton
                 Spacer().frame(height: 33)
             }
@@ -85,6 +85,7 @@ private extension NagiOnboarding {
             .font(.napLargeTitle)
             .foregroundStyle(.napWhite100)
             .lineLimit(2)
+            .fixedSize()
             .padding(.horizontal, 20)
     }
     
@@ -92,23 +93,19 @@ private extension NagiOnboarding {
         getOnboardingImage(stage: stage)
             .resizable()
             .scaledToFill()
-            .frame(width: imageWidth,
-                   height: imageHeight)
+            .frame(width: imageWidth, height: imageHeight)
             .background(.napWhite10)
             .clipShape(RoundedRectangle(cornerRadius: 16))
     }
     
     var OnboardingTabView: some View {
-        TabView(selection: $currentStage) {
-            ForEach(1..<5, id: \.self) { stage in
-                OnboardingImage(stage: stage)
-//                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-//                    .contentShape(Rectangle())
-//                    .gesture(DragGesture())
+            TabView(selection: $currentStage) {
+                ForEach(1..<5, id: \.self) { stage in
+                    OnboardingImage(stage: stage)
+                }
             }
-        }
-        .frame(height: imageHeight)
-        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+            .frame(height: imageHeight)
     }
     
     var NextButton: some View {
@@ -162,7 +159,7 @@ private extension NagiOnboarding {
     }
     
     var topMargin: CGFloat {
-        UIScreen.isSE ? 10 : 40
+        UIScreen.isSE ? 20 : 40
     }
     
     var imageWidth: CGFloat {
@@ -170,7 +167,7 @@ private extension NagiOnboarding {
     }
     
     var imageHeight: CGFloat {
-        UIScreen.isSE ? imageWidth/7*8 : imageWidth/7*9
+       imageWidth/353*414
     }
 }
 

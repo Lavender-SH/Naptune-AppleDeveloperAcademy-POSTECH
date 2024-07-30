@@ -17,11 +17,10 @@ struct Onboarding: View {
     var body: some View {
         NavigationView {
             ZStack {
-                Image("intro")
+                Image(.intro)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .edgesIgnoringSafeArea(.all)
-                
                 VStack {
                     SignInWithAppleButton(
                         onRequest: { request in

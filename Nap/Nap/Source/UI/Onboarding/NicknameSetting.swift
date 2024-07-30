@@ -11,7 +11,6 @@ struct NicknameSetting: View {
     
     @State var nickname: String = ""
     @State var showProfileSetting: Bool = false
-    @State var n: Double = 1
     @FocusState var focusField: Field?
     
     var textLimit = 10

@@ -44,29 +44,15 @@ private extension ProfileSetting {
     
     var StageIndicator: some View {
         HStack(spacing: 8) {
-            NicknameStageIndicator
-            NextStageIndicator
+            PreviousStageIndicator
+            ProfileStageIndicator
+            
         }
     }
     
-    var NicknameStageIndicator: some View {
+    var PreviousStageIndicator: some View {
         HStack(spacing: 4) {
             Text("1")
-            Text("닉네임")
-        }
-        .font(.napCaption1)
-        .foregroundStyle(.napBlack800)
-        .padding(.vertical, 4)
-        .padding(.horizontal, 11)
-        .background {
-            Capsule()
-                .foregroundStyle(.napBlue100)
-        }
-    }
-    
-    var NextStageIndicator: some View {
-        HStack(spacing: 4) {
-            Text("2")
         }
         .font(.napCaption1)
         .foregroundStyle(.napWhite60)
@@ -78,12 +64,27 @@ private extension ProfileSetting {
         }
     }
     
+    var ProfileStageIndicator: some View {
+        HStack(spacing: 4) {
+            Text("2")
+            Text("프로필")
+        }
+        .font(.napCaption1)
+        .foregroundStyle(.napBlack800)
+        .padding(.vertical, 4)
+        .padding(.horizontal, 11)
+        .background {
+            Capsule()
+                .foregroundStyle(.napBlue100)
+        }
+    }
+    
     var Header: some View {
         VStack(alignment: .leading, spacing: 6) {
-            Text("친구들이 나를 알아볼 수 있도록 닉네임을 설정해주세요")
+            Text("친구들이 나를 알아볼 수 있는 사진으로 선정하면 좋아요")
                 .font(.napCaption1)
                 .foregroundStyle(.napBlue100)
-            Text("닉네임을 알려주세요")
+            Text("프로필 사진을 등록해요")
                 .font(.napLargeTitle)
                 .foregroundStyle(.napWhite100)
         }
@@ -157,31 +158,7 @@ private extension ProfileSetting {
 
     }
     
-    //    // MARK: Computed Values
-    //
-    //    func stageText(stage: Int) -> String {
-    //        switch stage {
-    //        case 1: return "닉네임"
-    //        case 2: return "프로필"
-    //        default: return "Error"
-    //        }
-    //    }
-    //
-    //    var subTitleText: String {
-    //        switch currentStage {
-    //        case 1: return "친구들이 나를 알아볼 수 있도록 닉네임을 설정해주세요"
-    //        case 2: return "친구들이 나를 알아볼 수 있는 사진으로 선정하면 좋아요"
-    //        default: return "Error"
-    //        }
-    //    }
-    //
-    //    var titleText: String {
-    //        switch currentStage {
-    //        case 1: return "닉네임을 알려주세요"
-    //        case 2: return "프로필 사진을 등록해요"
-    //        default: return "Error"
-    //        }
-    //    }
+    // MARK: Computed Values
     
     // MARK: Computed Values
     
@@ -197,6 +174,6 @@ private extension ProfileSetting {
 }
 
 #Preview {
-    NicknameSetting()
+    ProfileSetting()
 }
 

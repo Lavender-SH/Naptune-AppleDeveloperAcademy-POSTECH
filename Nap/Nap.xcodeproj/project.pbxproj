@@ -29,24 +29,22 @@
 		3928CA4A2C50A48C00A5A823 /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928CA492C50A48C00A5A823 /* View+.swift */; };
 		3928CA4E2C50A58900A5A823 /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928CA4D2C50A58900A5A823 /* HapticManager.swift */; };
 		3928CA502C50A63100A5A823 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3928CA4F2C50A63100A5A823 /* Launch Screen.storyboard */; };
-		3928CA552C50A69200A5A823 /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928CA542C50A69200A5A823 /* Onboarding.swift */; };
-		3928CA572C50A6B000A5A823 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928CA562C50A6B000A5A823 /* Home.swift */; };
 		3928CA552C50A69200A5A823 /* NagiOnboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928CA542C50A69200A5A823 /* NagiOnboarding.swift */; };
 		3928CA572C50A6B000A5A823 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928CA562C50A6B000A5A823 /* Home.swift */; };
 		3928CA592C50A6B800A5A823 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928CA582C50A6B800A5A823 /* Friend.swift */; };
 		3928CA5B2C50A6BC00A5A823 /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928CA5A2C50A6BC00A5A823 /* Feed.swift */; };
 		3928CA5D2C50A6D600A5A823 /* StringConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928CA5C2C50A6D600A5A823 /* StringConstant.swift */; };
+		3928CA5F2C50E32D00A5A823 /* FeedCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928CA5E2C50E32D00A5A823 /* FeedCard.swift */; };
+		3928CA632C50FB5E00A5A823 /* BackgroundBlur.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928CA622C50FB5E00A5A823 /* BackgroundBlur.swift */; };
+		3999BE462C57DA5A00C48F68 /* NicknameSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3999BE452C57DA5A00C48F68 /* NicknameSetting.swift */; };
+		3999BE482C5811E700C48F68 /* ProfileSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3999BE472C5811E700C48F68 /* ProfileSetting.swift */; };
+		3999BE4C2C588A0C00C48F68 /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3999BE4B2C588A0C00C48F68 /* Onboarding.swift */; };
 		92EE7B2B2C516785006D0D19 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 92EE7B2A2C516785006D0D19 /* FirebaseAnalytics */; };
 		92EE7B2D2C516785006D0D19 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 92EE7B2C2C516785006D0D19 /* FirebaseAuth */; };
 		92EE7B322C52B432006D0D19 /* Signupname.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EE7B312C52B432006D0D19 /* Signupname.swift */; };
 		92EE7B342C52B4EA006D0D19 /* Signuppic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EE7B332C52B4EA006D0D19 /* Signuppic.swift */; };
 		92EE7B372C554E30006D0D19 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 92EE7B362C554E30006D0D19 /* FirebaseStorage */; };
 		92EE7B392C554E38006D0D19 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 92EE7B382C554E38006D0D19 /* FirebaseFirestore */; };
-		3928CA5F2C50E32D00A5A823 /* FeedCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928CA5E2C50E32D00A5A823 /* FeedCard.swift */; };
-		3928CA632C50FB5E00A5A823 /* BackgroundBlur.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928CA622C50FB5E00A5A823 /* BackgroundBlur.swift */; };
-		3999BE462C57DA5A00C48F68 /* NicknameSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3999BE452C57DA5A00C48F68 /* NicknameSetting.swift */; };
-		3999BE482C5811E700C48F68 /* ProfileSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3999BE472C5811E700C48F68 /* ProfileSetting.swift */; };
-		3999BE4C2C588A0C00C48F68 /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3999BE4B2C588A0C00C48F68 /* Onboarding.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,21 +71,19 @@
 		3928CA492C50A48C00A5A823 /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
 		3928CA4D2C50A58900A5A823 /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		3928CA4F2C50A63100A5A823 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
-		3928CA542C50A69200A5A823 /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
-		3928CA562C50A6B000A5A823 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		3928CA542C50A69200A5A823 /* NagiOnboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NagiOnboarding.swift; sourceTree = "<group>"; };
 		3928CA562C50A6B000A5A823 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		3928CA582C50A6B800A5A823 /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		3928CA5A2C50A6BC00A5A823 /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
 		3928CA5C2C50A6D600A5A823 /* StringConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringConstant.swift; sourceTree = "<group>"; };
-		92EE7B2E2C5169E2006D0D19 /* Nap.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Nap.entitlements; sourceTree = "<group>"; };
-		92EE7B312C52B432006D0D19 /* Signupname.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signupname.swift; sourceTree = "<group>"; };
-		92EE7B332C52B4EA006D0D19 /* Signuppic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signuppic.swift; sourceTree = "<group>"; };
 		3928CA5E2C50E32D00A5A823 /* FeedCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCard.swift; sourceTree = "<group>"; };
 		3928CA622C50FB5E00A5A823 /* BackgroundBlur.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundBlur.swift; sourceTree = "<group>"; };
 		3999BE452C57DA5A00C48F68 /* NicknameSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameSetting.swift; sourceTree = "<group>"; };
 		3999BE472C5811E700C48F68 /* ProfileSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSetting.swift; sourceTree = "<group>"; };
 		3999BE4B2C588A0C00C48F68 /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
+		92EE7B2E2C5169E2006D0D19 /* Nap.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Nap.entitlements; sourceTree = "<group>"; };
+		92EE7B312C52B432006D0D19 /* Signupname.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signupname.swift; sourceTree = "<group>"; };
+		92EE7B332C52B4EA006D0D19 /* Signuppic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signuppic.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -234,7 +230,6 @@
 		3928CA482C50A14000A5A823 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				3928CA562C50A6B000A5A823 /* Home.swift */,
 				02C3FCB62C5882080087A72B /* ProgressView.swift */,
 				02C3FCB82C58824E0087A72B /* KDCircularProgressTest.swift */,
 				3928CA562C50A6B000A5A823 /* Home.swift */,
@@ -284,7 +279,6 @@
 		3928CA532C50A67300A5A823 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
-				3928CA542C50A69200A5A823 /* Onboarding.swift */,
 				92EE7B312C52B432006D0D19 /* Signupname.swift */,
 				92EE7B332C52B4EA006D0D19 /* Signuppic.swift */,
 				3928CA542C50A69200A5A823 /* NagiOnboarding.swift */,
@@ -550,7 +544,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Nap/Preview Content\"";
-				DEVELOPMENT_TEAM = B9JK9X5522;
+				DEVELOPMENT_TEAM = D23XDL6TZZ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Nap/Supporting File/Info.plist";
@@ -569,7 +563,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.Nappp.Nap;
+				PRODUCT_BUNDLE_IDENTIFIER = com.NapNap.Nap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -591,7 +585,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Nap/Preview Content\"";
-				DEVELOPMENT_TEAM = B9JK9X5522;
+				DEVELOPMENT_TEAM = D23XDL6TZZ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Nap/Supporting File/Info.plist";
@@ -610,7 +604,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.Nappp.Nap;
+				PRODUCT_BUNDLE_IDENTIFIER = com.NapNap.Nap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
