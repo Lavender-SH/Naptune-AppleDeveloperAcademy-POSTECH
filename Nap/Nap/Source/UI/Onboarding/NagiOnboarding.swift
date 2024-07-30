@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Onboarding: View {
+struct NagiOnboarding: View {
     
     @State var currentStage: Int = 1
     @State var showBasicSetting: Bool = false
@@ -40,7 +40,7 @@ struct Onboarding: View {
     }
 }
 
-private extension Onboarding {
+private extension NagiOnboarding {
     
     // MARK: View
     
@@ -175,5 +175,5 @@ private extension Onboarding {
 }
 
 #Preview {
-    Onboarding()
+    NagiOnboarding()
 }
