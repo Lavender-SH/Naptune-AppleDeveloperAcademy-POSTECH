@@ -9,11 +9,20 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        NavigationStack {
+        Main
+    }
+}
+
+extension ContentView {
+    
+    // MARK: View
+    
+    var Main: some View {
+        NavigationStack{
             GeometryReader {proxy in
                 ScrollView {
                     VStack(spacing: 0) {
-                        BackgroundImage(image: Image(.basicBackground))
+                        Home()
                             .frame(width: proxy.size.width, height: proxy.size.height)
                         Feed()
                             .frame(width: proxy.size.width, height: proxy.size.height)
@@ -23,9 +32,6 @@ struct ContentView: View {
                 .scrollIndicators(.never)
             }
             .ignoresSafeArea()
-            .background(
-                BackgroundImage(image: Image(.feedBackground))
-            )
             .navigationTitle("")
         }
     }

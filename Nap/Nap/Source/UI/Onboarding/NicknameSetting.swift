@@ -11,6 +11,7 @@ struct NicknameSetting: View {
     
     @State var nickname: String = ""
     @State var showProfileSetting: Bool = false
+    @State var n: Double = 1
     @FocusState var focusField: Field?
     
     var textLimit = 10
@@ -100,6 +101,9 @@ private extension NicknameSetting {
             .foregroundStyle(.napWhite100)
             .focused($focusField, equals: .code)
             .onChange(of: nickname) { _, _ in
+                if nickname.last == " " {
+                    nickname.removeLast()
+                }
                 if nickname.count > textLimit {
                     nickname = String(nickname.prefix(textLimit))
                 }

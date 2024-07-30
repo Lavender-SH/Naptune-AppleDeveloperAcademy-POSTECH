@@ -26,7 +26,7 @@
 		3928CA4E2C50A58900A5A823 /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928CA4D2C50A58900A5A823 /* HapticManager.swift */; };
 		3928CA502C50A63100A5A823 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3928CA4F2C50A63100A5A823 /* Launch Screen.storyboard */; };
 		3928CA552C50A69200A5A823 /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928CA542C50A69200A5A823 /* Onboarding.swift */; };
-		3928CA572C50A6B000A5A823 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928CA562C50A6B000A5A823 /* Timer.swift */; };
+		3928CA572C50A6B000A5A823 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928CA562C50A6B000A5A823 /* Home.swift */; };
 		3928CA592C50A6B800A5A823 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928CA582C50A6B800A5A823 /* Friend.swift */; };
 		3928CA5B2C50A6BC00A5A823 /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928CA5A2C50A6BC00A5A823 /* Feed.swift */; };
 		3928CA5D2C50A6D600A5A823 /* StringConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928CA5C2C50A6D600A5A823 /* StringConstant.swift */; };
@@ -58,7 +58,7 @@
 		3928CA4D2C50A58900A5A823 /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		3928CA4F2C50A63100A5A823 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		3928CA542C50A69200A5A823 /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
-		3928CA562C50A6B000A5A823 /* Timer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
+		3928CA562C50A6B000A5A823 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		3928CA582C50A6B800A5A823 /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		3928CA5A2C50A6BC00A5A823 /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
 		3928CA5C2C50A6D600A5A823 /* StringConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringConstant.swift; sourceTree = "<group>"; };
@@ -185,7 +185,7 @@
 			children = (
 				3928CA322C509EC200A5A823 /* ContentView.swift */,
 				3928CA532C50A67300A5A823 /* Onboarding */,
-				3928CA482C50A14000A5A823 /* Timer */,
+				3928CA482C50A14000A5A823 /* Home */,
 				3928CA522C50A66300A5A823 /* Friend */,
 				3928CA512C50A65E00A5A823 /* Feed */,
 			);
@@ -201,13 +201,13 @@
 			path = Helper;
 			sourceTree = "<group>";
 		};
-		3928CA482C50A14000A5A823 /* Timer */ = {
+		3928CA482C50A14000A5A823 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				3928CA562C50A6B000A5A823 /* Timer.swift */,
+				3928CA562C50A6B000A5A823 /* Home.swift */,
 				390283A52C556DB900D8ACF5 /* FeedRegister.swift */,
 			);
-			path = Timer;
+			path = Home;
 			sourceTree = "<group>";
 		};
 		3928CA4B2C50A4E600A5A823 /* Manager */ = {
@@ -349,7 +349,7 @@
 				390283A82C5607D100D8ACF5 /* FriendRow.swift in Sources */,
 				3999BE482C5811E700C48F68 /* ProfileSetting.swift in Sources */,
 				3928CA4E2C50A58900A5A823 /* HapticManager.swift in Sources */,
-				3928CA572C50A6B000A5A823 /* Timer.swift in Sources */,
+				3928CA572C50A6B000A5A823 /* Home.swift in Sources */,
 				390283A62C556DB900D8ACF5 /* FeedRegister.swift in Sources */,
 				3928CA312C509EC200A5A823 /* NapApp.swift in Sources */,
 				3928CA632C50FB5E00A5A823 /* BackgroundBlur.swift in Sources */,
