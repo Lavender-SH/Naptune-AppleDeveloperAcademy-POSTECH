@@ -96,8 +96,7 @@ private extension ProfileSetting {
             .overlay(alignment: .bottomTrailing) {
                 ImagePickerButton
             }
-            .padding(.horizontal, 60)
-            
+            .padding(.horizontal, ProfileSectionMargin)
     }
     
     var ProfileImage: some View {
@@ -186,6 +185,10 @@ private extension ProfileSetting {
         UIScreen.isSE ? 12 : 26
     }
     
+    var ProfileSectionMargin: CGFloat {
+        UIScreen.isSE ? 80 : 60
+    }
+    
     var isSkipping: Bool {
         return profile == Image(.fox)
     }
@@ -195,7 +198,7 @@ private extension ProfileSetting {
     }
     
     var imageWidth: CGFloat {
-        UIScreen.size.width - 120
+        UIScreen.isSE ? UIScreen.size.width - 160 : UIScreen.size.width - 120
     }
     
     var imageHeight: CGFloat {
