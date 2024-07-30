@@ -144,6 +144,7 @@ struct Signuppic: View {
                     return
                 }
                 
+                
                 profileImageRef.downloadURL { url, error in
                     if let error = error {
                         print("Error getting download URL: \(error.localizedDescription)")
