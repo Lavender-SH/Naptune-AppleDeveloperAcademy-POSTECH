@@ -16,7 +16,7 @@ struct Home: View {
     @State var toAngle: Double = 180
     @State var startProgress: CGFloat = 0
     @State var toProgress: CGFloat = 0.5
-    
+    @State private var lastHapticAngle: Double = 0
     // Timer properties
     @State private var timer: Timer?
     @State private var remainingSeconds: Int = 0
@@ -163,19 +163,6 @@ struct Home: View {
                         }.background(.gray.opacity(0.2), in: RoundedRectangle(cornerRadius: 15))
                     }//.background(.red.opacity(0.8), in: RoundedRectangle(cornerRadius: 15))
                     
-                    //                    Button {
-                    //                        cancelTimer()
-                    //                    } label: {
-                    //                        Text("취소")
-                    //                            .font(.headline)
-                    //                            .foregroundColor(.black)
-                    //                            .padding(.horizontal, 130)
-                    //                            .padding(.vertical, 15)
-                    //                            .background(Color.gray)
-                    //                            .cornerRadius(10)
-                    //                    }
-                    //                    .padding(.top, 10)
-                    //                    .frame(maxWidth: .infinity, maxHeight: 50)
                     
                 }
                 .padding()
@@ -349,6 +336,11 @@ struct Home: View {
         
         self.toAngle = angle
         self.toProgress = progress
+        
+        if abs(angle - lastHapticAngle) >= 2 {
+            HapticManager.instance.impact(style: .light)
+            lastHapticAngle = angle
+        }
     }
     
     // MARK: - Timer Functions

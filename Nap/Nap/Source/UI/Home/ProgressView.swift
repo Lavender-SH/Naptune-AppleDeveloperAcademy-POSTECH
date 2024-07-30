@@ -38,7 +38,7 @@ struct ProgressView: View {
                 
                 HStack {
                     Button(action: {
-                        // Add action for cancel
+                        Home()
                     }, label: {
                         Text("취소")
                             .foregroundColor(.white)
