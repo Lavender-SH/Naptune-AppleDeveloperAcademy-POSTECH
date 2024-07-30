@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		02C3FCB52C587FD30087A72B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 02C3FCB42C587FD30087A72B /* GoogleService-Info.plist */; };
+		02C3FCB72C5882080087A72B /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C3FCB62C5882080087A72B /* ProgressView.swift */; };
+		02C3FCB92C58824E0087A72B /* KDCircularProgressTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C3FCB82C58824E0087A72B /* KDCircularProgressTest.swift */; };
+		02C3FCBC2C5882720087A72B /* KDCircularProgress in Frameworks */ = {isa = PBXBuildFile; productRef = 02C3FCBB2C5882720087A72B /* KDCircularProgress */; };
 		3928CA312C509EC200A5A823 /* NapApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928CA302C509EC200A5A823 /* NapApp.swift */; };
 		3928CA332C509EC200A5A823 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928CA322C509EC200A5A823 /* ContentView.swift */; };
 		3928CA352C509EC300A5A823 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3928CA342C509EC300A5A823 /* Assets.xcassets */; };
@@ -15,13 +19,12 @@
 		3928CA4E2C50A58900A5A823 /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928CA4D2C50A58900A5A823 /* HapticManager.swift */; };
 		3928CA502C50A63100A5A823 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3928CA4F2C50A63100A5A823 /* Launch Screen.storyboard */; };
 		3928CA552C50A69200A5A823 /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928CA542C50A69200A5A823 /* Onboarding.swift */; };
-		3928CA572C50A6B000A5A823 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928CA562C50A6B000A5A823 /* Timer.swift */; };
+		3928CA572C50A6B000A5A823 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928CA562C50A6B000A5A823 /* Home.swift */; };
 		3928CA592C50A6B800A5A823 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928CA582C50A6B800A5A823 /* Friend.swift */; };
 		3928CA5B2C50A6BC00A5A823 /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928CA5A2C50A6BC00A5A823 /* Feed.swift */; };
 		3928CA5D2C50A6D600A5A823 /* StringConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928CA5C2C50A6D600A5A823 /* StringConstant.swift */; };
 		92EE7B2B2C516785006D0D19 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 92EE7B2A2C516785006D0D19 /* FirebaseAnalytics */; };
 		92EE7B2D2C516785006D0D19 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 92EE7B2C2C516785006D0D19 /* FirebaseAuth */; };
-		92EE7B302C52ACAA006D0D19 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 92EE7B2F2C52ACAA006D0D19 /* GoogleService-Info.plist */; };
 		92EE7B322C52B432006D0D19 /* Signupname.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EE7B312C52B432006D0D19 /* Signupname.swift */; };
 		92EE7B342C52B4EA006D0D19 /* Signuppic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EE7B332C52B4EA006D0D19 /* Signuppic.swift */; };
 		92EE7B372C554E30006D0D19 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 92EE7B362C554E30006D0D19 /* FirebaseStorage */; };
@@ -29,6 +32,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		02C3FCB42C587FD30087A72B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		02C3FCB62C5882080087A72B /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
+		02C3FCB82C58824E0087A72B /* KDCircularProgressTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KDCircularProgressTest.swift; sourceTree = "<group>"; };
 		3928CA2D2C509EC200A5A823 /* Nap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3928CA302C509EC200A5A823 /* NapApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NapApp.swift; sourceTree = "<group>"; };
 		3928CA322C509EC200A5A823 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -38,12 +44,11 @@
 		3928CA4D2C50A58900A5A823 /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		3928CA4F2C50A63100A5A823 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		3928CA542C50A69200A5A823 /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
-		3928CA562C50A6B000A5A823 /* Timer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
+		3928CA562C50A6B000A5A823 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		3928CA582C50A6B800A5A823 /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		3928CA5A2C50A6BC00A5A823 /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
 		3928CA5C2C50A6D600A5A823 /* StringConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringConstant.swift; sourceTree = "<group>"; };
 		92EE7B2E2C5169E2006D0D19 /* Nap.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Nap.entitlements; sourceTree = "<group>"; };
-		92EE7B2F2C52ACAA006D0D19 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		92EE7B312C52B432006D0D19 /* Signupname.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signupname.swift; sourceTree = "<group>"; };
 		92EE7B332C52B4EA006D0D19 /* Signuppic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signuppic.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -57,6 +62,7 @@
 				92EE7B392C554E38006D0D19 /* FirebaseFirestore in Frameworks */,
 				92EE7B2D2C516785006D0D19 /* FirebaseAuth in Frameworks */,
 				92EE7B372C554E30006D0D19 /* FirebaseStorage in Frameworks */,
+				02C3FCBC2C5882720087A72B /* KDCircularProgress in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,7 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				92EE7B2E2C5169E2006D0D19 /* Nap.entitlements */,
-				92EE7B2F2C52ACAA006D0D19 /* GoogleService-Info.plist */,
+				02C3FCB42C587FD30087A72B /* GoogleService-Info.plist */,
 				3928CA3E2C509FB500A5A823 /* Resource */,
 				3928CA3F2C509FBD00A5A823 /* Source */,
 				3928CA402C509FC300A5A823 /* Supporting File */,
@@ -166,7 +172,7 @@
 			children = (
 				3928CA322C509EC200A5A823 /* ContentView.swift */,
 				3928CA532C50A67300A5A823 /* Onboarding */,
-				3928CA482C50A14000A5A823 /* Timer */,
+				3928CA482C50A14000A5A823 /* Home */,
 				3928CA522C50A66300A5A823 /* Friend */,
 				3928CA512C50A65E00A5A823 /* Feed */,
 			);
@@ -182,12 +188,14 @@
 			path = Helper;
 			sourceTree = "<group>";
 		};
-		3928CA482C50A14000A5A823 /* Timer */ = {
+		3928CA482C50A14000A5A823 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				3928CA562C50A6B000A5A823 /* Timer.swift */,
+				3928CA562C50A6B000A5A823 /* Home.swift */,
+				02C3FCB62C5882080087A72B /* ProgressView.swift */,
+				02C3FCB82C58824E0087A72B /* KDCircularProgressTest.swift */,
 			);
-			path = Timer;
+			path = Home;
 			sourceTree = "<group>";
 		};
 		3928CA4B2C50A4E600A5A823 /* Manager */ = {
@@ -259,6 +267,7 @@
 				92EE7B2C2C516785006D0D19 /* FirebaseAuth */,
 				92EE7B362C554E30006D0D19 /* FirebaseStorage */,
 				92EE7B382C554E38006D0D19 /* FirebaseFirestore */,
+				02C3FCBB2C5882720087A72B /* KDCircularProgress */,
 			);
 			productName = Nap;
 			productReference = 3928CA2D2C509EC200A5A823 /* Nap.app */;
@@ -290,6 +299,7 @@
 			mainGroup = 3928CA242C509EC200A5A823;
 			packageReferences = (
 				92EE7B292C516785006D0D19 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				02C3FCBA2C5882720087A72B /* XCRemoteSwiftPackageReference "KDCircularProgress" */,
 			);
 			productRefGroup = 3928CA2E2C509EC200A5A823 /* Products */;
 			projectDirPath = "";
@@ -306,7 +316,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3928CA502C50A63100A5A823 /* Launch Screen.storyboard in Resources */,
-				92EE7B302C52ACAA006D0D19 /* GoogleService-Info.plist in Resources */,
+				02C3FCB52C587FD30087A72B /* GoogleService-Info.plist in Resources */,
 				3928CA382C509EC300A5A823 /* Preview Assets.xcassets in Resources */,
 				3928CA352C509EC300A5A823 /* Assets.xcassets in Resources */,
 			);
@@ -324,11 +334,13 @@
 				3928CA592C50A6B800A5A823 /* Friend.swift in Sources */,
 				3928CA5D2C50A6D600A5A823 /* StringConstant.swift in Sources */,
 				92EE7B322C52B432006D0D19 /* Signupname.swift in Sources */,
+				02C3FCB72C5882080087A72B /* ProgressView.swift in Sources */,
 				3928CA4A2C50A48C00A5A823 /* View+.swift in Sources */,
 				3928CA552C50A69200A5A823 /* Onboarding.swift in Sources */,
 				3928CA4E2C50A58900A5A823 /* HapticManager.swift in Sources */,
-				3928CA572C50A6B000A5A823 /* Timer.swift in Sources */,
+				3928CA572C50A6B000A5A823 /* Home.swift in Sources */,
 				3928CA312C509EC200A5A823 /* NapApp.swift in Sources */,
+				02C3FCB92C58824E0087A72B /* KDCircularProgressTest.swift in Sources */,
 				92EE7B342C52B4EA006D0D19 /* Signuppic.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -557,6 +569,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		02C3FCBA2C5882720087A72B /* XCRemoteSwiftPackageReference "KDCircularProgress" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kaandedeoglu/KDCircularProgress.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.5.4;
+			};
+		};
 		92EE7B292C516785006D0D19 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -568,6 +588,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		02C3FCBB2C5882720087A72B /* KDCircularProgress */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 02C3FCBA2C5882720087A72B /* XCRemoteSwiftPackageReference "KDCircularProgress" */;
+			productName = KDCircularProgress;
+		};
 		92EE7B2A2C516785006D0D19 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 92EE7B292C516785006D0D19 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
