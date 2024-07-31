@@ -15,7 +15,7 @@ struct ContentView: View {
         if isOnboarding {
             NagiOnboarding(isOnboarding: $isOnboarding)
         } else {
-            Home()
+            Main
         }
     }
 }
