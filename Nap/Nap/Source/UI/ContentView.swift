@@ -8,8 +8,15 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State var isOnboarding: Bool = true
+    
     var body: some View {
-        Main
+        if isOnboarding {
+            NagiOnboarding(isOnboarding: $isOnboarding)
+        } else {
+            Main
+        }
     }
 }
 

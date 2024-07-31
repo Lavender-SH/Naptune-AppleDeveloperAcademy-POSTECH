@@ -11,6 +11,7 @@ struct NagiOnboarding: View {
     
     @State var currentStage: Int = 1
     @State var showBasicSetting: Bool = false
+    @Binding var isOnboarding: Bool
     
     // MARK: Body
     
@@ -34,7 +35,7 @@ struct NagiOnboarding: View {
                        value: currentStage)
             .navigationTitle("")
             .navigationDestination(isPresented: $showBasicSetting) {
-                NicknameSetting()
+                NicknameSetting(isOnboarding: $isOnboarding)
             }
         }
     }
@@ -172,5 +173,5 @@ private extension NagiOnboarding {
 }
 
 #Preview {
-    NagiOnboarding()
+    NagiOnboarding(isOnboarding: .constant(true))
 }

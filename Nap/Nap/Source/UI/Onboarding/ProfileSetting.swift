@@ -13,8 +13,8 @@ struct ProfileSetting: View {
     @State private var selectedPhotos: PhotosPickerItem? = nil
     @State private var profile: Image = Image(.fox)
     @Binding var nickname: String
-    
     @FocusState var focusField: Field?
+    @Binding var isOnboarding: Bool
     
     var textLimit = 10
     
@@ -208,11 +208,11 @@ private extension ProfileSetting {
     //MARK: Action
     
     func moveNextStage() {
-        
+        isOnboarding = false
     }
 }
 
 #Preview {
-    ProfileSetting(nickname: .constant("자두자두졸린해시"))
+    ProfileSetting(nickname: .constant("자두자두졸린해시"), isOnboarding: .constant(true))
 }
 

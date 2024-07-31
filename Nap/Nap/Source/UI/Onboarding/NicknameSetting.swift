@@ -12,6 +12,7 @@ struct NicknameSetting: View {
     @State var nickname: String = ""
     @State var showProfileSetting: Bool = false
     @FocusState var focusField: Field?
+    @Binding var isOnboarding: Bool
     
     var textLimit = 10
     
@@ -33,7 +34,7 @@ struct NicknameSetting: View {
         .background(BackgroundImage(image: Image(.basicBackground)))
         .navigationTitle("")
         .navigationDestination(isPresented: $showProfileSetting) {
-            ProfileSetting(nickname: $nickname)
+            ProfileSetting(nickname: $nickname, isOnboarding: $isOnboarding)
         }
     }
 }
@@ -176,5 +177,5 @@ private extension NicknameSetting {
 }
 
 #Preview {
-    NicknameSetting()
+    NicknameSetting(isOnboarding: .constant(true))
 }
