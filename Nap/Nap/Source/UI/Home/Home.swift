@@ -2,26 +2,27 @@
 //  Home.swift
 //  Nap
 //
-//  Created by YunhakLee on 7/24/24.
+//  Created by 이승현 on 7/23/24.
 //
 
 import SwiftUI
 
 struct Home: View {
     
-    // MARK: - Properties
+    // MARK: - 각도 및 프로그레스 바
     @State var startAngle: Double = 0
     // Since our to progress is 0.5
     // 0.5 * 360 = 180
     @State var toAngle: Double = 180
     @State var startProgress: CGFloat = 0
     @State var toProgress: CGFloat = 0.5
+    // MARK: - 햅틱
+    @State private var lastHapticAngle: Double = 0
     
-    // Timer properties
+    // MARK: - 타이머 속성
     @State private var timer: Timer?
     @State private var remainingSeconds: Int = 0
     @State private var totalDuration: Int = 0
-    
     @State private var isShowingProgressView = false
     
     var body: some View {
@@ -58,7 +59,6 @@ struct Home: View {
                                 .padding(.vertical, 10)
                                 .padding(.horizontal, 16)
                                 .background(.white.opacity(0.2), in: RoundedRectangle(cornerRadius: 20))
-                                
                                 
                             }
                             Text("지금 깨어있는 친구들")
@@ -102,43 +102,27 @@ struct Home: View {
                         
                     }
                     .padding(.top, 40)
-                    VStack {
+                    
                         VStack{
-                            HStack(spacing: 0) {
+                            HStack(alignment: .top) {
                                 VStack(alignment: .leading, spacing: 8) {
-                                    Label {
-                                        Text("낮잠 시간")
-                                            .foregroundColor(Color("ManboBlue400"))
-                                    } icon: {
-                                        Image(systemName: "moon")
-                                            .foregroundColor(Color("ManboBlue400"))
-                                    }
-                                    .font(.callout)
-                                    
-                                    Text(currentKSTTime().formatted(date: .omitted, time: .shortened))
-                                        .font(.title2.bold())
-                                        .foregroundColor(Color.white)
-                                }
-                                .frame(maxWidth: .infinity, alignment: .center)
-                                
-                                VStack(alignment: .leading, spacing: 8) {
-                                    Label {
-                                        Text("일어날 시간")
-                                            .foregroundColor(Color("ManboBlue400"))
-                                    } icon: {
-                                        Image(systemName: "alarm")
-                                            .foregroundColor(Color("ManboBlue400"))
-                                    }
-                                    .font(.callout)
-                                    
-                                    Text(wakeupTime().formatted(date: .omitted, time: .shortened))
-                                        .font(.title2.bold())
-                                        .foregroundColor(Color.white)
-                                }
-                                .frame(maxWidth: .infinity, alignment: .center)
+                                        Label {
+                                            Text("낮잠 시간")
+                                                .foregroundColor(Color("ManboBlue400"))
+                                        } icon: {
+                                            Image(systemName: "moon")
+                                                .foregroundColor(Color("ManboBlue400"))
+                                        }
+                                        .font(.callout)
+                                        
+                                        Text(formatTimeRange(start: currentKSTTime(), end: wakeupTime()))
+                                            .font(.title2.bold())
+                                            .foregroundColor(Color.white)
+                                }.padding(.vertical, 16)
+                                    .padding(.leading, 5)
+                                Spacer()
                             }
-                            .padding()
-                            //.padding(.top, 35)
+       
                             VStack{
                                 sleepTimeSlider()
                                     .padding(.top, 10)
@@ -156,32 +140,24 @@ struct Home: View {
                                 }
                                 .padding(.top, 50)
                                 .padding(.bottom, 30)
-                            }//.background(.blue.opacity(0.8), in: RoundedRectangle(cornerRadius: 15))
+                            }
                             NavigationLink(destination: ProgressView(remainingSeconds: $remainingSeconds, startTime: currentKSTTime(), endTime: wakeupTime()), isActive: $isShowingProgressView) {
                                 EmptyView()
                             }
-                        }.background(.gray.opacity(0.2), in: RoundedRectangle(cornerRadius: 15))
-                    }//.background(.red.opacity(0.8), in: RoundedRectangle(cornerRadius: 15))
+                        }
+                        .padding(.horizontal, 24)
+                        .background(.gray.opacity(0.2), in: RoundedRectangle(cornerRadius: 15))
                     
-                    //                    Button {
-                    //                        cancelTimer()
-                    //                    } label: {
-                    //                        Text("취소")
-                    //                            .font(.headline)
-                    //                            .foregroundColor(.black)
-                    //                            .padding(.horizontal, 130)
-                    //                            .padding(.vertical, 15)
-                    //                            .background(Color.gray)
-                    //                            .cornerRadius(10)
-                    //                    }
-                    //                    .padding(.top, 10)
-                    //                    .frame(maxWidth: .infinity, maxHeight: 50)
+                    
                     
                 }
                 .padding()
+                .padding(.top, 10)
                 .frame(maxHeight: .infinity, alignment: .top)
             }
+            .navigationBarTitle("", displayMode: .inline)
         }
+        
     }
     // MARK: - Sleep Time Circular Slider
     @ViewBuilder
@@ -192,7 +168,6 @@ struct Home: View {
             let width = proxy.size.width
             
             ZStack {
-                
                 // Background Image
                 Image("낮잠")
                     .resizable()
@@ -225,8 +200,6 @@ struct Home: View {
                             .rotationEffect(.init(degrees: Double(index) * -90))
                             .offset(y: (width - 90) / 2)
                             .rotationEffect(.init(degrees: Double(index) * 90))
-                        
-                        
                     }
                     
                 }
@@ -277,12 +250,7 @@ struct Home: View {
                     .offset(x: width / 2)
                 // To the Current Angle
                     .rotationEffect(.init(degrees: toAngle))
-                // For more About Circular Slider
-                // Check out my Circular Slider
-                // Check out my Circular Slider Video
-                // Link in Bio
                     .gesture(
-                        
                         DragGesture()
                             .onChanged({ value in
                                 onDrag(value: value)
@@ -293,21 +261,23 @@ struct Home: View {
                 
                 // MARK: - Hour Text
                 VStack(spacing: 6) {
-                    HStack(spacing: 5) {
+                    HStack(spacing: 8) {
                         makeNumberCard(number: formatTime(getTimeDifference() * 60)[0])
-                        makeNumberCard(number: formatTime(getTimeDifference() * 60)[1])
                         Text(":")
-                            .font(.system(size: 40).bold())
+                            .font(.system(size: 30).bold())
                             .foregroundColor(Color.white)
+                        makeNumberCard(number: formatTime(getTimeDifference() * 60)[1])
                         makeNumberCard(number: formatTime(getTimeDifference() * 60)[2])
+                        Text(":")
+                            .font(.system(size: 30).bold())
+                            .foregroundColor(Color.white)
                         makeNumberCard(number: formatTime(getTimeDifference() * 60)[3])
+                        makeNumberCard(number: formatTime(getTimeDifference() * 60)[4])
                     }
                 }
                 .scaleEffect(1.1)
                 
             }
-            
-            
         }
         .frame(width: screenBounds().width / 1.3, height: screenBounds().width / 1.3)
     }
@@ -349,6 +319,11 @@ struct Home: View {
         
         self.toAngle = angle
         self.toProgress = progress
+        //HapticManager.instance.impact(style: .light)
+        if abs(angle - lastHapticAngle) >= 2 {
+            HapticManager.instance.impact(style: .light)
+            lastHapticAngle = angle
+        }
     }
     
     // MARK: - Timer Functions
@@ -398,51 +373,78 @@ struct Home: View {
         let endMinutes = getMinutes(angle: toAngle)
         return (endMinutes - startMinutes + 120) % 120
     }
-    
+    // MARK: - 현재시간
     func currentKSTTime() -> Date {
         let now = Date()
         let timeZone = TimeZone(identifier: "Asia/Seoul")!
         let secondsFromGMT = timeZone.secondsFromGMT(for: now)
         return now.addingTimeInterval(TimeInterval(secondsFromGMT - TimeZone.current.secondsFromGMT(for: now)))
     }
-    
+    // MARK: - 일어나는 시간
     func wakeupTime() -> Date {
         let now = currentKSTTime()
         let addedMinutes = getTimeDifference()
         return Calendar.current.date(byAdding: .minute, value: addedMinutes, to: now) ?? now
     }
+    // MARK: - AM, PM -> 오전, 오후
+    func formatTimeRange(start: Date, end: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "ko_KR")
+        formatter.dateFormat = "a h:mm"
+        
+        let startTime = formatter.string(from: start)
+        let endTime = formatter.string(from: end)
+        
+        return " \(startTime) - \(endTime) "
+    }
     
+    // MARK: - 현재날짜
     func currentDateString() -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "M월 d일 EEEE"  // Korean date format
         formatter.locale = Locale(identifier: "ko_KR")  // Korean locale
         return formatter.string(from: Date())
     }
-    
+    // MARK: - 타이머 조정 후 나타내는 시간
     func formatTime(_ seconds: Int) -> [String] {
-        let minutes = seconds / 60
+        let hours = seconds / 3600
+        
+        var minutes = (seconds / 60) % 60 // minutes 값이 60을 초과하면 60을 뺀 나머지가 되도록
+        
+        // 60이 되면 0으로 설정
+        if minutes == 60 {
+            minutes = 0
+        }
+        
         let largeMinutes = minutes / 10
         let smallMinutes = minutes % 10
         
         let remainingSeconds = seconds % 60
         let largeSeconds = remainingSeconds / 10
         let smallSeconds = remainingSeconds % 10
-        return [String(format: "%01d", largeMinutes), String(format: "%01d", smallMinutes), String(format: "%01d", largeSeconds), String(format: "%01d", smallSeconds)]
+        
+        return [
+            String(format: "%01d", hours),
+            String(format: "%01d", largeMinutes),
+            String(format: "%01d", smallMinutes),
+            String(format: "%01d", largeSeconds),
+            String(format: "%01d", smallSeconds)
+        ]
     }
     
+    // MARK: - 타이머 시간뒤에 네모난 회색 배경
     func makeNumberCard(number: String) -> some View {
         Text(number)
             .font(.system(size: 30).bold())
             .foregroundColor(Color.white)
-            .frame(width: 35, height: 50)
-            .background(
-                RoundedRectangle(cornerRadius: 8)
-                    .fill(Color.gray.opacity(0.5))
-                    .frame(width: 35, height: 45)
-            )
+        //            .frame(width: 28, height: 43)
+        //            .background(
+        //                RoundedRectangle(cornerRadius: 8)
+        //                    .fill(Color.gray.opacity(0.5))
+        //                    .frame(width: 35, height: 45)
+        //            )
     }
 }
-
 
 #Preview {
     Home()
@@ -456,7 +458,6 @@ extension View {
         return UIScreen.main.bounds
     }
 }
-
 
 
 
