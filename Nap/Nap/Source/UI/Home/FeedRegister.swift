@@ -14,8 +14,8 @@ import SwiftUI
 struct FeedRegister: View {
     
     @State var sleepComent: String = ""
-    @State var isSelectingStatus: Bool = false
-    @State var sleepStatus: String = "🫥"
+    @State var isSelectingStatus: Bool = true
+    @State var sleepStatusLevel: Double = 3
     
     let textLimit: Int = 16
     let imageWidth = UIScreen.size.width - 40
@@ -27,10 +27,11 @@ struct FeedRegister: View {
             Spacer().frame(height: UIScreen.isSE ? 30 : 80)
             FeedImage
             Spacer().frame(height: 30)
-            isSelectingStatus ? AnyView(SleepStatusButtons) 
+            isSelectingStatus ? AnyView(StatusSection)
                               : AnyView(BottomButton)
-            Spacer()
         }
+
+        .padding(.horizontal, 20)
         .background(BackgroundImage(image: Image(.basicBackground)))
         .dismissKeyboard()
     }
@@ -55,7 +56,6 @@ private extension FeedRegister {
                 RoundedRectangle(cornerRadius: 20.0)
                     .stroke(.napWhite10, lineWidth: 1.0)
             }
-            .padding(.horizontal, 20)
     }
     
     var SleepResult: some View {
@@ -85,7 +85,6 @@ private extension FeedRegister {
             }
         }
         .frame(width: 200, height: 55)
-        //.padding(.vertical, 10)
         .padding(.horizontal, 24)
         .background(.ultraThinMaterial)
         .clipShape(Capsule())
@@ -104,10 +103,15 @@ private extension FeedRegister {
     }
     
     var BottomButton: some View {
-        HStack(spacing: 40) {
-            CancelButton
-            UploadButton
-            SelectStatusButton
+        VStack {
+            HStack(spacing: 40) {
+                CancelButton
+                UploadButton
+                Circle()
+                    .foregroundColor(.clear)
+                    .frame(width: 67, height: 67)
+            }
+            Spacer()
         }
     }
     
@@ -151,71 +155,171 @@ private extension FeedRegister {
         }
     }
     
-    var SelectStatusButton: some View {
+    var StatusSection: some View {
+        VStack {
+            StatusSlider
+            Spacer()
+            HStack(spacing: 12) {
+                StatusSelectCancelButton
+                StatusSelectCompleteButton
+            }
+        }
+    }
+    
+    var StatusSlider: some View {
+        VStack(spacing: 0) {
+            Slider(value: $sleepStatusLevel,
+                   in: 1...5,
+                   step: 1)
+            .tint(.napBlue100)
+            .foregroundStyle(.blue)
+            .background {
+                HStack {
+                    SliderStepCircle(level: 1)
+                    Spacer()
+                    SliderStepCircle(level: 2)
+                    Spacer()
+                    SliderStepCircle(level: 3)
+                    Spacer()
+                    SliderStepCircle(level: 4)
+                    Spacer()
+                    SliderStepCircle(level: 5)
+                }
+            }
+            HStack {
+                Text("매우 피곤함")
+                Spacer()
+                Text("매우 상쾌함")
+            }
+            .font(.napCaption3)
+            .foregroundStyle(.napWhite40)
+        }
+    }
+    
+    func SliderStepCircle(level: Double) -> some View {
+        Circle()
+            .frame(width: 8, height: 8)
+            .foregroundStyle(level <= sleepStatusLevel ? .napBlue100 : .napBlackSlider)
+            .offset(y: 0.5)
+    }
+    
+    var StatusSelectCancelButton: some View {
         Button {
-            changeBottomButton()
+            print("Cancel")
         } label: {
-            Image(.smile)
-                .foregroundStyle(.napWhite100)
-                .frame(width: 27, height: 27)
-                .padding(20)
+            Text("취소")
+                .font(.napTitle2)
+                .foregroundStyle(.napWhite60)
+                .padding(.vertical, 18)
+                .padding(.horizontal, 41)
                 .background {
-                    Circle()
-                        .foregroundStyle(Color.napWhite10)
-                        .background(BackgroundBlur(radius: 10, opaque: true))
+                    RoundedRectangle(cornerRadius: 6)
+                        .foregroundStyle(.napWhite10)
                 }
                 .overlay {
-                    Circle()
+                    RoundedRectangle(cornerRadius: 6)
                         .stroke(.napWhite10, lineWidth: 1.0)
                 }
         }
     }
     
-    var SleepStatusButtons: some View {
-        HStack(spacing: 20) {
-            SleepStatusButton(status: "😑",
-                              description: "피곤해요")
-            SleepStatusButton(status: "🙂",
-                              description: "보통")
-            SleepStatusButton(status: "🤩",
-                              description: "기운 펄펄")
+    var StatusSelectCompleteButton: some View {
+        Button {
+            print("complete")
+        } label: {
+            HStack {
+                Spacer()
+                Text("완료")
+                    .font(.napTitle2)
+                    .foregroundStyle(.napBlack800)
+                Spacer()
+            }
+            .padding(.vertical, 18)
+            .background {
+                RoundedRectangle(cornerRadius: 6)
+                    .foregroundStyle(.napBlue100)
+            }
         }
     }
     
-    func SleepStatusButton(status: String, description: String) -> some View {
-        VStack(spacing: 8) {
-            Button {
-                changeSleepStatus(status: status)
-            } label: {
-                Text(status)
-                    .font(.system(size: 45))
-                    .padding(20)
-                    .background {
-                        Circle()
-                            .foregroundStyle(
-                                status == sleepStatus ? Color.napBlue20 : Color.napWhite10)
-                            .background(BackgroundBlur(radius: 10, opaque: true))
-                    }
-                    .overlay {
-                        if status == sleepStatus {
-                            Circle()
-                                .stroke(.napBlue100, lineWidth: 2.0)
-                        } else {
-                            Circle()
-                                .stroke(.napWhite10, lineWidth: 1.0)
-                        }
-                    }
-            }
-            
-            if status == sleepStatus {
-                Text(description)
-                    .font(.napCaption2)
-                    .foregroundStyle(.napBlue100)
-            } else {
-                Text(description)
-                    .font(.napCaption3)
-                    .foregroundStyle(.napWhite40)
-            }
+//    var SelectStatusButton: some View {
+//        Button {
+//            changeBottomButton()
+//        } label: {
+//            Image(.smile)
+//                .foregroundStyle(.napWhite100)
+//                .frame(width: 27, height: 27)
+//                .padding(20)
+//                .background {
+//                    Circle()
+//                        .foregroundStyle(Color.napWhite10)
+//                        .background(BackgroundBlur(radius: 10, opaque: true))
+//                }
+//                .overlay {
+//                    Circle()
+//                        .stroke(.napWhite10, lineWidth: 1.0)
+//                }
+//        }
+//    }
+//    
+//    var SleepStatusButtons: some View {
+//        HStack(spacing: 20) {
+//            SleepStatusButton(status: "😑",
+//                              description: "피곤해요")
+//            SleepStatusButton(status: "🙂",
+//                              description: "보통")
+//            SleepStatusButton(status: "🤩",
+//                              description: "기운 펄펄")
+//        }
+//    }
+    
+//    func SleepStatusButton(status: String, description: String) -> some View {
+//        VStack(spacing: 8) {
+//            Button {
+//                changeSleepStatus(status: status)
+//            } label: {
+//                Text(status)
+//                    .font(.system(size: 45))
+//                    .padding(20)
+//                    .background {
+//                        Circle()
+//                            .foregroundStyle(
+//                                status == sleepStatus ? Color.napBlue20 : Color.napWhite10)
+//                            .background(BackgroundBlur(radius: 10, opaque: true))
+//                    }
+//                    .overlay {
+//                        if status == sleepStatus {
+//                            Circle()
+//                                .stroke(.napBlue100, lineWidth: 2.0)
+//                        } else {
+//                            Circle()
+//                                .stroke(.napWhite10, lineWidth: 1.0)
+//                        }
+//                    }
+//            }
+//            
+//            if status == sleepStatus {
+//                Text(description)
+//                    .font(.napCaption2)
+//                    .foregroundStyle(.napBlue100)
+//            } else {
+//                Text(description)
+//                    .font(.napCaption3)
+//                    .foregroundStyle(.napWhite40)
+//            }
+//        }
+//    }
+    
+    // MARK: Computed Values
+    
+    var sleepStatus: String {
+        switch sleepStatusLevel {
+        case 1: return "😑"
+        case 2: return "🫥"
+        case 3: return "🙂"
+        case 4: return "🫥"
+        case 5: return "🤩"
+        default: return "Error"
         }
     }
     
@@ -223,10 +327,6 @@ private extension FeedRegister {
     
     func changeBottomButton() {
         isSelectingStatus.toggle()
-    }
-    
-    func changeSleepStatus(status: String) {
-        sleepStatus = status
     }
 }
 

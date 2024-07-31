@@ -8,7 +8,7 @@
 import SwiftUI
 
 extension Font {
-    static let napDisplay = Font.custom("Pretendard-Bold", size: 40)
+    static let napDisplay = Font.custom("Pretendard-Bold", size: 32)
 
     static let napLargeTitle = Font.custom("Pretendard-Bold", size: 24)
     

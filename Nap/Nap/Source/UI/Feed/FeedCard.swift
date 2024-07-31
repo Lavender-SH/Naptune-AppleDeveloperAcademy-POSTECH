@@ -68,7 +68,7 @@ extension FeedCard {
         VStack(alignment: .leading, spacing: 5) {
             Text("30분 쿨쿨")
                 .font(.napFootnote1)
-                .foregroundStyle(.napBlue100)
+                .foregroundStyle(.napWhite60)
             Text("오늘 너무 피곤했어요...")
                 .font(.napCaption1)
                 .foregroundStyle(.napWhite100)
