@@ -14,8 +14,9 @@ import SwiftUI
 struct FeedRegister: View {
     
     @State var sleepComent: String = ""
-    @State var isSelectingStatus: Bool = true
+    @State var isSelectingStatus: Bool = false
     @State var sleepStatusLevel: Double = 3
+    @State var editedSleepStatusLevel: Double = 3
     
     let textLimit: Int = 16
     let imageWidth = UIScreen.size.width - 40
@@ -26,11 +27,9 @@ struct FeedRegister: View {
         VStack(spacing: 0) {
             Spacer().frame(height: UIScreen.isSE ? 30 : 80)
             FeedImage
-            Spacer().frame(height: 30)
             isSelectingStatus ? AnyView(StatusSection)
                               : AnyView(BottomButton)
         }
-
         .padding(.horizontal, 20)
         .background(BackgroundImage(image: Image(.basicBackground)))
         .dismissKeyboard()
@@ -92,7 +91,7 @@ private extension FeedRegister {
     
     var SleepStatus: some View {
         Button {
-            changeBottomButton()
+            toggleBottomButton()
         } label: {
             Text(sleepStatus)
                 .font(.system(size: 32))
@@ -104,6 +103,7 @@ private extension FeedRegister {
     
     var BottomButton: some View {
         VStack {
+            Spacer().frame(height: UIScreen.isSE ? 30 : 36)
             HStack(spacing: 40) {
                 CancelButton
                 UploadButton
@@ -157,18 +157,20 @@ private extension FeedRegister {
     
     var StatusSection: some View {
         VStack {
+            Spacer().frame(height: UIScreen.isSE ? 14 : 30)
             StatusSlider
             Spacer()
             HStack(spacing: 12) {
                 StatusSelectCancelButton
                 StatusSelectCompleteButton
             }
+            Spacer().frame(height: 33)
         }
     }
     
     var StatusSlider: some View {
         VStack(spacing: 0) {
-            Slider(value: $sleepStatusLevel,
+            Slider(value: $editedSleepStatusLevel,
                    in: 1...5,
                    step: 1)
             .tint(.napBlue100)
@@ -199,13 +201,13 @@ private extension FeedRegister {
     func SliderStepCircle(level: Double) -> some View {
         Circle()
             .frame(width: 8, height: 8)
-            .foregroundStyle(level <= sleepStatusLevel ? .napBlue100 : .napBlackSlider)
+            .foregroundStyle(level <= editedSleepStatusLevel ? .napBlue100 : .napBlackSlider)
             .offset(y: 0.5)
     }
     
     var StatusSelectCancelButton: some View {
         Button {
-            print("Cancel")
+            cancelSelectingStatus()
         } label: {
             Text("취소")
                 .font(.napTitle2)
@@ -225,7 +227,7 @@ private extension FeedRegister {
     
     var StatusSelectCompleteButton: some View {
         Button {
-            print("complete")
+            completeSelectingStatus()
         } label: {
             HStack {
                 Spacer()
@@ -242,78 +244,10 @@ private extension FeedRegister {
         }
     }
     
-//    var SelectStatusButton: some View {
-//        Button {
-//            changeBottomButton()
-//        } label: {
-//            Image(.smile)
-//                .foregroundStyle(.napWhite100)
-//                .frame(width: 27, height: 27)
-//                .padding(20)
-//                .background {
-//                    Circle()
-//                        .foregroundStyle(Color.napWhite10)
-//                        .background(BackgroundBlur(radius: 10, opaque: true))
-//                }
-//                .overlay {
-//                    Circle()
-//                        .stroke(.napWhite10, lineWidth: 1.0)
-//                }
-//        }
-//    }
-//    
-//    var SleepStatusButtons: some View {
-//        HStack(spacing: 20) {
-//            SleepStatusButton(status: "😑",
-//                              description: "피곤해요")
-//            SleepStatusButton(status: "🙂",
-//                              description: "보통")
-//            SleepStatusButton(status: "🤩",
-//                              description: "기운 펄펄")
-//        }
-//    }
-    
-//    func SleepStatusButton(status: String, description: String) -> some View {
-//        VStack(spacing: 8) {
-//            Button {
-//                changeSleepStatus(status: status)
-//            } label: {
-//                Text(status)
-//                    .font(.system(size: 45))
-//                    .padding(20)
-//                    .background {
-//                        Circle()
-//                            .foregroundStyle(
-//                                status == sleepStatus ? Color.napBlue20 : Color.napWhite10)
-//                            .background(BackgroundBlur(radius: 10, opaque: true))
-//                    }
-//                    .overlay {
-//                        if status == sleepStatus {
-//                            Circle()
-//                                .stroke(.napBlue100, lineWidth: 2.0)
-//                        } else {
-//                            Circle()
-//                                .stroke(.napWhite10, lineWidth: 1.0)
-//                        }
-//                    }
-//            }
-//            
-//            if status == sleepStatus {
-//                Text(description)
-//                    .font(.napCaption2)
-//                    .foregroundStyle(.napBlue100)
-//            } else {
-//                Text(description)
-//                    .font(.napCaption3)
-//                    .foregroundStyle(.napWhite40)
-//            }
-//        }
-//    }
-    
     // MARK: Computed Values
     
     var sleepStatus: String {
-        switch sleepStatusLevel {
+        switch editedSleepStatusLevel {
         case 1: return "😑"
         case 2: return "🫥"
         case 3: return "🙂"
@@ -325,8 +259,22 @@ private extension FeedRegister {
     
     // MARK: Action
     
-    func changeBottomButton() {
-        isSelectingStatus.toggle()
+    func toggleBottomButton() {
+        isSelectingStatus ? cancelSelectingStatus() : startSelectingStatus()
+    }
+    
+    func startSelectingStatus() {
+        isSelectingStatus = true
+    }
+    
+    func completeSelectingStatus() {
+        isSelectingStatus = false
+        sleepStatusLevel = editedSleepStatusLevel
+    }
+    
+    func cancelSelectingStatus() {
+        isSelectingStatus = false
+        editedSleepStatusLevel = sleepStatusLevel
     }
 }
 
