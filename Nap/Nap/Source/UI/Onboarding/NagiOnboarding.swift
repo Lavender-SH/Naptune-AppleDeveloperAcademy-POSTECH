@@ -6,6 +6,9 @@
 //
 
 import SwiftUI
+import Firebase
+import CryptoKit
+import AuthenticationServices
 
 struct NagiOnboarding: View {
     
@@ -13,19 +16,25 @@ struct NagiOnboarding: View {
     @State var showBasicSetting: Bool = false
     @Binding var isOnboarding: Bool
     
+    var firebaseManager = FirebaseManager.shared
+    
     // MARK: Body
     
     var body: some View {
         NavigationStack {
             VStack(alignment: .leading, spacing: 0) {
                 Spacer().frame(height: topMargin)
-                StageIndicator
+                StageIndicatorSection
                 Spacer().frame(height: 16)
                 Title
                 Spacer().frame(minHeight: 20, maxHeight: 30)
                 OnboardingTabView
                 Spacer().frame(minHeight: 20)
-                NextButton
+                if currentStage == 4 {
+                    LoginButton
+                } else {
+                    NextButton
+                }
                 Spacer().frame(height: 33)
             }
             .background {
@@ -45,7 +54,7 @@ private extension NagiOnboarding {
     
     // MARK: View
     
-    var StageIndicator: some View {
+    var StageIndicatorSection: some View {
         HStack(spacing: 8) {
             StageIndicator(stage: 1)
             StageIndicator(stage: 2)
@@ -90,15 +99,6 @@ private extension NagiOnboarding {
             .padding(.horizontal, 20)
     }
     
-    func OnboardingImage(stage: Int) -> some View {
-        getOnboardingImage(stage: stage)
-            .resizable()
-            .scaledToFill()
-            .frame(width: imageWidth, height: imageHeight)
-            .background(.napWhite10)
-            .clipShape(RoundedRectangle(cornerRadius: 16))
-    }
-    
     var OnboardingTabView: some View {
             TabView(selection: $currentStage) {
                 ForEach(1..<5, id: \.self) { stage in
@@ -107,6 +107,15 @@ private extension NagiOnboarding {
             }
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
             .frame(height: imageHeight)
+    }
+    
+    func OnboardingImage(stage: Int) -> some View {
+        getOnboardingImage(stage: stage)
+            .resizable()
+            .scaledToFill()
+            .frame(width: imageWidth, height: imageHeight)
+            .background(.napWhite10)
+            .clipShape(RoundedRectangle(cornerRadius: 16))
     }
     
     var NextButton: some View {
@@ -125,6 +134,31 @@ private extension NagiOnboarding {
             .clipShape(RoundedRectangle(cornerRadius: 6))
             .padding(.horizontal, 20)
         }
+    }
+    
+    var LoginButton: some View {
+        SignInWithAppleButton(
+            onRequest: { request in
+                firebaseManager.nonce = firebaseManager.randomNonceString()
+                request.requestedScopes = [.email, .fullName]
+                request.nonce = firebaseManager.sha256(firebaseManager.nonce)
+            },
+            onCompletion: { result in
+                switch result {
+                case .success(let authorization):
+                    print("Apple Sign-In successful")
+                    showBasicSetting = true
+                    if let credential = authorization.credential as? ASAuthorizationAppleIDCredential {
+                        firebaseManager.authenticate(credential: credential)
+                    }
+                case .failure(let error):
+                    print("Apple Sign-In failed: \(error.localizedDescription)")
+                }
+            }
+        )
+        .signInWithAppleButtonStyle(.white)
+        .frame(height: 56)
+        .padding(.horizontal, 20)
     }
     
     // MARK: Computed Values
@@ -168,7 +202,7 @@ private extension NagiOnboarding {
     }
     
     var imageHeight: CGFloat {
-       imageWidth/353*414
+        imageWidth/353*414
     }
 }
 

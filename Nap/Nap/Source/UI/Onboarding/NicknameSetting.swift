@@ -15,6 +15,7 @@ struct NicknameSetting: View {
     @Binding var isOnboarding: Bool
     
     var textLimit = 10
+    var firebaseManager = FirebaseManager.shared
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -173,6 +174,7 @@ private extension NicknameSetting {
     
     func moveNextStage() {
         showProfileSetting = true
+        firebaseManager.createUserDataWithNickname(nickname: nickname)
     }
 }
 

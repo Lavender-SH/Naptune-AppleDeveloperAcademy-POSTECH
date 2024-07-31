@@ -12,11 +12,13 @@ struct ProfileSetting: View {
     
     @State private var selectedPhotos: PhotosPickerItem? = nil
     @State private var profile: Image = Image(.fox)
+    @State private var profileUIImage: UIImage? = UIImage(resource: .fox)
     @Binding var nickname: String
     @FocusState var focusField: Field?
     @Binding var isOnboarding: Bool
     
     var textLimit = 10
+    var firebaseManager = FirebaseManager.shared
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -124,6 +126,7 @@ private extension ProfileSetting {
             Task {
                 if let loaded = try? await selectedPhotos?.loadTransferable(type: Data.self),
                    let uiImage = UIImage(data: loaded) {
+                    profileUIImage = uiImage
                     profile = Image(uiImage: uiImage)
                 } else {
                     profile = Image(.fox)
@@ -209,6 +212,7 @@ private extension ProfileSetting {
     
     func moveNextStage() {
         isOnboarding = false
+        firebaseManager.uploadImage(profileImage: profileUIImage)
     }
 }
 
