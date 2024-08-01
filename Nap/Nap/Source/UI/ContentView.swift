@@ -13,7 +13,7 @@ struct ContentView: View {
     
     var body: some View {
         if isOnboarding {
-            NagiOnboarding(isOnboarding: $isOnboarding)
+            Onboarding(isOnboarding: $isOnboarding)
         } else {
             Main
         }

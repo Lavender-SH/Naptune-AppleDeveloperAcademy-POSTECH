@@ -29,7 +29,7 @@
 		3928CA4A2C50A48C00A5A823 /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928CA492C50A48C00A5A823 /* View+.swift */; };
 		3928CA4E2C50A58900A5A823 /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928CA4D2C50A58900A5A823 /* HapticManager.swift */; };
 		3928CA502C50A63100A5A823 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3928CA4F2C50A63100A5A823 /* Launch Screen.storyboard */; };
-		3928CA552C50A69200A5A823 /* NagiOnboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928CA542C50A69200A5A823 /* NagiOnboarding.swift */; };
+		3928CA552C50A69200A5A823 /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928CA542C50A69200A5A823 /* Onboarding.swift */; };
 		3928CA572C50A6B000A5A823 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928CA562C50A6B000A5A823 /* Home.swift */; };
 		3928CA592C50A6B800A5A823 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928CA582C50A6B800A5A823 /* Friend.swift */; };
 		3928CA5B2C50A6BC00A5A823 /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928CA5A2C50A6BC00A5A823 /* Feed.swift */; };
@@ -39,7 +39,7 @@
 		399587C02C5A8F2300454D74 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399587BF2C5A8F2300454D74 /* FirebaseManager.swift */; };
 		3999BE462C57DA5A00C48F68 /* NicknameSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3999BE452C57DA5A00C48F68 /* NicknameSetting.swift */; };
 		3999BE482C5811E700C48F68 /* ProfileSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3999BE472C5811E700C48F68 /* ProfileSetting.swift */; };
-		3999BE4C2C588A0C00C48F68 /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3999BE4B2C588A0C00C48F68 /* Onboarding.swift */; };
+		3999BE4C2C588A0C00C48F68 /* JoseOnboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3999BE4B2C588A0C00C48F68 /* JoseOnboarding.swift */; };
 		92EE7B2B2C516785006D0D19 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 92EE7B2A2C516785006D0D19 /* FirebaseAnalytics */; };
 		92EE7B2D2C516785006D0D19 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 92EE7B2C2C516785006D0D19 /* FirebaseAuth */; };
 		92EE7B322C52B432006D0D19 /* Signupname.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EE7B312C52B432006D0D19 /* Signupname.swift */; };
@@ -72,7 +72,7 @@
 		3928CA492C50A48C00A5A823 /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
 		3928CA4D2C50A58900A5A823 /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		3928CA4F2C50A63100A5A823 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
-		3928CA542C50A69200A5A823 /* NagiOnboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NagiOnboarding.swift; sourceTree = "<group>"; };
+		3928CA542C50A69200A5A823 /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
 		3928CA562C50A6B000A5A823 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		3928CA582C50A6B800A5A823 /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		3928CA5A2C50A6BC00A5A823 /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
@@ -82,7 +82,7 @@
 		399587BF2C5A8F2300454D74 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		3999BE452C57DA5A00C48F68 /* NicknameSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameSetting.swift; sourceTree = "<group>"; };
 		3999BE472C5811E700C48F68 /* ProfileSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSetting.swift; sourceTree = "<group>"; };
-		3999BE4B2C588A0C00C48F68 /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
+		3999BE4B2C588A0C00C48F68 /* JoseOnboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoseOnboarding.swift; sourceTree = "<group>"; };
 		92EE7B2E2C5169E2006D0D19 /* Nap.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Nap.entitlements; sourceTree = "<group>"; };
 		92EE7B312C52B432006D0D19 /* Signupname.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signupname.swift; sourceTree = "<group>"; };
 		92EE7B332C52B4EA006D0D19 /* Signuppic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signuppic.swift; sourceTree = "<group>"; };
@@ -282,14 +282,22 @@
 		3928CA532C50A67300A5A823 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
-				92EE7B312C52B432006D0D19 /* Signupname.swift */,
-				92EE7B332C52B4EA006D0D19 /* Signuppic.swift */,
-				3928CA542C50A69200A5A823 /* NagiOnboarding.swift */,
-				3999BE4B2C588A0C00C48F68 /* Onboarding.swift */,
+				3928CA542C50A69200A5A823 /* Onboarding.swift */,
 				3999BE452C57DA5A00C48F68 /* NicknameSetting.swift */,
 				3999BE472C5811E700C48F68 /* ProfileSetting.swift */,
+				39B4A7442C5B8774006B6E74 /* Remainder */,
 			);
 			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		39B4A7442C5B8774006B6E74 /* Remainder */ = {
+			isa = PBXGroup;
+			children = (
+				3999BE4B2C588A0C00C48F68 /* JoseOnboarding.swift */,
+				92EE7B312C52B432006D0D19 /* Signupname.swift */,
+				92EE7B332C52B4EA006D0D19 /* Signuppic.swift */,
+			);
+			path = Remainder;
 			sourceTree = "<group>";
 		};
 		92EE7B352C554E30006D0D19 /* Frameworks */ = {
@@ -396,7 +404,7 @@
 				3928CA4A2C50A48C00A5A823 /* View+.swift in Sources */,
 				3928CA5F2C50E32D00A5A823 /* FeedCard.swift in Sources */,
 				3999BE462C57DA5A00C48F68 /* NicknameSetting.swift in Sources */,
-				3928CA552C50A69200A5A823 /* NagiOnboarding.swift in Sources */,
+				3928CA552C50A69200A5A823 /* Onboarding.swift in Sources */,
 				390283952C5389C500D8ACF5 /* UIScreen+.swift in Sources */,
 				390283A22C55407C00D8ACF5 /* Font+.swift in Sources */,
 				390283AA2C56165600D8ACF5 /* FriendRequestRow.swift in Sources */,
@@ -404,7 +412,7 @@
 				399587C02C5A8F2300454D74 /* FirebaseManager.swift in Sources */,
 				390283A82C5607D100D8ACF5 /* FriendRow.swift in Sources */,
 				3999BE482C5811E700C48F68 /* ProfileSetting.swift in Sources */,
-				3999BE4C2C588A0C00C48F68 /* Onboarding.swift in Sources */,
+				3999BE4C2C588A0C00C48F68 /* JoseOnboarding.swift in Sources */,
 				3928CA4E2C50A58900A5A823 /* HapticManager.swift in Sources */,
 				3928CA572C50A6B000A5A823 /* Home.swift in Sources */,
 				3928CA572C50A6B000A5A823 /* Home.swift in Sources */,
