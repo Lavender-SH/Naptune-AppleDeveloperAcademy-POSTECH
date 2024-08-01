@@ -1,9 +1,9 @@
 //
 //  ProgressView.swift
-//  Nap
+//  TimerTest
 //
-//  Created by 이승현 on 7/30/24.
-//
+//  Created by 이승현 on 7/28/24.
+
 
 import SwiftUI
 import KDCircularProgress
@@ -15,6 +15,9 @@ struct ProgressView: View {
     var endTime: Date
     @State private var showOverlayView: Bool = true
     @State private var resetTimer: Timer? = nil
+    @Environment(\.presentationMode) var presentationMode
+    @State private var showCameraView = false
+    @State private var selectedImage: UIImage? = nil
     
     var body: some View {
         ZStack {
@@ -38,7 +41,7 @@ struct ProgressView: View {
                 
                 HStack {
                     Button(action: {
-                        // Add action for cancel
+                        presentationMode.wrappedValue.dismiss()
                     }, label: {
                         Text("취소")
                             .foregroundColor(.white)
@@ -48,7 +51,7 @@ struct ProgressView: View {
                     .background(RoundedRectangle(cornerRadius: 8).fill(Color.gray).opacity(0.3))
                     
                     Button(action: {
-                        // Add action for wake up
+                        presentCameraViewController()
                     }, label: {
                         Text("일어나기")
                             .foregroundColor(.black)
@@ -61,10 +64,13 @@ struct ProgressView: View {
             }
             .padding()
         }
+
         .onAppear {
             startProgress()
         }
+        
     }
+    
     
     @ViewBuilder
     func sleepTimeSlider() -> some View {
@@ -109,7 +115,7 @@ struct ProgressView: View {
                             .resizable()
                             .scaledToFit()
                             .foregroundColor(Color("ManboBlue400"))
-                            .frame(width: 130, height: 130)
+                            .frame(width: 110, height: 110)
                             .padding(.top, 20)
                             .onTapGesture {
                                 withAnimation {
@@ -139,6 +145,7 @@ struct ProgressView: View {
                             }
                             .font(.system(size: 13))
                             .padding(.leading, 15)
+                            .padding(.top, 18)
                             
                             Text("\(startTime.formatted(date: .omitted, time: .shortened)) - \(endTime.formatted(date: .omitted, time: .shortened))")
                                 .font(.system(size:13))
@@ -147,13 +154,13 @@ struct ProgressView: View {
                         //남은 낮잠시간 나타내기
                         HStack(spacing: 5) {
                             makeNumberCard(number: formatTime(remainingSeconds)[0])
-                            makeNumberCard(number: formatTime(remainingSeconds)[1])
                             Text(":")
-                                .font(.system(size: 50).bold())
-                                .foregroundColor(Color.white)
+                            makeNumberCard(number: formatTime(remainingSeconds)[1])
                             makeNumberCard(number: formatTime(remainingSeconds)[2])
+                            Text(":")
                             makeNumberCard(number: formatTime(remainingSeconds)[3])
-                        } .font(.system(size: 50).bold())
+                            makeNumberCard(number: formatTime(remainingSeconds)[4])
+                        }.font(.system(size: 30).bold())
                             .foregroundColor(.white)
                         
                         //프로그레스바 진행률 게이지 %
@@ -163,6 +170,7 @@ struct ProgressView: View {
                             .font(.system(size: 15).bold())
                             .foregroundColor(Color("ManboBlue400"))
                             .background(.white.opacity(0.2), in: RoundedRectangle(cornerRadius: 20))
+                            .padding(.top, 15)
                         
                     }
                     .scaleEffect(1.1)
@@ -188,24 +196,41 @@ struct ProgressView: View {
     }
     // MARK: - 남은 낮잠시간 계산 함수
     func formatTime(_ seconds: Int) -> [String] {
-        let minutes = seconds / 60
+        let hours = seconds / 3600
+        
+        var minutes = (seconds / 60) % 60 // minutes 값이 60을 초과하면 60을 뺀 나머지가 되도록
+        
+        // 60이 되면 0으로 설정
+        if minutes == 60 {
+            minutes = 0
+        }
+        
         let largeMinutes = minutes / 10
         let smallMinutes = minutes % 10
         
         let remainingSeconds = seconds % 60
         let largeSeconds = remainingSeconds / 10
         let smallSeconds = remainingSeconds % 10
-        return [String(format: "%01d", largeMinutes), String(format: "%01d", smallMinutes), String(format: "%01d", largeSeconds), String(format: "%01d", smallSeconds)]
-        //        return String(format: "%02d : %02d", minutes, remainingSeconds)
+        
+        return [
+            String(format: "%01d", hours),
+            String(format: "%01d", largeMinutes),
+            String(format: "%01d", smallMinutes),
+            String(format: "%01d", largeSeconds),
+            String(format: "%01d", smallSeconds)
+        ]
     }
     // MARK: - 남은 낮잠시간의 네모난 회색 배경
     func makeNumberCard(number: String) -> some View {
         Text(number)
-            .frame(width: 40, height: 60)
-            .background(
-                RoundedRectangle(cornerRadius: 8)
-                    .fill(Color.gray.opacity(0.5))
-                    .frame(width: 40, height: 60) )
+            .font(.system(size: 30).bold())
+            .foregroundColor(Color.white)
+        //            .frame(width: 28, height: 43)
+        //            .background(
+        //                RoundedRectangle(cornerRadius: 8)
+        //                    .fill(Color.gray.opacity(0.5))
+        //                    .frame(width: 35, height: 45)
+        //            )
     }
     // MARK: - 번개를 탭했을때 다시 돌아오는 타이머 함수
     func startResetTimer() {
@@ -213,6 +238,15 @@ struct ProgressView: View {
         resetTimer = Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { _ in
             withAnimation {
                 showOverlayView = true
+            }
+        }
+    }
+    // MARK: - UIKit 카메라 뷰컨트롤러 띄우기
+    func presentCameraViewController() {
+        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+            if let window = windowScene.windows.first {
+                let viewController = CameraViewController()
+                window.rootViewController?.present(viewController, animated: true, completion: nil)
             }
         }
     }
@@ -225,6 +259,5 @@ struct ProgressView_Previews: PreviewProvider {
         ProgressView(remainingSeconds: .constant(600), startTime: Date(), endTime: Date().addingTimeInterval(600))
     }
 }
-
 
 
