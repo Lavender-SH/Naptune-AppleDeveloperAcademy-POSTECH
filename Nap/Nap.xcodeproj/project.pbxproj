@@ -40,6 +40,7 @@
 		3999BE462C57DA5A00C48F68 /* NicknameSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3999BE452C57DA5A00C48F68 /* NicknameSetting.swift */; };
 		3999BE482C5811E700C48F68 /* ProfileSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3999BE472C5811E700C48F68 /* ProfileSetting.swift */; };
 		3999BE4C2C588A0C00C48F68 /* JoseOnboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3999BE4B2C588A0C00C48F68 /* JoseOnboarding.swift */; };
+		39DBCC392C5BA8400039A728 /* StepSlider in Frameworks */ = {isa = PBXBuildFile; productRef = 39DBCC382C5BA8400039A728 /* StepSlider */; };
 		92EE7B2B2C516785006D0D19 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 92EE7B2A2C516785006D0D19 /* FirebaseAnalytics */; };
 		92EE7B2D2C516785006D0D19 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 92EE7B2C2C516785006D0D19 /* FirebaseAuth */; };
 		92EE7B322C52B432006D0D19 /* Signupname.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EE7B312C52B432006D0D19 /* Signupname.swift */; };
@@ -98,6 +99,7 @@
 				92EE7B2D2C516785006D0D19 /* FirebaseAuth in Frameworks */,
 				92EE7B372C554E30006D0D19 /* FirebaseStorage in Frameworks */,
 				02C3FCBC2C5882720087A72B /* KDCircularProgress in Frameworks */,
+				39DBCC392C5BA8400039A728 /* StepSlider in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -329,6 +331,7 @@
 				92EE7B362C554E30006D0D19 /* FirebaseStorage */,
 				92EE7B382C554E38006D0D19 /* FirebaseFirestore */,
 				02C3FCBB2C5882720087A72B /* KDCircularProgress */,
+				39DBCC382C5BA8400039A728 /* StepSlider */,
 			);
 			productName = Nap;
 			productReference = 3928CA2D2C509EC200A5A823 /* Nap.app */;
@@ -361,6 +364,7 @@
 			packageReferences = (
 				92EE7B292C516785006D0D19 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				02C3FCBA2C5882720087A72B /* XCRemoteSwiftPackageReference "KDCircularProgress" */,
+				39DBCC372C5BA8400039A728 /* XCRemoteSwiftPackageReference "StepSlider" */,
 			);
 			productRefGroup = 3928CA2E2C509EC200A5A823 /* Products */;
 			projectDirPath = "";
@@ -660,6 +664,14 @@
 				minimumVersion = 1.5.4;
 			};
 		};
+		39DBCC372C5BA8400039A728 /* XCRemoteSwiftPackageReference "StepSlider" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/spromicky/StepSlider";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.8.0;
+			};
+		};
 		92EE7B292C516785006D0D19 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -675,6 +687,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 02C3FCBA2C5882720087A72B /* XCRemoteSwiftPackageReference "KDCircularProgress" */;
 			productName = KDCircularProgress;
+		};
+		39DBCC382C5BA8400039A728 /* StepSlider */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 39DBCC372C5BA8400039A728 /* XCRemoteSwiftPackageReference "StepSlider" */;
+			productName = StepSlider;
 		};
 		92EE7B2A2C516785006D0D19 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
