@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		02241D792C5D484100B4A161 /* CheckSilentModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02241D782C5D484100B4A161 /* CheckSilentModeView.swift */; };
+		02241D7C2C5D48D900B4A161 /* CameraViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02241D7B2C5D48D900B4A161 /* CameraViewTest.swift */; };
 		02C3FCB52C587FD30087A72B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 02C3FCB42C587FD30087A72B /* GoogleService-Info.plist */; };
 		02C3FCB72C5882080087A72B /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C3FCB62C5882080087A72B /* ProgressView.swift */; };
 		02C3FCB92C58824E0087A72B /* KDCircularProgressTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C3FCB82C58824E0087A72B /* KDCircularProgressTest.swift */; };
@@ -32,6 +34,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		02241D782C5D484100B4A161 /* CheckSilentModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckSilentModeView.swift; sourceTree = "<group>"; };
+		02241D7B2C5D48D900B4A161 /* CameraViewTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewTest.swift; sourceTree = "<group>"; };
 		02C3FCB42C587FD30087A72B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		02C3FCB62C5882080087A72B /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		02C3FCB82C58824E0087A72B /* KDCircularProgressTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KDCircularProgressTest.swift; sourceTree = "<group>"; };
@@ -69,6 +73,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		02241D7A2C5D48B200B4A161 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				02241D7B2C5D48D900B4A161 /* CameraViewTest.swift */,
+			);
+			path = Camera;
+			sourceTree = "<group>";
+		};
 		3928CA242C509EC200A5A823 = {
 			isa = PBXGroup;
 			children = (
@@ -173,6 +185,7 @@
 				3928CA322C509EC200A5A823 /* ContentView.swift */,
 				3928CA532C50A67300A5A823 /* Onboarding */,
 				3928CA482C50A14000A5A823 /* Home */,
+				02241D7A2C5D48B200B4A161 /* Camera */,
 				3928CA522C50A66300A5A823 /* Friend */,
 				3928CA512C50A65E00A5A823 /* Feed */,
 			);
@@ -192,6 +205,7 @@
 			isa = PBXGroup;
 			children = (
 				3928CA562C50A6B000A5A823 /* Home.swift */,
+				02241D782C5D484100B4A161 /* CheckSilentModeView.swift */,
 				02C3FCB62C5882080087A72B /* ProgressView.swift */,
 				02C3FCB82C58824E0087A72B /* KDCircularProgressTest.swift */,
 			);
@@ -334,6 +348,7 @@
 				3928CA592C50A6B800A5A823 /* Friend.swift in Sources */,
 				3928CA5D2C50A6D600A5A823 /* StringConstant.swift in Sources */,
 				92EE7B322C52B432006D0D19 /* Signupname.swift in Sources */,
+				02241D7C2C5D48D900B4A161 /* CameraViewTest.swift in Sources */,
 				02C3FCB72C5882080087A72B /* ProgressView.swift in Sources */,
 				3928CA4A2C50A48C00A5A823 /* View+.swift in Sources */,
 				3928CA552C50A69200A5A823 /* Onboarding.swift in Sources */,
@@ -342,6 +357,7 @@
 				3928CA312C509EC200A5A823 /* NapApp.swift in Sources */,
 				02C3FCB92C58824E0087A72B /* KDCircularProgressTest.swift in Sources */,
 				92EE7B342C52B4EA006D0D19 /* Signuppic.swift in Sources */,
+				02241D792C5D484100B4A161 /* CheckSilentModeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
