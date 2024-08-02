@@ -9,6 +9,7 @@ import SwiftUI
 
 struct Feed: View {
     @State var isLargeCard: Bool = true
+    @Binding var showHome: Bool
     
     // MARK: Body
     
@@ -51,53 +52,28 @@ private extension Feed {
     // MARK: View
     
     var SlideHeader: some View {
-        HStack {
-            Spacer()
-            VStack(spacing: 1) {
-                Text("낮잠 자러가기")
-                    .font(.napCaption1)
-                Image(.chevronUp)
+        Button {
+            print("화면 올라가기")
+            showHome = true
+        } label: {
+            HStack {
+                Spacer()
+                VStack(spacing: 1) {
+                    Text("낮잠 자러가기")
+                        .font(.napCaption1)
+                    Image(.chevronUp)
+                }
+                .foregroundStyle(.napWhite60)
+                .padding(.vertical, 13)
+                Spacer()
             }
-            .foregroundStyle(.napWhite60)
-            .padding(.vertical, 13)
-            Spacer()
         }
-        
     }
+    
     var Header: some View {
         Text("Feed")
             .foregroundStyle(.white)
             .font(.system(size: 24, weight: .bold))
-    }
-    
-    var FriendCount: some View {
-        HStack(spacing: 0) {
-            Image(systemName: "person.2.fill")
-                .foregroundStyle(.white)
-                .font(.system(size: 14, weight: .regular))
-            Spacer().frame(width: 4)
-            Text("친구")
-                .foregroundStyle(.white)
-                .font(.system(size: 14, weight: .bold))
-            Spacer().frame(width: 12)
-            Text("4")
-                .foregroundStyle(.white)
-                .font(.system(size: 14, weight: .medium))
-            Spacer().frame(width: 2)
-            Text("/")
-                .foregroundStyle(.white.opacity(0.4))
-                .font(.system(size: 11, weight: .bold))
-            Spacer().frame(width: 2)
-            Text("6")
-                .foregroundStyle(.white.opacity(0.4))
-                .font(.system(size: 14, weight: .medium))
-        }
-        .padding(.horizontal, 12)
-        .padding(.vertical, 8)
-        .background {
-            Capsule()
-                .foregroundStyle(.white.opacity(0.1))
-        }
     }
     
     var FloatingButton: some View {
@@ -179,5 +155,5 @@ private extension Feed {
 }
 
 #Preview {
-    Feed()
+    Feed(showHome: .constant(false))
 }

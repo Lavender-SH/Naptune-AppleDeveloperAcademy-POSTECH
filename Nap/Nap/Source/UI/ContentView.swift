@@ -9,7 +9,8 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State var isOnboarding: Bool = true
+    @State var isOnboarding: Bool = false
+    @State var showHome: Bool = true
     
     var body: some View {
         if isOnboarding {
@@ -26,19 +27,27 @@ extension ContentView {
     
     var Main: some View {
         NavigationStack{
-            GeometryReader {proxy in
-                ScrollView {
-                    VStack(spacing: 0) {
-                        Home()
-                            .frame(width: proxy.size.width, height: proxy.size.height)
-                        Feed()
-                            .frame(width: proxy.size.width, height: proxy.size.height)
-                    }
+            ScrollView(.vertical) {
+                ScrollViewReader { reader in
+                    NagiHome(showHome: $showHome)
+                        .frame(width: UIScreen.size.width,
+                               height: UIScreen.size.height)
+                        .id(1)
+                    Feed(showHome: $showHome)
+                        .frame(width: UIScreen.size.width,
+                               height: UIScreen.size.height)
+                        .id(2)
+                        .onChange(of: showHome) { _, _ in
+                            withAnimation(.bouncy) {
+                                showHome ? reader.scrollTo(1)
+                                         : reader.scrollTo(2)
+                            }
+                        }
                 }
-                .scrollTargetBehavior(.paging)
-                .scrollIndicators(.never)
             }
             .ignoresSafeArea()
+            .scrollTargetBehavior(.paging)
+            .scrollIndicators(.never)
             .navigationTitle("")
         }
     }

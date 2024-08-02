@@ -51,7 +51,8 @@ struct ProgressView: View {
                     .background(RoundedRectangle(cornerRadius: 8).fill(Color.gray).opacity(0.3))
                     
                     Button(action: {
-                        presentCameraViewController()
+                        print("카메라 열기")
+                        //presentCameraViewController()
                     }, label: {
                         Text("일어나기")
                             .foregroundColor(.black)
@@ -242,14 +243,14 @@ struct ProgressView: View {
         }
     }
     // MARK: - UIKit 카메라 뷰컨트롤러 띄우기
-    func presentCameraViewController() {
-        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
-            if let window = windowScene.windows.first {
-                let viewController = CameraViewController()
-                window.rootViewController?.present(viewController, animated: true, completion: nil)
-            }
-        }
-    }
+//    func presentCameraViewController() {
+//        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+//            if let window = windowScene.windows.first {
+//                let viewController = CameraViewController()
+//                window.rootViewController?.present(viewController, animated: true, completion: nil)
+//            }
+//        }
+//    }
     
     
 }

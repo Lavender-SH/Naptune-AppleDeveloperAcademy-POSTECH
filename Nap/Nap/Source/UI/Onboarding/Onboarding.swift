@@ -122,18 +122,9 @@ private extension Onboarding {
         Button {
             moveNextStage()
         } label: {
-            HStack {
-                Spacer()
-                Text("다음")
-                    .font(.napTitle2)
-                    .foregroundStyle(.napBlack600)
-                Spacer()
-            }
-            .padding(.vertical, 18)
-            .background(.napBlue100)
-            .clipShape(RoundedRectangle(cornerRadius: 6))
-            .padding(.horizontal, 20)
+            MainButtonLabel(text: "다음")  
         }
+        .padding(.horizontal, 20)
     }
     
     var LoginButton: some View {

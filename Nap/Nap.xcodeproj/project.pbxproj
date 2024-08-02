@@ -41,6 +41,8 @@
 		3999BE482C5811E700C48F68 /* ProfileSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3999BE472C5811E700C48F68 /* ProfileSetting.swift */; };
 		3999BE4C2C588A0C00C48F68 /* JoseOnboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3999BE4B2C588A0C00C48F68 /* JoseOnboarding.swift */; };
 		39DBCC392C5BA8400039A728 /* StepSlider in Frameworks */ = {isa = PBXBuildFile; productRef = 39DBCC382C5BA8400039A728 /* StepSlider */; };
+		39DBCC3B2C5BE2080039A728 /* NagiHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DBCC3A2C5BE2080039A728 /* NagiHome.swift */; };
+		39DBCC3D2C5BF3410039A728 /* MainButtonLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DBCC3C2C5BF3410039A728 /* MainButtonLabel.swift */; };
 		92EE7B2B2C516785006D0D19 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 92EE7B2A2C516785006D0D19 /* FirebaseAnalytics */; };
 		92EE7B2D2C516785006D0D19 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 92EE7B2C2C516785006D0D19 /* FirebaseAuth */; };
 		92EE7B322C52B432006D0D19 /* Signupname.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EE7B312C52B432006D0D19 /* Signupname.swift */; };
@@ -84,6 +86,8 @@
 		3999BE452C57DA5A00C48F68 /* NicknameSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameSetting.swift; sourceTree = "<group>"; };
 		3999BE472C5811E700C48F68 /* ProfileSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSetting.swift; sourceTree = "<group>"; };
 		3999BE4B2C588A0C00C48F68 /* JoseOnboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoseOnboarding.swift; sourceTree = "<group>"; };
+		39DBCC3A2C5BE2080039A728 /* NagiHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NagiHome.swift; sourceTree = "<group>"; };
+		39DBCC3C2C5BF3410039A728 /* MainButtonLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainButtonLabel.swift; sourceTree = "<group>"; };
 		92EE7B2E2C5169E2006D0D19 /* Nap.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Nap.entitlements; sourceTree = "<group>"; };
 		92EE7B312C52B432006D0D19 /* Signupname.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signupname.swift; sourceTree = "<group>"; };
 		92EE7B332C52B4EA006D0D19 /* Signuppic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signuppic.swift; sourceTree = "<group>"; };
@@ -238,6 +242,7 @@
 				02C3FCB82C58824E0087A72B /* KDCircularProgressTest.swift */,
 				3928CA562C50A6B000A5A823 /* Home.swift */,
 				390283A52C556DB900D8ACF5 /* FeedRegister.swift */,
+				39DBCC3A2C5BE2080039A728 /* NagiHome.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -257,6 +262,7 @@
 				3928CA622C50FB5E00A5A823 /* BackgroundBlur.swift */,
 				390283982C53C9F600D8ACF5 /* BackgroundImage.swift */,
 				390283AD2C566B9E00D8ACF5 /* BlueButtonLabel.swift */,
+				39DBCC3C2C5BF3410039A728 /* MainButtonLabel.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -414,6 +420,7 @@
 				390283AA2C56165600D8ACF5 /* FriendRequestRow.swift in Sources */,
 				390283992C53C9F600D8ACF5 /* BackgroundImage.swift in Sources */,
 				399587C02C5A8F2300454D74 /* FirebaseManager.swift in Sources */,
+				39DBCC3D2C5BF3410039A728 /* MainButtonLabel.swift in Sources */,
 				390283A82C5607D100D8ACF5 /* FriendRow.swift in Sources */,
 				3999BE482C5811E700C48F68 /* ProfileSetting.swift in Sources */,
 				3999BE4C2C588A0C00C48F68 /* JoseOnboarding.swift in Sources */,
@@ -423,6 +430,7 @@
 				390283A62C556DB900D8ACF5 /* FeedRegister.swift in Sources */,
 				3928CA312C509EC200A5A823 /* NapApp.swift in Sources */,
 				02C3FCB92C58824E0087A72B /* KDCircularProgressTest.swift in Sources */,
+				39DBCC3B2C5BE2080039A728 /* NagiHome.swift in Sources */,
 				92EE7B342C52B4EA006D0D19 /* Signuppic.swift in Sources */,
 				3928CA632C50FB5E00A5A823 /* BackgroundBlur.swift in Sources */,
 			);

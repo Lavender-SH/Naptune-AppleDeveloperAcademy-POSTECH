@@ -31,7 +31,6 @@ struct Home: View {
                 Image("낮잠")
                     .resizable()
                     .scaledToFill()
-                    .edgesIgnoringSafeArea(.all)
                 
                 VStack {
                     HStack {
@@ -149,7 +148,7 @@ struct Home: View {
                         .background(.gray.opacity(0.2), in: RoundedRectangle(cornerRadius: 15))
                     
                     
-                    
+
                 }
                 .padding()
                 .padding(.top, 10)
