@@ -11,7 +11,7 @@ import PhotosUI
 struct ProfileSetting: View {
     
     @State private var selectedPhotos: PhotosPickerItem? = nil
-    @State private var profile: Image = Image(.fox)
+    @State private var profile: Image = Image("fox")
     @State private var profileUIImage: UIImage? = UIImage(resource: .fox)
     @Binding var nickname: String
     @FocusState var focusField: Field?
@@ -29,7 +29,9 @@ struct ProfileSetting: View {
             Spacer()
             ProfileSection
             Spacer()
+            Spacer()
             ProfilePreview
+            Spacer()
             Spacer()
             Spacer()
             NextButton
@@ -94,11 +96,17 @@ private extension ProfileSetting {
     }
     
     var ProfileSection: some View {
-        ProfileImage
-            .overlay(alignment: .bottomTrailing) {
+        HStack(spacing: 20) {
+            Spacer()
+            ProfileImage
+            VStack(spacing: 12) {
+                BasicProfileButton(imageName: "prince")
+                BasicProfileButton(imageName: "pilot")
+                BasicProfileButton(imageName: "fox")
                 ImagePickerButton
             }
-            .padding(.horizontal, ProfileSectionMargin)
+            Spacer()
+        }
     }
     
     var ProfileImage: some View {
@@ -107,19 +115,19 @@ private extension ProfileSetting {
                 .scaledToFill()
                 .frame(width: imageWidth, height: imageHeight)
                 .clipShape(Circle())
-                .overlay {
-                    Circle()
-                        .stroke(.napWhite10, lineWidth: 2.0)
-                }
     }
     
     var ImagePickerButton: some View {
         PhotosPicker(selection: $selectedPhotos) {
             Circle()
-                .frame(width: 66, height: 66)
-                .foregroundStyle(.napBlue100)
+                .frame(width: 53, height: 53)
+                .foregroundStyle(.napWhite20)
                 .overlay {
                     Image(.album)
+                }
+                .overlay {
+                    Circle()
+                        .stroke(.napWhite20, lineWidth: 2.0)
                 }
         }
         .onChange(of: selectedPhotos) {
@@ -132,6 +140,23 @@ private extension ProfileSetting {
                     profile = Image(.fox)
                 }
             }
+        }
+    }
+    
+    func BasicProfileButton(imageName: String) -> some View {
+        Button {
+            profile = Image(imageName)
+            profileUIImage = UIImage(named: imageName)
+        } label: {
+            Image(imageName)
+                .resizable()
+                .scaledToFill()
+                .frame(width: 53, height: 53)
+                .clipShape(Circle())
+                .overlay {
+                    Circle()
+                        .stroke(.napWhite10, lineWidth: 2.0)
+                }
         }
     }
     
@@ -188,12 +213,12 @@ private extension ProfileSetting {
         UIScreen.isSE ? 12 : 26
     }
     
-    var ProfileSectionMargin: CGFloat {
-        UIScreen.isSE ? 80 : 60
-    }
+//    var ProfileSectionTopMargin: CGFloat {
+//        UIScreen.isSE ? 26 : 35
+//    }
     
     var isSkipping: Bool {
-        return profile == Image(.fox)
+        return profile == Image("fox") || profile == Image("pilot") || profile == Image("prince")
     }
     
     var nextButtonText: String {
@@ -201,7 +226,7 @@ private extension ProfileSetting {
     }
     
     var imageWidth: CGFloat {
-        UIScreen.isSE ? UIScreen.size.width - 160 : UIScreen.size.width - 120
+        250
     }
     
     var imageHeight: CGFloat {

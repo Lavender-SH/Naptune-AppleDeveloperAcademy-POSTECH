@@ -24,8 +24,9 @@ struct NagiHome: View {
             NapSettingSection
             Spacer()
             MoveFeedButton
+            Spacer().frame(height: 21)
         }
-        .ignoresSafeArea(.container, edges: [.top, .bottom])
+        //.ignoresSafeArea(.container, edges: [.top])
         .background(
             BackgroundImage(image: Image(.basicBackground))
         )
@@ -159,53 +160,6 @@ private extension NagiHome {
                 .stroke(.napWhite10, lineWidth: 1.0)
         }
     }
-    
-    //    var TimerLavendar: some View {
-    //        VStack{
-    //            HStack(alignment: .top) {
-    //                VStack(alignment: .leading, spacing: 8) {
-    //                        Label {
-    //                            Text("낮잠 시간")
-    //                                .foregroundColor(Color("ManboBlue400"))
-    //                        } icon: {
-    //                            Image(systemName: "moon")
-    //                                .foregroundColor(Color("ManboBlue400"))
-    //                        }
-    //                        .font(.callout)
-    //
-    //                        Text(formatTimeRange(start: currentKSTTime(), end: wakeupTime()))
-    //                            .font(.title2.bold())
-    //                            .foregroundColor(Color.white)
-    //                }.padding(.vertical, 16)
-    //                    .padding(.leading, 5)
-    //                Spacer()
-    //            }
-    //
-    //            VStack{
-    //                sleepTimeSlider()
-    //                    .padding(.top, 10)
-    //                Button {
-    //                    startTimer()
-    //                    isShowingProgressView = true
-    //                } label: {
-    //                    Text("낮잠 자러가기")
-    //                        .font(.headline)
-    //                        .foregroundColor(.black)
-    //                        .padding(.horizontal, 110)
-    //                        .padding(.vertical, 15)
-    //                        .background(Color("ManboBlue400"))
-    //                        .cornerRadius(10)
-    //                }
-    //                .padding(.top, 50)
-    //                .padding(.bottom, 30)
-    //            }
-    //            NavigationLink(destination: ProgressView(remainingSeconds: $remainingSeconds, startTime: currentKSTTime(), endTime: wakeupTime()), isActive: $isShowingProgressView) {
-    //                EmptyView()
-    //            }
-    //        }
-    //        .padding(.horizontal, 24)
-    //        .background(.gray.opacity(0.2), in: RoundedRectangle(cornerRadius: 15))
-    //    }
     
     var TimerTitle: some View {
         HStack(spacing: 4) {

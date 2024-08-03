@@ -13,7 +13,7 @@ import AuthenticationServices
 struct Onboarding: View {
     
     @State var currentStage: Int = 1
-    @State var showBasicSetting: Bool = false
+    @State var showBasicSetting: Bool = true
     @Binding var isOnboarding: Bool
     
     var firebaseManager = FirebaseManager.shared
