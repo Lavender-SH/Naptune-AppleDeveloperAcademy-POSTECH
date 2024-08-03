@@ -56,6 +56,7 @@ private extension NagiProgressView {
             .foregroundStyle(.napWhite100)
             .multilineTextAlignment(.center)
             .lineLimit(2)
+            .frame(height: 68)
             .fixedSize()
     }
     
