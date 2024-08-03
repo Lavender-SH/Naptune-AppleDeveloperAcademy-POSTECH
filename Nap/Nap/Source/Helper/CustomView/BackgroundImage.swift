@@ -14,7 +14,10 @@ struct BackgroundImage: View {
         image
             .resizable()
             .scaledToFill()
-            .ignoresSafeArea(.all)
+            .ignoresSafeArea()
+            .frame(width: UIScreen.size.width,
+                   height: UIScreen.size.height)
+            .clipped()
     }
 }
 

@@ -213,10 +213,6 @@ private extension ProfileSetting {
         UIScreen.isSE ? 12 : 26
     }
     
-//    var ProfileSectionTopMargin: CGFloat {
-//        UIScreen.isSE ? 26 : 35
-//    }
-    
     var isSkipping: Bool {
         return profile == Image("fox") || profile == Image("pilot") || profile == Image("prince")
     }

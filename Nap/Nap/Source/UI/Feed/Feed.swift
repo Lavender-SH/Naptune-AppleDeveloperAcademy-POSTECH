@@ -33,14 +33,15 @@ struct Feed: View {
         .overlay(alignment: .bottom) {
             FloatingButton
         }
-        .overlay(alignment: .top) {
-            ZStack {
-                BackgroundBlur(radius: 10, opaque: false)
-                LinearGradient(colors: [Color.black.opacity(0.8), Color.black.opacity(0.5), Color.black.opacity(0.0)], startPoint: .top, endPoint: .bottom)
-            }
-            .frame(height: topMargin)
-            .ignoresSafeArea()
-        }
+        // 상단 어둡게 블러처리.
+//        .overlay(alignment: .top) {
+//            ZStack {
+//                BackgroundBlur(radius: 10, opaque: false)
+//                LinearGradient(colors: [Color.black.opacity(0.8), Color.black.opacity(0.5), Color.black.opacity(0.0)], startPoint: .top, endPoint: .bottom)
+//            }
+//            .frame(height: topMargin)
+//            .ignoresSafeArea()
+//        }
         // 애니메이션 넣으면 깨질때가 있음.
 //        .animation(.snappy(duration: 0.35),
 //                   value: isLargeCard)
@@ -52,10 +53,10 @@ private extension Feed {
     // MARK: View
     
     var SlideHeader: some View {
-        Button {
-            print("화면 올라가기")
-            showHome = true
-        } label: {
+//        Button {
+//            print("화면 올라가기")
+//            showHome = true
+//        } label: {
             HStack {
                 Spacer()
                 VStack(spacing: 1) {
@@ -67,7 +68,7 @@ private extension Feed {
                 .padding(.vertical, 13)
                 Spacer()
             }
-        }
+       // }
     }
     
     var Header: some View {

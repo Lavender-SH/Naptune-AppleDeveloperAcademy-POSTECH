@@ -11,25 +11,33 @@ struct NagiHome: View {
     
     @Binding var showHome: Bool
     
+    // MARK: - 각도 및 프로그레스 바
     @State var startAngle: Double = 0
+    // Since our to progress is 0.5
+    // 0.5 * 360 = 180
     @State var toAngle: Double = 180
+    @State var startProgress: CGFloat = 0
+    @State var toProgress: CGFloat = 0.5
+    // MARK: - 햅틱
+    @State private var lastHapticAngle: Double = 0
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             Spacer().frame(height: topMargin)
             Header
             Spacer().frame(height: 12)
-            FriendSection
-            Spacer().frame(height: 24)
+            if !UIScreen.isSE {
+                FriendSection
+                Spacer().frame(height: 24)
+            }
             NapSettingSection
             Spacer()
             MoveFeedButton
-            Spacer().frame(height: 21)
+            Spacer().frame(height: bottomMargin)
         }
-        //.ignoresSafeArea(.container, edges: [.top])
-        .background(
+        .background {
             BackgroundImage(image: Image(.basicBackground))
-        )
+        }
     }
 }
 
@@ -126,7 +134,7 @@ private extension NagiHome {
     // MARK: View - Setting NapTime
     
     var NapSettingSection: some View{
-        VStack(alignment: .leading, spacing: 12) {
+        VStack(alignment: .leading, spacing: SectionTitleSpacing) {
             NapSettingTitle
                 .padding(.leading, 30)
             TimerSetting
@@ -145,9 +153,9 @@ private extension NagiHome {
             TimerTitle
             Spacer().frame(height: 6)
             TimerTimeIntervalText
-            Spacer().frame(height: 20)
+            Spacer().frame(height: UIScreen.isSE ? 16 : 20)
             Timer
-            Spacer().frame(height: 30)
+            Spacer().frame(height: UIScreen.isSE ? 26 : 30)
             StartNapButton
         }
         .padding(20)
@@ -204,9 +212,10 @@ private extension NagiHome {
                     .offset(y: (UIScreen.size.width/2) - 83)
                     .rotationEffect(.init(degrees: Double(index) * 6))
             }
-            let texts = [60, 90, 120, 30]
-            ForEach(texts.indices, id: \.self) { index in
-                Text("\(texts[index])")
+            
+            let timeTexts = [60, 90, 120, 30]
+            ForEach(timeTexts.indices, id: \.self) { index in
+                Text("\(timeTexts[index])")
                     .font(.napFootnote1)
                     .foregroundColor(.napWhite80)
                     .rotationEffect(.degrees(Double(index) * -90))
@@ -214,7 +223,66 @@ private extension NagiHome {
                     .rotationEffect(.degrees(Double(index) * 90))
             }
             
+            // Allowing Reverse Swiping
+            let reverseRotation = (startProgress > toProgress) ? -Double((1 - startProgress) * 360) : 0
+            Circle()
+                .trim(from: startProgress > toProgress ? 0 : startProgress,
+                      to: toProgress + (-reverseRotation / 360))
+                .stroke(
+                    AngularGradient(
+                        gradient: Gradient(colors: [.napBlue201, .napBlue201]),
+                        center: .center,
+                        startAngle: .degrees(0),
+                        endAngle: .degrees(360)),
+                    style: StrokeStyle(lineWidth: 30,
+                                       lineCap: .round,
+                                       lineJoin: .round)
+                )
+                .rotationEffect(.degrees(-90))
+                .rotationEffect(.degrees(reverseRotation))
+                .frame(width: UIScreen.size.width-110,
+                       height: UIScreen.size.width-110)
+            
+            // Fixed Buttons
+            Image(.tiredPrince)
+                .frame(width: 24, height: 24)
+                .background {
+                    Circle()
+                        .frame(width: 26, height: 26)
+                        .foregroundStyle(.napWhite20)
+                }
+            // Moving To Right & Rotating
+                .offset(y: -(UIScreen.size.width-110)/2)
+            
+            // Slider Buttons
+            Image(.freshPrince)
+                .frame(width: 24, height: 24)
+                .background {
+                    Circle()
+                        .frame(width: 26, height: 26)
+                        .foregroundStyle(.napWhite20)
+                }
+            // Rotating Image inside the Circle
+                .rotationEffect(.degrees(90))
+                .rotationEffect(.degrees(-toAngle))
+            //Moving To Right & Rotating
+                .offset(x: (UIScreen.size.width-110)/2)
+            // To the Current Angle
+                .rotationEffect(.degrees(toAngle))
+                .gesture(
+                    DragGesture()
+                        .onChanged({ value in
+                            onDrag(value: value)
+                        })
+                )
+                .rotationEffect(.init(degrees: -90))
+            
+                Text(formatTime(getMinuteDifference()*60))
+                .font(.napDisplay)
+                .foregroundStyle(.napWhite100)
         }
+        .frame(width: UIScreen.size.width-80,
+               height: UIScreen.size.width-80)
     }
     
     var StartNapButton: some View {
@@ -226,10 +294,9 @@ private extension NagiHome {
     }
     
     var MoveFeedButton: some View {
-        Button {
-            print("화면 내려가기")
-            showHome = false
-        } label: {
+//        Button {
+//            print("화면 내려가기")
+//        } label: {
             HStack(alignment: .center) {
                 Spacer()
                 VStack(spacing: 1) {
@@ -242,129 +309,8 @@ private extension NagiHome {
                 .padding(.vertical, 13)
                 Spacer()
             }
-        }
+        //}
     }
-    
-    //    func sleepTimeSlider() -> some View {
-    //
-    //        GeometryReader{ proxy in
-    //
-    //            let width = proxy.size.width
-    //
-    //            ZStack {
-    //                // Background Image
-    //                Image("낮잠")
-    //                    .resizable()
-    //                    .scaledToFill()
-    //                    .frame(width: width - 40, height: width - 40)
-    //                    .clipShape(Circle())
-    //                    .edgesIgnoringSafeArea(.all)
-    //
-    //                // MARK: - Clock Design
-    //                ZStack {
-    //
-    //                    ForEach(1...60, id: \.self) { index in
-    //                        Rectangle()
-    //                            .fill(index % 5 == 0 ? .white : .gray)
-    //                        // Each hour will have big Line
-    //                        // 60/5 = 12
-    //                        // 12 Hours
-    //                            .frame(width: 2, height: index % 5 == 0 ? 10 : 5)
-    //                        // Setting into entire Circle
-    //                            .offset(y: (width - 60) / 2)
-    //                            .rotationEffect(.init(degrees: Double(index) * 6))
-    //
-    //                    }
-    //                    // MARK: - Clock Text
-    //                    let texts = [60, 90, 120, 30]
-    //                    ForEach(texts.indices, id: \.self) { index in
-    //                        Text("\(texts[index])")
-    //                            .font(.caption.bold())
-    //                            .foregroundColor(.white)
-    //                            .rotationEffect(.init(degrees: Double(index) * -90))
-    //                            .offset(y: (width - 90) / 2)
-    //                            .rotationEffect(.init(degrees: Double(index) * 90))
-    //                    }
-    //
-    //                }
-    //
-    //                Circle()
-    //                    .stroke(.gray.opacity(0.3), lineWidth: 40)
-    //
-    //                // Allowing Reverse Swiping
-    //                let reverseRotation = (startProgress > toProgress) ? -Double((1 - startProgress) * 360) : 0
-    //                Circle()
-    //                    .trim(from: startProgress > toProgress ? 0 : startProgress, to: toProgress + (-reverseRotation / 360))
-    //                //.stroke(Color.purple, style: StrokeStyle(lineWidth: 40, lineCap: .round, lineJoin: .round))
-    //                    .stroke(AngularGradient(gradient: Gradient(colors: [Color("ManboBlue400").opacity(1), Color("ManboBlue400")]), center: .center, startAngle: .degrees(0), endAngle: .degrees(360)), style: StrokeStyle(lineWidth: 40, lineCap: .round, lineJoin: .round))
-    //
-    //                    .rotationEffect(.init(degrees: -90))
-    //                    .rotationEffect(.init(degrees: reverseRotation))
-    //
-    //                // Slider Buttons
-    //                Image(systemName: "moon.fill")
-    //                    .font(.callout)
-    //                    .foregroundColor(Color("ManboBlue400"))
-    //                    .frame(width: 30, height: 30)
-    //                    .rotationEffect(.init(degrees: 90))
-    //                    .rotationEffect(.init(degrees: -startAngle))
-    //                    .background(.white, in: Circle())
-    //                // Moving To Right & Rotating
-    //                    .offset(x:width / 2)
-    //                    .rotationEffect(.init(degrees: startAngle))
-    //                    .gesture(
-    //
-    //                        DragGesture()
-    //                            .onChanged({ value in
-    //                                onDrag(value: value)
-    //                            })
-    //                    )
-    //                    .rotationEffect(.init(degrees: -90))
-    //
-    //
-    //                Image(systemName:  "alarm")
-    //                    .font(.callout)
-    //                    .foregroundColor(Color("ManboBlue400"))
-    //                    .frame(width:30, height: 30)
-    //                // Rotating Image inside the Circle
-    //                    .rotationEffect(.init(degrees: 90))
-    //                    .rotationEffect(.init(degrees: -toAngle))
-    //                    .background(.white, in: Circle())
-    //                //Moving To Right & Rotating
-    //                    .offset(x: width / 2)
-    //                // To the Current Angle
-    //                    .rotationEffect(.init(degrees: toAngle))
-    //                    .gesture(
-    //                        DragGesture()
-    //                            .onChanged({ value in
-    //                                onDrag(value: value)
-    //                            })
-    //                    )
-    //                    .rotationEffect(.init(degrees: -90))
-    //
-    //
-    //                // MARK: - Hour Text
-    //                VStack(spacing: 6) {
-    //                    HStack(spacing: 8) {
-    //                        makeNumberCard(number: formatTime(getTimeDifference() * 60)[0])
-    //                        Text(":")
-    //                            .font(.system(size: 30).bold())
-    //                            .foregroundColor(Color.white)
-    //                        makeNumberCard(number: formatTime(getTimeDifference() * 60)[1])
-    //                        makeNumberCard(number: formatTime(getTimeDifference() * 60)[2])
-    //                        Text(":")
-    //                            .font(.system(size: 30).bold())
-    //                            .foregroundColor(Color.white)
-    //                        makeNumberCard(number: formatTime(getTimeDifference() * 60)[3])
-    //                        makeNumberCard(number: formatTime(getTimeDifference() * 60)[4])
-    //                    }
-    //                }
-    //                .scaleEffect(1.1)
-    //
-    //            }
-    //        }
-    //        .frame(width: screenBounds().width / 1.3, height: screenBounds().width / 1.3)
-    //    }
     
     // MARK: Computed Values
     
@@ -387,12 +333,12 @@ private extension NagiHome {
     /// 일어날 시간
     func wakeupTime() -> Date {
         let now = currentKSTTime()
-        let addedMinutes = getTimeDifference()
+        let addedMinutes = getMinuteDifference()
         return Calendar.current.date(byAdding: .minute, value: addedMinutes, to: now) ?? now
     }
     
     /// 각도에서 시간 차이를 구해낸다.
-    func getTimeDifference() -> Int {
+    func getMinuteDifference() -> Int {
         let startMinutes = getMinutes(angle: startAngle)
         let endMinutes = getMinutes(angle: toAngle)
         return (endMinutes - startMinutes + 120) % 120
@@ -404,11 +350,49 @@ private extension NagiHome {
         return Int(progress) % 120
     }
     
-    var topMargin: CGFloat {
-        UIScreen.isSE ? 24 : 54
+    func formatTime(_ seconds: Int) -> String {
+        let hours = seconds / 3600
+        let minutes = (seconds / 60) % 60
+        let remainingSeconds = seconds % 60
+        
+        return String(format: "%01d:%02d:%02d", hours, minutes, remainingSeconds)
     }
+    
+    //moon.fill 고정
+    func onDrag(value: DragGesture.Value) {
+        let vector = CGVector(dx: value.location.x, dy: value.location.y)
+        let radians = atan2(vector.dy - 15, vector.dx - 15)
+        var angle = radians * 180 / .pi
+        if angle < 0 { angle = 360 + angle }
+        let progress = angle / 360
+        
+        self.toAngle = angle
+        self.toProgress = progress
+        //HapticManager.instance.impact(style: .light)
+        if abs(angle - lastHapticAngle) >= 2 {
+            HapticManager.instance.impact(style: .light)
+            lastHapticAngle = angle
+        }
+    }
+    
+    var topMargin: CGFloat {
+        UIScreen.isSE ? 20 : 54
+    }
+    
+    var SectionTitleSpacing: CGFloat {
+        UIScreen.isSE ? 8 : 12
+    }
+    
+    var bottomMargin: CGFloat {
+        UIScreen.isSE ? 0 : 21
+    }
+}
+
+#Preview {
+    ContentView()
 }
 
 #Preview {
     NagiHome(showHome: .constant(true))
 }
+

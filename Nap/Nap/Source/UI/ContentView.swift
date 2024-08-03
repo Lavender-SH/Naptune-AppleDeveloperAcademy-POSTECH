@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State var isOnboarding: Bool = true
+    @State var isOnboarding: Bool = false
     @State var showHome: Bool = true
     
     var body: some View {
@@ -28,7 +28,8 @@ extension ContentView {
     var Main: some View {
         NavigationStack{
             ScrollView(.vertical) {
-                ScrollViewReader { reader in
+                //ScrollViewReader { reader in
+                VStack(spacing: 0) {
                     NagiHome(showHome: $showHome)
                         .frame(width: UIScreen.size.width,
                                height: UIScreen.size.height)
@@ -37,12 +38,14 @@ extension ContentView {
                         .frame(width: UIScreen.size.width,
                                height: UIScreen.size.height)
                         .id(2)
-                        .onChange(of: showHome) { _, _ in
-                            withAnimation(.bouncy) {
-                                showHome ? reader.scrollTo(1)
-                                         : reader.scrollTo(2)
-                            }
-                        }
+                        //.border(Color.blue)
+                    //                        .onChange(of: showHome) { _, _ in
+                    //                            withAnimation(.bouncy) {
+                    //                                showHome ? reader.scrollTo(1)
+                    //                                         : reader.scrollTo(2)
+                    //                            }
+                    //                        }
+                    // }
                 }
             }
             .ignoresSafeArea()
