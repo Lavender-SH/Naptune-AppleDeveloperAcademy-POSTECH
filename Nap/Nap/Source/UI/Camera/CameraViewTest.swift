@@ -6,13 +6,212 @@
 //
 
 import SwiftUI
+import AVFoundation
+import SnapKit
 
-struct CameraViewTest: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+struct CameraViewTest: UIViewControllerRepresentable {
+    @Environment(\.presentationMode) var presentationMode
+    let cameraView = CameraPreview()
+    
+    // 뷰 업데이트 메서드 (여기서는 사용하지 않음, 필수 메서드 프로토콜)
+    func updateUIViewController(_ uiViewController: UIViewController, context: Context) { }
+    
+    // MARK: - 카메라 조작 버튼을 위한 Coordinator 생성
+    func makeCoordinator() -> CameraCoordinator {
+        CameraCoordinator(parent: self, cameraView: cameraView) // CameraCoordinator 초기화 시 CameraPreview 전달
+    }
+    
+    // MARK: - 커스텀 된 카메라를 올리기 위한 UIViewController 생성
+    func makeUIViewController(context: Context) -> UIViewController {
+        // 1. UIViewController 생성
+        let containerVC = UIViewController()
+        containerVC.view.backgroundColor = UIColor.purple
+        
+        // 2. 오버레이 뷰 생성 및 설정
+        let overlayView = createOverlayView(context: context, containerVC: containerVC)
+        containerVC.view.addSubview(overlayView) // 오버레이 뷰를 컨테이너 뷰에 추가
+        overlayView.snp.makeConstraints { make in
+            make.edges.equalToSuperview() // 오버레이 뷰의 제약 조건 설정
+        }
+        
+        return containerVC
+    }
+    // MARK: - 카메라 커스텀 오버레이 뷰 설정
+    func createOverlayView(context: Context, containerVC: UIViewController) -> UIView {
+        let overlayView = UIView()
+        
+        // 1.배경 이미지 설정
+        let backgroundImageView = UIImageView()
+        backgroundImageView.image = UIImage(named: "Background")
+        backgroundImageView.contentMode = .scaleAspectFill
+        overlayView.addSubview(backgroundImageView)
+        overlayView.sendSubviewToBack(backgroundImageView)
+        backgroundImageView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
+        // 2. 카메라 미리보기 설정
+        cameraView.clipsToBounds = true
+        cameraView.layer.cornerRadius = 20
+        backgroundImageView.addSubview(cameraView)
+        
+        cameraView.snp.makeConstraints { make in
+            make.left.equalTo(backgroundImageView.snp.left).offset(20)
+            make.right.equalTo(backgroundImageView.snp.right).inset(20)
+            make.top.equalTo(backgroundImageView.snp.top).offset(150)
+            make.height.equalTo(cameraView.snp.width).multipliedBy(4.0 / 3.0)
+        }
+        
+        // 사용자 정의 셔터 버튼 추가
+        let cancelSwitchButtonHeight: CGFloat = 70
+        let shutterButtonHeight: CGFloat = 100
+        let buttonMargin: CGFloat = 20
+        
+        // 커스텀 취소 버튼 (왼쪽 하단)
+        let cancelButton = UIButton(type: .system)
+        cancelButton.backgroundColor = UIColor.darkGray.withAlphaComponent(0.3)
+        cancelButton.setImage(UIImage(systemName: "xmark"), for: .normal)
+        cancelButton.layer.cornerRadius = cancelSwitchButtonHeight / 2
+        cancelButton.tintColor = .white
+        cancelButton.addTarget(context.coordinator, action: #selector(CameraCoordinator.cancelButtonTapped), for: .touchUpInside)
+        overlayView.addSubview(cancelButton)
+        
+        // SnapKit으로 취소 버튼 레이아웃 설정
+        cancelButton.snp.makeConstraints { make in
+            make.top.equalTo(cameraView.snp.bottom).offset(50)
+            make.width.height.equalTo(cancelSwitchButtonHeight)
+            make.left.equalTo(backgroundImageView).offset(50)
+        }
+        
+        // 커스텀 셔터 버튼 (중앙 하단)
+        let shutterButton = UIButton(type: .system)
+        shutterButton.backgroundColor = .clear
+        shutterButton.tintColor = .white
+        shutterButton.setImage(UIImage(named: "shutter"), for: .normal)
+        shutterButton.imageView?.contentMode = .scaleAspectFill
+        shutterButton.layer.cornerRadius = shutterButtonHeight / 2
+        shutterButton.addTarget(context.coordinator, action: #selector(CameraCoordinator.shutterButtonTapped), for: .touchUpInside)
+        overlayView.addSubview(shutterButton)
+        
+        // SnapKit으로 셔터 버튼 레이아웃 설정
+        shutterButton.snp.makeConstraints { make in
+            make.top.equalTo(cameraView.snp.bottom).offset(35)
+            make.width.height.equalTo(100)
+            make.centerX.equalTo(backgroundImageView)
+        }
+        
+        // 카메라 전환 버튼 추가 (오른쪽 하단)
+        let switchCameraButton = UIButton(type: .system)
+        switchCameraButton.backgroundColor = UIColor.darkGray.withAlphaComponent(0.3)
+        switchCameraButton.setImage(UIImage(systemName: "arrow.triangle.2.circlepath"), for: .normal)
+        switchCameraButton.tintColor = .white
+        switchCameraButton.layer.cornerRadius = cancelSwitchButtonHeight / 2
+        switchCameraButton.addTarget(context.coordinator, action: #selector(CameraCoordinator.switchCameraButtonTapped), for: .touchUpInside)
+        overlayView.addSubview(switchCameraButton)
+        
+        // SnapKit으로 카메라 전환 버튼 레이아웃 설정
+        switchCameraButton.snp.makeConstraints { make in
+            make.top.equalTo(cameraView.snp.bottom).offset(50)
+            make.width.height.equalTo(cancelSwitchButtonHeight)
+            make.right.equalTo(backgroundImageView).inset(50)
+        }
+        
+        return overlayView
+    }
+    
+}
+
+// MARK: - 카메라 조작에 관한 로직을 담당하는 Coordinator 클래스
+class CameraCoordinator: NSObject, AVCapturePhotoCaptureDelegate {
+    var parent: CameraViewTest // 부모 뷰(UIViewRepresentable) 참조
+    var cameraView: CameraPreview // 카메라 프리뷰 뷰 참조
+    var capturedImage: UIImage? // 캡처된 이미지를 저장할 변수
+    
+    // 초기화 메서드
+    init(parent: CameraViewTest, cameraView: CameraPreview) {
+        self.parent = parent
+        self.cameraView = cameraView
+        super.init()
+        setupPhotoOutput() // 사진 출력을 설정하는 메서드 호출
+    }
+    
+    // 사진 출력을 설정하는 메서드
+    private func setupPhotoOutput() {
+        cameraView.captureSession.beginConfiguration() // 캡처 세션 구성 시작
+        
+        let photoOutput = AVCapturePhotoOutput() // 사진 출력을 위한 AVCapturePhotoOutput 생성
+        if cameraView.captureSession.canAddOutput(photoOutput) {
+            cameraView.captureSession.addOutput(photoOutput) // 캡처 세션에 사진 출력 추가
+            cameraView.photoOutput = photoOutput // CameraPreview의 photoOutput 설정
+        }
+        
+        cameraView.captureSession.commitConfiguration() // 캡처 세션 구성 완료
+    }
+
+    // 셔터 버튼이 눌렸을 때 호출되는 메서드
+    @objc func shutterButtonTapped() {
+        let settings = AVCapturePhotoSettings() // 사진 촬영 설정 생성
+        cameraView.photoOutput?.capturePhoto(with: settings, delegate: self) // 사진 촬영 요청
+    }
+    
+    // 카메라 전환 버튼이 눌렸을 때 호출되는 메서드
+    @objc func switchCameraButtonTapped() {
+        // 현재 사용 중인 카메라 장치 가져오기
+        guard let currentInput = cameraView.captureSession.inputs.first as? AVCaptureDeviceInput else { return }
+        
+        // 사용할 새로운 카메라 장치 선택 (현재 사용 중인 장치가 전면 카메라라면 후면 카메라를, 후면 카메라라면 전면 카메라를 선택)
+        let newCameraDevice = (currentInput.device.position == .back) ? getCameraDevice(position: .front) : getCameraDevice(position: .back)
+        
+        // 새로운 카메라 장치로 입력 설정
+        guard let newCamera = newCameraDevice else { return }
+        
+        do {
+            let newInput = try AVCaptureDeviceInput(device: newCamera)
+            
+            cameraView.captureSession.beginConfiguration() // 캡처 세션 구성 시작
+            cameraView.captureSession.removeInput(currentInput) // 기존 입력 제거
+            if cameraView.captureSession.canAddInput(newInput) {
+                cameraView.captureSession.addInput(newInput) // 새로운 입력 추가
+            } else {
+                // 만약 새로운 입력을 추가할 수 없다면 기존 입력을 다시 추가
+                cameraView.captureSession.addInput(currentInput)
+            }
+            cameraView.captureSession.commitConfiguration() // 캡처 세션 구성 완료
+        } catch {
+            print("Failed to switch cameras: \(error)") // 카메라 전환 실패 시 에러 출력
+        }
+    }
+    
+    // 주어진 위치에 맞는 카메라 장치를 반환하는 메서드
+    private func getCameraDevice(position: AVCaptureDevice.Position) -> AVCaptureDevice? {
+        return AVCaptureDevice.devices(for: .video).first { $0.position == position }
+    }
+    
+    // 취소 버튼이 눌렸을 때 호출되는 메서드
+    @objc func cancelButtonTapped() {
+        parent.presentationMode.wrappedValue.dismiss() // 부모 뷰를 닫음
+    }
+    
+    // MARK: - 사진 찍고 프리뷰에 보여주는 로직
+    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
+        // 에러가 없고 사진 데이터가 존재하는지 확인
+        guard error == nil, let data = photo.fileDataRepresentation(), let image = UIImage(data: data) else {
+            print("Error capturing photo: \(String(describing: error))") // 에러 발생 시 에러 출력
+            return
+        }
+        
+        capturedImage = image // 캡처된 이미지 저장
+        // 캡처된 이미지를 CameraPreview의 imageView에 설정
+        DispatchQueue.main.async {
+            self.cameraView.capturedImageView.image = image
+        }
     }
 }
 
-#Preview {
-    CameraViewTest()
-}
+
+
+
+
+
+
+
