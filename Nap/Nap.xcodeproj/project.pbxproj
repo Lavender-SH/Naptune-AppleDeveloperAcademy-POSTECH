@@ -26,6 +26,7 @@
 		390283AA2C56165600D8ACF5 /* FriendRequestRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390283A92C56165600D8ACF5 /* FriendRequestRow.swift */; };
 		390283AC2C562E7600D8ACF5 /* FriendAdd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390283AB2C562E7600D8ACF5 /* FriendAdd.swift */; };
 		390283AE2C566B9E00D8ACF5 /* BlueButtonLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390283AD2C566B9E00D8ACF5 /* BlueButtonLabel.swift */; };
+		391A428F2C5E86E900A9DABA /* NagiCircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391A428E2C5E86E900A9DABA /* NagiCircularProgressView.swift */; };
 		3928CA312C509EC200A5A823 /* NapApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928CA302C509EC200A5A823 /* NapApp.swift */; };
 		3928CA332C509EC200A5A823 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928CA322C509EC200A5A823 /* ContentView.swift */; };
 		3928CA352C509EC300A5A823 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3928CA342C509EC300A5A823 /* Assets.xcassets */; };
@@ -40,6 +41,9 @@
 		3928CA5D2C50A6D600A5A823 /* StringConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928CA5C2C50A6D600A5A823 /* StringConstant.swift */; };
 		3928CA5F2C50E32D00A5A823 /* FeedCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928CA5E2C50E32D00A5A823 /* FeedCard.swift */; };
 		3928CA632C50FB5E00A5A823 /* BackgroundBlur.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928CA622C50FB5E00A5A823 /* BackgroundBlur.swift */; };
+		393E8E6D2C5E5C8300780DF6 /* NagiCheckSilentModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393E8E6C2C5E5C8300780DF6 /* NagiCheckSilentModeView.swift */; };
+		393E8E6F2C5E606C00780DF6 /* NavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393E8E6E2C5E606C00780DF6 /* NavigationManager.swift */; };
+		393E8E712C5E651B00780DF6 /* NagiProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393E8E702C5E651B00780DF6 /* NagiProgressView.swift */; };
 		399587C02C5A8F2300454D74 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399587BF2C5A8F2300454D74 /* FirebaseManager.swift */; };
 		3999BE462C57DA5A00C48F68 /* NicknameSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3999BE452C57DA5A00C48F68 /* NicknameSetting.swift */; };
 		3999BE482C5811E700C48F68 /* ProfileSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3999BE472C5811E700C48F68 /* ProfileSetting.swift */; };
@@ -74,6 +78,7 @@
 		390283A92C56165600D8ACF5 /* FriendRequestRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendRequestRow.swift; sourceTree = "<group>"; };
 		390283AB2C562E7600D8ACF5 /* FriendAdd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendAdd.swift; sourceTree = "<group>"; };
 		390283AD2C566B9E00D8ACF5 /* BlueButtonLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlueButtonLabel.swift; sourceTree = "<group>"; };
+		391A428E2C5E86E900A9DABA /* NagiCircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NagiCircularProgressView.swift; sourceTree = "<group>"; };
 		3928CA2D2C509EC200A5A823 /* Nap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3928CA302C509EC200A5A823 /* NapApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NapApp.swift; sourceTree = "<group>"; };
 		3928CA322C509EC200A5A823 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -89,6 +94,9 @@
 		3928CA5C2C50A6D600A5A823 /* StringConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringConstant.swift; sourceTree = "<group>"; };
 		3928CA5E2C50E32D00A5A823 /* FeedCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCard.swift; sourceTree = "<group>"; };
 		3928CA622C50FB5E00A5A823 /* BackgroundBlur.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundBlur.swift; sourceTree = "<group>"; };
+		393E8E6C2C5E5C8300780DF6 /* NagiCheckSilentModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NagiCheckSilentModeView.swift; sourceTree = "<group>"; };
+		393E8E6E2C5E606C00780DF6 /* NavigationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationManager.swift; sourceTree = "<group>"; };
+		393E8E702C5E651B00780DF6 /* NagiProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NagiProgressView.swift; sourceTree = "<group>"; };
 		399587BF2C5A8F2300454D74 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		3999BE452C57DA5A00C48F68 /* NicknameSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameSetting.swift; sourceTree = "<group>"; };
 		3999BE472C5811E700C48F68 /* ProfileSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSetting.swift; sourceTree = "<group>"; };
@@ -262,6 +270,9 @@
 				3928CA562C50A6B000A5A823 /* Home.swift */,
 				390283A52C556DB900D8ACF5 /* FeedRegister.swift */,
 				39DBCC3A2C5BE2080039A728 /* NagiHome.swift */,
+				393E8E6C2C5E5C8300780DF6 /* NagiCheckSilentModeView.swift */,
+				393E8E702C5E651B00780DF6 /* NagiProgressView.swift */,
+				391A428E2C5E86E900A9DABA /* NagiCircularProgressView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -271,6 +282,7 @@
 			children = (
 				3928CA4D2C50A58900A5A823 /* HapticManager.swift */,
 				399587BF2C5A8F2300454D74 /* FirebaseManager.swift */,
+				393E8E6E2C5E606C00780DF6 /* NavigationManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -424,6 +436,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				393E8E6D2C5E5C8300780DF6 /* NagiCheckSilentModeView.swift in Sources */,
 				3928CA332C509EC200A5A823 /* ContentView.swift in Sources */,
 				390283AE2C566B9E00D8ACF5 /* BlueButtonLabel.swift in Sources */,
 				390283AC2C562E7600D8ACF5 /* FriendAdd.swift in Sources */,
@@ -432,12 +445,14 @@
 				3928CA5D2C50A6D600A5A823 /* StringConstant.swift in Sources */,
 				92EE7B322C52B432006D0D19 /* Signupname.swift in Sources */,
 				02241D7C2C5D48D900B4A161 /* CameraViewTest.swift in Sources */,
+				393E8E6F2C5E606C00780DF6 /* NavigationManager.swift in Sources */,
 				02C3FCB72C5882080087A72B /* ProgressView.swift in Sources */,
 				3928CA4A2C50A48C00A5A823 /* View+.swift in Sources */,
 				3928CA5F2C50E32D00A5A823 /* FeedCard.swift in Sources */,
 				3999BE462C57DA5A00C48F68 /* NicknameSetting.swift in Sources */,
 				3928CA552C50A69200A5A823 /* Onboarding.swift in Sources */,
 				02051DDB2C5E551900BAEF10 /* CameraPreview.swift in Sources */,
+				393E8E712C5E651B00780DF6 /* NagiProgressView.swift in Sources */,
 				390283952C5389C500D8ACF5 /* UIScreen+.swift in Sources */,
 				390283A22C55407C00D8ACF5 /* Font+.swift in Sources */,
 				390283AA2C56165600D8ACF5 /* FriendRequestRow.swift in Sources */,
@@ -448,6 +463,7 @@
 				3999BE482C5811E700C48F68 /* ProfileSetting.swift in Sources */,
 				3999BE4C2C588A0C00C48F68 /* JoseOnboarding.swift in Sources */,
 				3928CA4E2C50A58900A5A823 /* HapticManager.swift in Sources */,
+				391A428F2C5E86E900A9DABA /* NagiCircularProgressView.swift in Sources */,
 				3928CA572C50A6B000A5A823 /* Home.swift in Sources */,
 				3928CA572C50A6B000A5A823 /* Home.swift in Sources */,
 				390283A62C556DB900D8ACF5 /* FeedRegister.swift in Sources */,

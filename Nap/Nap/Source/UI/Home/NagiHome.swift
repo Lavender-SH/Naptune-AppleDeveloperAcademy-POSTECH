@@ -9,10 +9,15 @@ import SwiftUI
 
 struct NagiHome: View {
     
-    @Binding var showHome: Bool
+    //@Binding var showHome: Bool
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     // MARK: - 각도 및 프로그레스 바
+    
+    @State var currentTime: Date = Date()
     @State var startAngle: Double = 0
+    @State var timeInterval: Double = 0
+    @State var moveNext = false
     // Since our to progress is 0.5
     // 0.5 * 360 = 180
     @State var toAngle: Double = 180
@@ -38,6 +43,9 @@ struct NagiHome: View {
         }
         .background {
             BackgroundImage(image: Image(.basicBackground))
+        }
+        .navigationDestination(isPresented: $moveNext) {
+            NagiCheckSilentModeView(timeInterval: $timeInterval)
         }
     }
 }
@@ -155,7 +163,7 @@ private extension NagiHome {
             Spacer().frame(height: 6)
             TimerTimeIntervalText
             Spacer().frame(height: UIScreen.isSE ? 16 : 20)
-            Timer
+            TimerView
             Spacer().frame(height: UIScreen.isSE ? 26 : 30)
             StartNapButton
         }
@@ -181,15 +189,18 @@ private extension NagiHome {
     
     var TimerTimeIntervalText: some View {
         HStack(spacing: 4) {
-            Text(formatTimeRange(date: Date()))
+            Text(formatTimeRange(date: currentTime))
+                .onReceive(timer) {
+                    currentTime = $0
+                }
             Text("-")
-            Text(formatTimeRange(date: Date()))
+            Text(formatTimeRange(date: updateWakeupTime()))
         }
         .font(.napTitle1)
         .foregroundStyle(.napWhite100)
     }
     
-    var Timer: some View {
+    var TimerView: some View {
         ZStack {
             Circle()
                 .foregroundStyle(.napWhite10)
@@ -208,7 +219,7 @@ private extension NagiHome {
                 // 60/5 = 12
                 // 12 Hours
                     .frame(width: 2,
-                           height: index % 5 == 0 ? 10 : 5)
+                           height: index % 5 == 0 ? 10 : 8)
                 // Setting into entire Circle
                     .offset(y: (UIScreen.size.width/2) - 83)
                     .rotationEffect(.init(degrees: Double(index) * 6))
@@ -287,8 +298,9 @@ private extension NagiHome {
     }
     
     var StartNapButton: some View {
-        NavigationLink {
-            //CheckSilentModeView(remainingSeconds: $remainingSeconds)
+        Button {
+            timeInterval = Double(getMinuteDifference()*60)
+            moveNext = true
         } label: {
             MainButtonLabel(text: "낮잠 자러가기")
         }
@@ -332,8 +344,8 @@ private extension NagiHome {
     }
     
     /// 일어날 시간
-    func wakeupTime() -> Date {
-        let now = currentKSTTime()
+    func updateWakeupTime() -> Date {
+        let now = currentTime
         let addedMinutes = getMinuteDifference()
         return Calendar.current.date(byAdding: .minute, value: addedMinutes, to: now) ?? now
     }
@@ -394,6 +406,6 @@ private extension NagiHome {
 }
 
 #Preview {
-    NagiHome(showHome: .constant(true))
+    NagiHome()
 }
 

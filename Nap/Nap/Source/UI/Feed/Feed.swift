@@ -9,7 +9,7 @@ import SwiftUI
 
 struct Feed: View {
     @State var isLargeCard: Bool = true
-    @Binding var showHome: Bool
+    //@Binding var showHome: Bool
     
     // MARK: Body
     
@@ -156,5 +156,5 @@ private extension Feed {
 }
 
 #Preview {
-    Feed(showHome: .constant(false))
+    Feed()
 }
