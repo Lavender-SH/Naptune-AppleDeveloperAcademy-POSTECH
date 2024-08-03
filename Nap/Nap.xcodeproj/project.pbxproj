@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		02051DDB2C5E551900BAEF10 /* CameraPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02051DDA2C5E551900BAEF10 /* CameraPreview.swift */; };
+		02051DDE2C5E559200BAEF10 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 02051DDD2C5E559200BAEF10 /* SnapKit */; };
 		02241D792C5D484100B4A161 /* CheckSilentModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02241D782C5D484100B4A161 /* CheckSilentModeView.swift */; };
 		02241D7C2C5D48D900B4A161 /* CameraViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02241D7B2C5D48D900B4A161 /* CameraViewTest.swift */; };
 		02C3FCB52C587FD30087A72B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 02C3FCB42C587FD30087A72B /* GoogleService-Info.plist */; };
@@ -34,6 +36,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		02051DDA2C5E551900BAEF10 /* CameraPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreview.swift; sourceTree = "<group>"; };
 		02241D782C5D484100B4A161 /* CheckSilentModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckSilentModeView.swift; sourceTree = "<group>"; };
 		02241D7B2C5D48D900B4A161 /* CameraViewTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewTest.swift; sourceTree = "<group>"; };
 		02C3FCB42C587FD30087A72B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -65,6 +68,7 @@
 				92EE7B2B2C516785006D0D19 /* FirebaseAnalytics in Frameworks */,
 				92EE7B392C554E38006D0D19 /* FirebaseFirestore in Frameworks */,
 				92EE7B2D2C516785006D0D19 /* FirebaseAuth in Frameworks */,
+				02051DDE2C5E559200BAEF10 /* SnapKit in Frameworks */,
 				92EE7B372C554E30006D0D19 /* FirebaseStorage in Frameworks */,
 				02C3FCBC2C5882720087A72B /* KDCircularProgress in Frameworks */,
 			);
@@ -77,6 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				02241D7B2C5D48D900B4A161 /* CameraViewTest.swift */,
+				02051DDA2C5E551900BAEF10 /* CameraPreview.swift */,
 			);
 			path = Camera;
 			sourceTree = "<group>";
@@ -282,6 +287,7 @@
 				92EE7B362C554E30006D0D19 /* FirebaseStorage */,
 				92EE7B382C554E38006D0D19 /* FirebaseFirestore */,
 				02C3FCBB2C5882720087A72B /* KDCircularProgress */,
+				02051DDD2C5E559200BAEF10 /* SnapKit */,
 			);
 			productName = Nap;
 			productReference = 3928CA2D2C509EC200A5A823 /* Nap.app */;
@@ -314,6 +320,7 @@
 			packageReferences = (
 				92EE7B292C516785006D0D19 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				02C3FCBA2C5882720087A72B /* XCRemoteSwiftPackageReference "KDCircularProgress" */,
+				02051DDC2C5E559200BAEF10 /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
 			productRefGroup = 3928CA2E2C509EC200A5A823 /* Products */;
 			projectDirPath = "";
@@ -352,6 +359,7 @@
 				02C3FCB72C5882080087A72B /* ProgressView.swift in Sources */,
 				3928CA4A2C50A48C00A5A823 /* View+.swift in Sources */,
 				3928CA552C50A69200A5A823 /* Onboarding.swift in Sources */,
+				02051DDB2C5E551900BAEF10 /* CameraPreview.swift in Sources */,
 				3928CA4E2C50A58900A5A823 /* HapticManager.swift in Sources */,
 				3928CA572C50A6B000A5A823 /* Home.swift in Sources */,
 				3928CA312C509EC200A5A823 /* NapApp.swift in Sources */,
@@ -585,6 +593,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		02051DDC2C5E559200BAEF10 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
 		02C3FCBA2C5882720087A72B /* XCRemoteSwiftPackageReference "KDCircularProgress" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/kaandedeoglu/KDCircularProgress.git";
@@ -604,6 +620,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		02051DDD2C5E559200BAEF10 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 02051DDC2C5E559200BAEF10 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
 		02C3FCBB2C5882720087A72B /* KDCircularProgress */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 02C3FCBA2C5882720087A72B /* XCRemoteSwiftPackageReference "KDCircularProgress" */;
