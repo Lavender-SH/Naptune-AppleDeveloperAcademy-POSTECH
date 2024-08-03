@@ -24,11 +24,12 @@ struct Home: View {
     @State private var remainingSeconds: Int = 0
     @State private var totalDuration: Int = 0
     @State private var isShowingProgressView = false
+    @State private var isShowingSilentModeCheck = false
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ZStack {
-                Image("낮잠")
+                Image("Background")
                     .resizable()
                     .scaledToFill()
                 
@@ -102,50 +103,64 @@ struct Home: View {
                     }
                     .padding(.top, 40)
                     
-                        VStack{
-                            HStack(alignment: .top) {
-                                VStack(alignment: .leading, spacing: 8) {
-                                        Label {
-                                            Text("낮잠 시간")
-                                                .foregroundColor(Color("ManboBlue400"))
-                                        } icon: {
-                                            Image(systemName: "moon")
-                                                .foregroundColor(Color("ManboBlue400"))
-                                        }
-                                        .font(.callout)
-                                        
-                                        Text(formatTimeRange(start: currentKSTTime(), end: wakeupTime()))
-                                            .font(.title2.bold())
-                                            .foregroundColor(Color.white)
-                                }.padding(.vertical, 16)
-                                    .padding(.leading, 5)
-                                Spacer()
-                            }
-       
-                            VStack{
-                                sleepTimeSlider()
-                                    .padding(.top, 10)
-                                Button {
-                                    startTimer()
-                                    isShowingProgressView = true
-                                } label: {
-                                    Text("낮잠 자러가기")
-                                        .font(.headline)
-                                        .foregroundColor(.black)
-                                        .padding(.horizontal, 110)
-                                        .padding(.vertical, 15)
-                                        .background(Color("ManboBlue400"))
-                                        .cornerRadius(10)
+                    VStack{
+                        HStack(alignment: .top) {
+                            VStack(alignment: .leading, spacing: 8) {
+                                Label {
+                                    Text("낮잠 시간")
+                                        .foregroundColor(Color("ManboBlue400"))
+                                } icon: {
+                                    Image(systemName: "moon")
+                                        .foregroundColor(Color("ManboBlue400"))
                                 }
-                                .padding(.top, 50)
-                                .padding(.bottom, 30)
-                            }
-                            NavigationLink(destination: ProgressView(remainingSeconds: $remainingSeconds, startTime: currentKSTTime(), endTime: wakeupTime()), isActive: $isShowingProgressView) {
-                                EmptyView()
-                            }
+                                .font(.callout)
+                                
+                                Text(formatTimeRange(start: currentKSTTime(), end: wakeupTime()))
+                                    .font(.title2.bold())
+                                    .foregroundColor(Color.white)
+                            }.padding(.vertical, 16)
+                                .padding(.leading, 5)
+                            Spacer()
                         }
-                        .padding(.horizontal, 24)
-                        .background(.gray.opacity(0.2), in: RoundedRectangle(cornerRadius: 15))
+                        
+                        VStack{
+                            sleepTimeSlider()
+                                .padding(.top, 10)
+                            Button {
+                                startTimer()
+                                isShowingSilentModeCheck = true
+                            } label: {
+                                Text("낮잠 자러가기")
+                                    .font(.headline)
+                                    .foregroundColor(.black)
+                                    .padding(.horizontal, 110)
+                                    .padding(.vertical, 15)
+                                    .background(Color("ManboBlue400"))
+                                    .cornerRadius(10)
+                            }
+                            .padding(.top, 50)
+                            .padding(.bottom, 30)
+                        }
+                        NavigationLink(
+                            destination: CheckSilentModeView(confirmAction: {
+                                isShowingProgressView = true
+                            }),
+                            isActive: $isShowingSilentModeCheck
+                        ) {
+                            EmptyView()
+                        }
+                        .hidden()
+                        
+                        NavigationLink(
+                            destination: ProgressView(remainingSeconds: $remainingSeconds, startTime: currentKSTTime(), endTime: wakeupTime()),
+                            isActive: $isShowingProgressView
+                        ) {
+                            EmptyView()
+                        }
+                        .hidden()
+                    }
+                    .padding(.horizontal, 24)
+                    .background(.gray.opacity(0.2), in: RoundedRectangle(cornerRadius: 15))
                     
                     
 
