@@ -51,7 +51,7 @@ struct NagiProgressView: View {
 
 private extension NagiProgressView {
     var Title: some View {
-        Text(progress == 354 ? "충전 완료!" : "걱정은 잠시 내려놓고\n편안히 낮잠을 즐겨봐요")
+        Text(progress >= 354 ? "충전 완료!" : "걱정은 잠시 내려놓고\n편안히 낮잠을 즐겨봐요")
             .font(.napLargeTitle)
             .foregroundStyle(.napWhite100)
             .multilineTextAlignment(.center)
@@ -277,7 +277,7 @@ private extension NagiProgressView {
     
     func wakeupTime() -> Date {
         let now = currentDate
-        return Calendar.current.date(byAdding: .minute, value: Int(timeInterval), to: now) ?? now
+        return Calendar.current.date(byAdding: .second, value: Int(timeInterval), to: now) ?? now
     }
     
     func formatTime(_ seconds: Int) -> String {
