@@ -18,6 +18,7 @@ struct NagiHome: View {
     @State var toAngle: Double = 180
     @State var startProgress: CGFloat = 0
     @State var toProgress: CGFloat = 0.5
+    
     // MARK: - 햅틱
     @State private var lastHapticAngle: Double = 0
     
@@ -286,8 +287,8 @@ private extension NagiHome {
     }
     
     var StartNapButton: some View {
-        Button {
-            print("Sleep")
+        NavigationLink {
+            //CheckSilentModeView(remainingSeconds: $remainingSeconds)
         } label: {
             MainButtonLabel(text: "낮잠 자러가기")
         }
