@@ -51,11 +51,7 @@ struct Friend: View {
             }
         }
         .background {
-            Image(.basicBackground)
-                .resizable()
-                .scaledToFill()
-                .ignoresSafeArea()
-                .clipped()
+            BackgroundImage(image: Image(.basicBackground))
         }
         .animation(.snappy,
                    value: isListSuspended)

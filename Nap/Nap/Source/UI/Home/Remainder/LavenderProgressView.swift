@@ -8,7 +8,7 @@
 import SwiftUI
 import KDCircularProgress
 
-struct ProgressView: View {
+struct LavenderProgressView: View {
     @State private var progress: Double = 0
     @Binding var remainingSeconds: Int
     var startTime: Date
@@ -64,10 +64,10 @@ struct ProgressView: View {
             }
             .padding()
         }
-        .fullScreenCover(isPresented: $showCameraView) {
-            CameraViewTest()
-                .ignoresSafeArea()
-        }
+//        .fullScreenCover(isPresented: $showCameraView) {
+//            CameraViewTest()
+//                .ignoresSafeArea()
+//        }
                 .onAppear {
                     startProgress()
                 }
@@ -250,7 +250,7 @@ struct ProgressView: View {
     
     struct ProgressView_Previews: PreviewProvider {
         static var previews: some View {
-            ProgressView(remainingSeconds: .constant(600), startTime: Date(), endTime: Date().addingTimeInterval(600))
+            LavenderProgressView(remainingSeconds: .constant(600), startTime: Date(), endTime: Date().addingTimeInterval(600))
         }
     }
     

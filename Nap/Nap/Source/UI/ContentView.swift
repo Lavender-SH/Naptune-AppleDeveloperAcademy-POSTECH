@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State var isOnboarding: Bool = false
+    @State var isOnboarding: Bool = true
     //@State var showHome: Bool = true
     
     var body: some View {
@@ -30,7 +30,7 @@ extension ContentView {
             ScrollView(.vertical) {
                 //ScrollViewReader { reader in
                 VStack(spacing: 0) {
-                    NagiHome()
+                    Home()
                         .frame(width: UIScreen.size.width,
                                height: UIScreen.size.height)
                         .id(1)

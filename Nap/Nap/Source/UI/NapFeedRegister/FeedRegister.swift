@@ -13,6 +13,7 @@ import SwiftUI
 
 struct FeedRegister: View {
     
+    @Binding var capturedImage: UIImage?
     @State var sleepComent: String = ""
     @State var isSelectingStatus: Bool = false
     @State var sleepStatusLevel: Double = 3
@@ -25,14 +26,20 @@ struct FeedRegister: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            Spacer().frame(height: UIScreen.isSE ? 30 : 80)
+            Spacer().frame(height: UIScreen.isSE ? 53 : 133)
             FeedImage
             isSelectingStatus ? AnyView(StatusSection)
-                              : AnyView(BottomButton)
+            : AnyView(BottomButton)
+            Spacer()
         }
         .padding(.horizontal, 20)
-        .background(BackgroundImage(image: Image(.basicBackground)))
+        .background(
+            BackgroundImage(image: Image(.basicBackground))
+        )
         .dismissKeyboard()
+        .onChange(of: editedSleepStatusLevel) { oldValue, newValue in
+            HapticManager.instance.impact(style: .light)
+        }
     }
 }
 
@@ -41,7 +48,7 @@ private extension FeedRegister {
     // MARK: View
     
     var FeedImage: some View {
-        Image(.feedImage5)
+        Image(uiImage: capturedImage ?? .feedImage1)
             .resizable()
             .scaledToFill()
             .frame(width: imageWidth,
@@ -93,11 +100,16 @@ private extension FeedRegister {
         Button {
             toggleBottomButton()
         } label: {
-            Text(sleepStatus)
-                .font(.system(size: 32))
-                .frame(width: 55, height: 55)
-                .background(.ultraThinMaterial)
-                .clipShape(Circle())
+            sleepStatus
+                .resizable()
+                .scaledToFit()
+                .frame(width: 32, height: 32)
+                .padding(11.5)
+                .background {
+                    Circle()
+                        .foregroundStyle(.ultraThinMaterial)
+                }
+                .tint(.clear)
         }
     }
     
@@ -117,9 +129,10 @@ private extension FeedRegister {
     
     var CancelButton: some View {
         Button {
-            
+            capturedImage = nil
         } label: {
             Image(.X)
+                .renderingMode(.template)
                 .foregroundStyle(.napWhite100)
                 .frame(width: 27, height: 27)
                 .padding(20)
@@ -246,14 +259,14 @@ private extension FeedRegister {
     
     // MARK: Computed Values
     
-    var sleepStatus: String {
+    var sleepStatus: Image {
         switch editedSleepStatusLevel {
-        case 1: return "😑"
-        case 2: return "🫥"
-        case 3: return "🙂"
-        case 4: return "🫥"
-        case 5: return "🤩"
-        default: return "Error"
+        case 1: return Image(.statusVeryBad)
+        case 2: return Image(.statusBad)
+        case 3: return Image(.statusNormal)
+        case 4: return Image(.statusGood)
+        case 5: return Image(.statusVeryGood)
+        default: return Image(.statusVeryBad)
         }
     }
     
@@ -279,5 +292,5 @@ private extension FeedRegister {
 }
 
 #Preview {
-    FeedRegister()
+    FeedRegister(capturedImage: .constant(nil))
 }

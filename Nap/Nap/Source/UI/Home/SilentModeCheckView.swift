@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct NagiCheckSilentModeView: View {
+struct SilentModeCheckView: View {
     
     @Environment(\.presentationMode) var presentationMode
     @Binding var timeInterval: Double
@@ -24,17 +24,13 @@ struct NagiCheckSilentModeView: View {
         }
         .padding(.horizontal, 20)
         .background {
-            Image(.basicBackground)
-                .resizable()
-                .scaledToFill()
-                .ignoresSafeArea()
-                .clipped()
+            BackgroundImage(image: Image(.basicBackground))
         }
         .toolbar(.hidden, for: .navigationBar)
     }
 }
 
-private extension NagiCheckSilentModeView {
+private extension SilentModeCheckView {
     var Title: some View {
         Text("친구들의 전화 알림을 받기 위해\n무음모드를 꼭 해제해주세요")
             .font(.napLargeTitle)
@@ -80,7 +76,7 @@ private extension NagiCheckSilentModeView {
     
     var CheckButton: some View {
         NavigationLink {
-           NagiProgressView(timeInterval: $timeInterval)
+           NapProgress(timeInterval: $timeInterval)
         } label: {
             MainButtonLabel(text: "확인했어요")
         }
@@ -101,5 +97,5 @@ private extension NagiCheckSilentModeView {
 }
 
 #Preview {
-    NagiCheckSilentModeView(timeInterval: .constant(25))
+    SilentModeCheckView(timeInterval: .constant(25))
 }

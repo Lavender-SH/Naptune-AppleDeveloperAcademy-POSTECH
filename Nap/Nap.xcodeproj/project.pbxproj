@@ -9,10 +9,10 @@
 /* Begin PBXBuildFile section */
 		02051DDB2C5E551900BAEF10 /* CameraPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02051DDA2C5E551900BAEF10 /* CameraPreview.swift */; };
 		02051DDE2C5E559200BAEF10 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 02051DDD2C5E559200BAEF10 /* SnapKit */; };
-		02241D792C5D484100B4A161 /* CheckSilentModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02241D782C5D484100B4A161 /* CheckSilentModeView.swift */; };
-		02241D7C2C5D48D900B4A161 /* CameraViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02241D7B2C5D48D900B4A161 /* CameraViewTest.swift */; };
+		02241D792C5D484100B4A161 /* LavenderCheckSilentModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02241D782C5D484100B4A161 /* LavenderCheckSilentModeView.swift */; };
+		02241D7C2C5D48D900B4A161 /* NapPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02241D7B2C5D48D900B4A161 /* NapPhotoView.swift */; };
 		02C3FCB52C587FD30087A72B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 02C3FCB42C587FD30087A72B /* GoogleService-Info.plist */; };
-		02C3FCB72C5882080087A72B /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C3FCB62C5882080087A72B /* ProgressView.swift */; };
+		02C3FCB72C5882080087A72B /* LavenderProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C3FCB62C5882080087A72B /* LavenderProgressView.swift */; };
 		02C3FCB92C58824E0087A72B /* KDCircularProgressTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C3FCB82C58824E0087A72B /* KDCircularProgressTest.swift */; };
 		02C3FCBC2C5882720087A72B /* KDCircularProgress in Frameworks */ = {isa = PBXBuildFile; productRef = 02C3FCBB2C5882720087A72B /* KDCircularProgress */; };
 		390283952C5389C500D8ACF5 /* UIScreen+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390283942C5389C500D8ACF5 /* UIScreen+.swift */; };
@@ -26,7 +26,8 @@
 		390283AA2C56165600D8ACF5 /* FriendRequestRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390283A92C56165600D8ACF5 /* FriendRequestRow.swift */; };
 		390283AC2C562E7600D8ACF5 /* FriendAdd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390283AB2C562E7600D8ACF5 /* FriendAdd.swift */; };
 		390283AE2C566B9E00D8ACF5 /* BlueButtonLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390283AD2C566B9E00D8ACF5 /* BlueButtonLabel.swift */; };
-		391A428F2C5E86E900A9DABA /* NagiCircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391A428E2C5E86E900A9DABA /* NagiCircularProgressView.swift */; };
+		391A428F2C5E86E900A9DABA /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391A428E2C5E86E900A9DABA /* CircularProgressView.swift */; };
+		391A42912C5F6EFE00A9DABA /* NapFeedRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391A42902C5F6EFE00A9DABA /* NapFeedRegister.swift */; };
 		3928CA312C509EC200A5A823 /* NapApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928CA302C509EC200A5A823 /* NapApp.swift */; };
 		3928CA332C509EC200A5A823 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928CA322C509EC200A5A823 /* ContentView.swift */; };
 		3928CA352C509EC300A5A823 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3928CA342C509EC300A5A823 /* Assets.xcassets */; };
@@ -35,36 +36,36 @@
 		3928CA4E2C50A58900A5A823 /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928CA4D2C50A58900A5A823 /* HapticManager.swift */; };
 		3928CA502C50A63100A5A823 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3928CA4F2C50A63100A5A823 /* Launch Screen.storyboard */; };
 		3928CA552C50A69200A5A823 /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928CA542C50A69200A5A823 /* Onboarding.swift */; };
-		3928CA572C50A6B000A5A823 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928CA562C50A6B000A5A823 /* Home.swift */; };
+		3928CA572C50A6B000A5A823 /* LavenderHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928CA562C50A6B000A5A823 /* LavenderHome.swift */; };
 		3928CA592C50A6B800A5A823 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928CA582C50A6B800A5A823 /* Friend.swift */; };
 		3928CA5B2C50A6BC00A5A823 /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928CA5A2C50A6BC00A5A823 /* Feed.swift */; };
 		3928CA5D2C50A6D600A5A823 /* StringConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928CA5C2C50A6D600A5A823 /* StringConstant.swift */; };
 		3928CA5F2C50E32D00A5A823 /* FeedCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928CA5E2C50E32D00A5A823 /* FeedCard.swift */; };
 		3928CA632C50FB5E00A5A823 /* BackgroundBlur.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928CA622C50FB5E00A5A823 /* BackgroundBlur.swift */; };
-		393E8E6D2C5E5C8300780DF6 /* NagiCheckSilentModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393E8E6C2C5E5C8300780DF6 /* NagiCheckSilentModeView.swift */; };
+		393E8E6D2C5E5C8300780DF6 /* SilentModeCheckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393E8E6C2C5E5C8300780DF6 /* SilentModeCheckView.swift */; };
 		393E8E6F2C5E606C00780DF6 /* NavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393E8E6E2C5E606C00780DF6 /* NavigationManager.swift */; };
-		393E8E712C5E651B00780DF6 /* NagiProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393E8E702C5E651B00780DF6 /* NagiProgressView.swift */; };
+		393E8E712C5E651B00780DF6 /* NapProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393E8E702C5E651B00780DF6 /* NapProgress.swift */; };
 		399587C02C5A8F2300454D74 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399587BF2C5A8F2300454D74 /* FirebaseManager.swift */; };
 		3999BE462C57DA5A00C48F68 /* NicknameSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3999BE452C57DA5A00C48F68 /* NicknameSetting.swift */; };
 		3999BE482C5811E700C48F68 /* ProfileSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3999BE472C5811E700C48F68 /* ProfileSetting.swift */; };
 		3999BE4C2C588A0C00C48F68 /* JoseOnboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3999BE4B2C588A0C00C48F68 /* JoseOnboarding.swift */; };
 		39DBCC392C5BA8400039A728 /* StepSlider in Frameworks */ = {isa = PBXBuildFile; productRef = 39DBCC382C5BA8400039A728 /* StepSlider */; };
-		39DBCC3B2C5BE2080039A728 /* NagiHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DBCC3A2C5BE2080039A728 /* NagiHome.swift */; };
+		39DBCC3B2C5BE2080039A728 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DBCC3A2C5BE2080039A728 /* Home.swift */; };
 		39DBCC3D2C5BF3410039A728 /* MainButtonLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DBCC3C2C5BF3410039A728 /* MainButtonLabel.swift */; };
 		92EE7B2B2C516785006D0D19 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 92EE7B2A2C516785006D0D19 /* FirebaseAnalytics */; };
 		92EE7B2D2C516785006D0D19 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 92EE7B2C2C516785006D0D19 /* FirebaseAuth */; };
-		92EE7B322C52B432006D0D19 /* Signupname.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EE7B312C52B432006D0D19 /* Signupname.swift */; };
-		92EE7B342C52B4EA006D0D19 /* Signuppic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EE7B332C52B4EA006D0D19 /* Signuppic.swift */; };
+		92EE7B322C52B432006D0D19 /* JoseSignupname.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EE7B312C52B432006D0D19 /* JoseSignupname.swift */; };
+		92EE7B342C52B4EA006D0D19 /* JoseSignuppic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EE7B332C52B4EA006D0D19 /* JoseSignuppic.swift */; };
 		92EE7B372C554E30006D0D19 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 92EE7B362C554E30006D0D19 /* FirebaseStorage */; };
 		92EE7B392C554E38006D0D19 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 92EE7B382C554E38006D0D19 /* FirebaseFirestore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		02051DDA2C5E551900BAEF10 /* CameraPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreview.swift; sourceTree = "<group>"; };
-		02241D782C5D484100B4A161 /* CheckSilentModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckSilentModeView.swift; sourceTree = "<group>"; };
-		02241D7B2C5D48D900B4A161 /* CameraViewTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewTest.swift; sourceTree = "<group>"; };
+		02241D782C5D484100B4A161 /* LavenderCheckSilentModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LavenderCheckSilentModeView.swift; sourceTree = "<group>"; };
+		02241D7B2C5D48D900B4A161 /* NapPhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NapPhotoView.swift; sourceTree = "<group>"; };
 		02C3FCB42C587FD30087A72B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		02C3FCB62C5882080087A72B /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
+		02C3FCB62C5882080087A72B /* LavenderProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LavenderProgressView.swift; sourceTree = "<group>"; };
 		02C3FCB82C58824E0087A72B /* KDCircularProgressTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KDCircularProgressTest.swift; sourceTree = "<group>"; };
 		390283942C5389C500D8ACF5 /* UIScreen+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+.swift"; sourceTree = "<group>"; };
 		390283982C53C9F600D8ACF5 /* BackgroundImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundImage.swift; sourceTree = "<group>"; };
@@ -78,7 +79,8 @@
 		390283A92C56165600D8ACF5 /* FriendRequestRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendRequestRow.swift; sourceTree = "<group>"; };
 		390283AB2C562E7600D8ACF5 /* FriendAdd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendAdd.swift; sourceTree = "<group>"; };
 		390283AD2C566B9E00D8ACF5 /* BlueButtonLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlueButtonLabel.swift; sourceTree = "<group>"; };
-		391A428E2C5E86E900A9DABA /* NagiCircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NagiCircularProgressView.swift; sourceTree = "<group>"; };
+		391A428E2C5E86E900A9DABA /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
+		391A42902C5F6EFE00A9DABA /* NapFeedRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NapFeedRegister.swift; sourceTree = "<group>"; };
 		3928CA2D2C509EC200A5A823 /* Nap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3928CA302C509EC200A5A823 /* NapApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NapApp.swift; sourceTree = "<group>"; };
 		3928CA322C509EC200A5A823 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -88,24 +90,24 @@
 		3928CA4D2C50A58900A5A823 /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		3928CA4F2C50A63100A5A823 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		3928CA542C50A69200A5A823 /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
-		3928CA562C50A6B000A5A823 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+		3928CA562C50A6B000A5A823 /* LavenderHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LavenderHome.swift; sourceTree = "<group>"; };
 		3928CA582C50A6B800A5A823 /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		3928CA5A2C50A6BC00A5A823 /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
 		3928CA5C2C50A6D600A5A823 /* StringConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringConstant.swift; sourceTree = "<group>"; };
 		3928CA5E2C50E32D00A5A823 /* FeedCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCard.swift; sourceTree = "<group>"; };
 		3928CA622C50FB5E00A5A823 /* BackgroundBlur.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundBlur.swift; sourceTree = "<group>"; };
-		393E8E6C2C5E5C8300780DF6 /* NagiCheckSilentModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NagiCheckSilentModeView.swift; sourceTree = "<group>"; };
+		393E8E6C2C5E5C8300780DF6 /* SilentModeCheckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SilentModeCheckView.swift; sourceTree = "<group>"; };
 		393E8E6E2C5E606C00780DF6 /* NavigationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationManager.swift; sourceTree = "<group>"; };
-		393E8E702C5E651B00780DF6 /* NagiProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NagiProgressView.swift; sourceTree = "<group>"; };
+		393E8E702C5E651B00780DF6 /* NapProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NapProgress.swift; sourceTree = "<group>"; };
 		399587BF2C5A8F2300454D74 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		3999BE452C57DA5A00C48F68 /* NicknameSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameSetting.swift; sourceTree = "<group>"; };
 		3999BE472C5811E700C48F68 /* ProfileSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSetting.swift; sourceTree = "<group>"; };
 		3999BE4B2C588A0C00C48F68 /* JoseOnboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoseOnboarding.swift; sourceTree = "<group>"; };
-		39DBCC3A2C5BE2080039A728 /* NagiHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NagiHome.swift; sourceTree = "<group>"; };
+		39DBCC3A2C5BE2080039A728 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		39DBCC3C2C5BF3410039A728 /* MainButtonLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainButtonLabel.swift; sourceTree = "<group>"; };
 		92EE7B2E2C5169E2006D0D19 /* Nap.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Nap.entitlements; sourceTree = "<group>"; };
-		92EE7B312C52B432006D0D19 /* Signupname.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signupname.swift; sourceTree = "<group>"; };
-		92EE7B332C52B4EA006D0D19 /* Signuppic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signuppic.swift; sourceTree = "<group>"; };
+		92EE7B312C52B432006D0D19 /* JoseSignupname.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoseSignupname.swift; sourceTree = "<group>"; };
+		92EE7B332C52B4EA006D0D19 /* JoseSignuppic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoseSignuppic.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,13 +128,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		02241D7A2C5D48B200B4A161 /* Camera */ = {
+		02241D7A2C5D48B200B4A161 /* NapFeedRegister */ = {
 			isa = PBXGroup;
 			children = (
-				02241D7B2C5D48D900B4A161 /* CameraViewTest.swift */,
+				391A42902C5F6EFE00A9DABA /* NapFeedRegister.swift */,
+				390283A52C556DB900D8ACF5 /* FeedRegister.swift */,
+				02241D7B2C5D48D900B4A161 /* NapPhotoView.swift */,
 				02051DDA2C5E551900BAEF10 /* CameraPreview.swift */,
 			);
-			path = Camera;
+			path = NapFeedRegister;
+			sourceTree = "<group>";
+		};
+		391A42922C5F893C00A9DABA /* Remainder */ = {
+			isa = PBXGroup;
+			children = (
+				02C3FCB62C5882080087A72B /* LavenderProgressView.swift */,
+				02241D782C5D484100B4A161 /* LavenderCheckSilentModeView.swift */,
+				02C3FCB82C58824E0087A72B /* KDCircularProgressTest.swift */,
+				3928CA562C50A6B000A5A823 /* LavenderHome.swift */,
+			);
+			path = Remainder;
 			sourceTree = "<group>";
 		};
 		3928CA242C509EC200A5A823 = {
@@ -245,7 +260,7 @@
 				3928CA322C509EC200A5A823 /* ContentView.swift */,
 				3928CA532C50A67300A5A823 /* Onboarding */,
 				3928CA482C50A14000A5A823 /* Home */,
-				02241D7A2C5D48B200B4A161 /* Camera */,
+				02241D7A2C5D48B200B4A161 /* NapFeedRegister */,
 				3928CA522C50A66300A5A823 /* Friend */,
 				3928CA512C50A65E00A5A823 /* Feed */,
 			);
@@ -264,15 +279,11 @@
 		3928CA482C50A14000A5A823 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				02241D782C5D484100B4A161 /* CheckSilentModeView.swift */,
-				02C3FCB62C5882080087A72B /* ProgressView.swift */,
-				02C3FCB82C58824E0087A72B /* KDCircularProgressTest.swift */,
-				3928CA562C50A6B000A5A823 /* Home.swift */,
-				390283A52C556DB900D8ACF5 /* FeedRegister.swift */,
-				39DBCC3A2C5BE2080039A728 /* NagiHome.swift */,
-				393E8E6C2C5E5C8300780DF6 /* NagiCheckSilentModeView.swift */,
-				393E8E702C5E651B00780DF6 /* NagiProgressView.swift */,
-				391A428E2C5E86E900A9DABA /* NagiCircularProgressView.swift */,
+				39DBCC3A2C5BE2080039A728 /* Home.swift */,
+				393E8E6C2C5E5C8300780DF6 /* SilentModeCheckView.swift */,
+				393E8E702C5E651B00780DF6 /* NapProgress.swift */,
+				391A428E2C5E86E900A9DABA /* CircularProgressView.swift */,
+				391A42922C5F893C00A9DABA /* Remainder */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -333,8 +344,8 @@
 			isa = PBXGroup;
 			children = (
 				3999BE4B2C588A0C00C48F68 /* JoseOnboarding.swift */,
-				92EE7B312C52B432006D0D19 /* Signupname.swift */,
-				92EE7B332C52B4EA006D0D19 /* Signuppic.swift */,
+				92EE7B312C52B432006D0D19 /* JoseSignupname.swift */,
+				92EE7B332C52B4EA006D0D19 /* JoseSignuppic.swift */,
 			);
 			path = Remainder;
 			sourceTree = "<group>";
@@ -436,23 +447,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				393E8E6D2C5E5C8300780DF6 /* NagiCheckSilentModeView.swift in Sources */,
+				393E8E6D2C5E5C8300780DF6 /* SilentModeCheckView.swift in Sources */,
 				3928CA332C509EC200A5A823 /* ContentView.swift in Sources */,
 				390283AE2C566B9E00D8ACF5 /* BlueButtonLabel.swift in Sources */,
 				390283AC2C562E7600D8ACF5 /* FriendAdd.swift in Sources */,
 				3928CA5B2C50A6BC00A5A823 /* Feed.swift in Sources */,
 				3928CA592C50A6B800A5A823 /* Friend.swift in Sources */,
 				3928CA5D2C50A6D600A5A823 /* StringConstant.swift in Sources */,
-				92EE7B322C52B432006D0D19 /* Signupname.swift in Sources */,
-				02241D7C2C5D48D900B4A161 /* CameraViewTest.swift in Sources */,
+				92EE7B322C52B432006D0D19 /* JoseSignupname.swift in Sources */,
+				02241D7C2C5D48D900B4A161 /* NapPhotoView.swift in Sources */,
 				393E8E6F2C5E606C00780DF6 /* NavigationManager.swift in Sources */,
-				02C3FCB72C5882080087A72B /* ProgressView.swift in Sources */,
+				02C3FCB72C5882080087A72B /* LavenderProgressView.swift in Sources */,
 				3928CA4A2C50A48C00A5A823 /* View+.swift in Sources */,
 				3928CA5F2C50E32D00A5A823 /* FeedCard.swift in Sources */,
 				3999BE462C57DA5A00C48F68 /* NicknameSetting.swift in Sources */,
 				3928CA552C50A69200A5A823 /* Onboarding.swift in Sources */,
+				391A42912C5F6EFE00A9DABA /* NapFeedRegister.swift in Sources */,
 				02051DDB2C5E551900BAEF10 /* CameraPreview.swift in Sources */,
-				393E8E712C5E651B00780DF6 /* NagiProgressView.swift in Sources */,
+				393E8E712C5E651B00780DF6 /* NapProgress.swift in Sources */,
 				390283952C5389C500D8ACF5 /* UIScreen+.swift in Sources */,
 				390283A22C55407C00D8ACF5 /* Font+.swift in Sources */,
 				390283AA2C56165600D8ACF5 /* FriendRequestRow.swift in Sources */,
@@ -463,15 +475,15 @@
 				3999BE482C5811E700C48F68 /* ProfileSetting.swift in Sources */,
 				3999BE4C2C588A0C00C48F68 /* JoseOnboarding.swift in Sources */,
 				3928CA4E2C50A58900A5A823 /* HapticManager.swift in Sources */,
-				391A428F2C5E86E900A9DABA /* NagiCircularProgressView.swift in Sources */,
-				3928CA572C50A6B000A5A823 /* Home.swift in Sources */,
-				3928CA572C50A6B000A5A823 /* Home.swift in Sources */,
+				391A428F2C5E86E900A9DABA /* CircularProgressView.swift in Sources */,
+				3928CA572C50A6B000A5A823 /* LavenderHome.swift in Sources */,
+				3928CA572C50A6B000A5A823 /* LavenderHome.swift in Sources */,
 				390283A62C556DB900D8ACF5 /* FeedRegister.swift in Sources */,
 				3928CA312C509EC200A5A823 /* NapApp.swift in Sources */,
 				02C3FCB92C58824E0087A72B /* KDCircularProgressTest.swift in Sources */,
-				39DBCC3B2C5BE2080039A728 /* NagiHome.swift in Sources */,
-				92EE7B342C52B4EA006D0D19 /* Signuppic.swift in Sources */,
-				02241D792C5D484100B4A161 /* CheckSilentModeView.swift in Sources */,
+				39DBCC3B2C5BE2080039A728 /* Home.swift in Sources */,
+				92EE7B342C52B4EA006D0D19 /* JoseSignuppic.swift in Sources */,
+				02241D792C5D484100B4A161 /* LavenderCheckSilentModeView.swift in Sources */,
 				3928CA632C50FB5E00A5A823 /* BackgroundBlur.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -614,6 +626,8 @@
 				INFOPLIST_FILE = "Nap/Supporting File/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Nap;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
+				INFOPLIST_KEY_NSCameraUsageDescription = "${PRODUCT_NAME}앱은 카메라 권한을 필요로 합니다. 카메라를 통해 수면 인증 사진을 찍어 업로드할 수 있습니다. 허용 안함 시 일부 기능이 동작하지 않을 수 있습니다.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "${PRODUCT_NAME}앱은 카메라 권한을 필요로 합니다. 카메라를 통해 수면 인증 사진을 찍어 업로드할 수 있습니다. 허용 안함 시 일부 기능이 동작하지 않을 수 있습니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -655,6 +669,8 @@
 				INFOPLIST_FILE = "Nap/Supporting File/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Nap;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
+				INFOPLIST_KEY_NSCameraUsageDescription = "${PRODUCT_NAME}앱은 카메라 권한을 필요로 합니다. 카메라를 통해 수면 인증 사진을 찍어 업로드할 수 있습니다. 허용 안함 시 일부 기능이 동작하지 않을 수 있습니다.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "${PRODUCT_NAME}앱은 카메라 권한을 필요로 합니다. 카메라를 통해 수면 인증 사진을 찍어 업로드할 수 있습니다. 허용 안함 시 일부 기능이 동작하지 않을 수 있습니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

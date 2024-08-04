@@ -8,7 +8,7 @@
 import SwiftUI
 import KDCircularProgress
 
-struct NagiProgressView: View {
+struct NapProgress: View {
     @Binding var timeInterval: Double
     
     @State private var progress: Double = 0
@@ -16,6 +16,7 @@ struct NagiProgressView: View {
     
     @State private var showRemainTime: Bool = false
     @State private var resetTimer: Timer? = nil
+    @State private var showCameraView: Bool = false
     
     let currentDate: Date = Date()
     
@@ -35,21 +36,21 @@ struct NagiProgressView: View {
         }
         .padding(.horizontal, 20)
         .background {
-            Image(.basicBackground)
-                .resizable()
-                .scaledToFill()
-                .ignoresSafeArea()
-                .clipped()
+            BackgroundImage(image: Image(.basicBackground))
         }
         .toolbar(.hidden, for: .navigationBar)
         .onAppear {
             remainingSeconds = timeInterval
             startProgress()
         }
+        .fullScreenCover(isPresented: $showCameraView) {
+            NapFeedRegister()
+                .ignoresSafeArea()
+        }
     }
 }
 
-private extension NagiProgressView {
+private extension NapProgress {
     var Title: some View {
         Text(progress >= 354 ? "충전 완료!" : "걱정은 잠시 내려놓고\n편안히 낮잠을 즐겨봐요")
             .font(.napLargeTitle)
@@ -65,7 +66,7 @@ private extension NagiProgressView {
             TimerChargeBackground
                 .frame(width: UIScreen.size.width-80,
                        height: UIScreen.size.width-80)
-            NagiCircularProgressView(progress: $progress)
+            CircularProgressView(progress: $progress)
                 .frame(width: (UIScreen.size.width-80)*1.25,
                        height: (UIScreen.size.width-80)*1.25)
             
@@ -242,10 +243,10 @@ private extension NagiProgressView {
     }
     
     var CheckButton: some View {
-        NavigationLink {
-            EmptyView()
+        Button {
+            showCameraView = true
         } label: {
-            MainButtonLabel(text: "확인했어요")
+            MainButtonLabel(text: "일어나기")
         }
     }
     
@@ -256,7 +257,7 @@ private extension NagiProgressView {
     // MARK: - 번개를 탭했을때 다시 돌아오는 타이머 함수
     func startResetTimer() {
         resetTimer?.invalidate()
-        resetTimer = Timer.scheduledTimer(withTimeInterval: 20.0, repeats: false) { _ in
+        resetTimer = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: false) { _ in
             withAnimation {
                 showRemainTime = false
             }

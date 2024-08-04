@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CheckSilentModeView: View {
+struct LavenderCheckSilentModeView: View {
     
     @Environment(\.presentationMode) var presentationMode
     var confirmAction: () -> Void
@@ -63,5 +63,5 @@ struct CheckSilentModeView: View {
 }
 
 #Preview {
-    CheckSilentModeView(confirmAction: {})
+    LavenderCheckSilentModeView(confirmAction: {})
 }

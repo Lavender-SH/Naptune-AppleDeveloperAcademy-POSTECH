@@ -1,328 +1,382 @@
 //
-//  Home.swift
+//  NagiHome.swift
 //  Nap
 //
-//  Created by 이승현 on 7/23/24.
+//  Created by YunhakLee on 8/2/24.
 //
 
 import SwiftUI
 
 struct Home: View {
     
+    //@Binding var showHome: Bool
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    
     // MARK: - 각도 및 프로그레스 바
+    
+    @State var currentTime: Date = Date()
     @State var startAngle: Double = 0
+    @State var timeInterval: Double = 0
+    @State var moveNext = false
     // Since our to progress is 0.5
     // 0.5 * 360 = 180
     @State var toAngle: Double = 180
     @State var startProgress: CGFloat = 0
     @State var toProgress: CGFloat = 0.5
+    
     // MARK: - 햅틱
     @State private var lastHapticAngle: Double = 0
     
-    // MARK: - 타이머 속성
-    @State private var timer: Timer?
-    @State private var remainingSeconds: Int = 0
-    @State private var totalDuration: Int = 0
-    @State private var isShowingProgressView = false
-    @State private var isShowingSilentModeCheck = false
-    
     var body: some View {
-        NavigationStack {
-            ZStack {
-                Image("Background")
-                    .resizable()
-                    .scaledToFill()
-                
-                VStack {
-                    HStack {
-                        VStack(alignment: .leading, spacing: 8) {
-                            //                            Text(currentDateString())
-                            //                                .font(.headline)
-                            //                                .foregroundColor(.gray)
-                            HStack {
-                                Text("Zzz..")
-                                    .font(.system(size: 20).bold())
-                                    .foregroundColor(.white)
-                                Spacer()
-                                Button {
-                                    
-                                } label: {
-                                    
-                                    Image(systemName: "person.2")
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fill)
-                                        .frame(width: 20, height: 20)
-                                        .foregroundColor(.white)
-                                    Text("친구 4 / 6")
-                                        .foregroundStyle(.white)
-                                }
-                                .padding(.vertical, 10)
-                                .padding(.horizontal, 16)
-                                .background(.white.opacity(0.2), in: RoundedRectangle(cornerRadius: 20))
-                                
-                            }
-                            Text("지금 깨어있는 친구들")
-                                .font(.system(size: 15).bold())
-                                .foregroundStyle(.gray)
-                            HStack {
-                                Circle()
-                                    .foregroundColor(.gray)
-                                    .frame(width: 50, height: 50)
-                                    .overlay(
-                                        Image("여우")
-                                            .resizable()
-                                            .aspectRatio(contentMode: .fill)
-                                            .frame(width: 50, height: 50)
-                                    )
-                                Circle()
-                                    .foregroundColor(.gray)
-                                    .frame(width: 50, height: 50)
-                                    .overlay(
-                                        Image("여우")
-                                            .resizable()
-                                            .aspectRatio(contentMode: .fill)
-                                            .frame(width: 50, height: 50)
-                                    )
-                                Circle()
-                                    .foregroundColor(.gray)
-                                    .frame(width: 50, height: 50)
-                                    .overlay(
-                                        Image("여우")
-                                            .resizable()
-                                            .aspectRatio(contentMode: .fill)
-                                            .frame(width: 50, height: 50)
-                                    )
-                            }
-                            Text("낮잠 설정하기")
-                                .font(.system(size: 15).bold())
-                                .foregroundStyle(.gray)
-                                .padding(.top, 13)
-                        }
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        
-                    }
-                    .padding(.top, 40)
-                    
-                    VStack{
-                        HStack(alignment: .top) {
-                            VStack(alignment: .leading, spacing: 8) {
-                                Label {
-                                    Text("낮잠 시간")
-                                        .foregroundColor(Color("ManboBlue400"))
-                                } icon: {
-                                    Image(systemName: "moon")
-                                        .foregroundColor(Color("ManboBlue400"))
-                                }
-                                .font(.callout)
-                                
-                                Text(formatTimeRange(start: currentKSTTime(), end: wakeupTime()))
-                                    .font(.title2.bold())
-                                    .foregroundColor(Color.white)
-                            }.padding(.vertical, 16)
-                                .padding(.leading, 5)
-                            Spacer()
-                        }
-                        
-                        VStack{
-                            sleepTimeSlider()
-                                .padding(.top, 10)
-                            Button {
-                                startTimer()
-                                isShowingSilentModeCheck = true
-                            } label: {
-                                Text("낮잠 자러가기")
-                                    .font(.headline)
-                                    .foregroundColor(.black)
-                                    .padding(.horizontal, 110)
-                                    .padding(.vertical, 15)
-                                    .background(Color("ManboBlue400"))
-                                    .cornerRadius(10)
-                            }
-                            .padding(.top, 50)
-                            .padding(.bottom, 30)
-                        }
-                        NavigationLink(
-                            destination: CheckSilentModeView(confirmAction: {
-                                isShowingProgressView = true
-                            }),
-                            isActive: $isShowingSilentModeCheck
-                        ) {
-                            EmptyView()
-                        }
-                        .hidden()
-                        
-                        NavigationLink(
-                            destination: ProgressView(remainingSeconds: $remainingSeconds, startTime: currentKSTTime(), endTime: wakeupTime()),
-                            isActive: $isShowingProgressView
-                        ) {
-                            EmptyView()
-                        }
-                        .hidden()
-                    }
-                    .padding(.horizontal, 24)
-                    .background(.gray.opacity(0.2), in: RoundedRectangle(cornerRadius: 15))
-                    
-                    
-
-                }
-                .padding()
-                .padding(.top, 10)
-                .frame(maxHeight: .infinity, alignment: .top)
+        VStack(alignment: .leading, spacing: 0) {
+            Spacer().frame(height: topMargin)
+            Header
+            Spacer().frame(height: 12)
+            if !UIScreen.isSE {
+                FriendSection
+                Spacer().frame(height: 24)
             }
-            .navigationBarTitle("", displayMode: .inline)
+            NapSettingSection
+            Spacer()
+            MoveFeedButton
+            Spacer().frame(height: bottomMargin)
         }
-        
+        .background {
+            Image(.basicBackground)
+                .resizable()
+                .scaledToFill()
+                .ignoresSafeArea()
+                .frame(width: UIScreen.size.width,
+                       height: UIScreen.size.height)
+                .clipped()
+        }
+        .navigationDestination(isPresented: $moveNext) {
+            SilentModeCheckView(timeInterval: $timeInterval)
+        }
     }
-    // MARK: - Sleep Time Circular Slider
-    @ViewBuilder
-    func sleepTimeSlider() -> some View {
-        
-        GeometryReader{ proxy in
-            
-            let width = proxy.size.width
-            
-            ZStack {
-                // Background Image
-                Image("낮잠")
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: width - 40, height: width - 40)
-                    .clipShape(Circle())
-                    .edgesIgnoringSafeArea(.all)
-                
-                // MARK: - Clock Design
-                ZStack {
-                    
-                    ForEach(1...60, id: \.self) { index in
-                        Rectangle()
-                            .fill(index % 5 == 0 ? .white : .gray)
-                        // Each hour will have big Line
-                        // 60/5 = 12
-                        // 12 Hours
-                            .frame(width: 2, height: index % 5 == 0 ? 10 : 5)
-                        // Setting into entire Circle
-                            .offset(y: (width - 60) / 2)
-                            .rotationEffect(.init(degrees: Double(index) * 6))
-                        
-                    }
-                    // MARK: - Clock Text
-                    let texts = [60, 90, 120, 30]
-                    ForEach(texts.indices, id: \.self) { index in
-                        Text("\(texts[index])")
-                            .font(.caption.bold())
-                            .foregroundColor(.white)
-                            .rotationEffect(.init(degrees: Double(index) * -90))
-                            .offset(y: (width - 90) / 2)
-                            .rotationEffect(.init(degrees: Double(index) * 90))
-                    }
-                    
-                }
-                
-                Circle()
-                    .stroke(.gray.opacity(0.3), lineWidth: 40)
-                
-                // Allowing Reverse Swiping
-                let reverseRotation = (startProgress > toProgress) ? -Double((1 - startProgress) * 360) : 0
-                Circle()
-                    .trim(from: startProgress > toProgress ? 0 : startProgress, to: toProgress + (-reverseRotation / 360))
-                //.stroke(Color.purple, style: StrokeStyle(lineWidth: 40, lineCap: .round, lineJoin: .round))
-                    .stroke(AngularGradient(gradient: Gradient(colors: [Color("ManboBlue400").opacity(1), Color("ManboBlue400")]), center: .center, startAngle: .degrees(0), endAngle: .degrees(360)), style: StrokeStyle(lineWidth: 40, lineCap: .round, lineJoin: .round))
-                
-                    .rotationEffect(.init(degrees: -90))
-                    .rotationEffect(.init(degrees: reverseRotation))
-                
-                // Slider Buttons
-                Image(systemName: "moon.fill")
-                    .font(.callout)
-                    .foregroundColor(Color("ManboBlue400"))
-                    .frame(width: 30, height: 30)
-                    .rotationEffect(.init(degrees: 90))
-                    .rotationEffect(.init(degrees: -startAngle))
-                    .background(.white, in: Circle())
-                // Moving To Right & Rotating
-                    .offset(x:width / 2)
-                    .rotationEffect(.init(degrees: startAngle))
-                    .gesture(
-                        
-                        DragGesture()
-                            .onChanged({ value in
-                                onDrag(value: value)
-                            })
-                    )
-                    .rotationEffect(.init(degrees: -90))
-                
-                
-                Image(systemName:  "alarm")
-                    .font(.callout)
-                    .foregroundColor(Color("ManboBlue400"))
-                    .frame(width:30, height: 30)
-                // Rotating Image inside the Circle
-                    .rotationEffect(.init(degrees: 90))
-                    .rotationEffect(.init(degrees: -toAngle))
-                    .background(.white, in: Circle())
-                //Moving To Right & Rotating
-                    .offset(x: width / 2)
-                // To the Current Angle
-                    .rotationEffect(.init(degrees: toAngle))
-                    .gesture(
-                        DragGesture()
-                            .onChanged({ value in
-                                onDrag(value: value)
-                            })
-                    )
-                    .rotationEffect(.init(degrees: -90))
-                
-                
-                // MARK: - Hour Text
-                VStack(spacing: 6) {
-                    HStack(spacing: 8) {
-                        makeNumberCard(number: formatTime(getTimeDifference() * 60)[0])
-                        Text(":")
-                            .font(.system(size: 30).bold())
-                            .foregroundColor(Color.white)
-                        makeNumberCard(number: formatTime(getTimeDifference() * 60)[1])
-                        makeNumberCard(number: formatTime(getTimeDifference() * 60)[2])
-                        Text(":")
-                            .font(.system(size: 30).bold())
-                            .foregroundColor(Color.white)
-                        makeNumberCard(number: formatTime(getTimeDifference() * 60)[3])
-                        makeNumberCard(number: formatTime(getTimeDifference() * 60)[4])
-                    }
-                }
-                .scaleEffect(1.1)
-                
-            }
+}
+
+private extension Home {
+    
+    // MARK: View - Header
+    
+    var Header: some View {
+        HStack {
+            HomeTitle
+            Spacer()
+            FriendCount
         }
-        .frame(width: screenBounds().width / 1.3, height: screenBounds().width / 1.3)
+        .padding(.leading, 30)
+        .padding(.trailing, 20)
+        .padding(.vertical, 6)
     }
     
-    //moon.fill 자유롭게 움직임
-    func onDrag(value: DragGesture.Value, fromSlider: Bool = false) {
-        // MARK: - Converting Translation into Angle
-        let vector = CGVector(dx: value.location.x, dy: value.location.y)
-        // Removing the Button Radius
-        // Button Diameter = 30
-        // Radius = 15
-        let radians = atan2(vector.dy - 15, vector.dx - 15)
-        
-        // Converting into Angle
-        var angle = radians * 180 / .pi
-        if angle < 0 { angle = 360 + angle }
-        
-        //Progress
-        let progress = angle / 360
-        
-        if fromSlider {
-            self.startAngle = angle
-            self.startProgress = progress
-            
-        }
-        else {
-            // Update To Values
-            self.toAngle = angle
-            self.toProgress = progress
+    var HomeTitle: some View {
+        Text("nap, nap")
+            .font(.napTitle1)
+            .foregroundStyle(.napWhite100)
+    }
+    
+    var FriendCount: some View {
+        NavigationLink {
+            Friend()
+        } label: {
+            HStack(spacing: 0) {
+                Image(.users)
+                Spacer().frame(width: 4)
+                Text("친구")
+                    .font(.napCaption1)
+                Spacer().frame(width: 12)
+                Text("4")
+                    .font(.napCaption1)
+                Spacer().frame(width: 2)
+                Text("/")
+                    .font(.napCaption3)
+                    .foregroundStyle(.napWhite40)
+                Spacer().frame(width: 2)
+                Text("6")
+                    .font(.napCaption1)
+                    .foregroundStyle(.napWhite40)
+            }
+            .foregroundStyle(.napWhite100)
+            .padding(.vertical, 8)
+            .padding(.horizontal, 12)
+            .background {
+                Capsule()
+                    .foregroundStyle(.napWhite10)
+            }
+            .overlay {
+                Capsule()
+                    .stroke(.napWhite10, lineWidth: 1.0)
+            }
         }
     }
+    
+    // MARK: View - Awake Friends
+    
+    var FriendSection: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            FriendTitle
+            
+            HStack(spacing: 12) {
+                FriendCircle()
+                FriendCircle()
+                FriendCircle()
+            }
+        }
+        .padding(.leading, 30)
+    }
+    
+    var FriendTitle: some View {
+        Text("지금 깨어있는 친구들")
+            .font(.napCaption2)
+            .foregroundStyle(.napWhite60)
+    }
+    
+    func FriendCircle() -> some View {
+        Image(.fox)
+            .resizable()
+            .scaledToFill()
+            .frame(width: 40, height: 40)
+            .clipShape(Circle())
+            .overlay {
+                Circle()
+                    .stroke(.napWhite10, lineWidth: 2.0)
+                    .frame(width: 42, height: 42)
+            }
+    }
+    
+    // MARK: View - Setting NapTime
+    
+    var NapSettingSection: some View{
+        VStack(alignment: .leading, spacing: SectionTitleSpacing) {
+            NapSettingTitle
+                .padding(.leading, 30)
+            TimerSetting
+                .padding(.horizontal, 20)
+        }
+    }
+    
+    var NapSettingTitle: some View {
+        Text("낮잠 설정하기")
+            .font(.napCaption2)
+            .foregroundStyle(.napWhite60)
+    }
+    
+    var TimerSetting: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            TimerTitle
+            Spacer().frame(height: 6)
+            TimerTimeIntervalText
+            Spacer().frame(height: UIScreen.isSE ? 16 : 20)
+            TimerView
+            Spacer().frame(height: UIScreen.isSE ? 26 : 30)
+            StartNapButton
+        }
+        .padding(20)
+        .background {
+            RoundedRectangle(cornerRadius: 10)
+                .foregroundStyle(.napWhite10)
+        }
+        .overlay {
+            RoundedRectangle(cornerRadius: 10)
+                .stroke(.napWhite10, lineWidth: 1.0)
+        }
+    }
+    
+    var TimerTitle: some View {
+        HStack(spacing: 4) {
+            Image(.moon)
+            Text("낮잠 시간")
+                .font(.napCaption1)
+                .foregroundStyle(.napBlue100)
+        }
+    }
+    
+    var TimerTimeIntervalText: some View {
+        HStack(spacing: 4) {
+            Text(formatTimeRange(date: currentTime))
+                .onReceive(timer) {
+                    currentTime = $0
+                }
+            Text("-")
+            Text(formatTimeRange(date: updateWakeupTime()))
+        }
+        .font(.napTitle1)
+        .foregroundStyle(.napWhite100)
+    }
+    
+    var TimerView: some View {
+        ZStack {
+            Circle()
+                .foregroundStyle(.napWhite10)
+            Image(.timerBackground)
+                .resizable()
+                .scaledToFill()
+                .frame(width: UIScreen.size.width-140,
+                       height: UIScreen.size.width-140)
+                .clipShape(Circle())
+            
+            ForEach(1...60, id: \.self) { index in
+                Rectangle()
+                    .fill(index % 5 == 0 ? .napWhite100
+                                         : .napWhite20)
+                // Each hour will have big Line
+                // 60/5 = 12
+                // 12 Hours
+                    .frame(width: 2,
+                           height: index % 5 == 0 ? 10 : 8)
+                // Setting into entire Circle
+                    .offset(y: (UIScreen.size.width/2) - 83)
+                    .rotationEffect(.init(degrees: Double(index) * 6))
+            }
+            
+            let timeTexts = [60, 90, 120, 30]
+            ForEach(timeTexts.indices, id: \.self) { index in
+                Text("\(timeTexts[index])")
+                    .font(.napFootnote1)
+                    .foregroundColor(.napWhite80)
+                    .rotationEffect(.degrees(Double(index) * -90))
+                    .offset(y: (UIScreen.size.width/2) - 99.5)
+                    .rotationEffect(.degrees(Double(index) * 90))
+            }
+            
+            // Allowing Reverse Swiping
+            let reverseRotation = (startProgress > toProgress) ? -Double((1 - startProgress) * 360) : 0
+            Circle()
+                .trim(from: startProgress > toProgress ? 0 : startProgress,
+                      to: toProgress + (-reverseRotation / 360))
+                .stroke(
+                    AngularGradient(
+                        gradient: Gradient(colors: [.napBlue201, .napBlue201]),
+                        center: .center,
+                        startAngle: .degrees(0),
+                        endAngle: .degrees(360)),
+                    style: StrokeStyle(lineWidth: 30,
+                                       lineCap: .round,
+                                       lineJoin: .round)
+                )
+                .rotationEffect(.degrees(-90))
+                .rotationEffect(.degrees(reverseRotation))
+                .frame(width: UIScreen.size.width-110,
+                       height: UIScreen.size.width-110)
+            
+            // Fixed Buttons
+            Image(.tiredPrince)
+                .frame(width: 24, height: 24)
+                .background {
+                    Circle()
+                        .frame(width: 26, height: 26)
+                        .foregroundStyle(.napWhite20)
+                }
+            // Moving To Right & Rotating
+                .offset(y: -(UIScreen.size.width-110)/2)
+            
+            // Slider Buttons
+            Image(.freshPrince)
+                .frame(width: 24, height: 24)
+                .background {
+                    Circle()
+                        .frame(width: 26, height: 26)
+                        .foregroundStyle(.napWhite20)
+                }
+            // Rotating Image inside the Circle
+                .rotationEffect(.degrees(90))
+                .rotationEffect(.degrees(-toAngle))
+            //Moving To Right & Rotating
+                .offset(x: (UIScreen.size.width-110)/2)
+            // To the Current Angle
+                .rotationEffect(.degrees(toAngle))
+                .gesture(
+                    DragGesture()
+                        .onChanged({ value in
+                            onDrag(value: value)
+                        })
+                )
+                .rotationEffect(.init(degrees: -90))
+            
+                Text(formatTime(getMinuteDifference()*60))
+                .font(.napDisplay)
+                .foregroundStyle(.napWhite100)
+        }
+        .frame(width: UIScreen.size.width-80,
+               height: UIScreen.size.width-80)
+    }
+    
+    var StartNapButton: some View {
+        Button {
+            timeInterval = Double(getMinuteDifference()*60)
+            moveNext = true
+        } label: {
+            MainButtonLabel(text: "낮잠 자러가기")
+        }
+    }
+    
+    var MoveFeedButton: some View {
+//        Button {
+//            print("화면 내려가기")
+//        } label: {
+            HStack(alignment: .center) {
+                Spacer()
+                VStack(spacing: 1) {
+                    Image(.chevronUp)
+                        .rotationEffect(.degrees(180))
+                    Text("친구들 낮잠 피드 보러가기")
+                        .font(.napCaption1)
+                }
+                .foregroundStyle(.napWhite60)
+                .padding(.vertical, 13)
+                Spacer()
+            }
+        //}
+    }
+    
+    // MARK: Computed Values
+    
+    func formatTimeRange(date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "ko_KR")
+        formatter.dateFormat = "a h:mm"
+        
+        return formatter.string(from: date)
+    }
+    
+    /// 현재시간
+    func currentKSTTime() -> Date {
+        let now = Date()
+        let timeZone = TimeZone(identifier: "Asia/Seoul")!
+        let secondsFromGMT = timeZone.secondsFromGMT(for: now)
+        return now.addingTimeInterval(TimeInterval(secondsFromGMT - TimeZone.current.secondsFromGMT(for: now)))
+    }
+    
+    /// 일어날 시간
+    func updateWakeupTime() -> Date {
+        let now = currentTime
+        let addedMinutes = getMinuteDifference()
+        return Calendar.current.date(byAdding: .minute, value: addedMinutes, to: now) ?? now
+    }
+    
+    /// 각도에서 시간 차이를 구해낸다.
+    func getMinuteDifference() -> Int {
+        let startMinutes = getMinutes(angle: startAngle)
+        let endMinutes = getMinutes(angle: toAngle)
+        return (endMinutes - startMinutes + 120) % 120
+    }
+    
+    /// 각도에서 분을 얻어낸다.
+    func getMinutes(angle: Double) -> Int {
+        let progress = angle / 3
+        return Int(progress) % 120
+    }
+    
+    func formatTime(_ seconds: Int) -> String {
+        let hours = seconds / 3600
+        let minutes = (seconds / 60) % 60
+        let remainingSeconds = seconds % 60
+        
+        return String(format: "%01d:%02d:%02d", hours, minutes, remainingSeconds)
+    }
+    
     //moon.fill 고정
     func onDrag(value: DragGesture.Value) {
         let vector = CGVector(dx: value.location.x, dy: value.location.y)
@@ -340,139 +394,24 @@ struct Home: View {
         }
     }
     
-    // MARK: - Timer Functions
-    func startTimer() {
-        timer?.invalidate()
-        remainingSeconds = getTimeDifference() * 60
-        totalDuration = remainingSeconds
-        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
-            if remainingSeconds > 0 {
-                remainingSeconds -= 1
-            } else {
-                timer?.invalidate()
-                timer = nil
-            }
-        }
+    var topMargin: CGFloat {
+        UIScreen.isSE ? 20 : 54
     }
     
-    func cancelTimer() {
-        timer?.invalidate()
-        timer = nil
-        remainingSeconds = totalDuration
-    }
-    // MARK: - Returning Time based on Drag
-    
-    func getTime(angle: Double) -> Date {
-        let progress = angle / 30
-        let hour = Int(progress) + 12 % 24
-        let remainder = (progress * 60).rounded()
-        let minute = Int(remainder) % 60
-        
-        let formatter = DateFormatter()
-        formatter.dateFormat = "HH:mm:ss"
-        
-        if let date = formatter.date(from: "\(hour):\(minute):00") {
-            return date
-        }
-        return .init()
+    var SectionTitleSpacing: CGFloat {
+        UIScreen.isSE ? 8 : 12
     }
     
-    func getMinutes(angle: Double) -> Int {
-        let progress = angle / 3
-        return Int(progress) % 120
+    var bottomMargin: CGFloat {
+        UIScreen.isSE ? 0 : 21
     }
-    
-    func getTimeDifference() -> Int {
-        let startMinutes = getMinutes(angle: startAngle)
-        let endMinutes = getMinutes(angle: toAngle)
-        return (endMinutes - startMinutes + 120) % 120
-    }
-    // MARK: - 현재시간
-    func currentKSTTime() -> Date {
-        let now = Date()
-        let timeZone = TimeZone(identifier: "Asia/Seoul")!
-        let secondsFromGMT = timeZone.secondsFromGMT(for: now)
-        return now.addingTimeInterval(TimeInterval(secondsFromGMT - TimeZone.current.secondsFromGMT(for: now)))
-    }
-    // MARK: - 일어나는 시간
-    func wakeupTime() -> Date {
-        let now = currentKSTTime()
-        let addedMinutes = getTimeDifference()
-        return Calendar.current.date(byAdding: .minute, value: addedMinutes, to: now) ?? now
-    }
-    // MARK: - AM, PM -> 오전, 오후
-    func formatTimeRange(start: Date, end: Date) -> String {
-        let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "ko_KR")
-        formatter.dateFormat = "a h:mm"
-        
-        let startTime = formatter.string(from: start)
-        let endTime = formatter.string(from: end)
-        
-        return " \(startTime) - \(endTime) "
-    }
-    
-    // MARK: - 현재날짜
-    func currentDateString() -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "M월 d일 EEEE"  // Korean date format
-        formatter.locale = Locale(identifier: "ko_KR")  // Korean locale
-        return formatter.string(from: Date())
-    }
-    // MARK: - 타이머 조정 후 나타내는 시간
-    func formatTime(_ seconds: Int) -> [String] {
-        let hours = seconds / 3600
-        
-        var minutes = (seconds / 60) % 60 // minutes 값이 60을 초과하면 60을 뺀 나머지가 되도록
-        
-        // 60이 되면 0으로 설정
-        if minutes == 60 {
-            minutes = 0
-        }
-        
-        let largeMinutes = minutes / 10
-        let smallMinutes = minutes % 10
-        
-        let remainingSeconds = seconds % 60
-        let largeSeconds = remainingSeconds / 10
-        let smallSeconds = remainingSeconds % 10
-        
-        return [
-            String(format: "%01d", hours),
-            String(format: "%01d", largeMinutes),
-            String(format: "%01d", smallMinutes),
-            String(format: "%01d", largeSeconds),
-            String(format: "%01d", smallSeconds)
-        ]
-    }
-    
-    // MARK: - 타이머 시간뒤에 네모난 회색 배경
-    func makeNumberCard(number: String) -> some View {
-        Text(number)
-            .font(.system(size: 30).bold())
-            .foregroundColor(Color.white)
-        //            .frame(width: 28, height: 43)
-        //            .background(
-        //                RoundedRectangle(cornerRadius: 8)
-        //                    .fill(Color.gray.opacity(0.5))
-        //                    .frame(width: 35, height: 45)
-        //            )
-    }
+}
+
+#Preview {
+    ContentView()
 }
 
 #Preview {
     Home()
 }
-
-
-// MARK: - Extensions
-extension View {
-    // MARK: - Screen Bounds Extension
-    func screenBounds() -> CGRect {
-        return UIScreen.main.bounds
-    }
-}
-
-
-
 
