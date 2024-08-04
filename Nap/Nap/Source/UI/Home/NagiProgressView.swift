@@ -39,7 +39,6 @@ struct NagiProgressView: View {
                 .resizable()
                 .scaledToFill()
                 .ignoresSafeArea()
-                .clipped()
         }
         .toolbar(.hidden, for: .navigationBar)
         .onAppear {
@@ -245,7 +244,7 @@ private extension NagiProgressView {
         NavigationLink {
             EmptyView()
         } label: {
-            MainButtonLabel(text: "확인했어요")
+            MainButtonLabel(text: "일어나기")
         }
     }
     

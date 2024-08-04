@@ -28,7 +28,6 @@ struct NagiCheckSilentModeView: View {
                 .resizable()
                 .scaledToFill()
                 .ignoresSafeArea()
-                .clipped()
         }
         .toolbar(.hidden, for: .navigationBar)
     }
