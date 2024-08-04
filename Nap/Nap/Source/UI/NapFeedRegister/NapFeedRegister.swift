@@ -9,17 +9,18 @@ import SwiftUI
 
 struct NapFeedRegister: View {
     @State var captueredImage: UIImage? = nil
+    @Binding var showHome: Bool
     
     var body: some View {
         if captueredImage == nil {
             NapPhotoView(capturedImage: $captueredImage)
                 .ignoresSafeArea()
         } else {
-            FeedRegister(capturedImage: $captueredImage)
+            FeedRegister(capturedImage: $captueredImage, showHome: $showHome)
         }
     }
 }
 
 #Preview {
-    NapFeedRegister()
+    NapFeedRegister(showHome: .constant(false))
 }

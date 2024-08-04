@@ -9,7 +9,9 @@ import SwiftUI
 import KDCircularProgress
 
 struct NapProgress: View {
+    @Environment(\.presentationMode) var presentationMode
     @Binding var timeInterval: Double
+    @Binding var showHome: Bool
     
     @State private var progress: Double = 0
     @State private var remainingSeconds: Double = 0
@@ -44,8 +46,13 @@ struct NapProgress: View {
             startProgress()
         }
         .fullScreenCover(isPresented: $showCameraView) {
-            NapFeedRegister()
+            NapFeedRegister(showHome: $showHome)
                 .ignoresSafeArea()
+        }
+        .onChange(of: showHome) { _, _ in
+            if showHome {
+                dismissView()
+            }
         }
     }
 }
@@ -224,7 +231,7 @@ private extension NapProgress {
     
     var CancelButton: some View {
         Button {
-            dismissView()
+            showHome = true
         } label: {
             Text("취소")
                 .font(.napTitle2)
@@ -244,14 +251,18 @@ private extension NapProgress {
     
     var CheckButton: some View {
         Button {
-            showCameraView = true
+            showCamera()
         } label: {
             MainButtonLabel(text: "일어나기")
         }
     }
     
     func dismissView() {
-        NavigationManager.popToRootView()
+        presentationMode.wrappedValue.dismiss()
+    }
+    
+    func showCamera() {
+        showCameraView = true
     }
     
     // MARK: - 번개를 탭했을때 다시 돌아오는 타이머 함수

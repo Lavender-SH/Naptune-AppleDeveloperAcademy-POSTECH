@@ -14,6 +14,7 @@ import SwiftUI
 struct FeedRegister: View {
     
     @Binding var capturedImage: UIImage?
+    @Binding var showHome: Bool
     @State var sleepComent: String = ""
     @State var isSelectingStatus: Bool = false
     @State var sleepStatusLevel: Double = 3
@@ -150,7 +151,7 @@ private extension FeedRegister {
     
     var UploadButton: some View {
         Button {
-            
+            showHome = true
         } label: {
             Image(.upload)
                 .foregroundStyle(.napWhite100)
@@ -292,5 +293,5 @@ private extension FeedRegister {
 }
 
 #Preview {
-    FeedRegister(capturedImage: .constant(nil))
+    FeedRegister(capturedImage: .constant(nil), showHome: .constant(false ))
 }
