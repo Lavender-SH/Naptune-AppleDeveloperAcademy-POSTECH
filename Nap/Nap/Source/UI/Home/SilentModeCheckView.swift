@@ -11,6 +11,7 @@ struct SilentModeCheckView: View {
     
     @Environment(\.presentationMode) var presentationMode
     @Binding var timeInterval: Double
+    @State var showHome: Bool = false
     
     var body: some View {
         VStack(spacing: 0) {
@@ -27,6 +28,11 @@ struct SilentModeCheckView: View {
             BackgroundImage(image: Image(.basicBackground))
         }
         .toolbar(.hidden, for: .navigationBar)
+        .onChange(of: showHome) { _, _ in
+            if showHome {
+                dismissView()
+            }
+        }
     }
 }
 
@@ -76,7 +82,7 @@ private extension SilentModeCheckView {
     
     var CheckButton: some View {
         NavigationLink {
-           NapProgress(timeInterval: $timeInterval)
+            NapProgress(timeInterval: $timeInterval, showHome: $showHome)
         } label: {
             MainButtonLabel(text: "확인했어요")
         }

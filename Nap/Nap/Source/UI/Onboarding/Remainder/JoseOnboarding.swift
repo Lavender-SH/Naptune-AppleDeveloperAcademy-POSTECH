@@ -45,7 +45,7 @@ struct JoseOnboarding: View {
                     .offset(y: 300)
                     .frame(width: 280, height: 45)
                     
-                    NavigationLink(destination: Signupname(), isActive: $isLoginComplete) {
+                    NavigationLink(destination: JoseSignupname(), isActive: $isLoginComplete) {
                         EmptyView()
                     }
                 }
