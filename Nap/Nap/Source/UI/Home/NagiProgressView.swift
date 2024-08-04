@@ -16,6 +16,7 @@ struct NagiProgressView: View {
     
     @State private var showRemainTime: Bool = false
     @State private var resetTimer: Timer? = nil
+    @State private var showCameraView: Bool = false
     
     let currentDate: Date = Date()
     
@@ -35,15 +36,16 @@ struct NagiProgressView: View {
         }
         .padding(.horizontal, 20)
         .background {
-            Image(.basicBackground)
-                .resizable()
-                .scaledToFill()
-                .ignoresSafeArea()
+            BackgroundImage(image: Image(.basicBackground))
         }
         .toolbar(.hidden, for: .navigationBar)
         .onAppear {
             remainingSeconds = timeInterval
             startProgress()
+        }
+        .fullScreenCover(isPresented: $showCameraView) {
+            WakeUpView()
+                .ignoresSafeArea()
         }
     }
 }
@@ -241,8 +243,8 @@ private extension NagiProgressView {
     }
     
     var CheckButton: some View {
-        NavigationLink {
-            EmptyView()
+        Button {
+            showCameraView = true
         } label: {
             MainButtonLabel(text: "일어나기")
         }
@@ -255,7 +257,7 @@ private extension NagiProgressView {
     // MARK: - 번개를 탭했을때 다시 돌아오는 타이머 함수
     func startResetTimer() {
         resetTimer?.invalidate()
-        resetTimer = Timer.scheduledTimer(withTimeInterval: 20.0, repeats: false) { _ in
+        resetTimer = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: false) { _ in
             withAnimation {
                 showRemainTime = false
             }

@@ -24,10 +24,7 @@ struct NagiCheckSilentModeView: View {
         }
         .padding(.horizontal, 20)
         .background {
-            Image(.basicBackground)
-                .resizable()
-                .scaledToFill()
-                .ignoresSafeArea()
+            BackgroundImage(image: Image(.basicBackground))
         }
         .toolbar(.hidden, for: .navigationBar)
     }

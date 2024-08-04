@@ -118,7 +118,7 @@ private extension ProfileSetting {
     }
     
     var ImagePickerButton: some View {
-        PhotosPicker(selection: $selectedPhotos) {
+        PhotosPicker(selection: $selectedPhotos, matching: .images) {
             Circle()
                 .frame(width: 53, height: 53)
                 .foregroundStyle(.napWhite20)

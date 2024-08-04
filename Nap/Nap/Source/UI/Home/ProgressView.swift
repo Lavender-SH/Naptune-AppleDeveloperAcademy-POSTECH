@@ -64,10 +64,10 @@ struct ProgressView: View {
             }
             .padding()
         }
-        .fullScreenCover(isPresented: $showCameraView) {
-            CameraViewTest()
-                .ignoresSafeArea()
-        }
+//        .fullScreenCover(isPresented: $showCameraView) {
+//            CameraViewTest()
+//                .ignoresSafeArea()
+//        }
                 .onAppear {
                     startProgress()
                 }

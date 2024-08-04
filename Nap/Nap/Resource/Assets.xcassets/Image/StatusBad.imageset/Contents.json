@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "shutter.png",
+      "filename" : "StatusBad.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "shutter@2x.png",
+      "filename" : "StatusBad@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "shutter@3x.png",
+      "filename" : "StatusBad@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

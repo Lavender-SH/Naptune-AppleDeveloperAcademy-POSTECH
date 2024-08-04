@@ -11,6 +11,8 @@ import SnapKit
 
 struct CameraViewTest: UIViewControllerRepresentable {
     @Environment(\.presentationMode) var presentationMode
+    @Binding var capturedImage: UIImage?
+    
     let cameraView = CameraPreview()
     
     // 뷰 업데이트 메서드 (여기서는 사용하지 않음, 필수 메서드 프로토콜)
@@ -56,31 +58,28 @@ struct CameraViewTest: UIViewControllerRepresentable {
         backgroundImageView.addSubview(cameraView)
         
         cameraView.snp.makeConstraints { make in
-            make.left.equalTo(backgroundImageView.snp.left).offset(20)
-            make.right.equalTo(backgroundImageView.snp.right).inset(20)
-            make.top.equalTo(backgroundImageView.snp.top).offset(150)
+            make.horizontalEdges.equalToSuperview().inset(20)
             make.height.equalTo(cameraView.snp.width).multipliedBy(4.0 / 3.0)
+            make.top.equalToSuperview().inset(UIScreen.isSE ? 53 : 133)
         }
         
         // 사용자 정의 셔터 버튼 추가
-        let cancelSwitchButtonHeight: CGFloat = 70
-        let shutterButtonHeight: CGFloat = 100
-        let buttonMargin: CGFloat = 20
+        let cancelSwitchButtonHeight: CGFloat = 67
+        let shutterButtonHeight: CGFloat = 85
         
         // 커스텀 취소 버튼 (왼쪽 하단)
         let cancelButton = UIButton(type: .system)
-        cancelButton.backgroundColor = UIColor.darkGray.withAlphaComponent(0.3)
-        cancelButton.setImage(UIImage(systemName: "xmark"), for: .normal)
+        cancelButton.backgroundColor = .napWhite10
+        cancelButton.setImage(UIImage(resource: .X).withTintColor(.napWhite100, renderingMode: .alwaysTemplate), for: .normal)
+        cancelButton.tintColor = .napWhite100
         cancelButton.layer.cornerRadius = cancelSwitchButtonHeight / 2
-        cancelButton.tintColor = .white
+        cancelButton.layer.borderWidth = 1
+        cancelButton.layer.borderColor = UIColor.napWhite10.cgColor
         cancelButton.addTarget(context.coordinator, action: #selector(CameraCoordinator.cancelButtonTapped), for: .touchUpInside)
-        overlayView.addSubview(cancelButton)
-        
+       
         // SnapKit으로 취소 버튼 레이아웃 설정
         cancelButton.snp.makeConstraints { make in
-            make.top.equalTo(cameraView.snp.bottom).offset(50)
             make.width.height.equalTo(cancelSwitchButtonHeight)
-            make.left.equalTo(backgroundImageView).offset(50)
         }
         
         // 커스텀 셔터 버튼 (중앙 하단)
@@ -91,29 +90,39 @@ struct CameraViewTest: UIViewControllerRepresentable {
         shutterButton.imageView?.contentMode = .scaleAspectFill
         shutterButton.layer.cornerRadius = shutterButtonHeight / 2
         shutterButton.addTarget(context.coordinator, action: #selector(CameraCoordinator.shutterButtonTapped), for: .touchUpInside)
-        overlayView.addSubview(shutterButton)
         
         // SnapKit으로 셔터 버튼 레이아웃 설정
         shutterButton.snp.makeConstraints { make in
-            make.top.equalTo(cameraView.snp.bottom).offset(35)
-            make.width.height.equalTo(100)
-            make.centerX.equalTo(backgroundImageView)
+            make.width.height.equalTo(shutterButtonHeight)
         }
         
         // 카메라 전환 버튼 추가 (오른쪽 하단)
         let switchCameraButton = UIButton(type: .system)
-        switchCameraButton.backgroundColor = UIColor.darkGray.withAlphaComponent(0.3)
-        switchCameraButton.setImage(UIImage(systemName: "arrow.triangle.2.circlepath"), for: .normal)
-        switchCameraButton.tintColor = .white
+        switchCameraButton.backgroundColor = .napWhite10
+        switchCameraButton.setImage(UIImage(resource: .refreshCw), for: .normal)
+        switchCameraButton.tintColor = .napWhite100
         switchCameraButton.layer.cornerRadius = cancelSwitchButtonHeight / 2
+        switchCameraButton.layer.borderWidth = 1
+        switchCameraButton.layer.borderColor = UIColor.napWhite10.cgColor
         switchCameraButton.addTarget(context.coordinator, action: #selector(CameraCoordinator.switchCameraButtonTapped), for: .touchUpInside)
-        overlayView.addSubview(switchCameraButton)
         
         // SnapKit으로 카메라 전환 버튼 레이아웃 설정
         switchCameraButton.snp.makeConstraints { make in
-            make.top.equalTo(cameraView.snp.bottom).offset(50)
             make.width.height.equalTo(cancelSwitchButtonHeight)
-            make.right.equalTo(backgroundImageView).inset(50)
+        }
+        
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.spacing = 40
+        stackView.alignment = .center
+        overlayView.addSubview(stackView)
+        [cancelButton, shutterButton, switchCameraButton].forEach {
+            stackView.addArrangedSubview($0)
+        }
+        
+        stackView.snp.makeConstraints { make in
+            make.top.equalTo(cameraView.snp.bottom).offset(UIScreen.isSE ? 30 : 36)
+            make.centerX.equalToSuperview()
         }
         
         return overlayView
@@ -201,6 +210,7 @@ class CameraCoordinator: NSObject, AVCapturePhotoCaptureDelegate {
         }
         
         capturedImage = image // 캡처된 이미지 저장
+        parent.capturedImage = image
         // 캡처된 이미지를 CameraPreview의 imageView에 설정
         DispatchQueue.main.async {
             self.cameraView.capturedImageView.image = image

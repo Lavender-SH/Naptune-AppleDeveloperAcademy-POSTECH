@@ -42,7 +42,13 @@ struct NagiHome: View {
             Spacer().frame(height: bottomMargin)
         }
         .background {
-            BackgroundImage(image: Image(.basicBackground))
+            Image(.basicBackground)
+                .resizable()
+                .scaledToFill()
+                .ignoresSafeArea()
+                .frame(width: UIScreen.size.width,
+                       height: UIScreen.size.height)
+                .clipped()
         }
         .navigationDestination(isPresented: $moveNext) {
             NagiCheckSilentModeView(timeInterval: $timeInterval)

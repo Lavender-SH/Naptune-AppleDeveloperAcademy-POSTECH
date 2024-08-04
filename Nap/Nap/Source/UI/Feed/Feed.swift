@@ -28,7 +28,13 @@ struct Feed: View {
         .contentMargins(.top, topMargin, for: .scrollContent)
         .padding(.horizontal, 20)
         .background {
-            BackgroundImage(image: Image(.feedBackground))
+           Image(.feedBackground)
+                .resizable()
+                .scaledToFill()
+                .ignoresSafeArea()
+                .frame(width: UIScreen.size.width,
+                       height: UIScreen.size.height)
+                .clipped()
         }
         .overlay(alignment: .bottom) {
             FloatingButton
