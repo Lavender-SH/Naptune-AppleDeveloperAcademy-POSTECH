@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-struct WakeUpView: View {
+struct NapFeedRegister: View {
     @State var captueredImage: UIImage? = nil
     
     var body: some View {
         if captueredImage == nil {
-            CameraViewTest(capturedImage: $captueredImage)
+            NapPhotoView(capturedImage: $captueredImage)
                 .ignoresSafeArea()
         } else {
             FeedRegister(capturedImage: $captueredImage)
@@ -21,5 +21,5 @@ struct WakeUpView: View {
 }
 
 #Preview {
-    WakeUpView()
+    NapFeedRegister()
 }

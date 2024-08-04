@@ -30,7 +30,7 @@ extension ContentView {
             ScrollView(.vertical) {
                 //ScrollViewReader { reader in
                 VStack(spacing: 0) {
-                    NagiHome()
+                    Home()
                         .frame(width: UIScreen.size.width,
                                height: UIScreen.size.height)
                         .id(1)

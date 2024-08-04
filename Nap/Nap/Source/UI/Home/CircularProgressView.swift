@@ -8,7 +8,7 @@
 import SwiftUI
 import KDCircularProgress
 
-struct NagiCircularProgressView: UIViewRepresentable {
+struct CircularProgressView: UIViewRepresentable {
     @Binding var progress: Double
 
     func makeUIView(context: Context) -> KDCircularProgress {

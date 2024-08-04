@@ -9,7 +9,7 @@ import SwiftUI
 import AVFoundation
 import SnapKit
 
-struct CameraViewTest: UIViewControllerRepresentable {
+struct NapPhotoView: UIViewControllerRepresentable {
     @Environment(\.presentationMode) var presentationMode
     @Binding var capturedImage: UIImage?
     
@@ -132,12 +132,12 @@ struct CameraViewTest: UIViewControllerRepresentable {
 
 // MARK: - 카메라 조작에 관한 로직을 담당하는 Coordinator 클래스
 class CameraCoordinator: NSObject, AVCapturePhotoCaptureDelegate {
-    var parent: CameraViewTest // 부모 뷰(UIViewRepresentable) 참조
+    var parent: NapPhotoView // 부모 뷰(UIViewRepresentable) 참조
     var cameraView: CameraPreview // 카메라 프리뷰 뷰 참조
     var capturedImage: UIImage? // 캡처된 이미지를 저장할 변수
     
     // 초기화 메서드
-    init(parent: CameraViewTest, cameraView: CameraPreview) {
+    init(parent: NapPhotoView, cameraView: CameraPreview) {
         self.parent = parent
         self.cameraView = cameraView
         super.init()

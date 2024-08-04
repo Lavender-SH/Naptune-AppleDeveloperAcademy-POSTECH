@@ -8,7 +8,7 @@
 import SwiftUI
 import KDCircularProgress
 
-struct NagiProgressView: View {
+struct NapProgress: View {
     @Binding var timeInterval: Double
     
     @State private var progress: Double = 0
@@ -44,13 +44,13 @@ struct NagiProgressView: View {
             startProgress()
         }
         .fullScreenCover(isPresented: $showCameraView) {
-            WakeUpView()
+            NapFeedRegister()
                 .ignoresSafeArea()
         }
     }
 }
 
-private extension NagiProgressView {
+private extension NapProgress {
     var Title: some View {
         Text(progress >= 354 ? "충전 완료!" : "걱정은 잠시 내려놓고\n편안히 낮잠을 즐겨봐요")
             .font(.napLargeTitle)
@@ -66,7 +66,7 @@ private extension NagiProgressView {
             TimerChargeBackground
                 .frame(width: UIScreen.size.width-80,
                        height: UIScreen.size.width-80)
-            NagiCircularProgressView(progress: $progress)
+            CircularProgressView(progress: $progress)
                 .frame(width: (UIScreen.size.width-80)*1.25,
                        height: (UIScreen.size.width-80)*1.25)
             
