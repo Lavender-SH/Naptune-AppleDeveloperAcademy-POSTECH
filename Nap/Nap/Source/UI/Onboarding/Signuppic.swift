@@ -161,7 +161,7 @@ struct Signuppic: View {
     func updateprofile(_ url: String) {
         let db = Firestore.firestore()
         if let currentUserID = Auth.auth().currentUser?.uid {
-            db.collection("users").document("\(currentUserID)").setData(["profileimage": url], merge: true) { error in
+            db.collection("users").document("\(currentUserID)").setData(["profileimage": "\(currentUserID).jpg"], merge: true) { error in
                 if let error = error {
                     print("Error updating document: \(error)")
                 } else {

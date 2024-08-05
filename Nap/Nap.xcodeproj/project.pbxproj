@@ -19,6 +19,11 @@
 		3928CA592C50A6B800A5A823 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928CA582C50A6B800A5A823 /* Friend.swift */; };
 		3928CA5B2C50A6BC00A5A823 /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928CA5A2C50A6BC00A5A823 /* Feed.swift */; };
 		3928CA5D2C50A6D600A5A823 /* StringConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928CA5C2C50A6D600A5A823 /* StringConstant.swift */; };
+		92901B1F2C595F6300AE538F /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 92901B1E2C595F6300AE538F /* FirebaseMessaging */; };
+		92901B212C59632000AE538F /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92901B202C59632000AE538F /* NotificationManager.swift */; };
+		92901B232C5A9E6B00AE538F /* PushNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92901B222C5A9E6B00AE538F /* PushNotificationManager.swift */; };
+		92901B302C5FDCCB00AE538F /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = 92901B2F2C5FDCCB00AE538F /* FirebaseFunctions */; };
+		92901B322C5FE1F100AE538F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92901B312C5FE1F100AE538F /* AppDelegate.swift */; };
 		92EE7B2B2C516785006D0D19 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 92EE7B2A2C516785006D0D19 /* FirebaseAnalytics */; };
 		92EE7B2D2C516785006D0D19 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 92EE7B2C2C516785006D0D19 /* FirebaseAuth */; };
 		92EE7B302C52ACAA006D0D19 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 92EE7B2F2C52ACAA006D0D19 /* GoogleService-Info.plist */; };
@@ -42,6 +47,10 @@
 		3928CA582C50A6B800A5A823 /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		3928CA5A2C50A6BC00A5A823 /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
 		3928CA5C2C50A6D600A5A823 /* StringConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringConstant.swift; sourceTree = "<group>"; };
+		92901B1D2C595EF200AE538F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		92901B202C59632000AE538F /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		92901B222C5A9E6B00AE538F /* PushNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationManager.swift; sourceTree = "<group>"; };
+		92901B312C5FE1F100AE538F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		92EE7B2E2C5169E2006D0D19 /* Nap.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Nap.entitlements; sourceTree = "<group>"; };
 		92EE7B2F2C52ACAA006D0D19 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		92EE7B312C52B432006D0D19 /* Signupname.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signupname.swift; sourceTree = "<group>"; };
@@ -55,6 +64,8 @@
 			files = (
 				92EE7B2B2C516785006D0D19 /* FirebaseAnalytics in Frameworks */,
 				92EE7B392C554E38006D0D19 /* FirebaseFirestore in Frameworks */,
+				92901B1F2C595F6300AE538F /* FirebaseMessaging in Frameworks */,
+				92901B302C5FDCCB00AE538F /* FirebaseFunctions in Frameworks */,
 				92EE7B2D2C516785006D0D19 /* FirebaseAuth in Frameworks */,
 				92EE7B372C554E30006D0D19 /* FirebaseStorage in Frameworks */,
 			);
@@ -83,6 +94,7 @@
 		3928CA2F2C509EC200A5A823 /* Nap */ = {
 			isa = PBXGroup;
 			children = (
+				92901B1D2C595EF200AE538F /* Info.plist */,
 				92EE7B2E2C5169E2006D0D19 /* Nap.entitlements */,
 				92EE7B2F2C52ACAA006D0D19 /* GoogleService-Info.plist */,
 				3928CA3E2C509FB500A5A823 /* Resource */,
@@ -194,6 +206,9 @@
 			isa = PBXGroup;
 			children = (
 				3928CA4D2C50A58900A5A823 /* HapticManager.swift */,
+				92901B202C59632000AE538F /* NotificationManager.swift */,
+				92901B222C5A9E6B00AE538F /* PushNotificationManager.swift */,
+				92901B312C5FE1F100AE538F /* AppDelegate.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -259,6 +274,8 @@
 				92EE7B2C2C516785006D0D19 /* FirebaseAuth */,
 				92EE7B362C554E30006D0D19 /* FirebaseStorage */,
 				92EE7B382C554E38006D0D19 /* FirebaseFirestore */,
+				92901B1E2C595F6300AE538F /* FirebaseMessaging */,
+				92901B2F2C5FDCCB00AE538F /* FirebaseFunctions */,
 			);
 			productName = Nap;
 			productReference = 3928CA2D2C509EC200A5A823 /* Nap.app */;
@@ -321,10 +338,13 @@
 			files = (
 				3928CA332C509EC200A5A823 /* ContentView.swift in Sources */,
 				3928CA5B2C50A6BC00A5A823 /* Feed.swift in Sources */,
+				92901B232C5A9E6B00AE538F /* PushNotificationManager.swift in Sources */,
 				3928CA592C50A6B800A5A823 /* Friend.swift in Sources */,
+				92901B322C5FE1F100AE538F /* AppDelegate.swift in Sources */,
 				3928CA5D2C50A6D600A5A823 /* StringConstant.swift in Sources */,
 				92EE7B322C52B432006D0D19 /* Signupname.swift in Sources */,
 				3928CA4A2C50A48C00A5A823 /* View+.swift in Sources */,
+				92901B212C59632000AE538F /* NotificationManager.swift in Sources */,
 				3928CA552C50A69200A5A823 /* Onboarding.swift in Sources */,
 				3928CA4E2C50A58900A5A823 /* HapticManager.swift in Sources */,
 				3928CA572C50A6B000A5A823 /* Timer.swift in Sources */,
@@ -468,6 +488,7 @@
 				DEVELOPMENT_TEAM = B9JK9X5522;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Nap/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Nap;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -507,6 +528,7 @@
 				DEVELOPMENT_TEAM = B9JK9X5522;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Nap/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Nap;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -568,6 +590,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		92901B1E2C595F6300AE538F /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 92EE7B292C516785006D0D19 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
+		};
+		92901B2F2C5FDCCB00AE538F /* FirebaseFunctions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 92EE7B292C516785006D0D19 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFunctions;
+		};
 		92EE7B2A2C516785006D0D19 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 92EE7B292C516785006D0D19 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
