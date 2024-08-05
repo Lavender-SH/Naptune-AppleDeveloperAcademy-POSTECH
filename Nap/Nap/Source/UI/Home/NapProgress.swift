@@ -54,6 +54,11 @@ struct NapProgress: View {
                 dismissView()
             }
         }
+        .onChange(of: remainingSeconds) { _, _ in
+            if remainingSeconds <= 0 {
+                startCall()
+            }
+        }
     }
 }
 
@@ -299,6 +304,14 @@ private extension NapProgress {
         let remainingSeconds = seconds % 60
         
         return String(format: "%01d:%02d:%02d", hours, minutes, remainingSeconds)
+    }
+    
+    func startCall() {
+        DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
+            let callManager = CallManager.shared
+            let id = UUID()
+            callManager.reportIncomingCall(id: id, handle: "TimCook")
+        })
     }
 }
 

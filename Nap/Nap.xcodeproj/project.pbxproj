@@ -28,6 +28,7 @@
 		390283AE2C566B9E00D8ACF5 /* BlueButtonLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390283AD2C566B9E00D8ACF5 /* BlueButtonLabel.swift */; };
 		391A428F2C5E86E900A9DABA /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391A428E2C5E86E900A9DABA /* CircularProgressView.swift */; };
 		391A42912C5F6EFE00A9DABA /* NapFeedRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391A42902C5F6EFE00A9DABA /* NapFeedRegister.swift */; };
+		391A42942C5FDAD600A9DABA /* CallManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391A42932C5FDAD600A9DABA /* CallManager.swift */; };
 		3928CA312C509EC200A5A823 /* NapApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928CA302C509EC200A5A823 /* NapApp.swift */; };
 		3928CA332C509EC200A5A823 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928CA322C509EC200A5A823 /* ContentView.swift */; };
 		3928CA352C509EC300A5A823 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3928CA342C509EC300A5A823 /* Assets.xcassets */; };
@@ -81,6 +82,7 @@
 		390283AD2C566B9E00D8ACF5 /* BlueButtonLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlueButtonLabel.swift; sourceTree = "<group>"; };
 		391A428E2C5E86E900A9DABA /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		391A42902C5F6EFE00A9DABA /* NapFeedRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NapFeedRegister.swift; sourceTree = "<group>"; };
+		391A42932C5FDAD600A9DABA /* CallManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallManager.swift; sourceTree = "<group>"; };
 		3928CA2D2C509EC200A5A823 /* Nap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3928CA302C509EC200A5A823 /* NapApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NapApp.swift; sourceTree = "<group>"; };
 		3928CA322C509EC200A5A823 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -294,6 +296,7 @@
 				3928CA4D2C50A58900A5A823 /* HapticManager.swift */,
 				399587BF2C5A8F2300454D74 /* FirebaseManager.swift */,
 				393E8E6E2C5E606C00780DF6 /* NavigationManager.swift */,
+				391A42932C5FDAD600A9DABA /* CallManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -453,6 +456,7 @@
 				390283AC2C562E7600D8ACF5 /* FriendAdd.swift in Sources */,
 				3928CA5B2C50A6BC00A5A823 /* Feed.swift in Sources */,
 				3928CA592C50A6B800A5A823 /* Friend.swift in Sources */,
+				391A42942C5FDAD600A9DABA /* CallManager.swift in Sources */,
 				3928CA5D2C50A6D600A5A823 /* StringConstant.swift in Sources */,
 				92EE7B322C52B432006D0D19 /* JoseSignupname.swift in Sources */,
 				02241D7C2C5D48D900B4A161 /* NapPhotoView.swift in Sources */,
@@ -626,8 +630,8 @@
 				INFOPLIST_FILE = "Nap/Supporting File/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Nap;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
-				INFOPLIST_KEY_NSCameraUsageDescription = "${PRODUCT_NAME}앱은 카메라 권한을 필요로 합니다. 카메라를 통해 수면 인증 사진을 찍어 업로드할 수 있습니다. 허용 안함 시 일부 기능이 동작하지 않을 수 있습니다.";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "${PRODUCT_NAME}앱은 카메라 권한을 필요로 합니다. 카메라를 통해 수면 인증 사진을 찍어 업로드할 수 있습니다. 허용 안함 시 일부 기능이 동작하지 않을 수 있습니다.";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Nap앱은 카메라 권한을 필요로 합니다. 카메라를 통해 수면 인증 사진을 찍어 업로드할 수 있습니다. 허용 안함 시 일부 기능이 동작하지 않을 수 있습니다.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Nap앱은 카메라 권한을 필요로 합니다. 카메라를 통해 수면 인증 사진을 찍어 업로드할 수 있습니다. 허용 안함 시 일부 기능이 동작하지 않을 수 있습니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -669,8 +673,8 @@
 				INFOPLIST_FILE = "Nap/Supporting File/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Nap;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
-				INFOPLIST_KEY_NSCameraUsageDescription = "${PRODUCT_NAME}앱은 카메라 권한을 필요로 합니다. 카메라를 통해 수면 인증 사진을 찍어 업로드할 수 있습니다. 허용 안함 시 일부 기능이 동작하지 않을 수 있습니다.";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "${PRODUCT_NAME}앱은 카메라 권한을 필요로 합니다. 카메라를 통해 수면 인증 사진을 찍어 업로드할 수 있습니다. 허용 안함 시 일부 기능이 동작하지 않을 수 있습니다.";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Nap앱은 카메라 권한을 필요로 합니다. 카메라를 통해 수면 인증 사진을 찍어 업로드할 수 있습니다. 허용 안함 시 일부 기능이 동작하지 않을 수 있습니다.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Nap앱은 카메라 권한을 필요로 합니다. 카메라를 통해 수면 인증 사진을 찍어 업로드할 수 있습니다. 허용 안함 시 일부 기능이 동작하지 않을 수 있습니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
