@@ -8,14 +8,50 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State var isOnboarding: Bool = true
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        if isOnboarding {
+            Onboarding(isOnboarding: $isOnboarding)
+        } else {
+            Main
         }
-        .padding()
+    }
+}
+
+extension ContentView {
+    
+    // MARK: View
+    
+    var Main: some View {
+        NavigationStack {
+            ScrollView(.vertical) {
+                //ScrollViewReader { reader in
+                VStack(spacing: 0) {
+                    Home()
+                        .frame(width: UIScreen.size.width,
+                               height: UIScreen.size.height)
+                        .id(1)
+                    Feed()
+                        .frame(width: UIScreen.size.width,
+                               height: UIScreen.size.height)
+                        .id(2)
+                        //.border(Color.blue)
+                    //                        .onChange(of: showHome) { _, _ in
+                    //                            withAnimation(.bouncy) {
+                    //                                showHome ? reader.scrollTo(1)
+                    //                                         : reader.scrollTo(2)
+                    //                            }
+                    //                        }
+                    // }
+                }
+            }
+            .ignoresSafeArea()
+            .scrollTargetBehavior(.paging)
+            .scrollIndicators(.never)
+            .navigationTitle("")
+        }
     }
 }
 

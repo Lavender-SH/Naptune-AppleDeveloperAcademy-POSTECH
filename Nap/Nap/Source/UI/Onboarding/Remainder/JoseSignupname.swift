@@ -9,7 +9,7 @@ import SwiftUI
 import FirebaseFirestore
 import FirebaseAuth
 
-struct Signupname: View {
+struct JoseSignupname: View {
     @State private var nickname: String = ""
     @State private var isNextActive = false
     @State private var selectedProfile = ""
@@ -50,7 +50,7 @@ struct Signupname: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.horizontal)
                 
-                NavigationLink(destination: Signuppic(), isActive: $isNextActive) {
+                NavigationLink(destination: JoseSignuppic(), isActive: $isNextActive) {
                     Button(action: {
                         isNextActive = true
                         createUserData()
@@ -86,5 +86,5 @@ struct Signupname: View {
 }
 
 #Preview {
-    Signupname()
+    JoseSignupname()
 }

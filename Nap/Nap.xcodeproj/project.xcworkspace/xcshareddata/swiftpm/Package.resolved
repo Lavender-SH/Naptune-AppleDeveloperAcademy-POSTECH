@@ -6,8 +6,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/google/abseil-cpp-binary.git",
       "state" : {
-        "revision" : "748c7837511d0e6a507737353af268484e1745e2",
-        "version" : "1.2024011601.1"
+        "revision" : "194a6706acbd25e4ef639bcaddea16e8758a3e27",
+        "version" : "1.2024011602.0"
       }
     },
     {
@@ -83,6 +83,15 @@
       }
     },
     {
+      "identity" : "kdcircularprogress",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/kaandedeoglu/KDCircularProgress.git",
+      "state" : {
+        "revision" : "a0f30e0605b7ac91ac1b243efd9914b3fd592ad3",
+        "version" : "1.5.4"
+      }
+    },
+    {
       "identity" : "leveldb",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/firebase/leveldb.git",
@@ -107,6 +116,24 @@
       "state" : {
         "revision" : "540318ecedd63d883069ae7f1ed811a2df00b6ac",
         "version" : "2.4.0"
+      }
+    },
+    {
+      "identity" : "snapkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SnapKit/SnapKit.git",
+      "state" : {
+        "revision" : "2842e6e84e82eb9a8dac0100ca90d9444b0307f4",
+        "version" : "5.7.1"
+      }
+    },
+    {
+      "identity" : "stepslider",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/spromicky/StepSlider",
+      "state" : {
+        "revision" : "bb490b81515cb0dc87465938a36c43dcba11a274",
+        "version" : "1.8.0"
       }
     },
     {

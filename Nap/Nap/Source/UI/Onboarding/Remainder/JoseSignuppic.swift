@@ -12,7 +12,7 @@ import FirebaseStorage
 import FirebaseAuth
 
 
-struct Signuppic: View {
+struct JoseSignuppic: View {
     @State private var showImagePicker = false
     @State private var selectedImage: UIImage? = nil
     @State private var issignup = false
@@ -208,5 +208,5 @@ struct ImagePicker: UIViewControllerRepresentable {
 }
 
 #Preview {
-    Signuppic()
+    JoseSignuppic()
 }
