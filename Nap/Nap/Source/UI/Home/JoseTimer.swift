@@ -9,7 +9,7 @@ import SwiftUI
 import FirebaseFunctions
 import FirebaseAuth
 
-struct Timer: View {
+struct JoseTimer: View {
     @State private var resultMessage = ""
     @State private var authToken: String? = nil
 
@@ -92,5 +92,5 @@ struct Timer: View {
 }
 
 #Preview {
-    Timer()
+    JoseTimer()
 }

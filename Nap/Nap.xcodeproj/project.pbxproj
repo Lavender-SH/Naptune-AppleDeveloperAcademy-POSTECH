@@ -53,6 +53,7 @@
 		39DBCC392C5BA8400039A728 /* StepSlider in Frameworks */ = {isa = PBXBuildFile; productRef = 39DBCC382C5BA8400039A728 /* StepSlider */; };
 		39DBCC3B2C5BE2080039A728 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DBCC3A2C5BE2080039A728 /* Home.swift */; };
 		39DBCC3D2C5BF3410039A728 /* MainButtonLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DBCC3C2C5BF3410039A728 /* MainButtonLabel.swift */; };
+		9276BC312C60B8B5009BB2D4 /* JoseTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9276BC302C60B8B5009BB2D4 /* JoseTimer.swift */; };
 		92901B1F2C595F6300AE538F /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 92901B1E2C595F6300AE538F /* FirebaseMessaging */; };
 		92901B212C59632000AE538F /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92901B202C59632000AE538F /* NotificationManager.swift */; };
 		92901B232C5A9E6B00AE538F /* PushNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92901B222C5A9E6B00AE538F /* PushNotificationManager.swift */; };
@@ -112,6 +113,7 @@
 		3999BE4B2C588A0C00C48F68 /* JoseOnboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoseOnboarding.swift; sourceTree = "<group>"; };
 		39DBCC3A2C5BE2080039A728 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		39DBCC3C2C5BF3410039A728 /* MainButtonLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainButtonLabel.swift; sourceTree = "<group>"; };
+		9276BC302C60B8B5009BB2D4 /* JoseTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoseTimer.swift; sourceTree = "<group>"; };
 		92901B1D2C595EF200AE538F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		92901B202C59632000AE538F /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		92901B222C5A9E6B00AE538F /* PushNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationManager.swift; sourceTree = "<group>"; };
@@ -293,6 +295,7 @@
 		3928CA482C50A14000A5A823 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				9276BC302C60B8B5009BB2D4 /* JoseTimer.swift */,
 				39DBCC3A2C5BE2080039A728 /* Home.swift */,
 				393E8E6C2C5E5C8300780DF6 /* SilentModeCheckView.swift */,
 				393E8E702C5E651B00780DF6 /* NapProgress.swift */,
@@ -498,6 +501,7 @@
 				390283A82C5607D100D8ACF5 /* FriendRow.swift in Sources */,
 				3999BE482C5811E700C48F68 /* ProfileSetting.swift in Sources */,
 				3999BE4C2C588A0C00C48F68 /* JoseOnboarding.swift in Sources */,
+				9276BC312C60B8B5009BB2D4 /* JoseTimer.swift in Sources */,
 				3928CA4E2C50A58900A5A823 /* HapticManager.swift in Sources */,
 				391A428F2C5E86E900A9DABA /* CircularProgressView.swift in Sources */,
 				3928CA572C50A6B000A5A823 /* LavenderHome.swift in Sources */,
@@ -644,10 +648,9 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Nap/Preview Content\"";
-				DEVELOPMENT_TEAM = D23XDL6TZZ;
+				DEVELOPMENT_TEAM = B9JK9X5522;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Nap/Supporting File/Info.plist";
 				INFOPLIST_FILE = Nap/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Nap;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
@@ -666,7 +669,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.NapNap.Nap;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Nappp.Nap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -688,10 +691,9 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Nap/Preview Content\"";
-				DEVELOPMENT_TEAM = D23XDL6TZZ;
+				DEVELOPMENT_TEAM = B9JK9X5522;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Nap/Supporting File/Info.plist";
 				INFOPLIST_FILE = Nap/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Nap;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
@@ -710,7 +712,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.NapNap.Nap;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Nappp.Nap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;

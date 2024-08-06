@@ -10,10 +10,11 @@ import SwiftUI
 @main
 struct NapApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-
-
-  var body: some Scene {
-    WindowGroup {
-        ContentView()
+    
+    
+    var body: some Scene {
+        WindowGroup {
+            ContentView()
+        }
     }
 }
