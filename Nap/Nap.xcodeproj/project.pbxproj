@@ -15,6 +15,15 @@
 		02C3FCB72C5882080087A72B /* LavenderProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C3FCB62C5882080087A72B /* LavenderProgressView.swift */; };
 		02C3FCB92C58824E0087A72B /* KDCircularProgressTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C3FCB82C58824E0087A72B /* KDCircularProgressTest.swift */; };
 		02C3FCBC2C5882720087A72B /* KDCircularProgress in Frameworks */ = {isa = PBXBuildFile; productRef = 02C3FCBB2C5882720087A72B /* KDCircularProgress */; };
+		02C719332C61343A001D338E /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02051DE52C60EA6900BAEF10 /* WidgetKit.framework */; };
+		02C719342C61343A001D338E /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02051DE72C60EA6900BAEF10 /* SwiftUI.framework */; };
+		02C719372C61343A001D338E /* NapStatusBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C719362C61343A001D338E /* NapStatusBundle.swift */; };
+		02C719392C61343A001D338E /* NapStatusLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C719382C61343A001D338E /* NapStatusLiveActivity.swift */; };
+		02C7193B2C61343A001D338E /* NapStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C7193A2C61343A001D338E /* NapStatus.swift */; };
+		02C7193D2C61343A001D338E /* AppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C7193C2C61343A001D338E /* AppIntent.swift */; };
+		02C7193F2C61343B001D338E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02C7193E2C61343B001D338E /* Assets.xcassets */; };
+		02C719432C61343B001D338E /* NapStatusExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 02C719322C61343A001D338E /* NapStatusExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		02C719472C613535001D338E /* NapStatusLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C719382C61343A001D338E /* NapStatusLiveActivity.swift */; };
 		390283952C5389C500D8ACF5 /* UIScreen+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390283942C5389C500D8ACF5 /* UIScreen+.swift */; };
 		390283992C53C9F600D8ACF5 /* BackgroundImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390283982C53C9F600D8ACF5 /* BackgroundImage.swift */; };
 		3902839D2C553F7A00D8ACF5 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3902839A2C553F7A00D8ACF5 /* Pretendard-SemiBold.otf */; };
@@ -61,13 +70,46 @@
 		92EE7B392C554E38006D0D19 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 92EE7B382C554E38006D0D19 /* FirebaseFirestore */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		02C719412C61343B001D338E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3928CA252C509EC200A5A823 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 02C719312C61343A001D338E;
+			remoteInfo = NapStatusExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		02051DFB2C60EA6A00BAEF10 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				02C719432C61343B001D338E /* NapStatusExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		02051DDA2C5E551900BAEF10 /* CameraPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreview.swift; sourceTree = "<group>"; };
+		02051DE52C60EA6900BAEF10 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		02051DE72C60EA6900BAEF10 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		02241D782C5D484100B4A161 /* LavenderCheckSilentModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LavenderCheckSilentModeView.swift; sourceTree = "<group>"; };
 		02241D7B2C5D48D900B4A161 /* NapPhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NapPhotoView.swift; sourceTree = "<group>"; };
 		02C3FCB42C587FD30087A72B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		02C3FCB62C5882080087A72B /* LavenderProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LavenderProgressView.swift; sourceTree = "<group>"; };
 		02C3FCB82C58824E0087A72B /* KDCircularProgressTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KDCircularProgressTest.swift; sourceTree = "<group>"; };
+		02C719322C61343A001D338E /* NapStatusExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NapStatusExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		02C719362C61343A001D338E /* NapStatusBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NapStatusBundle.swift; sourceTree = "<group>"; };
+		02C719382C61343A001D338E /* NapStatusLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NapStatusLiveActivity.swift; sourceTree = "<group>"; };
+		02C7193A2C61343A001D338E /* NapStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NapStatus.swift; sourceTree = "<group>"; };
+		02C7193C2C61343A001D338E /* AppIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIntent.swift; sourceTree = "<group>"; };
+		02C7193E2C61343B001D338E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		02C719402C61343B001D338E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		390283942C5389C500D8ACF5 /* UIScreen+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+.swift"; sourceTree = "<group>"; };
 		390283982C53C9F600D8ACF5 /* BackgroundImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundImage.swift; sourceTree = "<group>"; };
 		3902839A2C553F7A00D8ACF5 /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
@@ -113,6 +155,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		02C7192F2C61343A001D338E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				02C719342C61343A001D338E /* SwiftUI.framework in Frameworks */,
+				02C719332C61343A001D338E /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3928CA2A2C509EC200A5A823 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -141,6 +192,19 @@
 			path = NapFeedRegister;
 			sourceTree = "<group>";
 		};
+		02C719352C61343A001D338E /* NapStatus */ = {
+			isa = PBXGroup;
+			children = (
+				02C719362C61343A001D338E /* NapStatusBundle.swift */,
+				02C719382C61343A001D338E /* NapStatusLiveActivity.swift */,
+				02C7193A2C61343A001D338E /* NapStatus.swift */,
+				02C7193C2C61343A001D338E /* AppIntent.swift */,
+				02C7193E2C61343B001D338E /* Assets.xcassets */,
+				02C719402C61343B001D338E /* Info.plist */,
+			);
+			path = NapStatus;
+			sourceTree = "<group>";
+		};
 		391A42922C5F893C00A9DABA /* Remainder */ = {
 			isa = PBXGroup;
 			children = (
@@ -156,6 +220,7 @@
 			isa = PBXGroup;
 			children = (
 				3928CA2F2C509EC200A5A823 /* Nap */,
+				02C719352C61343A001D338E /* NapStatus */,
 				3928CA2E2C509EC200A5A823 /* Products */,
 				92EE7B352C554E30006D0D19 /* Frameworks */,
 			);
@@ -165,6 +230,7 @@
 			isa = PBXGroup;
 			children = (
 				3928CA2D2C509EC200A5A823 /* Nap.app */,
+				02C719322C61343A001D338E /* NapStatusExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -356,6 +422,8 @@
 		92EE7B352C554E30006D0D19 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				02051DE52C60EA6900BAEF10 /* WidgetKit.framework */,
+				02051DE72C60EA6900BAEF10 /* SwiftUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -363,6 +431,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		02C719312C61343A001D338E /* NapStatusExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 02C719442C61343B001D338E /* Build configuration list for PBXNativeTarget "NapStatusExtension" */;
+			buildPhases = (
+				02C7192E2C61343A001D338E /* Sources */,
+				02C7192F2C61343A001D338E /* Frameworks */,
+				02C719302C61343A001D338E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NapStatusExtension;
+			productName = NapStatusExtension;
+			productReference = 02C719322C61343A001D338E /* NapStatusExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		3928CA2C2C509EC200A5A823 /* Nap */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3928CA3B2C509EC300A5A823 /* Build configuration list for PBXNativeTarget "Nap" */;
@@ -370,10 +455,12 @@
 				3928CA292C509EC200A5A823 /* Sources */,
 				3928CA2A2C509EC200A5A823 /* Frameworks */,
 				3928CA2B2C509EC200A5A823 /* Resources */,
+				02051DFB2C60EA6A00BAEF10 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				02C719422C61343B001D338E /* PBXTargetDependency */,
 			);
 			name = Nap;
 			packageProductDependencies = (
@@ -399,6 +486,9 @@
 				LastSwiftUpdateCheck = 1540;
 				LastUpgradeCheck = 1540;
 				TargetAttributes = {
+					02C719312C61343A001D338E = {
+						CreatedOnToolsVersion = 15.4;
+					};
 					3928CA2C2C509EC200A5A823 = {
 						CreatedOnToolsVersion = 15.4;
 					};
@@ -424,11 +514,20 @@
 			projectRoot = "";
 			targets = (
 				3928CA2C2C509EC200A5A823 /* Nap */,
+				02C719312C61343A001D338E /* NapStatusExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		02C719302C61343A001D338E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				02C7193F2C61343B001D338E /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3928CA2B2C509EC200A5A823 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -446,6 +545,17 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		02C7192E2C61343A001D338E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				02C7193B2C61343A001D338E /* NapStatus.swift in Sources */,
+				02C7193D2C61343A001D338E /* AppIntent.swift in Sources */,
+				02C719392C61343A001D338E /* NapStatusLiveActivity.swift in Sources */,
+				02C719372C61343A001D338E /* NapStatusBundle.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3928CA292C509EC200A5A823 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -464,6 +574,7 @@
 				02C3FCB72C5882080087A72B /* LavenderProgressView.swift in Sources */,
 				3928CA4A2C50A48C00A5A823 /* View+.swift in Sources */,
 				3928CA5F2C50E32D00A5A823 /* FeedCard.swift in Sources */,
+				02C719472C613535001D338E /* NapStatusLiveActivity.swift in Sources */,
 				3999BE462C57DA5A00C48F68 /* NicknameSetting.swift in Sources */,
 				3928CA552C50A69200A5A823 /* Onboarding.swift in Sources */,
 				391A42912C5F6EFE00A9DABA /* NapFeedRegister.swift in Sources */,
@@ -494,7 +605,73 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		02C719422C61343B001D338E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 02C719312C61343A001D338E /* NapStatusExtension */;
+			targetProxy = 02C719412C61343B001D338E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		02C719452C61343B001D338E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = DBXHWJCYZK;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NapStatus/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = NapStatus;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.NapNap.Nap.Nap.NapStatus;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		02C719462C61343B001D338E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = DBXHWJCYZK;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NapStatus/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = NapStatus;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.NapNap.Nap.Nap.NapStatus;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		3928CA392C509EC300A5A823 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -617,6 +794,7 @@
 		3928CA3C2C509EC300A5A823 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
@@ -624,7 +802,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Nap/Preview Content\"";
-				DEVELOPMENT_TEAM = D23XDL6TZZ;
+				DEVELOPMENT_TEAM = DBXHWJCYZK;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Nap/Supporting File/Info.plist";
@@ -632,6 +810,7 @@
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Nap앱은 카메라 권한을 필요로 합니다. 카메라를 통해 수면 인증 사진을 찍어 업로드할 수 있습니다. 허용 안함 시 일부 기능이 동작하지 않을 수 있습니다.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Nap앱은 카메라 권한을 필요로 합니다. 카메라를 통해 수면 인증 사진을 찍어 업로드할 수 있습니다. 허용 안함 시 일부 기능이 동작하지 않을 수 있습니다.";
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -645,7 +824,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.NapNap.Nap;
+				PRODUCT_BUNDLE_IDENTIFIER = com.NapNap.Nap.Nap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -660,6 +839,7 @@
 		3928CA3D2C509EC300A5A823 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
@@ -667,7 +847,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Nap/Preview Content\"";
-				DEVELOPMENT_TEAM = D23XDL6TZZ;
+				DEVELOPMENT_TEAM = DBXHWJCYZK;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Nap/Supporting File/Info.plist";
@@ -675,6 +855,7 @@
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Nap앱은 카메라 권한을 필요로 합니다. 카메라를 통해 수면 인증 사진을 찍어 업로드할 수 있습니다. 허용 안함 시 일부 기능이 동작하지 않을 수 있습니다.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Nap앱은 카메라 권한을 필요로 합니다. 카메라를 통해 수면 인증 사진을 찍어 업로드할 수 있습니다. 허용 안함 시 일부 기능이 동작하지 않을 수 있습니다.";
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -688,7 +869,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.NapNap.Nap;
+				PRODUCT_BUNDLE_IDENTIFIER = com.NapNap.Nap.Nap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -703,6 +884,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		02C719442C61343B001D338E /* Build configuration list for PBXNativeTarget "NapStatusExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				02C719452C61343B001D338E /* Debug */,
+				02C719462C61343B001D338E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		3928CA282C509EC200A5A823 /* Build configuration list for PBXProject "Nap" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

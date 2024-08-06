@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import ActivityKit
 
 struct Home: View {
     
@@ -306,6 +307,7 @@ private extension Home {
     var StartNapButton: some View {
         Button {
             timeInterval = Double(getMinuteDifference()*60)
+            addLiveActivity()
             moveNext = true
         } label: {
             MainButtonLabel(text: "낮잠 자러가기")
@@ -393,6 +395,20 @@ private extension Home {
             lastHapticAngle = angle
         }
     }
+    
+    func addLiveActivity() {
+        let napStatusAttributes = NapStatusAttributes()
+        let intialContentState = NapStatusAttributes.ContentState(remainingTime: Int(timeInterval))
+        
+        do {
+            let activity = try Activity<NapStatusAttributes>.request(attributes: napStatusAttributes, contentState: intialContentState, pushType: nil)
+            print("Activity Added Successfully. id: \(activity.id)")
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
+
     
     var topMargin: CGFloat {
         UIScreen.isSE ? 20 : 54
