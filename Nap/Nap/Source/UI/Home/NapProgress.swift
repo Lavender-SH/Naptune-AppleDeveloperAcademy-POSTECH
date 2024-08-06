@@ -7,6 +7,7 @@
 
 import SwiftUI
 import KDCircularProgress
+import ActivityKit
 
 struct NapProgress: View {
     @Environment(\.presentationMode) var presentationMode
@@ -55,6 +56,7 @@ struct NapProgress: View {
             }
         }
         .onChange(of: remainingSeconds) { _, _ in
+            updateLiveActivity()
             if remainingSeconds <= 0 {
                 startCall()
             }
@@ -313,6 +315,14 @@ private extension NapProgress {
             callManager.reportIncomingCall(id: id, handle: "TimCook")
         })
     }
+    func updateLiveActivity() {
+            guard let activity = Activity<NapStatusAttributes>.activities.first else { return }
+            let updatedContentState = NapStatusAttributes.ContentState(remainingTime: Int(remainingSeconds))
+            
+            Task {
+                await activity.update(using: updatedContentState)
+            }
+        }
 }
 
 //#Preview {
