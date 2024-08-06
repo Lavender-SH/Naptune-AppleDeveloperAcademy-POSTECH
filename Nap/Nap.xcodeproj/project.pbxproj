@@ -62,6 +62,8 @@
 		39DBCC392C5BA8400039A728 /* StepSlider in Frameworks */ = {isa = PBXBuildFile; productRef = 39DBCC382C5BA8400039A728 /* StepSlider */; };
 		39DBCC3B2C5BE2080039A728 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DBCC3A2C5BE2080039A728 /* Home.swift */; };
 		39DBCC3D2C5BF3410039A728 /* MainButtonLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DBCC3C2C5BF3410039A728 /* MainButtonLabel.swift */; };
+		929A9CA62C623EFF00F08276 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929A9CA52C623EFF00F08276 /* AppDelegate.swift */; };
+		929A9CA72C623EFF00F08276 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929A9CA52C623EFF00F08276 /* AppDelegate.swift */; };
 		92EE7B2B2C516785006D0D19 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 92EE7B2A2C516785006D0D19 /* FirebaseAnalytics */; };
 		92EE7B2D2C516785006D0D19 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 92EE7B2C2C516785006D0D19 /* FirebaseAuth */; };
 		92EE7B322C52B432006D0D19 /* JoseSignupname.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EE7B312C52B432006D0D19 /* JoseSignupname.swift */; };
@@ -149,6 +151,7 @@
 		3999BE4B2C588A0C00C48F68 /* JoseOnboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoseOnboarding.swift; sourceTree = "<group>"; };
 		39DBCC3A2C5BE2080039A728 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		39DBCC3C2C5BF3410039A728 /* MainButtonLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainButtonLabel.swift; sourceTree = "<group>"; };
+		929A9CA52C623EFF00F08276 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		92EE7B2E2C5169E2006D0D19 /* Nap.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Nap.entitlements; sourceTree = "<group>"; };
 		92EE7B312C52B432006D0D19 /* JoseSignupname.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoseSignupname.swift; sourceTree = "<group>"; };
 		92EE7B332C52B4EA006D0D19 /* JoseSignuppic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoseSignuppic.swift; sourceTree = "<group>"; };
@@ -363,6 +366,7 @@
 				399587BF2C5A8F2300454D74 /* FirebaseManager.swift */,
 				393E8E6E2C5E606C00780DF6 /* NavigationManager.swift */,
 				391A42932C5FDAD600A9DABA /* CallManager.swift */,
+				929A9CA52C623EFF00F08276 /* AppDelegate.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -552,6 +556,7 @@
 				02C7193B2C61343A001D338E /* NapStatus.swift in Sources */,
 				02C7193D2C61343A001D338E /* AppIntent.swift in Sources */,
 				02C719392C61343A001D338E /* NapStatusLiveActivity.swift in Sources */,
+				929A9CA72C623EFF00F08276 /* AppDelegate.swift in Sources */,
 				02C719372C61343A001D338E /* NapStatusBundle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -564,6 +569,7 @@
 				3928CA332C509EC200A5A823 /* ContentView.swift in Sources */,
 				390283AE2C566B9E00D8ACF5 /* BlueButtonLabel.swift in Sources */,
 				390283AC2C562E7600D8ACF5 /* FriendAdd.swift in Sources */,
+				929A9CA62C623EFF00F08276 /* AppDelegate.swift in Sources */,
 				3928CA5B2C50A6BC00A5A823 /* Feed.swift in Sources */,
 				3928CA592C50A6B800A5A823 /* Friend.swift in Sources */,
 				391A42942C5FDAD600A9DABA /* CallManager.swift in Sources */,
@@ -621,7 +627,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = DBXHWJCYZK;
+				DEVELOPMENT_TEAM = B9JK9X5522;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NapStatus/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = NapStatus;
@@ -634,7 +640,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.NapNap.Nap.Nap.NapStatus;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Nappp.Nap.NapStatus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -650,7 +656,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = DBXHWJCYZK;
+				DEVELOPMENT_TEAM = B9JK9X5522;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NapStatus/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = NapStatus;
@@ -663,7 +669,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.NapNap.Nap.Nap.NapStatus;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Nappp.Nap.NapStatus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -802,7 +808,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Nap/Preview Content\"";
-				DEVELOPMENT_TEAM = DBXHWJCYZK;
+				DEVELOPMENT_TEAM = B9JK9X5522;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Nap/Supporting File/Info.plist";
@@ -824,7 +830,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.NapNap.Nap.Nap;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Nappp.Nap.Nap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -847,7 +853,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Nap/Preview Content\"";
-				DEVELOPMENT_TEAM = DBXHWJCYZK;
+				DEVELOPMENT_TEAM = B9JK9X5522;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Nap/Supporting File/Info.plist";
@@ -869,7 +875,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.NapNap.Nap.Nap;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Nappp.Nap.Nap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
