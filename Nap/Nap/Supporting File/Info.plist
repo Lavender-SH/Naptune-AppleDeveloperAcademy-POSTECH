@@ -6,6 +6,8 @@
 	<array>
 		<string>com</string>
 	</array>
+	<key>FirebaseAppDelegateProxyEnabled</key>
+	<false/>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Pretendard-Bold.otf</string>
@@ -14,9 +16,11 @@
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>
+		<string>audio</string>
 		<string>fetch</string>
 		<string>processing</string>
 		<string>push-to-talk</string>
+		<string>remote-notification</string>
 		<string>voip</string>
 	</array>
 </dict>
