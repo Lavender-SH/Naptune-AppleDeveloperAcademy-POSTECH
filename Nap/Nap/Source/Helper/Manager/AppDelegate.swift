@@ -2,16 +2,18 @@
 //  AppDelegate.swift
 //  Nap
 //
-//  Created by Jeho Ahn on 8/6/24.
+//  Created by Jeho Ahn on 8/7/24.
 //
 
 import UIKit
-import Firebasecore
+import Firebase
+import FirebaseCore
 import FirebaseAuth
 import FirebaseMessaging
 import UserNotifications
 
 class AppDelegate: NSObject, UIApplicationDelegate, MessagingDelegate, UNUserNotificationCenterDelegate {
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
         FirebaseApp.configure()
         
@@ -25,6 +27,16 @@ class AppDelegate: NSObject, UIApplicationDelegate, MessagingDelegate, UNUserNot
         application.registerForRemoteNotifications()
         Messaging.messaging().delegate = self
         
+        let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+        UNUserNotificationCenter.current().requestAuthorization(
+            options: authOptions,
+            completionHandler: { granted, error in
+                if let error = error {
+                    print("Error requesting authorization for notifications: \(error.localizedDescription)")
+                }
+            }
+        )
+        
         // Firebase Authentication 설정
         if Auth.auth().currentUser == nil {
             Auth.auth().signInAnonymously { (authResult, error) in
@@ -35,6 +47,8 @@ class AppDelegate: NSObject, UIApplicationDelegate, MessagingDelegate, UNUserNot
                 }
             }
         }
+        
+        application.registerForRemoteNotifications()
         
         return true
     }
@@ -48,4 +62,26 @@ class AppDelegate: NSObject, UIApplicationDelegate, MessagingDelegate, UNUserNot
             print("FCM Token: \(fcmToken)")
         }
     }
+    var backgroundTask: UIBackgroundTaskIdentifier = .invalid
+    
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        registerBackgroundTask()
+    }
+    
+    func applicationWillEnterForeground(_ application: UIApplication) {
+        endBackgroundTask()
+    }
+    
+    func registerBackgroundTask() {
+        backgroundTask = UIApplication.shared.beginBackgroundTask {
+            self.endBackgroundTask()
+        }
+        assert(backgroundTask != .invalid)
+    }
+    
+    func endBackgroundTask() {
+        UIApplication.shared.endBackgroundTask(backgroundTask)
+        backgroundTask = .invalid
+    }
 }
+

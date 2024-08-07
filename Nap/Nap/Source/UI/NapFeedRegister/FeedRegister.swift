@@ -19,6 +19,7 @@ struct FeedRegister: View {
     @State var isSelectingStatus: Bool = false
     @State var sleepStatusLevel: Double = 3
     @State var editedSleepStatusLevel: Double = 3
+    @State var viewModel = FeedRegisterViewModel()
     
     let textLimit: Int = 16
     let imageWidth = UIScreen.size.width - 40
@@ -152,6 +153,9 @@ private extension FeedRegister {
     var UploadButton: some View {
         Button {
             showHome = true
+            Task {
+                await viewModel.uploadPost(capturedImage: capturedImage, sleepComent: sleepComent, sleepStatusLevel: sleepStatusLevel)
+            }
         } label: {
             Image(.upload)
                 .foregroundStyle(.napWhite100)
