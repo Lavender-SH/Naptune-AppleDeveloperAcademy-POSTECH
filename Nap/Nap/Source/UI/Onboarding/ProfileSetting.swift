@@ -15,7 +15,7 @@ struct ProfileSetting: View {
     @State private var profileUIImage: UIImage? = UIImage(resource: .fox)
     @Binding var nickname: String
     @FocusState var focusField: Field?
-    @Binding var isOnboarding: Bool
+    @AppStorage("firstLaunch") var firstLaunch: Bool = true
     
     var textLimit = 10
     var firebaseManager = FirebaseManager.shared
@@ -232,12 +232,12 @@ private extension ProfileSetting {
     //MARK: Action
     
     func moveNextStage() {
-        isOnboarding = false
+        firstLaunch = false
         firebaseManager.uploadImage(profileImage: profileUIImage)
     }
 }
 
 #Preview {
-    ProfileSetting(nickname: .constant("자두자두졸린해시"), isOnboarding: .constant(true))
+    ProfileSetting(nickname: .constant("자두자두졸린해시"))
 }
 

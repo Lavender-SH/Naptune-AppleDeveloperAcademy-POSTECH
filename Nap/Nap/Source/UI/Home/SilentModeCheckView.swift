@@ -8,6 +8,7 @@
 import SwiftUI
 import FirebaseFunctions
 import FirebaseAuth
+import AuthenticationServices
 
 struct SilentModeCheckView: View {
     
