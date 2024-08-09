@@ -12,7 +12,6 @@ struct NicknameSetting: View {
     @State var nickname: String = ""
     @State var showProfileSetting: Bool = false
     @FocusState var focusField: Field?
-    @Binding var isOnboarding: Bool
     
     var textLimit = 10
     var firebaseManager = FirebaseManager.shared
@@ -35,7 +34,7 @@ struct NicknameSetting: View {
         .background(BackgroundImage(image: Image(.basicBackground)))
         .navigationTitle("")
         .navigationDestination(isPresented: $showProfileSetting) {
-            ProfileSetting(nickname: $nickname, isOnboarding: $isOnboarding)
+            ProfileSetting(nickname: $nickname)
         }
     }
 }
@@ -179,5 +178,5 @@ private extension NicknameSetting {
 }
 
 #Preview {
-    NicknameSetting(isOnboarding: .constant(true))
+    NicknameSetting()
 }

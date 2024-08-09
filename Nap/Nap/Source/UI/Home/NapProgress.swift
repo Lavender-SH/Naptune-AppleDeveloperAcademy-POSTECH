@@ -66,7 +66,7 @@ struct NapProgress: View {
 
 private extension NapProgress {
     var Title: some View {
-        Text(progress >= 354 ? "충전 완료!" : "걱정은 잠시 내려놓고\n편안히 낮잠을 즐겨봐요")
+        Text(isFinished ? "충전 완료⚡️\n남은 하루도 힘내세요!" : "걱정은 잠시 내려놓고\n편안히 낮잠을 즐겨봐요")
             .font(.napLargeTitle)
             .foregroundStyle(.napWhite100)
             .multilineTextAlignment(.center)
@@ -84,32 +84,35 @@ private extension NapProgress {
                 .frame(width: (UIScreen.size.width-80)*1.25,
                        height: (UIScreen.size.width-80)*1.25)
             
-            Image(.tiredPrince)
-                .frame(width: 24, height: 24)
-                .background {
-                    Circle()
-                        .frame(width: 26, height: 26)
-                        .foregroundStyle(.napWhite20)
-                }
-            // Moving To Right & Rotating
-                .offset(y: -(UIScreen.size.width-110)/2)
+            if !isFinished {
+                Image(.tiredPrince)
+                    .frame(width: 24, height: 24)
+                    .background {
+                        Circle()
+                            .frame(width: 26, height: 26)
+                            .foregroundStyle(.napWhite20)
+                    }
+                // Moving To Right & Rotating
+                    .offset(y: -(UIScreen.size.width-110)/2)
+                
+                // Slider Buttons
+                Image(.freshPrince)
+                    .frame(width: 24, height: 24)
+                    .background {
+                        Circle()
+                            .frame(width: 26, height: 26)
+                            .foregroundStyle(.napWhite20)
+                    }
+                // Rotating Image inside the Circle
+                    .rotationEffect(.degrees(90))
+                    .rotationEffect(.degrees(-(progress+5)))
+                //Moving To Right & Rotating
+                    .offset(x: (UIScreen.size.width-110)/2)
+                // To the Current Angle
+                    .rotationEffect(.degrees(progress+5))
+                    .rotationEffect(.init(degrees: -90))
+            }
             
-            // Slider Buttons
-            Image(.freshPrince)
-                .frame(width: 24, height: 24)
-                .background {
-                    Circle()
-                        .frame(width: 26, height: 26)
-                        .foregroundStyle(.napWhite20)
-                }
-            // Rotating Image inside the Circle
-                .rotationEffect(.degrees(90))
-                .rotationEffect(.degrees(-(progress+5)))
-            //Moving To Right & Rotating
-                .offset(x: (UIScreen.size.width-110)/2)
-            // To the Current Angle
-                .rotationEffect(.degrees(progress+5))
-                .rotationEffect(.init(degrees: -90))
             if showRemainTime {
                 RemainTime
             } else {
@@ -312,7 +315,7 @@ private extension NapProgress {
         DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
             let callManager = CallManager.shared
             let id = UUID()
-            callManager.reportIncomingCall(id: id, handle: "TimCook")
+            callManager.reportIncomingCall(id: id, handle: "여우")
         })
     }
     func updateLiveActivity() {
@@ -323,6 +326,10 @@ private extension NapProgress {
                 await activity.update(using: updatedContentState)
             }
         }
+    
+    var isFinished: Bool {
+        progress >= 354
+    }
 }
 
 //#Preview {

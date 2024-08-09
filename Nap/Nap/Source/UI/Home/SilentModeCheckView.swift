@@ -8,6 +8,7 @@
 import SwiftUI
 import FirebaseFunctions
 import FirebaseAuth
+import AuthenticationServices
 
 struct SilentModeCheckView: View {
     
@@ -34,9 +35,9 @@ struct SilentModeCheckView: View {
         }
         .toolbar(.hidden, for: .navigationBar)
         .onChange(of: showHome) { _, _ in
-            if showHome {
-                dismissView()
-            }
+//            if showHome {
+//                dismissView()
+//            }
         }
         .navigationDestination(isPresented: $moveNext) {
             NapProgress(timeInterval: $timeInterval, showHome: $showHome)
@@ -117,6 +118,10 @@ private extension SilentModeCheckView {
         }
     }
     
+    func wakeupTime() -> Date {
+        let now = Date()
+        return Calendar.current.date(byAdding: .second, value: Int(timeInterval), to: now) ?? now
+    }
     
     //---------------------노티관련 함수--------------------------------
     func fetchAuthToken(completion: @escaping (String?) -> Void) {
@@ -143,9 +148,9 @@ private extension SilentModeCheckView {
         
         let functions = Functions.functions(region: "asia-northeast3")
         let data: [String: Any] = [
-            "token": "dr-1pK4VmU5oqTSL8deZzy:APA91bFAULxorNfc06w26qYt50yQoJxBvya-Mo4L5fJcp26-1r8wp8S_jiM09OfWhc6H5thS7tAGsG_YvrcDG2j5JYa2-2YPdJZvCGOyyRKZzUA-o2kuD-zHmKnLDUZ1C4l7L_BqhDQ1", // 사용자 FCM 토큰으로 변경, 사용자마다 고유의 토큰값을 가져서 users에 변수로 변경이 필요할거 같다
+            "token": "cHxCg2Sqt0H7nHd6uaxszH:APA91bGaqsaDFeYc11ds7ie96G5kM801xPTfsVJnIORfP69wSXEQot71c1KYlcLcozzgQ-I6tC_pO99VcZwWXx1DeoXoygFR-ctCpfYIGhyZsS_dfBVUjTWk3IUgx1yOUHAFQvdCPXP9", // 사용자 FCM 토큰으로 변경, 사용자마다 고유의 토큰값을 가져서 users에 변수로 변경이 필요할거 같다
             "title": "친구가 잠들었어요!",
-            "body": "기상 시간이 되면 전화로 낮잠을 깨워주세요!"
+            "body": "\(wakeupTime().formatted(date: .omitted, time: .shortened))에 전화로 낮잠을 깨워주세요!"
         ]
         
         functions.httpsCallable("sendPushNotification").call(data) { result, error in

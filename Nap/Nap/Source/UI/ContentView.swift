@@ -8,14 +8,27 @@
 import SwiftUI
 
 struct ContentView: View {
-    
-    @State var isOnboarding: Bool = true
+    @State var isLoading: Bool = true
+    @AppStorage("firstLaunch") var firstLaunch: Bool = true
+    //@AppStorage("isOnboarding") var isLogined: Bool = false
     
     var body: some View {
-        if isOnboarding {
-            Onboarding(isOnboarding: $isOnboarding)
+        if isLoading {
+            Splash()
+                .onAppear {
+                    //firstLaunch = true
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.3) {
+                        withAnimation {
+                            isLoading = false
+                        }
+                    }
+                }
         } else {
-            Main
+            if firstLaunch {
+                Onboarding()
+            } else {
+                Main
+            }
         }
     }
 }

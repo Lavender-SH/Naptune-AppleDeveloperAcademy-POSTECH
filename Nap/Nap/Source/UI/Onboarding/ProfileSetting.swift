@@ -11,11 +11,12 @@ import PhotosUI
 struct ProfileSetting: View {
     
     @State private var selectedPhotos: PhotosPickerItem? = nil
+    @State private var basicProfileSelected: String? = "fox"
     @State private var profile: Image = Image("fox")
     @State private var profileUIImage: UIImage? = UIImage(resource: .fox)
     @Binding var nickname: String
     @FocusState var focusField: Field?
-    @Binding var isOnboarding: Bool
+    @AppStorage("firstLaunch") var firstLaunch: Bool = true
     
     var textLimit = 10
     var firebaseManager = FirebaseManager.shared
@@ -134,10 +135,11 @@ private extension ProfileSetting {
             Task {
                 if let loaded = try? await selectedPhotos?.loadTransferable(type: Data.self),
                    let uiImage = UIImage(data: loaded) {
+                    basicProfileSelected = nil
                     profileUIImage = uiImage
                     profile = Image(uiImage: uiImage)
                 } else {
-                    profile = Image(.fox)
+                    profile = Image(basicProfileSelected ?? "fox")
                 }
             }
         }
@@ -145,6 +147,7 @@ private extension ProfileSetting {
     
     func BasicProfileButton(imageName: String) -> some View {
         Button {
+            basicProfileSelected = imageName
             profile = Image(imageName)
             profileUIImage = UIImage(named: imageName)
         } label: {
@@ -155,7 +158,7 @@ private extension ProfileSetting {
                 .clipShape(Circle())
                 .overlay {
                     Circle()
-                        .stroke(.napWhite10, lineWidth: 2.0)
+                        .stroke(basicProfileSelected == imageName ? .napBlue100 : .napWhite10, lineWidth: 2.0)
                 }
         }
     }
@@ -214,7 +217,7 @@ private extension ProfileSetting {
     }
     
     var isSkipping: Bool {
-        return profile == Image("fox") || profile == Image("pilot") || profile == Image("prince")
+        return basicProfileSelected != nil
     }
     
     var nextButtonText: String {
@@ -232,12 +235,12 @@ private extension ProfileSetting {
     //MARK: Action
     
     func moveNextStage() {
-        isOnboarding = false
+        firstLaunch = false
         firebaseManager.uploadImage(profileImage: profileUIImage)
     }
 }
 
 #Preview {
-    ProfileSetting(nickname: .constant("자두자두졸린해시"), isOnboarding: .constant(true))
+    ProfileSetting(nickname: .constant("자두자두졸린해시"))
 }
 

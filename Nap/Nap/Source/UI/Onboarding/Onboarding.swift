@@ -14,7 +14,6 @@ struct Onboarding: View {
     
     @State var currentStage: Int = 1
     @State var showBasicSetting: Bool = false
-    @Binding var isOnboarding: Bool
     
     var firebaseManager = FirebaseManager.shared
     
@@ -44,7 +43,7 @@ struct Onboarding: View {
                        value: currentStage)
             .navigationTitle("")
             .navigationDestination(isPresented: $showBasicSetting) {
-                NicknameSetting(isOnboarding: $isOnboarding)
+                NicknameSetting()
             }
         }
     }
@@ -198,5 +197,5 @@ private extension Onboarding {
 }
 
 #Preview {
-    Onboarding(isOnboarding: .constant(true))
+    Onboarding()
 }
