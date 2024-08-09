@@ -73,9 +73,7 @@ private extension Home {
     }
     
     var HomeTitle: some View {
-        Text("nap, nap")
-            .font(.napTitle1)
-            .foregroundStyle(.napWhite100)
+        Image(.inAppLogo)
     }
     
     var FriendCount: some View {

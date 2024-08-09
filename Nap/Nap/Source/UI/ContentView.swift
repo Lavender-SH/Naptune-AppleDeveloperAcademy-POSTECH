@@ -16,6 +16,7 @@ struct ContentView: View {
         if isLoading {
             Splash()
                 .onAppear {
+                    //firstLaunch = true
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1.3) {
                         withAnimation {
                             isLoading = false
