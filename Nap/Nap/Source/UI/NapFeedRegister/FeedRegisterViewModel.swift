@@ -2,7 +2,7 @@
 //  FeedRegisterViewModel.swift
 //  Nap
 //
-//  Created by Jeho Ahn on 8/7/24.
+//  Created by 이승현 on 8/7/24.
 //
 
 import SwiftUI
@@ -13,9 +13,12 @@ import FirebaseFirestoreSwift
 
 struct Post: Codable {
     let id: String
+    let nickname: String
+    let profileImageUrl: String
     let imageUrl: String
     let sleepComent: String
     let sleepStatusLevel: Double
+    let sleepTime: Double
     let date: Date
 }
 
@@ -25,12 +28,24 @@ class FeedRegisterViewModel {
     var sleepComent: String? = ""
     var sleepStatusLevel: Double?
 
-    func uploadPost(capturedImage: UIImage?, sleepComent: String, sleepStatusLevel: Double) async {
+    func uploadPost(capturedImage: UIImage?, sleepComent: String, sleepStatusLevel: Double, sleepTime: Double) async {
+        let nickname = UserDefaults.standard.string(forKey: "nickname") ?? "Unknown"
+        let profileImageUrl = UserDefaults.standard.string(forKey: "profileImageUrl") ?? ""
+        
         guard let capturedImage = capturedImage else { return }
         guard let imageUrl = await uploadImage(uiImage: capturedImage) else { return }
         
-        let postReference = Firestore.firestore().collection("posts").document()
-        let post = Post(id: postReference.documentID, imageUrl: imageUrl, sleepComent: sleepComent, sleepStatusLevel: sleepStatusLevel, date: Date())//id는 업로드한 사용자 uid여야 되는거 아님?
+        // 현재 로그인된 사용자의 UID 가져오기
+        guard let currentUserID = Auth.auth().currentUser?.uid else {
+            print("Error: No current user ID found.")
+            return
+        }
+        
+        // Firestore에 저장할 Post 객체 생성
+        let post = Post(id: UUID().uuidString, nickname: nickname, profileImageUrl: profileImageUrl, imageUrl: imageUrl, sleepComent: sleepComent, sleepStatusLevel: sleepStatusLevel, sleepTime: sleepTime, date: Date())
+        
+        // Firestore에 문서 ID를 사용자 UID로 설정하고 데이터 저장
+        let postReference = Firestore.firestore().collection("posts").document(UUID().uuidString)
         
         do {
             let encodedData = try Firestore.Encoder().encode(post)
@@ -55,3 +70,4 @@ class FeedRegisterViewModel {
         }
     }
 }
+

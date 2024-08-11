@@ -8,27 +8,43 @@
 import SwiftUI
 
 struct Feed: View {
+    @StateObject var viewModel = FeedViewModel()
     @State var isLargeCard: Bool = true
     //@Binding var showHome: Bool
     
     // MARK: Body
+    
+    //    var body: some View {
+    //        ScrollView(.vertical) {
+    //            VStack(spacing: 0) {
+    //                SlideHeader
+    //                LazyVGrid(columns: columns, spacing: spacing) {
+    //                    ForEach(0..<10) { _ in
+    //                        FeedCard(showInformation: $isLargeCard, image: Image(.feedImage2))
+    //                    }
+    //                }
+    //            }
+    //        }
     
     var body: some View {
         ScrollView(.vertical) {
             VStack(spacing: 0) {
                 SlideHeader
                 LazyVGrid(columns: columns, spacing: spacing) {
-                    ForEach(0..<10) { _ in
-                        FeedCard(showInformation: $isLargeCard, image: Image(.feedImage2))
+                    ForEach(viewModel.posts, id: \.id) { post in
+                        FeedCard(post: post, showInformation: $isLargeCard)
                     }
                 }
             }
+        }
+        .onAppear {
+            viewModel.fetchPosts()
         }
         .scrollIndicators(.never)
         .contentMargins(.top, topMargin, for: .scrollContent)
         .padding(.horizontal, 20)
         .background {
-           Image(.feedBackground)
+            Image(.feedBackground)
                 .resizable()
                 .scaledToFill()
                 .ignoresSafeArea()
@@ -40,17 +56,17 @@ struct Feed: View {
             FloatingButton
         }
         // 상단 어둡게 블러처리.
-//        .overlay(alignment: .top) {
-//            ZStack {
-//                BackgroundBlur(radius: 10, opaque: false)
-//                LinearGradient(colors: [Color.black.opacity(0.8), Color.black.opacity(0.5), Color.black.opacity(0.0)], startPoint: .top, endPoint: .bottom)
-//            }
-//            .frame(height: topMargin)
-//            .ignoresSafeArea()
-//        }
+        //        .overlay(alignment: .top) {
+        //            ZStack {
+        //                BackgroundBlur(radius: 10, opaque: false)
+        //                LinearGradient(colors: [Color.black.opacity(0.8), Color.black.opacity(0.5), Color.black.opacity(0.0)], startPoint: .top, endPoint: .bottom)
+        //            }
+        //            .frame(height: topMargin)
+        //            .ignoresSafeArea()
+        //        }
         // 애니메이션 넣으면 깨질때가 있음.
-//        .animation(.snappy(duration: 0.35),
-//                   value: isLargeCard)
+        //        .animation(.snappy(duration: 0.35),
+        //                   value: isLargeCard)
     }
 }
 
@@ -59,22 +75,22 @@ private extension Feed {
     // MARK: View
     
     var SlideHeader: some View {
-//        Button {
-//            print("화면 올라가기")
-//            showHome = true
-//        } label: {
-            HStack {
-                Spacer()
-                VStack(spacing: 1) {
-                    Text("낮잠 자러가기")
-                        .font(.napCaption1)
-                    Image(.chevronUp)
-                }
-                .foregroundStyle(.napWhite60)
-                .padding(.vertical, 13)
-                Spacer()
+        //        Button {
+        //            print("화면 올라가기")
+        //            showHome = true
+        //        } label: {
+        HStack {
+            Spacer()
+            VStack(spacing: 1) {
+                Text("낮잠 자러가기")
+                    .font(.napCaption1)
+                Image(.chevronUp)
             }
-       // }
+            .foregroundStyle(.napWhite60)
+            .padding(.vertical, 13)
+            Spacer()
+        }
+        // }
     }
     
     var Header: some View {
@@ -110,10 +126,10 @@ private extension Feed {
                         }
                 }
         }
-       
-//            .onTapGesture {
-//                changFeedMode()
-//            }
+        
+        //            .onTapGesture {
+        //                changFeedMode()
+        //            }
     }
     
     var FriendListButton: some View {
@@ -134,16 +150,16 @@ private extension Feed {
                 }
         }
         
-//            .onTapGesture {
-//                // 화면 전환 코드 작성
-//            }
+        //            .onTapGesture {
+        //                // 화면 전환 코드 작성
+        //            }
     }
     
     // MARK: Computed Values
     
     var columns: [GridItem] {
         isLargeCard ? [GridItem(.flexible())] :
-                      [GridItem(.flexible(), spacing: 12), GridItem(.flexible(), spacing: 12)]
+        [GridItem(.flexible(), spacing: 12), GridItem(.flexible(), spacing: 12)]
     }
     
     var spacing: CGFloat {

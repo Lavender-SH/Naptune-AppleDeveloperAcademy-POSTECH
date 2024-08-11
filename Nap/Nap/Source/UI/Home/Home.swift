@@ -8,8 +8,16 @@
 import SwiftUI
 import ActivityKit
 
+import SwiftUI
+import Combine
+
+class TimerData: ObservableObject {
+    @Published var timeInterval: Double = 0
+}
+
+
 struct Home: View {
-    
+    @EnvironmentObject var timerData: TimerData
     //@Binding var showHome: Bool
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
@@ -73,7 +81,7 @@ private extension Home {
     }
     
     var HomeTitle: some View {
-        Text("nap, nap")
+        Text("naptune")
             .font(.napTitle1)
             .foregroundStyle(.napWhite100)
     }
@@ -120,9 +128,9 @@ private extension Home {
             FriendTitle
             
             HStack(spacing: 12) {
-                FriendCircle()
-                FriendCircle()
-                FriendCircle()
+                FriendCircle(name: "fox")
+                FriendCircle(name: "pilot")
+                FriendCircle(name: "prince")
             }
         }
         .padding(.leading, 30)
@@ -134,8 +142,8 @@ private extension Home {
             .foregroundStyle(.napWhite60)
     }
     
-    func FriendCircle() -> some View {
-        Image(.fox)
+    func FriendCircle(name: String) -> some View {
+        Image(name)
             .resizable()
             .scaledToFill()
             .frame(width: 40, height: 40)
@@ -307,6 +315,7 @@ private extension Home {
     var StartNapButton: some View {
         Button {
             timeInterval = Double(getMinuteDifference()*60)
+            timerData.timeInterval = Double(getMinuteDifference() * 60)
             addLiveActivity()
             moveNext = true
         } label: {

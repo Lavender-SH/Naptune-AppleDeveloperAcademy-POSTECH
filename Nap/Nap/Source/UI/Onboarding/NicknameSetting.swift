@@ -131,6 +131,7 @@ private extension NicknameSetting {
     
     var NextButton: some View {
         Button {
+            UserDefaults.standard.set(nickname, forKey: "nickname")
             moveNextStage()
         } label: {
             HStack {

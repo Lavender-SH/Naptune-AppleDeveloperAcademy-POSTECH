@@ -11,6 +11,7 @@
 		02051DDE2C5E559200BAEF10 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 02051DDD2C5E559200BAEF10 /* SnapKit */; };
 		02241D792C5D484100B4A161 /* LavenderCheckSilentModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02241D782C5D484100B4A161 /* LavenderCheckSilentModeView.swift */; };
 		02241D7C2C5D48D900B4A161 /* NapPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02241D7B2C5D48D900B4A161 /* NapPhotoView.swift */; };
+		028ED4DB2C68EA6D00F646B1 /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028ED4DA2C68EA6D00F646B1 /* FeedViewModel.swift */; };
 		02C3FCB72C5882080087A72B /* LavenderProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C3FCB62C5882080087A72B /* LavenderProgressView.swift */; };
 		02C3FCB92C58824E0087A72B /* KDCircularProgressTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C3FCB82C58824E0087A72B /* KDCircularProgressTest.swift */; };
 		02C3FCBC2C5882720087A72B /* KDCircularProgress in Frameworks */ = {isa = PBXBuildFile; productRef = 02C3FCBB2C5882720087A72B /* KDCircularProgress */; };
@@ -23,6 +24,7 @@
 		02C7193F2C61343B001D338E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02C7193E2C61343B001D338E /* Assets.xcassets */; };
 		02C719432C61343B001D338E /* NapStatusExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 02C719322C61343A001D338E /* NapStatusExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		02C719472C613535001D338E /* NapStatusLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C719382C61343A001D338E /* NapStatusLiveActivity.swift */; };
+		02FAF4692C638A1B00A0058A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 02FAF4682C638A1B00A0058A /* GoogleService-Info.plist */; };
 		390283952C5389C500D8ACF5 /* UIScreen+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390283942C5389C500D8ACF5 /* UIScreen+.swift */; };
 		390283992C53C9F600D8ACF5 /* BackgroundImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390283982C53C9F600D8ACF5 /* BackgroundImage.swift */; };
 		3902839D2C553F7A00D8ACF5 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3902839A2C553F7A00D8ACF5 /* Pretendard-SemiBold.otf */; };
@@ -66,7 +68,6 @@
 		926140342C62743B0067B120 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926140332C62743B0067B120 /* AppDelegate.swift */; };
 		926140362C6278DB0067B120 /* FeedRegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926140352C6278DB0067B120 /* FeedRegisterViewModel.swift */; };
 		926140382C6279280067B120 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 926140372C6279280067B120 /* FirebaseFirestoreSwift */; };
-		9261403A2C6299B20067B120 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 926140392C6299B20067B120 /* GoogleService-Info.plist */; };
 		9261403C2C629DCA0067B120 /* NotificationManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9261403B2C629DCA0067B120 /* NotificationManger.swift */; };
 		92EE7B2B2C516785006D0D19 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 92EE7B2A2C516785006D0D19 /* FirebaseAnalytics */; };
 		92EE7B2D2C516785006D0D19 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 92EE7B2C2C516785006D0D19 /* FirebaseAuth */; };
@@ -106,6 +107,7 @@
 		02051DE72C60EA6900BAEF10 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		02241D782C5D484100B4A161 /* LavenderCheckSilentModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LavenderCheckSilentModeView.swift; sourceTree = "<group>"; };
 		02241D7B2C5D48D900B4A161 /* NapPhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NapPhotoView.swift; sourceTree = "<group>"; };
+		028ED4DA2C68EA6D00F646B1 /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
 		02C3FCB62C5882080087A72B /* LavenderProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LavenderProgressView.swift; sourceTree = "<group>"; };
 		02C3FCB82C58824E0087A72B /* KDCircularProgressTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KDCircularProgressTest.swift; sourceTree = "<group>"; };
 		02C719322C61343A001D338E /* NapStatusExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NapStatusExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -115,6 +117,7 @@
 		02C7193C2C61343A001D338E /* AppIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIntent.swift; sourceTree = "<group>"; };
 		02C7193E2C61343B001D338E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		02C719402C61343B001D338E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		02FAF4682C638A1B00A0058A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		390283942C5389C500D8ACF5 /* UIScreen+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+.swift"; sourceTree = "<group>"; };
 		390283982C53C9F600D8ACF5 /* BackgroundImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundImage.swift; sourceTree = "<group>"; };
 		3902839A2C553F7A00D8ACF5 /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
@@ -156,7 +159,6 @@
 		39DBCC3C2C5BF3410039A728 /* MainButtonLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainButtonLabel.swift; sourceTree = "<group>"; };
 		926140332C62743B0067B120 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		926140352C6278DB0067B120 /* FeedRegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FeedRegisterViewModel.swift; path = Nap/Source/UI/NapFeedRegister/FeedRegisterViewModel.swift; sourceTree = SOURCE_ROOT; };
-		926140392C6299B20067B120 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9261403B2C629DCA0067B120 /* NotificationManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManger.swift; sourceTree = "<group>"; };
 		92EE7B2E2C5169E2006D0D19 /* Nap.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Nap.entitlements; sourceTree = "<group>"; };
 		92EE7B312C52B432006D0D19 /* JoseSignupname.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoseSignupname.swift; sourceTree = "<group>"; };
@@ -252,7 +254,7 @@
 			isa = PBXGroup;
 			children = (
 				92EE7B2E2C5169E2006D0D19 /* Nap.entitlements */,
-				926140392C6299B20067B120 /* GoogleService-Info.plist */,
+				02FAF4682C638A1B00A0058A /* GoogleService-Info.plist */,
 				3928CA3E2C509FB500A5A823 /* Resource */,
 				3928CA3F2C509FBD00A5A823 /* Source */,
 				3928CA402C509FC300A5A823 /* Supporting File */,
@@ -396,6 +398,7 @@
 		3928CA512C50A65E00A5A823 /* Feed */ = {
 			isa = PBXGroup;
 			children = (
+				028ED4DA2C68EA6D00F646B1 /* FeedViewModel.swift */,
 				3928CA5A2C50A6BC00A5A823 /* Feed.swift */,
 				3928CA5E2C50E32D00A5A823 /* FeedCard.swift */,
 			);
@@ -556,7 +559,7 @@
 				3928CA382C509EC300A5A823 /* Preview Assets.xcassets in Resources */,
 				3928CA352C509EC300A5A823 /* Assets.xcassets in Resources */,
 				3902839D2C553F7A00D8ACF5 /* Pretendard-SemiBold.otf in Resources */,
-				9261403A2C6299B20067B120 /* GoogleService-Info.plist in Resources */,
+				02FAF4692C638A1B00A0058A /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -616,6 +619,7 @@
 				3928CA572C50A6B000A5A823 /* LavenderHome.swift in Sources */,
 				390283A62C556DB900D8ACF5 /* FeedRegister.swift in Sources */,
 				3928CA312C509EC200A5A823 /* NapApp.swift in Sources */,
+				028ED4DB2C68EA6D00F646B1 /* FeedViewModel.swift in Sources */,
 				02C3FCB92C58824E0087A72B /* KDCircularProgressTest.swift in Sources */,
 				39DBCC3B2C5BE2080039A728 /* Home.swift in Sources */,
 				92EE7B342C52B4EA006D0D19 /* JoseSignuppic.swift in Sources */,
@@ -642,7 +646,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = B9JK9X5522;
+				DEVELOPMENT_TEAM = DBXHWJCYZK;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NapStatus/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = NapStatus;
@@ -655,7 +659,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.Nappp.Nap.NapStatus;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Nappp.Nap.Nap.Nap.NapStatus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -671,7 +675,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = B9JK9X5522;
+				DEVELOPMENT_TEAM = DBXHWJCYZK;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NapStatus/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = NapStatus;
@@ -684,7 +688,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.Nappp.Nap.NapStatus;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Nappp.Nap.Nap.Nap.NapStatus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -823,7 +827,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Nap/Preview Content\"";
-				DEVELOPMENT_TEAM = B9JK9X5522;
+				DEVELOPMENT_TEAM = DBXHWJCYZK;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Nap/Supporting File/Info.plist";
@@ -845,7 +849,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.Nappp.Nap;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Nappp.Nap.Nap.Nap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -868,7 +872,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Nap/Preview Content\"";
-				DEVELOPMENT_TEAM = B9JK9X5522;
+				DEVELOPMENT_TEAM = DBXHWJCYZK;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Nap/Supporting File/Info.plist";
@@ -890,7 +894,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.Nappp.Nap;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Nappp.Nap.Nap.Nap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;

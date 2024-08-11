@@ -13,6 +13,7 @@ import SwiftUI
 
 struct FeedRegister: View {
     
+    @EnvironmentObject var timerData: TimerData
     @Binding var capturedImage: UIImage?
     @Binding var showHome: Bool
     @State var sleepComent: String = ""
@@ -76,7 +77,7 @@ private extension FeedRegister {
     
     var SleepComment: some View {
         VStack(alignment: .leading, spacing: 4) {
-            Text("30분")
+            Text("\(Int(timerData.timeInterval / 60))분")
                 .font(.napCaption2)
                 .foregroundStyle(.napWhite60)
             TextField(text: $sleepComent) {
@@ -154,7 +155,7 @@ private extension FeedRegister {
         Button {
             showHome = true
             Task {
-                await viewModel.uploadPost(capturedImage: capturedImage, sleepComent: sleepComent, sleepStatusLevel: sleepStatusLevel)
+                await viewModel.uploadPost(capturedImage: capturedImage, sleepComent: sleepComent, sleepStatusLevel: sleepStatusLevel, sleepTime: timerData.timeInterval)
             }
         } label: {
             Image(.upload)
