@@ -10,14 +10,15 @@ import SwiftUI
 struct Friend: View {
     
     @State var isListSuspended: Bool = false
-    @State var friendCount: Int = 6
+    @AppStorage("friendCount") var friendCount: Int = 0
     @State var isCodeCopied: Bool = false
     @State var isFriendAdding: Bool = false
     @State var isRequestSuccess: Bool = false
+    @AppStorage("friendAdded") var friendAdded: Bool = false
     
     var body: some View {
         ScrollView {
-            VStack(spacing: 0) {
+            VStack(alignment: .leading, spacing: 0) {
                 Spacer().frame(height: 20)
                 FriendAddSection
                 Spacer().frame(height: 30)
@@ -53,6 +54,9 @@ struct Friend: View {
         .background {
             BackgroundImage(image: Image(.basicBackground))
         }
+        .onChange(of: friendAdded, { oldValue, newValue in
+            friendCount = 1
+        })
         .animation(.snappy,
                    value: isListSuspended)
         .animation(.snappy,
@@ -161,6 +165,7 @@ private extension Friend {
     
     var EditButton: some View {
         Button {
+            friendAdded = true
             print("편집")
         } label: {
             Text("편집")
@@ -172,10 +177,10 @@ private extension Friend {
     var FriendList: some View {
         List {
             ForEach(0..<friendCount, id: \.self) { _ in
-                FriendRow(isSleeping: .constant(true),
+                FriendRow(isSleeping: .constant(false),
                           isAccepted: .constant(false),
-                          profile: .constant(Image(.feedImage1)),
-                          nickName: .constant("자두자두졸린해시"))
+                          profile: .constant(Image(.joseProfile)),
+                          nickName: .constant("강아지똥호세"))
                 .listRowSeparator(.hidden)
                 .listRowInsets(EdgeInsets())
                 .listRowBackground(Color.clear)
@@ -234,7 +239,7 @@ private extension Friend {
     
     var FriendRequestList: some View {
         VStack(spacing: 0) {
-            ForEach(0..<5, id: \.self) { _ in
+            ForEach(0..<0, id: \.self) { _ in
                 FriendRequestRow()
             }
         }

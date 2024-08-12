@@ -65,7 +65,7 @@ struct NapProgress: View {
                                                body: "3분 내에 전화로 낮잠을 깨워주세요!")
                 sendNoti = true
             }
-            if remainingSeconds <= 0 {
+            if remainingSeconds <= 0 && !sendNoti{
                 startCall()
             }
         }
@@ -298,7 +298,7 @@ private extension NapProgress {
         let duration = Double(remainingSeconds)
         Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true) { timer in
             if self.remainingSeconds > 0 {
-                self.remainingSeconds -= 0.05
+                self.remainingSeconds -= 0.5
                 self.progress = (1 - Double(self.remainingSeconds) / duration) * 354
             } else {
                 timer.invalidate()

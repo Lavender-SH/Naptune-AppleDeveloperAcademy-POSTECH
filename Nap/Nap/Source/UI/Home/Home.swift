@@ -32,6 +32,7 @@ struct Home: View {
     @State var toAngle: Double = 180
     @State var startProgress: CGFloat = 0
     @State var toProgress: CGFloat = 0.5
+    @AppStorage("friendAdded") var friendAdded: Bool = false
     
     // MARK: - 햅틱
     @State private var lastHapticAngle: Double = 0
@@ -94,7 +95,7 @@ private extension Home {
                 Text("친구")
                     .font(.napCaption1)
                 Spacer().frame(width: 12)
-                Text("4")
+                Text(friendAdded ? "1" : "0")
                     .font(.napCaption1)
                 Spacer().frame(width: 2)
                 Text("/")
@@ -126,9 +127,13 @@ private extension Home {
             FriendTitle
             
             HStack(spacing: 12) {
-                FriendCircle(name: "fox")
-                FriendCircle(name: "pilot")
-                FriendCircle(name: "prince")
+                if friendAdded {
+                    FriendCircle(name: "JoseProfile")
+                } else {
+                    Rectangle()
+                        .foregroundStyle(.clear)
+                        .frame(width: 40, height: 40)
+                }
             }
         }
         .padding(.leading, 30)
