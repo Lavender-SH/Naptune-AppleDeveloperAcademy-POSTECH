@@ -13,7 +13,7 @@ import AuthenticationServices
 struct NapApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     @AppStorage("firstLaunch") var firstLaunch: Bool = true
-    @AppStorage("isOnboarding") var isLogined: Bool = false
+    @AppStorage("isLogined") var isLogined: Bool = false
     @StateObject private var timerData = TimerData()
     
     var body: some Scene {
@@ -22,7 +22,7 @@ struct NapApp: App {
                 .environmentObject(timerData)
                 .onAppear {
                     let appleIDProvider = ASAuthorizationAppleIDProvider()
-                     appleIDProvider.getCredentialState(forUserID: "/*user의 고유 ID값(xxxxx.xxxxxxxxxx.xxxx)*/") { (credentialState, error) in
+                     appleIDProvider.getCredentialState(forUserID: "79YZRAbKkMS1xGcocTzR3dEROqo2") { (credentialState, error) in
                          switch credentialState {
                              case .authorized:
                                 print("authorized")
