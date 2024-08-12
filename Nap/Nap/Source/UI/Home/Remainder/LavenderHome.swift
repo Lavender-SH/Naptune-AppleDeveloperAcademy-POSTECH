@@ -53,7 +53,7 @@ struct LavenderHome: View {
                                         .aspectRatio(contentMode: .fill)
                                         .frame(width: 20, height: 20)
                                         .foregroundColor(.white)
-                                    Text("친구 4 / 6")
+                                    Text("친구 3 / 6")
                                         .foregroundStyle(.white)
                                 }
                                 .padding(.vertical, 10)

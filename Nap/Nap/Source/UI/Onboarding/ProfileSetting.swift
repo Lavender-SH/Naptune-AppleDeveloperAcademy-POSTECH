@@ -7,6 +7,7 @@
 
 import SwiftUI
 import PhotosUI
+import FirebaseStorage
 
 struct ProfileSetting: View {
     
@@ -118,6 +119,8 @@ private extension ProfileSetting {
                 .clipShape(Circle())
     }
     
+    
+    
     var ImagePickerButton: some View {
         PhotosPicker(selection: $selectedPhotos, matching: .images) {
             Circle()
@@ -138,6 +141,7 @@ private extension ProfileSetting {
                     basicProfileSelected = nil
                     profileUIImage = uiImage
                     profile = Image(uiImage: uiImage)
+                    uploadProfileImage(image: uiImage)
                 } else {
                     profile = Image(basicProfileSelected ?? "fox")
                 }
@@ -150,6 +154,7 @@ private extension ProfileSetting {
             basicProfileSelected = imageName
             profile = Image(imageName)
             profileUIImage = UIImage(named: imageName)
+            uploadProfileImage(image: profileUIImage)
         } label: {
             Image(imageName)
                 .resizable()
@@ -238,6 +243,29 @@ private extension ProfileSetting {
         firstLaunch = false
         firebaseManager.uploadImage(profileImage: profileUIImage)
     }
+    
+    func uploadProfileImage(image: UIImage?) {
+            guard let imageData = image?.jpegData(compressionQuality: 0.5) else { return }
+            let fileName = UUID().uuidString
+            let storageRef = Storage.storage().reference().child("profile_images/\(fileName).jpg")
+            
+            storageRef.putData(imageData, metadata: nil) { metadata, error in
+                guard metadata != nil else {
+                    print("Failed to upload profile image: \(error?.localizedDescription ?? "No error description")")
+                    return
+                }
+                storageRef.downloadURL { url, error in
+                    guard let downloadURL = url else {
+                        print("Failed to get download URL: \(error?.localizedDescription ?? "No error description")")
+                        return
+                    }
+                    UserDefaults.standard.set(downloadURL.absoluteString, forKey: "profileImageUrl")
+                }
+            }
+        }
+    
+ 
+
 }
 
 #Preview {

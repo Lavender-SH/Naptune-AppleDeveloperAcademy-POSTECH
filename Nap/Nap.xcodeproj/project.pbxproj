@@ -11,6 +11,8 @@
 		02051DDE2C5E559200BAEF10 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 02051DDD2C5E559200BAEF10 /* SnapKit */; };
 		02241D792C5D484100B4A161 /* LavenderCheckSilentModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02241D782C5D484100B4A161 /* LavenderCheckSilentModeView.swift */; };
 		02241D7C2C5D48D900B4A161 /* NapPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02241D7B2C5D48D900B4A161 /* NapPhotoView.swift */; };
+		028ED4DB2C68EA6D00F646B1 /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028ED4DA2C68EA6D00F646B1 /* FeedViewModel.swift */; };
+		02A959362C6A34090012105E /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02A959352C6A34090012105E /* Launch Screen.storyboard */; };
 		02C3FCB72C5882080087A72B /* LavenderProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C3FCB62C5882080087A72B /* LavenderProgressView.swift */; };
 		02C3FCB92C58824E0087A72B /* KDCircularProgressTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C3FCB82C58824E0087A72B /* KDCircularProgressTest.swift */; };
 		02C3FCBC2C5882720087A72B /* KDCircularProgress in Frameworks */ = {isa = PBXBuildFile; productRef = 02C3FCBB2C5882720087A72B /* KDCircularProgress */; };
@@ -23,6 +25,7 @@
 		02C7193F2C61343B001D338E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02C7193E2C61343B001D338E /* Assets.xcassets */; };
 		02C719432C61343B001D338E /* NapStatusExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 02C719322C61343A001D338E /* NapStatusExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		02C719472C613535001D338E /* NapStatusLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C719382C61343A001D338E /* NapStatusLiveActivity.swift */; };
+		02FAF4692C638A1B00A0058A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 02FAF4682C638A1B00A0058A /* GoogleService-Info.plist */; };
 		390283952C5389C500D8ACF5 /* UIScreen+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390283942C5389C500D8ACF5 /* UIScreen+.swift */; };
 		390283992C53C9F600D8ACF5 /* BackgroundImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390283982C53C9F600D8ACF5 /* BackgroundImage.swift */; };
 		3902839D2C553F7A00D8ACF5 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3902839A2C553F7A00D8ACF5 /* Pretendard-SemiBold.otf */; };
@@ -43,7 +46,6 @@
 		3928CA382C509EC300A5A823 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3928CA372C509EC300A5A823 /* Preview Assets.xcassets */; };
 		3928CA4A2C50A48C00A5A823 /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928CA492C50A48C00A5A823 /* View+.swift */; };
 		3928CA4E2C50A58900A5A823 /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928CA4D2C50A58900A5A823 /* HapticManager.swift */; };
-		3928CA502C50A63100A5A823 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3928CA4F2C50A63100A5A823 /* Launch Screen.storyboard */; };
 		3928CA552C50A69200A5A823 /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928CA542C50A69200A5A823 /* Onboarding.swift */; };
 		3928CA572C50A6B000A5A823 /* LavenderHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928CA562C50A6B000A5A823 /* LavenderHome.swift */; };
 		3928CA592C50A6B800A5A823 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3928CA582C50A6B800A5A823 /* Friend.swift */; };
@@ -58,8 +60,6 @@
 		3999BE462C57DA5A00C48F68 /* NicknameSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3999BE452C57DA5A00C48F68 /* NicknameSetting.swift */; };
 		3999BE482C5811E700C48F68 /* ProfileSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3999BE472C5811E700C48F68 /* ProfileSetting.swift */; };
 		3999BE4C2C588A0C00C48F68 /* JoseOnboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3999BE4B2C588A0C00C48F68 /* JoseOnboarding.swift */; };
-		39B6B69A2C63E19E00D80BD9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 39B6B6992C63E19E00D80BD9 /* GoogleService-Info.plist */; };
-		39B6B69B2C63E19E00D80BD9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 39B6B6992C63E19E00D80BD9 /* GoogleService-Info.plist */; };
 		39B6B69D2C63EA1600D80BD9 /* Splash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B6B69C2C63EA1600D80BD9 /* Splash.swift */; };
 		39DBCC392C5BA8400039A728 /* StepSlider in Frameworks */ = {isa = PBXBuildFile; productRef = 39DBCC382C5BA8400039A728 /* StepSlider */; };
 		39DBCC3B2C5BE2080039A728 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DBCC3A2C5BE2080039A728 /* Home.swift */; };
@@ -108,6 +108,8 @@
 		02051DE72C60EA6900BAEF10 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		02241D782C5D484100B4A161 /* LavenderCheckSilentModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LavenderCheckSilentModeView.swift; sourceTree = "<group>"; };
 		02241D7B2C5D48D900B4A161 /* NapPhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NapPhotoView.swift; sourceTree = "<group>"; };
+		028ED4DA2C68EA6D00F646B1 /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
+		02A959352C6A34090012105E /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		02C3FCB62C5882080087A72B /* LavenderProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LavenderProgressView.swift; sourceTree = "<group>"; };
 		02C3FCB82C58824E0087A72B /* KDCircularProgressTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KDCircularProgressTest.swift; sourceTree = "<group>"; };
 		02C719322C61343A001D338E /* NapStatusExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NapStatusExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -117,6 +119,7 @@
 		02C7193C2C61343A001D338E /* AppIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIntent.swift; sourceTree = "<group>"; };
 		02C7193E2C61343B001D338E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		02C719402C61343B001D338E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		02FAF4682C638A1B00A0058A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		390283942C5389C500D8ACF5 /* UIScreen+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+.swift"; sourceTree = "<group>"; };
 		390283982C53C9F600D8ACF5 /* BackgroundImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundImage.swift; sourceTree = "<group>"; };
 		3902839A2C553F7A00D8ACF5 /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
@@ -139,7 +142,6 @@
 		3928CA372C509EC300A5A823 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		3928CA492C50A48C00A5A823 /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
 		3928CA4D2C50A58900A5A823 /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
-		3928CA4F2C50A63100A5A823 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		3928CA542C50A69200A5A823 /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
 		3928CA562C50A6B000A5A823 /* LavenderHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LavenderHome.swift; sourceTree = "<group>"; };
 		3928CA582C50A6B800A5A823 /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
@@ -154,7 +156,6 @@
 		3999BE452C57DA5A00C48F68 /* NicknameSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameSetting.swift; sourceTree = "<group>"; };
 		3999BE472C5811E700C48F68 /* ProfileSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSetting.swift; sourceTree = "<group>"; };
 		3999BE4B2C588A0C00C48F68 /* JoseOnboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoseOnboarding.swift; sourceTree = "<group>"; };
-		39B6B6992C63E19E00D80BD9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Desktop/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		39B6B69C2C63EA1600D80BD9 /* Splash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Splash.swift; sourceTree = "<group>"; };
 		39DBCC3A2C5BE2080039A728 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		39DBCC3C2C5BF3410039A728 /* MainButtonLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainButtonLabel.swift; sourceTree = "<group>"; };
@@ -255,7 +256,7 @@
 			isa = PBXGroup;
 			children = (
 				92EE7B2E2C5169E2006D0D19 /* Nap.entitlements */,
-				39B6B6992C63E19E00D80BD9 /* GoogleService-Info.plist */,
+				02FAF4682C638A1B00A0058A /* GoogleService-Info.plist */,
 				3928CA3E2C509FB500A5A823 /* Resource */,
 				3928CA3F2C509FBD00A5A823 /* Source */,
 				3928CA402C509FC300A5A823 /* Supporting File */,
@@ -268,6 +269,7 @@
 			isa = PBXGroup;
 			children = (
 				3928CA372C509EC300A5A823 /* Preview Assets.xcassets */,
+				02A959352C6A34090012105E /* Launch Screen.storyboard */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -297,7 +299,6 @@
 			isa = PBXGroup;
 			children = (
 				390283A02C553F8A00D8ACF5 /* Info.plist */,
-				3928CA4F2C50A63100A5A823 /* Launch Screen.storyboard */,
 			);
 			path = "Supporting File";
 			sourceTree = "<group>";
@@ -399,6 +400,7 @@
 		3928CA512C50A65E00A5A823 /* Feed */ = {
 			isa = PBXGroup;
 			children = (
+				028ED4DA2C68EA6D00F646B1 /* FeedViewModel.swift */,
 				3928CA5A2C50A6BC00A5A823 /* Feed.swift */,
 				3928CA5E2C50E32D00A5A823 /* FeedCard.swift */,
 			);
@@ -547,7 +549,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				02C7193F2C61343B001D338E /* Assets.xcassets in Resources */,
-				39B6B69B2C63E19E00D80BD9 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -555,13 +556,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3928CA502C50A63100A5A823 /* Launch Screen.storyboard in Resources */,
-				39B6B69A2C63E19E00D80BD9 /* GoogleService-Info.plist in Resources */,
 				3902839F2C553F7A00D8ACF5 /* Pretendard-Bold.otf in Resources */,
 				3902839E2C553F7A00D8ACF5 /* Pretendard-Medium.otf in Resources */,
 				3928CA382C509EC300A5A823 /* Preview Assets.xcassets in Resources */,
 				3928CA352C509EC300A5A823 /* Assets.xcassets in Resources */,
 				3902839D2C553F7A00D8ACF5 /* Pretendard-SemiBold.otf in Resources */,
+				02FAF4692C638A1B00A0058A /* GoogleService-Info.plist in Resources */,
+				02A959362C6A34090012105E /* Launch Screen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -622,6 +623,7 @@
 				3928CA572C50A6B000A5A823 /* LavenderHome.swift in Sources */,
 				390283A62C556DB900D8ACF5 /* FeedRegister.swift in Sources */,
 				3928CA312C509EC200A5A823 /* NapApp.swift in Sources */,
+				028ED4DB2C68EA6D00F646B1 /* FeedViewModel.swift in Sources */,
 				02C3FCB92C58824E0087A72B /* KDCircularProgressTest.swift in Sources */,
 				39DBCC3B2C5BE2080039A728 /* Home.swift in Sources */,
 				92EE7B342C52B4EA006D0D19 /* JoseSignuppic.swift in Sources */,
@@ -648,7 +650,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = B9JK9X5522;
+				DEVELOPMENT_TEAM = DBXHWJCYZK;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NapStatus/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = NapStatus;
@@ -661,7 +663,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.Nappp.Nap.NapStatus;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Nappp.Nap.Nap.Nap.NapStatus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -677,7 +679,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = B9JK9X5522;
+				DEVELOPMENT_TEAM = DBXHWJCYZK;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NapStatus/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = NapStatus;
@@ -690,7 +692,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.Nappp.Nap.NapStatus;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Nappp.Nap.Nap.Nap.NapStatus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -829,7 +831,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Nap/Preview Content\"";
-				DEVELOPMENT_TEAM = B9JK9X5522;
+				DEVELOPMENT_TEAM = DBXHWJCYZK;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Nap/Supporting File/Info.plist";
@@ -851,7 +853,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.Nappp.Nap;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Nappp.Nap.Nap.Nap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -874,7 +876,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Nap/Preview Content\"";
-				DEVELOPMENT_TEAM = B9JK9X5522;
+				DEVELOPMENT_TEAM = DBXHWJCYZK;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Nap/Supporting File/Info.plist";
@@ -896,7 +898,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.Nappp.Nap;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Nappp.Nap.Nap.Nap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
