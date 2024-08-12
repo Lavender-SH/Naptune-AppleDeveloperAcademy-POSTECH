@@ -87,7 +87,7 @@ private extension Friend {
     var MyCode: some View {
         HStack(spacing: 0) {
             Spacer()
-            Text("FQ9XH")
+            Text("GODJE")
                 .font(.napLargeTitle)
                 .foregroundStyle(.napWhite80)
                 .overlay(alignment: .trailing) {
@@ -337,7 +337,7 @@ private extension Friend {
     
     func codeCopy() {
         isCodeCopied = true
-        UIPasteboard.general.string = "FQ9XH"
+        UIPasteboard.general.string = "GODJE"
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             isCodeCopied = false
         }
