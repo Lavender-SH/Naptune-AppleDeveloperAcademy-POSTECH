@@ -20,7 +20,9 @@ struct NapProgress: View {
     @State private var showRemainTime: Bool = false
     @State private var resetTimer: Timer? = nil
     @State private var showCameraView: Bool = false
+    @State private var sendNoti: Bool = false
     
+    let firebaseManager = FirebaseManager.shared
     let currentDate: Date = Date()
     
     var body: some View {
@@ -57,6 +59,12 @@ struct NapProgress: View {
         }
         .onChange(of: remainingSeconds) { _, _ in
             updateLiveActivity()
+            //print(Date().formatted(date: .omitted, time: .complete))
+            if remainingSeconds <= 180 && !sendNoti {
+                firebaseManager.fetchAuthToken(title: "친구가 일어날 시간이에요!",
+                                               body: "3분 내에 전화로 낮잠을 깨워주세요!")
+                sendNoti = true
+            }
             if remainingSeconds <= 0 {
                 startCall()
             }
@@ -288,9 +296,9 @@ private extension NapProgress {
     // MARK: -  프로그레스바 함수
     func startProgress() {
         let duration = Double(remainingSeconds)
-        Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) { timer in
+        Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true) { timer in
             if self.remainingSeconds > 0 {
-                self.remainingSeconds -= 0.01
+                self.remainingSeconds -= 0.05
                 self.progress = (1 - Double(self.remainingSeconds) / duration) * 354
             } else {
                 timer.invalidate()
@@ -309,6 +317,12 @@ private extension NapProgress {
         let remainingSeconds = seconds % 60
         
         return String(format: "%01d:%02d:%02d", hours, minutes, remainingSeconds)
+    }
+    
+    func remainMinute(_ seconds: Int) -> String {
+        let minutes = (seconds / 60) % 60
+        
+        return String(format: "%02d", minutes)
     }
     
     func startCall() {

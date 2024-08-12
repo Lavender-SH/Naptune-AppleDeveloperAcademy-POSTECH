@@ -15,9 +15,9 @@ struct SilentModeCheckView: View {
     @Environment(\.presentationMode) var presentationMode
     @Binding var timeInterval: Double
     @State var showHome: Bool = false
-    @State private var resultMessage = ""
-    @State private var authToken: String? = nil
     @State private var moveNext: Bool = false
+    
+    let firebaseManager = FirebaseManager.shared
     
     var body: some View {
         VStack(spacing: 0) {
@@ -35,9 +35,9 @@ struct SilentModeCheckView: View {
         }
         .toolbar(.hidden, for: .navigationBar)
         .onChange(of: showHome) { _, _ in
-//            if showHome {
-//                dismissView()
-//            }
+            if showHome {
+                dismissView()
+            }
         }
         .navigationDestination(isPresented: $moveNext) {
             NapProgress(timeInterval: $timeInterval, showHome: $showHome)
@@ -112,69 +112,14 @@ private extension SilentModeCheckView {
     
     func moveNextAndNoti() {
         moveNext = true
-        fetchAuthToken { token in
-            self.authToken = token
-            sendPushNotification(authToken: token)
-        }
+        firebaseManager.fetchAuthToken(title: "친구가 잠들었어요!",
+                                       body: "\(wakeupTime().formatted(date: .omitted, time: .shortened))에 전화로 낮잠을 깨워주세요!")
     }
     
     func wakeupTime() -> Date {
         let now = Date()
         return Calendar.current.date(byAdding: .second, value: Int(timeInterval), to: now) ?? now
     }
-    
-    //---------------------노티관련 함수--------------------------------
-    func fetchAuthToken(completion: @escaping (String?) -> Void) {
-        if let currentUser = Auth.auth().currentUser {
-            currentUser.getIDToken { token, error in
-                if let error = error {
-                    print("Error fetching ID token: \(error.localizedDescription)")
-                    completion(nil)
-                } else {
-                    completion(token)
-                }
-            }
-        } else {
-            print("No user is signed in")
-            completion(nil)
-        }
-    }
-    
-    func sendPushNotification(authToken: String?) {
-        guard let authToken = authToken else {
-            resultMessage = "No auth token available"
-            return
-        }
-        
-        let functions = Functions.functions(region: "asia-northeast3")
-        let data: [String: Any] = [
-            "token": "cHxCg2Sqt0H7nHd6uaxszH:APA91bGaqsaDFeYc11ds7ie96G5kM801xPTfsVJnIORfP69wSXEQot71c1KYlcLcozzgQ-I6tC_pO99VcZwWXx1DeoXoygFR-ctCpfYIGhyZsS_dfBVUjTWk3IUgx1yOUHAFQvdCPXP9", // 사용자 FCM 토큰으로 변경, 사용자마다 고유의 토큰값을 가져서 users에 변수로 변경이 필요할거 같다
-            "title": "친구가 잠들었어요!",
-            "body": "\(wakeupTime().formatted(date: .omitted, time: .shortened))에 전화로 낮잠을 깨워주세요!"
-        ]
-        
-        functions.httpsCallable("sendPushNotification").call(data) { result, error in
-            if let error = error as NSError? {
-                print("Error sending push notification: \(error.localizedDescription)")
-                DispatchQueue.main.async {
-                    resultMessage = "Error sending push notification: \(error.localizedDescription)"
-                }
-                return
-            }
-            
-            if let response = result?.data as? [String: Any], let responseMessage = response["response"] as? String {
-                print("Response: \(responseMessage)")
-                DispatchQueue.main.async {
-                    resultMessage = responseMessage
-                }
-            } else {
-                DispatchQueue.main.async {
-                    resultMessage = "Unknown response"
-                }
-            }
-        }
-    }
-    //--------------------------------------노티관련 함수----------------------------------------
 }
 
 #Preview {

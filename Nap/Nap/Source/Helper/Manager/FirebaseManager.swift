@@ -9,6 +9,7 @@ import SwiftUI
 import Firebase
 import CryptoKit
 import AuthenticationServices
+import FirebaseFunctions
 import FirebaseFirestore
 import FirebaseStorage
 import FirebaseAuth
@@ -139,4 +140,47 @@ class FirebaseManager {
             }
         }
     }
+    
+    //---------------------노티관련 함수--------------------------------
+    func fetchAuthToken(title: String, body: String) {
+        if let currentUser = Auth.auth().currentUser {
+            currentUser.getIDToken { token, error in
+                if let error = error {
+                    print("Error fetching ID token: \(error.localizedDescription)")
+                } else {
+                    self.sendPushNotification(authToken: token, title: title, body: body)
+                }
+            }
+        } else {
+            print("No user is signed in")
+        }
+    }
+    
+    func sendPushNotification(authToken: String?, title: String, body: String) {
+        guard authToken != nil else {
+            print("No auth token available")
+            return
+        }
+        
+        let functions = Functions.functions(region: "asia-northeast3")
+        let data: [String: Any] = [
+            "token": "en-D10zyyElmpLUdF7Wrfe:APA91bG78GGDxG5H0ipNAhOKzX6Dx7QmB4CTTZgaeNIFkBPZC469VJ_bDzMnlys-Q4t0aZv1XarFGoyL6GYnljfC1HHeD3wG3TZds58DCusGEhAf88mdPPWqCflZ4dnFQvrRI4zXg3lB", // 사용자 FCM 토큰으로 변경, 사용자마다 고유의 토큰값을 가져서 users에 변수로 변경이 필요할거 같다
+            "title": title,
+            "body": body
+        ]
+        
+        functions.httpsCallable("sendPushNotification").call(data) { result, error in
+            if let error = error as NSError? {
+                print("Error sending push notification: \(error.localizedDescription)")
+                return
+            }
+            
+            if let response = result?.data as? [String: Any], let responseMessage = response["response"] as? String {
+                print("Success: \(responseMessage)")
+            } else {
+                print("Unknown response")
+            }
+        }
+    }
+    //--------------------------------------노티관련 함수----------------------------------------
 }
