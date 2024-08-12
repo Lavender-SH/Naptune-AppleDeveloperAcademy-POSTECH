@@ -76,7 +76,7 @@ struct NapPhotoView: UIViewControllerRepresentable {
         cancelButton.layer.borderWidth = 1
         cancelButton.layer.borderColor = UIColor.napWhite10.cgColor
         cancelButton.addTarget(context.coordinator, action: #selector(CameraCoordinator.cancelButtonTapped), for: .touchUpInside)
-       
+        
         // SnapKit으로 취소 버튼 레이아웃 설정
         cancelButton.snp.makeConstraints { make in
             make.width.height.equalTo(cancelSwitchButtonHeight)
@@ -141,7 +141,35 @@ class CameraCoordinator: NSObject, AVCapturePhotoCaptureDelegate {
         self.parent = parent
         self.cameraView = cameraView
         super.init()
-        setupPhotoOutput() // 사진 출력을 설정하는 메서드 호출
+        setupCameraSession()
+        //setupPhotoOutput() // 사진 출력을 설정하는 메서드 호출
+    }
+    
+    private func setupCameraSession() {
+        guard let frontCamera = getCameraDevice(position: .front) else {
+            print("Front camera is not available.")
+            return
+        }
+        
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            do {
+                let frontCameraInput = try AVCaptureDeviceInput(device: frontCamera)
+                
+                self?.cameraView.captureSession.beginConfiguration()
+                
+                if self?.cameraView.captureSession.canAddInput(frontCameraInput) == true {
+                    self?.cameraView.captureSession.addInput(frontCameraInput)
+                }
+                
+                self?.setupPhotoOutput()
+                
+                self?.cameraView.captureSession.commitConfiguration()
+                
+                self?.cameraView.captureSession.startRunning()
+            } catch {
+                print("Error setting up front camera: \(error)")
+            }
+        }
     }
     
     // 사진 출력을 설정하는 메서드
@@ -156,7 +184,7 @@ class CameraCoordinator: NSObject, AVCapturePhotoCaptureDelegate {
         
         cameraView.captureSession.commitConfiguration() // 캡처 세션 구성 완료
     }
-
+    
     // 셔터 버튼이 눌렸을 때 호출되는 메서드
     @objc func shutterButtonTapped() {
         let settings = AVCapturePhotoSettings() // 사진 촬영 설정 생성
@@ -203,25 +231,28 @@ class CameraCoordinator: NSObject, AVCapturePhotoCaptureDelegate {
     
     // MARK: - 사진 찍고 프리뷰에 보여주는 로직
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
-        // 에러가 없고 사진 데이터가 존재하는지 확인
         guard error == nil, let data = photo.fileDataRepresentation(), let image = UIImage(data: data) else {
-            print("Error capturing photo: \(String(describing: error))") // 에러 발생 시 에러 출력
+            print("Error capturing photo: \(String(describing: error))")
             return
         }
-        
-        capturedImage = image // 캡처된 이미지 저장
-        parent.capturedImage = image
-        // 캡처된 이미지를 CameraPreview의 imageView에 설정
+
+        var finalImage = image
+
+        // 전면 카메라에서 촬영된 이미지인지 확인 후, 좌우 대칭 처리
+        if let currentInput = cameraView.captureSession.inputs.first as? AVCaptureDeviceInput, currentInput.device.position == .front {
+            if let cgImage = image.cgImage {
+                finalImage = UIImage(cgImage: cgImage, scale: image.scale, orientation: .leftMirrored)
+            }
+        }
+
+        // 최종 이미지를 설정
+        capturedImage = finalImage
+        parent.capturedImage = finalImage
+
         DispatchQueue.main.async {
-            self.cameraView.capturedImageView.image = image
+            self.cameraView.capturedImageView.image = finalImage
         }
     }
+
+    
 }
-
-
-
-
-
-
-
-
