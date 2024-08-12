@@ -62,6 +62,7 @@ private extension FriendRow {
     var AwakeAcceptButton: some View {
         Button {
             print("낮잠 깨워주기")
+            isAccepted = true
         } label: {
             BlueButtonLabel(text: "낮잠 깨워주기")
         }
@@ -71,7 +72,7 @@ private extension FriendRow {
         HStack(spacing: 4) {
             Image(.clock)
                 .foregroundStyle(.napBlue100)
-            Text("24:50")
+            Text("9:41")
                 .foregroundStyle(.napBlue100)
                 .font(.napCaption1)
         }

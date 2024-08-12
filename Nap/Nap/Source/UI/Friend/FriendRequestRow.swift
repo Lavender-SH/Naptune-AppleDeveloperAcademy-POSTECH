@@ -9,6 +9,9 @@ import SwiftUI
 
 struct FriendRequestRow: View {
     
+    @AppStorage("friendRequestedCount") var friendRequestedCount: Int = 0
+    @AppStorage("friendAdded") var friendAdded: Bool = false
+    
     var body: some View {
         HStack(spacing: 16) {
             ProfileImage
@@ -22,7 +25,7 @@ struct FriendRequestRow: View {
 
 private extension FriendRequestRow {
     var ProfileImage: some View {
-        Image(.feedImage1)
+        Image(.nagiProfile)
             .resizable()
             .scaledToFill()
             .frame(width: 48, height: 48)
@@ -43,6 +46,8 @@ private extension FriendRequestRow {
     var AcceptButton: some View {
         Button {
             print("친구 수락")
+            friendAdded = true
+            friendRequestedCount = 0
         } label: {
             BlueButtonLabel(text: "수락")
         }

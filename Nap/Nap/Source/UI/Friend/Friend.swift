@@ -10,14 +10,20 @@ import SwiftUI
 struct Friend: View {
     
     @State var isListSuspended: Bool = false
-    @State var friendCount: Int = 6
+    @AppStorage("friendCount") var friendCount: Int = 3
     @State var isCodeCopied: Bool = false
     @State var isFriendAdding: Bool = false
     @State var isRequestSuccess: Bool = false
     
+    @AppStorage("friendAdded") var friendAdded: Bool = false
+    @AppStorage("friendRequestedCount") var friendRequestedCount: Int = 0
+    @AppStorage("NagiStartSleeping") var NagiStartSleeping: Bool = false
+    @AppStorage("NagiAcceptSleeping") var NagiAcceptSleeping: Bool = false
+    
+    
     var body: some View {
         ScrollView {
-            VStack(spacing: 0) {
+            VStack(alignment: .leading, spacing: 0) {
                 Spacer().frame(height: 20)
                 FriendAddSection
                 Spacer().frame(height: 30)
@@ -53,6 +59,9 @@ struct Friend: View {
         .background {
             BackgroundImage(image: Image(.basicBackground))
         }
+        .onChange(of: friendAdded, { oldValue, newValue in
+            friendCount += 1
+        })
         .animation(.snappy,
                    value: isListSuspended)
         .animation(.snappy,
@@ -162,6 +171,12 @@ private extension Friend {
     var EditButton: some View {
         Button {
             print("편집")
+            if !friendAdded {
+                friendRequestedCount = 1
+            }
+            if friendAdded {
+                NagiStartSleeping = true
+            }
         } label: {
             Text("편집")
                 .font(.napCaption1)
@@ -171,11 +186,46 @@ private extension Friend {
     
     var FriendList: some View {
         List {
-            ForEach(0..<friendCount, id: \.self) { _ in
-                FriendRow(isSleeping: .constant(true),
-                          isAccepted: .constant(false),
-                          profile: .constant(Image(.feedImage1)),
-                          nickName: .constant("자두자두졸린해시"))
+            FriendRow(isSleeping: .constant(true),
+                      isAccepted: .constant(true),
+                      profile: .constant(Image(.hashProfile)),
+                      nickName: .constant("자두자두졸린해시"))
+            .listRowSeparator(.hidden)
+            .listRowInsets(EdgeInsets())
+            .listRowBackground(Color.clear)
+            .swipeActions(edge: .trailing,
+                          allowsFullSwipe: false) {
+                DeleteButton()
+            }
+            
+            FriendRow(isSleeping: .constant(false),
+                      isAccepted: .constant(false),
+                      profile: .constant(Image(.leoProfile)),
+                      nickName: .constant("레오지롱"))
+            .listRowSeparator(.hidden)
+            .listRowInsets(EdgeInsets())
+            .listRowBackground(Color.clear)
+            .swipeActions(edge: .trailing,
+                          allowsFullSwipe: false) {
+                DeleteButton()
+            }
+            
+            FriendRow(isSleeping: .constant(false),
+                      isAccepted: .constant(false),
+                      profile: .constant(Image(.lavenderProfile)),
+                      nickName: .constant("집게사장라벤더"))
+            .listRowSeparator(.hidden)
+            .listRowInsets(EdgeInsets())
+            .listRowBackground(Color.clear)
+            .swipeActions(edge: .trailing,
+                          allowsFullSwipe: false) {
+                DeleteButton()
+            }
+            if friendAdded {
+                FriendRow(isSleeping: $NagiStartSleeping,
+                          isAccepted: $NagiAcceptSleeping,
+                          profile: .constant(Image(.nagiProfile)),
+                          nickName: .constant("쿨쿨나기"))
                 .listRowSeparator(.hidden)
                 .listRowInsets(EdgeInsets())
                 .listRowBackground(Color.clear)
@@ -234,7 +284,7 @@ private extension Friend {
     
     var FriendRequestList: some View {
         VStack(spacing: 0) {
-            ForEach(0..<5, id: \.self) { _ in
+            ForEach(0..<friendRequestedCount, id: \.self) { _ in
                 FriendRequestRow()
             }
         }

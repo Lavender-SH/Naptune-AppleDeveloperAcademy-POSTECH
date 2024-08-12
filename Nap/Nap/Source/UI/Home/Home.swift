@@ -33,6 +33,8 @@ struct Home: View {
     @State var startProgress: CGFloat = 0
     @State var toProgress: CGFloat = 0.5
     
+    @AppStorage("friendAdded") var friendAdded: Bool = false
+    
     // MARK: - 햅틱
     @State private var lastHapticAngle: Double = 0
     
@@ -94,7 +96,7 @@ private extension Home {
                 Text("친구")
                     .font(.napCaption1)
                 Spacer().frame(width: 12)
-                Text("4")
+                Text(friendAdded ? "4" : "3")
                     .font(.napCaption1)
                 Spacer().frame(width: 2)
                 Text("/")
@@ -126,9 +128,9 @@ private extension Home {
             FriendTitle
             
             HStack(spacing: 12) {
-                FriendCircle(name: "fox")
-                FriendCircle(name: "pilot")
-                FriendCircle(name: "prince")
+                
+                FriendCircle(name: "LavenderProfile")
+                FriendCircle(name: "LeoProfile")
             }
         }
         .padding(.leading, 30)
@@ -227,7 +229,7 @@ private extension Home {
             ForEach(1...60, id: \.self) { index in
                 Rectangle()
                     .fill(index % 5 == 0 ? .napWhite100
-                                         : .napWhite20)
+                          : .napWhite20)
                 // Each hour will have big Line
                 // 60/5 = 12
                 // 12 Hours
@@ -302,7 +304,7 @@ private extension Home {
                 )
                 .rotationEffect(.init(degrees: -90))
             
-                Text(formatTime(getMinuteDifference()*60))
+            Text(formatTime(getMinuteDifference()*60))
                 .font(.napDisplay)
                 .foregroundStyle(.napWhite100)
         }
@@ -322,21 +324,21 @@ private extension Home {
     }
     
     var MoveFeedButton: some View {
-//        Button {
-//            print("화면 내려가기")
-//        } label: {
-            HStack(alignment: .center) {
-                Spacer()
-                VStack(spacing: 1) {
-                    Image(.chevronUp)
-                        .rotationEffect(.degrees(180))
-                    Text("친구들 낮잠 피드 보러가기")
-                        .font(.napCaption1)
-                }
-                .foregroundStyle(.napWhite60)
-                .padding(.vertical, 13)
-                Spacer()
+        //        Button {
+        //            print("화면 내려가기")
+        //        } label: {
+        HStack(alignment: .center) {
+            Spacer()
+            VStack(spacing: 1) {
+                Image(.chevronUp)
+                    .rotationEffect(.degrees(180))
+                Text("친구들 낮잠 피드 보러가기")
+                    .font(.napCaption1)
             }
+            .foregroundStyle(.napWhite60)
+            .padding(.vertical, 13)
+            Spacer()
+        }
         //}
     }
     
@@ -415,7 +417,7 @@ private extension Home {
         }
     }
     
-
+    
     
     var topMargin: CGFloat {
         UIScreen.isSE ? 20 : 54

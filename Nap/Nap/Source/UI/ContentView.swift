@@ -9,7 +9,8 @@ import SwiftUI
 
 struct ContentView: View {
     @State var isLoading: Bool = true
-    @AppStorage("firstLaunch") var firstLaunch: Bool = true
+    @AppStorage("firstLaunch") var firstLaunch: Bool = false
+    @AppStorage("friendAdded") var friendAdded: Bool = false
     //@AppStorage("isOnboarding") var isLogined: Bool = false
     
     var body: some View {
