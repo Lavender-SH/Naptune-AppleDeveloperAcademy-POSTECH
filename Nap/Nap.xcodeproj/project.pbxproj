@@ -60,6 +60,9 @@
 		3999BE462C57DA5A00C48F68 /* NicknameSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3999BE452C57DA5A00C48F68 /* NicknameSetting.swift */; };
 		3999BE482C5811E700C48F68 /* ProfileSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3999BE472C5811E700C48F68 /* ProfileSetting.swift */; };
 		3999BE4C2C588A0C00C48F68 /* JoseOnboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3999BE4B2C588A0C00C48F68 /* JoseOnboarding.swift */; };
+		39B6B69A2C63E19E00D80BD9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 39B6B6992C63E19E00D80BD9 /* GoogleService-Info.plist */; };
+		39B6B69B2C63E19E00D80BD9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 39B6B6992C63E19E00D80BD9 /* GoogleService-Info.plist */; };
+		39B6B69D2C63EA1600D80BD9 /* Splash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B6B69C2C63EA1600D80BD9 /* Splash.swift */; };
 		39DBCC392C5BA8400039A728 /* StepSlider in Frameworks */ = {isa = PBXBuildFile; productRef = 39DBCC382C5BA8400039A728 /* StepSlider */; };
 		39DBCC3B2C5BE2080039A728 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DBCC3A2C5BE2080039A728 /* Home.swift */; };
 		39DBCC3D2C5BF3410039A728 /* MainButtonLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DBCC3C2C5BF3410039A728 /* MainButtonLabel.swift */; };
@@ -155,6 +158,8 @@
 		3999BE452C57DA5A00C48F68 /* NicknameSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameSetting.swift; sourceTree = "<group>"; };
 		3999BE472C5811E700C48F68 /* ProfileSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSetting.swift; sourceTree = "<group>"; };
 		3999BE4B2C588A0C00C48F68 /* JoseOnboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoseOnboarding.swift; sourceTree = "<group>"; };
+		39B6B6992C63E19E00D80BD9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Desktop/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		39B6B69C2C63EA1600D80BD9 /* Splash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Splash.swift; sourceTree = "<group>"; };
 		39DBCC3A2C5BE2080039A728 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		39DBCC3C2C5BF3410039A728 /* MainButtonLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainButtonLabel.swift; sourceTree = "<group>"; };
 		926140332C62743B0067B120 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -422,6 +427,7 @@
 				3928CA542C50A69200A5A823 /* Onboarding.swift */,
 				3999BE452C57DA5A00C48F68 /* NicknameSetting.swift */,
 				3999BE472C5811E700C48F68 /* ProfileSetting.swift */,
+				39B6B69C2C63EA1600D80BD9 /* Splash.swift */,
 				39B4A7442C5B8774006B6E74 /* Remainder */,
 			);
 			path = Onboarding;
@@ -546,6 +552,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				02C7193F2C61343B001D338E /* Assets.xcassets in Resources */,
+				39B6B69B2C63E19E00D80BD9 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -554,6 +561,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3928CA502C50A63100A5A823 /* Launch Screen.storyboard in Resources */,
+				39B6B69A2C63E19E00D80BD9 /* GoogleService-Info.plist in Resources */,
 				3902839F2C553F7A00D8ACF5 /* Pretendard-Bold.otf in Resources */,
 				3902839E2C553F7A00D8ACF5 /* Pretendard-Medium.otf in Resources */,
 				3928CA382C509EC300A5A823 /* Preview Assets.xcassets in Resources */,
@@ -615,6 +623,7 @@
 				3999BE4C2C588A0C00C48F68 /* JoseOnboarding.swift in Sources */,
 				3928CA4E2C50A58900A5A823 /* HapticManager.swift in Sources */,
 				391A428F2C5E86E900A9DABA /* CircularProgressView.swift in Sources */,
+				39B6B69D2C63EA1600D80BD9 /* Splash.swift in Sources */,
 				3928CA572C50A6B000A5A823 /* LavenderHome.swift in Sources */,
 				3928CA572C50A6B000A5A823 /* LavenderHome.swift in Sources */,
 				390283A62C556DB900D8ACF5 /* FeedRegister.swift in Sources */,
@@ -831,7 +840,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Nap/Supporting File/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = Nap;
+				INFOPLIST_KEY_CFBundleDisplayName = Naptune;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Nap앱은 카메라 권한을 필요로 합니다. 카메라를 통해 수면 인증 사진을 찍어 업로드할 수 있습니다. 허용 안함 시 일부 기능이 동작하지 않을 수 있습니다.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Nap앱은 카메라 권한을 필요로 합니다. 카메라를 통해 수면 인증 사진을 찍어 업로드할 수 있습니다. 허용 안함 시 일부 기능이 동작하지 않을 수 있습니다.";
@@ -876,7 +885,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Nap/Supporting File/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = Nap;
+				INFOPLIST_KEY_CFBundleDisplayName = Naptune;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Nap앱은 카메라 권한을 필요로 합니다. 카메라를 통해 수면 인증 사진을 찍어 업로드할 수 있습니다. 허용 안함 시 일부 기능이 동작하지 않을 수 있습니다.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Nap앱은 카메라 권한을 필요로 합니다. 카메라를 통해 수면 인증 사진을 찍어 업로드할 수 있습니다. 허용 안함 시 일부 기능이 동작하지 않을 수 있습니다.";

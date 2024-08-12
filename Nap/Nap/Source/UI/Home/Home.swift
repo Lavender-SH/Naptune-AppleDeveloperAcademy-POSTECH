@@ -81,9 +81,7 @@ private extension Home {
     }
     
     var HomeTitle: some View {
-        Text("naptune")
-            .font(.napTitle1)
-            .foregroundStyle(.napWhite100)
+        Image(.inAppLogo)
     }
     
     var FriendCount: some View {
