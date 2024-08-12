@@ -26,18 +26,17 @@ class CameraPreview: UIView {
         setupCapturedImageView()
     }
     
-    
     private func setupCamera() {
         captureSession.sessionPreset = .photo // 세션 프리셋을 사진 촬영으로 설정
         
-        // 기본 비디오 입력 장치(카메라)를 가져옴
-        guard let camera = AVCaptureDevice.default(for: .video) else {
-            return // 카메라가 없는 경우 반환
+        // 기본 비디오 입력 장치(카메라)를 전면 카메라로 설정
+        guard let frontCamera = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .front) else {
+            return // 전면 카메라가 없는 경우 반환
         }
         
         do {
-            // 카메라를 세션 입력으로 추가
-            let input = try AVCaptureDeviceInput(device: camera)
+            // 전면 카메라를 세션 입력으로 추가
+            let input = try AVCaptureDeviceInput(device: frontCamera)
             captureSession.addInput(input)
         } catch {
             // 카메라 입력 생성 실패 시 에러 출력
@@ -59,13 +58,12 @@ class CameraPreview: UIView {
     private func setupCapturedImageView() {
         capturedImageView.contentMode = .scaleAspectFill
         capturedImageView.clipsToBounds = true
-        //capturedImageView.alpha = 1 // 반투명하게 설정하여 프리뷰와 함께 보이도록 설정
         addSubview(capturedImageView)
         capturedImageView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
     }
-    // 레이아웃 서브뷰를 설정하는 메서드
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         previewLayer.frame = bounds // 미리보기 레이어의 프레임을 뷰의 경계에 맞게 설정

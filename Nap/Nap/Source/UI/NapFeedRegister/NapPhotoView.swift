@@ -76,7 +76,7 @@ struct NapPhotoView: UIViewControllerRepresentable {
         cancelButton.layer.borderWidth = 1
         cancelButton.layer.borderColor = UIColor.napWhite10.cgColor
         cancelButton.addTarget(context.coordinator, action: #selector(CameraCoordinator.cancelButtonTapped), for: .touchUpInside)
-       
+        
         // SnapKit으로 취소 버튼 레이아웃 설정
         cancelButton.snp.makeConstraints { make in
             make.width.height.equalTo(cancelSwitchButtonHeight)
@@ -141,7 +141,35 @@ class CameraCoordinator: NSObject, AVCapturePhotoCaptureDelegate {
         self.parent = parent
         self.cameraView = cameraView
         super.init()
-        setupPhotoOutput() // 사진 출력을 설정하는 메서드 호출
+        setupCameraSession()
+        //setupPhotoOutput() // 사진 출력을 설정하는 메서드 호출
+    }
+    
+    private func setupCameraSession() {
+        guard let frontCamera = getCameraDevice(position: .front) else {
+            print("Front camera is not available.")
+            return
+        }
+        
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            do {
+                let frontCameraInput = try AVCaptureDeviceInput(device: frontCamera)
+                
+                self?.cameraView.captureSession.beginConfiguration()
+                
+                if self?.cameraView.captureSession.canAddInput(frontCameraInput) == true {
+                    self?.cameraView.captureSession.addInput(frontCameraInput)
+                }
+                
+                self?.setupPhotoOutput()
+                
+                self?.cameraView.captureSession.commitConfiguration()
+                
+                self?.cameraView.captureSession.startRunning()
+            } catch {
+                print("Error setting up front camera: \(error)")
+            }
+        }
     }
     
     // 사진 출력을 설정하는 메서드
@@ -156,7 +184,7 @@ class CameraCoordinator: NSObject, AVCapturePhotoCaptureDelegate {
         
         cameraView.captureSession.commitConfiguration() // 캡처 세션 구성 완료
     }
-
+    
     // 셔터 버튼이 눌렸을 때 호출되는 메서드
     @objc func shutterButtonTapped() {
         let settings = AVCapturePhotoSettings() // 사진 촬영 설정 생성
@@ -203,19 +231,30 @@ class CameraCoordinator: NSObject, AVCapturePhotoCaptureDelegate {
     
     // MARK: - 사진 찍고 프리뷰에 보여주는 로직
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
-        // 에러가 없고 사진 데이터가 존재하는지 확인
         guard error == nil, let data = photo.fileDataRepresentation(), let image = UIImage(data: data) else {
-            print("Error capturing photo: \(String(describing: error))") // 에러 발생 시 에러 출력
+            print("Error capturing photo: \(String(describing: error))")
             return
         }
-        
-        capturedImage = image // 캡처된 이미지 저장
-        parent.capturedImage = image
-        // 캡처된 이미지를 CameraPreview의 imageView에 설정
+
+        var finalImage = image
+
+        // 전면 카메라에서 촬영된 이미지인지 확인 후, 좌우 대칭 처리
+        if let currentInput = cameraView.captureSession.inputs.first as? AVCaptureDeviceInput, currentInput.device.position == .front {
+            if let cgImage = image.cgImage {
+                finalImage = UIImage(cgImage: cgImage, scale: image.scale, orientation: .leftMirrored)
+            }
+        }
+
+        // 최종 이미지를 설정
+        capturedImage = finalImage
+        parent.capturedImage = finalImage
+
         DispatchQueue.main.async {
-            self.cameraView.capturedImageView.image = image
+            self.cameraView.capturedImageView.image = finalImage
         }
     }
+
+    
 }
 
 
@@ -225,3 +264,210 @@ class CameraCoordinator: NSObject, AVCapturePhotoCaptureDelegate {
 
 
 
+//import SwiftUI
+//import AVFoundation
+//import SnapKit
+//
+//struct NapPhotoView: UIViewControllerRepresentable {
+//    @Environment(\.presentationMode) var presentationMode
+//    @Binding var capturedImage: UIImage?
+//
+//    let cameraView = CameraPreview()
+//
+//    func updateUIViewController(_ uiViewController: UIViewController, context: Context) { }
+//
+//    func makeCoordinator() -> CameraCoordinator {
+//        CameraCoordinator(parent: self, cameraView: cameraView)
+//    }
+//
+//    func makeUIViewController(context: Context) -> UIViewController {
+//        let containerVC = UIViewController()
+//        containerVC.view.backgroundColor = UIColor.purple
+//
+//        let overlayView = createOverlayView(context: context, containerVC: containerVC)
+//        containerVC.view.addSubview(overlayView)
+//        overlayView.snp.makeConstraints { make in
+//            make.edges.equalToSuperview()
+//        }
+//
+//        return containerVC
+//    }
+//
+//    func createOverlayView(context: Context, containerVC: UIViewController) -> UIView {
+//        let overlayView = UIView()
+//
+//        let backgroundImageView = UIImageView()
+//        backgroundImageView.image = UIImage(named: "Background")
+//        backgroundImageView.contentMode = .scaleAspectFill
+//        overlayView.addSubview(backgroundImageView)
+//        overlayView.sendSubviewToBack(backgroundImageView)
+//        backgroundImageView.snp.makeConstraints { make in
+//            make.edges.equalToSuperview()
+//        }
+//
+//        cameraView.clipsToBounds = true
+//        cameraView.layer.cornerRadius = 20
+//        backgroundImageView.addSubview(cameraView)
+//
+//        cameraView.snp.makeConstraints { make in
+//            make.horizontalEdges.equalToSuperview().inset(20)
+//            make.height.equalTo(cameraView.snp.width).multipliedBy(4.0 / 3.0)
+//            make.top.equalToSuperview().inset(UIScreen.isSE ? 53 : 133)
+//        }
+//
+//        let cancelSwitchButtonHeight: CGFloat = 67
+//        let shutterButtonHeight: CGFloat = 85
+//
+//        let cancelButton = UIButton(type: .system)
+//        cancelButton.backgroundColor = .napWhite10
+//        cancelButton.setImage(UIImage(resource: .X).withTintColor(.napWhite100, renderingMode: .alwaysTemplate), for: .normal)
+//        cancelButton.tintColor = .napWhite100
+//        cancelButton.layer.cornerRadius = cancelSwitchButtonHeight / 2
+//        cancelButton.layer.borderWidth = 1
+//        cancelButton.layer.borderColor = UIColor.napWhite10.cgColor
+//        cancelButton.addTarget(context.coordinator, action: #selector(CameraCoordinator.cancelButtonTapped), for: .touchUpInside)
+//
+//        cancelButton.snp.makeConstraints { make in
+//            make.width.height.equalTo(cancelSwitchButtonHeight)
+//        }
+//
+//        let shutterButton = UIButton(type: .system)
+//        shutterButton.backgroundColor = .clear
+//        shutterButton.tintColor = .white
+//        shutterButton.setImage(UIImage(named: "shutter"), for: .normal)
+//        shutterButton.imageView?.contentMode = .scaleAspectFill
+//        shutterButton.layer.cornerRadius = shutterButtonHeight / 2
+//        shutterButton.addTarget(context.coordinator, action: #selector(CameraCoordinator.shutterButtonTapped), for: .touchUpInside)
+//
+//        shutterButton.snp.makeConstraints { make in
+//            make.width.height.equalTo(shutterButtonHeight)
+//        }
+//
+//        let switchCameraButton = UIButton(type: .system)
+//        switchCameraButton.backgroundColor = .napWhite10
+//        switchCameraButton.setImage(UIImage(resource: .refreshCw), for: .normal)
+//        switchCameraButton.tintColor = .napWhite100
+//        switchCameraButton.layer.cornerRadius = cancelSwitchButtonHeight / 2
+//        switchCameraButton.layer.borderWidth = 1
+//        switchCameraButton.layer.borderColor = UIColor.napWhite10.cgColor
+//        switchCameraButton.addTarget(context.coordinator, action: #selector(CameraCoordinator.switchCameraButtonTapped), for: .touchUpInside)
+//
+//        switchCameraButton.snp.makeConstraints { make in
+//            make.width.height.equalTo(cancelSwitchButtonHeight)
+//        }
+//
+//        let stackView = UIStackView()
+//        stackView.axis = .horizontal
+//        stackView.spacing = 40
+//        stackView.alignment = .center
+//        overlayView.addSubview(stackView)
+//        [cancelButton, shutterButton, switchCameraButton].forEach {
+//            stackView.addArrangedSubview($0)
+//        }
+//
+//        stackView.snp.makeConstraints { make in
+//            make.top.equalTo(cameraView.snp.bottom).offset(UIScreen.isSE ? 30 : 36)
+//            make.centerX.equalToSuperview()
+//        }
+//
+//        return overlayView
+//    }
+//
+//}
+//
+//class CameraCoordinator: NSObject, AVCapturePhotoCaptureDelegate {
+//    var parent: NapPhotoView
+//    var cameraView: CameraPreview
+//    var capturedImage: UIImage?
+//
+//    init(parent: NapPhotoView, cameraView: CameraPreview) {
+//        self.parent = parent
+//        self.cameraView = cameraView
+//        super.init()
+//        setupCameraSession()
+//    }
+//
+//    private func setupCameraSession() {
+//        guard let frontCamera = getCameraDevice(position: .front) else {
+//            print("Front camera is not available.")
+//            return
+//        }
+//
+//        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+//            do {
+//                let frontCameraInput = try AVCaptureDeviceInput(device: frontCamera)
+//
+//                self?.cameraView.captureSession.beginConfiguration()
+//
+//                if self?.cameraView.captureSession.canAddInput(frontCameraInput) == true {
+//                    self?.cameraView.captureSession.addInput(frontCameraInput)
+//                }
+//
+//                self?.setupPhotoOutput()
+//
+//                self?.cameraView.captureSession.commitConfiguration()
+//
+//                self?.cameraView.captureSession.startRunning()
+//            } catch {
+//                print("Error setting up front camera: \(error)")
+//            }
+//        }
+//    }
+//
+//    private func setupPhotoOutput() {
+//        let photoOutput = AVCapturePhotoOutput()
+//        if cameraView.captureSession.canAddOutput(photoOutput) {
+//            cameraView.captureSession.addOutput(photoOutput)
+//            cameraView.photoOutput = photoOutput
+//        }
+//    }
+//
+//    @objc func shutterButtonTapped() {
+//        let settings = AVCapturePhotoSettings()
+//        cameraView.photoOutput?.capturePhoto(with: settings, delegate: self)
+//    }
+//
+//    @objc func switchCameraButtonTapped() {
+//        guard let currentInput = cameraView.captureSession.inputs.first as? AVCaptureDeviceInput else { return }
+//
+//        let newCameraDevice = (currentInput.device.position == .back) ? getCameraDevice(position: .front) : getCameraDevice(position: .back)
+//
+//        guard let newCamera = newCameraDevice else { return }
+//
+//        do {
+//            let newInput = try AVCaptureDeviceInput(device: newCamera)
+//
+//            cameraView.captureSession.beginConfiguration()
+//            cameraView.captureSession.removeInput(currentInput)
+//            if cameraView.captureSession.canAddInput(newInput) {
+//                cameraView.captureSession.addInput(newInput)
+//            } else {
+//                cameraView.captureSession.addInput(currentInput)
+//            }
+//            cameraView.captureSession.commitConfiguration()
+//        } catch {
+//            print("Failed to switch cameras: \(error)")
+//        }
+//    }
+//
+//    private func getCameraDevice(position: AVCaptureDevice.Position) -> AVCaptureDevice? {
+//        return AVCaptureDevice.devices(for: .video).first { $0.position == position }
+//    }
+//
+//    @objc func cancelButtonTapped() {
+//        parent.presentationMode.wrappedValue.dismiss()
+//    }
+//
+//    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
+//        guard error == nil, let data = photo.fileDataRepresentation(), let image = UIImage(data: data) else {
+//            print("Error capturing photo: \(String(describing: error))")
+//            return
+//        }
+//
+//        capturedImage = image
+//        parent.capturedImage = image
+//        DispatchQueue.main.async {
+//            self.cameraView.capturedImageView.image = image
+//        }
+//    }
+//}
