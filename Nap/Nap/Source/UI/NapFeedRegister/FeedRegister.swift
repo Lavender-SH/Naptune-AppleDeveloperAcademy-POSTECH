@@ -24,6 +24,7 @@ struct FeedRegister: View {
     
     let textLimit: Int = 16
     let imageWidth = UIScreen.size.width - 40
+    let firebaseManager = FirebaseManager.shared
     
     // MARK: Body
     
@@ -154,6 +155,7 @@ private extension FeedRegister {
     var UploadButton: some View {
         Button {
             showHome = true
+            firebaseManager.pushNoti(title: "친구가 개운하게 일어났어요!", body: "친구가 작성한 낮잠 피드를 확인해봐요.")
             Task {
                 await viewModel.uploadPost(capturedImage: capturedImage, sleepComent: sleepComent, sleepStatusLevel: sleepStatusLevel, sleepTime: timerData.timeInterval)
             }

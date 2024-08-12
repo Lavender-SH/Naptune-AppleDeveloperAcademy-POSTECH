@@ -142,7 +142,7 @@ class FirebaseManager {
     }
     
     //---------------------노티관련 함수--------------------------------
-    func fetchAuthToken(title: String, body: String) {
+    func pushNoti(title: String, body: String) {
         if let currentUser = Auth.auth().currentUser {
             currentUser.getIDToken { token, error in
                 if let error = error {

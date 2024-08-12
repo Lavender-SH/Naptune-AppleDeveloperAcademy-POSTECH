@@ -61,7 +61,7 @@ struct NapProgress: View {
             updateLiveActivity()
             //print(Date().formatted(date: .omitted, time: .complete))
             if remainingSeconds <= 180 && !sendNoti {
-                firebaseManager.fetchAuthToken(title: "친구가 일어날 시간이에요!",
+                firebaseManager.pushNoti(title: "친구가 일어날 시간이에요!",
                                                body: "3분 내에 전화로 낮잠을 깨워주세요!")
                 sendNoti = true
             }

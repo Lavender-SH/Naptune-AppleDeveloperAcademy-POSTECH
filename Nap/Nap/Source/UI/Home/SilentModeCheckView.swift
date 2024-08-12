@@ -112,8 +112,8 @@ private extension SilentModeCheckView {
     
     func moveNextAndNoti() {
         moveNext = true
-        firebaseManager.fetchAuthToken(title: "친구가 잠들었어요!",
-                                       body: "\(wakeupTime().formatted(date: .omitted, time: .shortened))에 전화로 낮잠을 깨워주세요!")
+        firebaseManager.pushNoti(title: "친구가 잠들었어요!",
+                                       body: "\(wakeupTime().formatted(date: .omitted, time: .shortened))에 전화로 낮잠을 깨워주세요.")
     }
     
     func wakeupTime() -> Date {
