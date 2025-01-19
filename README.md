@@ -73,7 +73,7 @@ Naptune의 낮잠 타이머 기능은 사용자가 원하는 낮잠 시간을 �
  - 애니메이션 효과를 통해 진행률이 자연스럽게 업데이트
   </br>
   
- - SwiftUI를 활용하여 슬라이더와 프로그레스 바 구성
+ - SwiftUI를 활용하여 슬라이더와 프로그레스 바 구성한 코드
  
 ``` swift
 @ViewBuilder
@@ -97,7 +97,6 @@ func sleepTimeSlider() -> some View {
 }
 
 ```
-</br>
 
  - 타이머 시작과 종료 관리
  
@@ -133,7 +132,6 @@ func startProgress() {
 }
 
 ```
-</br>
 
  - `KDCircularProgress` 라이브러리 사용 방법
  
@@ -166,3 +164,16 @@ struct KDCircularProgressView: UIViewRepresentable {
 }
 
 ```
+</br>
+
+### 2. 낮잠 모드에 진입하면 친구에게 알림(Notification)을 보내 낮잠 상태를 공유하는 기능
+Naptune은 사용자가 낮잠 모드에 진입하면 친구들에게 푸시 알림을 보내 낮잠 상태를 실시간으로 공유하는 기능을 제공합니다. 알림은 Firebase Cloud Messaging(FCM)을 통해 전달되며, 사용자와 친구 간의 소셜 인터랙션을 강화하는 데 중점을 두었습니다. 알림에는 낮잠 시작 및 종료 시간이 포함되어 친구가 사용자에게 전화나 메시지로 알림을 보낼 수 있도록 유도합니다.</br>
+
+
+<p>
+<img src="https://github.com/user-attachments/assets/43414d63-e03e-44ce-acaf-f2c28d2d4a14" width="49%">
+
+ <video src="https://github.com/user-attachments/assets/b1d21365-ecff-4e02-b6ac-9e1c2c3ac828" width="49"></video>
+ <p>
+ </br>
+
