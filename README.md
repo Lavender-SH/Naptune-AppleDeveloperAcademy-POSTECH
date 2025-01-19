@@ -188,7 +188,8 @@ Naptune은 사용자가 낮잠 모드에 진입하면 친구들에게 푸시 알
  3. 사용자 경험 개선
   - 낮잠 모드 진입 시 무음 모드 해제를 유도하여 알림을 놓치지 않도록 안내
   - 알림 전송 성공 여부를 실시간으로 확인하여 사용자 신뢰도 증대</br>
-  
+</br>
+
   - 푸시 알림 전송 로직
 ``` swift
 func sendPushNotification(authToken: String?) {
@@ -262,3 +263,65 @@ func fetchAuthToken(completion: @escaping (String?) -> Void) {
 
 ```
 </br>
+
+### 3. 정해진 낮잠 시간이 종료되면 CallKit을 통해 알림 전화를 제공하는 기능
+Naptune 앱의 독특한 기능 중 하나는 낮잠 시간이 종료되었을 때 `CallKit`을 사용하여 알림 전화를 제공하는 것입니다. 이 기능은 사용자가 낮잠에서 깨어나야 할 시간을 놓치지 않도록 돕는 동시에, 사용자 경험을 풍부하게 만듭니다.
+
+<img src="https://github.com/user-attachments/assets/ca76206c-0339-4604-8075-2ece556c5a9b" width="50%">
+
+ 1. 타이머 시간 종료 이벤트 감지
+ - 앱은 설정된 낮잠 시간이 종료되었을 때 startCall() 메서드를 실행
+ - 남은 시간이 0 이하가 되면 CallManager가 호출
+ </br>
+ 2. CallKit을 통한 전화 알림
+ - CallManager는 `CallKit`을 활용하여 가상 전화를 생성
+ - 사용자 디바이스에서 실제 전화가 온 것처럼 알림이 표시되며, 이를 통해 사용자가 확실히 알림을 받을 수 있습니다.
+ </br>
+ 3. CXProvider를 사용한 전화 생성
+ - CXProvider와 CXCallController를 사용하여 가상 전화를 생성하고 관리
+ - UUID를 활용하여 각 전화 호출을 고유하게 식별
+ - CXCallUpdate를 사용하여 전화의 세부 정보(예: 발신자 이름, 핸들)를 설정
+ 
+ ``` swift
+ final class CallManager: NSObject, CXProviderDelegate {
+    let provider = CXProvider(configuration: CXProviderConfiguration())
+    let callController = CXCallController()
+
+    static let shared = CallManager()
+
+    private override init() {
+        super.init()
+        provider.setDelegate(self, queue: nil)
+    }
+
+    func reportIncomingCall(id: UUID, handle: String) {
+        let update = CXCallUpdate()
+        update.remoteHandle = CXHandle(type: .generic, value: handle)
+
+        provider.reportNewIncomingCall(with: id, update: update) { error in
+            if let error = error {
+                print("Error reporting incoming call: \(error.localizedDescription)")
+            } else {
+                print("Call Reported")
+            }
+        }
+    }
+}
+
+```
+</br>
+
+ - NapProgress의 타이머 종료 이벤트
+``` swift
+ func startCall() {
+    DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
+        let callManager = CallManager.shared
+        let id = UUID()
+        callManager.reportIncomingCall(id: id, handle: "여우")
+    })
+}
+
+```
+</br>
+
+### 4. 일어나기 버튼을 누르면 커스텀 카메라 화면으로 이동하는 기능
