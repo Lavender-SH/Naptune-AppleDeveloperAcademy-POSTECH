@@ -534,3 +534,89 @@ class FeedRegisterViewModel {
 }
 
 ```
+
+### 6. 다이나믹 아일랜드와 라이브 액티비티를 활용하여 백그라운드 모드에서도 남은 낮잠 시간을 실시간으로 확인하는 기능
+Naptune 앱은 Dynamic Island와 Live Activities를 활용하여 앱이 백그라운드 상태에서도 남은 낮잠 시간을 실시간으로 확인할 수 있는 기능을 제공합니다. 사용자는 잠자는 동안 iPhone 화면을 볼 필요 없이 Dynamic Island나 잠금 화면에서 바로 남은 시간을 확인할 수 있습니다.
+</br>
+
+<img src="https://github.com/user-attachments/assets/b67d7427-0881-4140-86b7-62ff22c60159" width="30%">
+</br>
+
+### 6-1. ActivityKit의 Activity 객체를 사용해 남은 낮잠 시간을 실시간으로 업데이트합니다.
+ - NapStatusAttributes와 ContentState를 통해 상태 데이터를 관리
+ </br>
+ 
+ ``` swift
+ struct NapStatusAttributes: ActivityAttributes {
+    struct ContentState: Codable, Hashable {
+        var remainingTime: Int = 0
+    }
+}
+
+ ```
+
+### 6-2. Live Activity 구현
+ - NapStatusLiveActivity는 Dynamic Island와 잠금 화면에서 표시될 UI를 정의
+ </br>
+ 
+ ``` swift
+struct NapStatusLiveActivity: Widget {
+    var body: some WidgetConfiguration {
+        ActivityConfiguration(for: NapStatusAttributes.self) { context in
+            ZStack {
+                RoundedRectangle(cornerRadius: 15)
+                    .fill(LinearGradient(
+                        gradient: Gradient(colors: [Color("상단네이비"), Color("하단네이비")]),
+                        startPoint: .top,
+                        endPoint: .bottom
+                    ))
+                    .opacity(0.5)
+                
+                VStack {
+                    Text("남은 낮잠 시간")
+                        .font(.headline)
+                        .foregroundColor(.white)
+                    Text("\(context.state.remainingTime / 3600)시간 \((context.state.remainingTime % 3600) / 60)분 \((context.state.remainingTime % 3600) % 60)초")
+                        .font(.largeTitle)
+                        .foregroundColor(.white)
+                }
+            }
+        } dynamicIsland: { context in
+            DynamicIsland {
+                DynamicIslandExpandedRegion(.center) {
+                    Text("Nap - \(context.state.remainingTime / 60)분 남음")
+                        .font(.headline)
+                        .foregroundColor(.white)
+                }
+                DynamicIslandExpandedRegion(.bottom) {
+                    Text("시간이 다 되면 알람이 울립니다.")
+                        .font(.footnote)
+                        .foregroundColor(.gray)
+                }
+            } compactLeading: {
+                Image(systemName: "bolt.fill")
+            } compactTrailing: {
+                Text("\(context.state.remainingTime / 60)분")
+            } minimal: {
+                Image(systemName: "bolt.fill")
+            }
+        }
+    }
+}
+
+ ```
+</br>
+
+### 6-3. 데이터 업데이트
+ - Activity.update(using:)를 사용하여 라이브 상태를 실시간으로 변경
+ 
+``` swift
+func updateLiveActivity(remainingTime: Int) {
+    guard let activity = Activity<NapStatusAttributes>.activities.first else { return }
+    let updatedContentState = NapStatusAttributes.ContentState(remainingTime: remainingTime)
+    Task {
+        await activity.update(using: updatedContentState)
+    }
+}
+ 
+```
