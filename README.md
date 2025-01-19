@@ -267,7 +267,7 @@ func fetchAuthToken(completion: @escaping (String?) -> Void) {
 ### 3. 정해진 낮잠 시간이 종료되면 CallKit을 통해 알림 전화를 제공하는 기능
 Naptune 앱의 독특한 기능 중 하나는 낮잠 시간이 종료되었을 때 `CallKit`을 사용하여 알림 전화를 제공하는 것입니다. 이 기능은 사용자가 낮잠에서 깨어나야 할 시간을 놓치지 않도록 돕는 동시에, 사용자 경험을 풍부하게 만듭니다.
 
-<img src="https://github.com/user-attachments/assets/ca76206c-0339-4604-8075-2ece556c5a9b" width="50%">
+<img src="https://github.com/user-attachments/assets/40a7033e-822f-4b6e-a2e9-4d82bdeef769" width="50%">
 
  1. 타이머 시간 종료 이벤트 감지
  - 앱은 설정된 낮잠 시간이 종료되었을 때 startCall() 메서드를 실행
