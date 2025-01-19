@@ -273,10 +273,12 @@ Naptune 앱의 독특한 기능 중 하나는 낮잠 시간이 종료되었을 �
  - 앱은 설정된 낮잠 시간이 종료되었을 때 startCall() 메서드를 실행
  - 남은 시간이 0 이하가 되면 CallManager가 호출
  </br>
+ 
  2. CallKit을 통한 전화 알림
  - CallManager는 `CallKit`을 활용하여 가상 전화를 생성
  - 사용자 디바이스에서 실제 전화가 온 것처럼 알림이 표시되며, 이를 통해 사용자가 확실히 알림을 받을 수 있습니다.
  </br>
+ 
  3. CXProvider를 사용한 전화 생성
  - CXProvider와 CXCallController를 사용하여 가상 전화를 생성하고 관리
  - UUID를 활용하여 각 전화 호출을 고유하게 식별
