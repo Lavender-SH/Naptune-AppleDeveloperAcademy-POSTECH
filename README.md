@@ -5,6 +5,7 @@
 - [News Article - Apple Developer Academy @ POSTECH 공식 링크드인 기사](https://www.linkedin.com/posts/dannyhhan_%EC%96%B4%EC%A0%9C%EB%8A%94-delights-con%EC%9D%B4%EB%9D%BC%EB%8A%94-%EC%95%A0%ED%94%8C%EB%94%94%EB%B2%A8%EB%A1%9C%ED%8D%BC%EC%95%84%EC%B9%B4%EB%8D%B0%EB%AF%B8-%EB%82%B4%EB%B6%80-%ED%96%89%EC%82%AC%EA%B0%80-%EC%9E%88%EC%97%88%EC%8A%B5%EB%8B%88%EB%8B%A4-ugcPost-7229307555297042433-Fh-y?utm_source=share&utm_medium=member_ios)</br>
 
 - [Naptune - 유튜브 영상 ](https://youtube.com/shorts/w3ANBDRh94c?feature=share)</br>
+</br>
 
 ## Naptune 프로젝트 소개
 ### 앱 설명
@@ -37,8 +38,9 @@
 
 - **Design Pattern**
 `MVVM`
+</br>
 
-- **Naptune앱의 전체적인 플로우를 표현한 구성도**
+## Naptune앱의 전체적인 플로우를 표현한 구성도
  <img src="https://github.com/user-attachments/assets/83b5fd5c-917d-4b3a-8cba-a8231d3ad920" width="100%"></br>
 
 </br>
@@ -73,7 +75,7 @@ Naptune의 낮잠 타이머 기능은 사용자가 원하는 낮잠 시간을 �
  - 애니메이션 효과를 통해 진행률이 자연스럽게 업데이트
   </br>
   
- - SwiftUI를 활용하여 슬라이더와 프로그레스 바 구성한 코드
+ - SwiftUI를 활용하여 슬라이더와 프로그레스 바를 구성한 코드
  
 ``` swift
 @ViewBuilder
