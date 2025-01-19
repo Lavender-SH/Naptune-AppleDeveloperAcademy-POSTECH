@@ -17,7 +17,7 @@
 </br>
 
 ### 성과
-- Apple Developer Academy @ POSTECH   DELIGHTS-CON 발표
+- Apple Developer Academy @ POSTECH   DELIGHTS-CON 최종 발표
 
 <img src="https://github.com/user-attachments/assets/41cf497b-03d6-4b86-830a-c161207e4cfe" width="100%">
 
