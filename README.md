@@ -328,7 +328,7 @@ Naptune 앱의 독특한 기능 중 하나는 낮잠 시간이 종료되었을 �
 
 ### 4. 일어나기 버튼을 누르면 커스텀 카메라 화면으로 이동하는 기능
 Naptune 앱은 낮잠 후 사용자가 기상 상태를 기록할 수 있도록 커스텀 카메라 화면으로 이동하는 기능을 제공합니다. 이 기능은 사용자가 기상 사진을 촬영하고 이를 앱 피드에 업로드하여 친구들과 공유할 수 있는 독특한 경험을 제공합니다.
-<img src="https://github.com/user-attachments/assets/e489700f-17c5-4452-a63d-180582c161f3" width="100%">
+<img src="https://github.com/user-attachments/assets/e489700f-17c5-4452-a63d-180582c161f3" width="30%">
 
 ### 4-1. 일어나기 버튼을 누르면 카메라 화면으로 전환
  - `SwiftUI`의 UIViewControllerRepresentable을 사용하여 `UIKit`의 UIViewController를 `SwiftUI` 뷰에 통합
