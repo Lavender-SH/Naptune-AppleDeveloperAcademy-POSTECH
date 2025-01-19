@@ -327,3 +327,98 @@ Naptune 앱의 독특한 기능 중 하나는 낮잠 시간이 종료되었을 �
 </br>
 
 ### 4. 일어나기 버튼을 누르면 커스텀 카메라 화면으로 이동하는 기능
+Naptune 앱은 낮잠 후 사용자가 기상 상태를 기록할 수 있도록 커스텀 카메라 화면으로 이동하는 기능을 제공합니다. 이 기능은 사용자가 기상 사진을 촬영하고 이를 앱 피드에 업로드하여 친구들과 공유할 수 있는 독특한 경험을 제공합니다.
+<img src="https://github.com/user-attachments/assets/e489700f-17c5-4452-a63d-180582c161f3" width="100%">
+
+### 4-1. 일어나기 버튼을 누르면 카메라 화면으로 전환
+ - `SwiftUI`의 UIViewControllerRepresentable을 사용하여 `UIKit`의 UIViewController를 `SwiftUI` 뷰에 통합
+ - NapPhotoView가 커스텀 카메라 화면을 제공하며, 카메라 제어는 CameraCoordinator에서 관리
+ </br>
+ 
+ ``` swift
+ struct NapPhotoView: UIViewControllerRepresentable {
+    @Binding var capturedImage: UIImage?
+
+    func makeUIViewController(context: Context) -> UIViewController {
+        let containerVC = UIViewController()
+        let overlayView = createOverlayView(context: context, containerVC: containerVC)
+        containerVC.view.addSubview(overlayView)
+        return containerVC
+    }
+    
+    func createOverlayView(context: Context, containerVC: UIViewController) -> UIView {
+        // 카메라 미리보기 및 커스텀 UI 구성
+        let cameraView = CameraPreview()
+        let shutterButton = UIButton(type: .system)
+        shutterButton.addTarget(context.coordinator, action: #selector(CameraCoordinator.shutterButtonTapped), for: .touchUpInside)
+        // SnapKit을 사용하여 레이아웃 구성
+        return cameraView
+    }
+}
+
+```
+</br>
+ 
+### 4-2. 카메라 초기화 및 세션 구성
+ - `AVFoundation`을 사용하여 전면/후면 카메라를 설정하고, 사진 캡처 및 실시간 미리보기 화면 제공
+ - 사용자 편의를 위한 커스텀 UI(셔터 버튼, 카메라 전환 버튼 등) 제공
+ - CameraCoordinator는 카메라 제어 로직을 담당
+</br>
+ 
+``` swift
+class CameraCoordinator: NSObject, AVCapturePhotoCaptureDelegate {
+    func setupCameraSession() {
+        guard let frontCamera = getCameraDevice(position: .front) else { return }
+        let frontCameraInput = try AVCaptureDeviceInput(device: frontCamera)
+        captureSession.addInput(frontCameraInput)
+        setupPhotoOutput()
+    }
+    
+    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
+        if let data = photo.fileDataRepresentation(), let image = UIImage(data: data) {
+            capturedImage = image // 캡처된 이미지를 저장
+        }
+    }
+}
+
+```
+</br>
+  
+ 
+ ### 4-3. 사진 촬영 및 캡처 결과 처리
+ - AVCapturePhotoOutput을 통해 사진을 촬영하고, 전면 카메라의 좌우 반전된 이미지는 적절히 수정하여 저장
+ - CameraPreview 클래스는 실시간 카메라 화면과 사진 캡처 후 결과를 표시
+ 
+```swift
+class CameraPreview: UIView {
+    let captureSession = AVCaptureSession()
+    let previewLayer = AVCaptureVideoPreviewLayer()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupCamera()
+    }
+    
+    private func setupCamera() {
+        // 전면 카메라로 세션 구성
+        let frontCamera = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .front)
+        let input = try? AVCaptureDeviceInput(device: frontCamera!)
+        captureSession.addInput(input!)
+        captureSession.startRunning()
+    }
+}
+
+```
+
+ ### 4-4. 왜 카메라 구현에 UIKit을 선택했는가?
+ 1. 정교한 카메라 제어 필요
+ - SwiftUI는 기본적으로 카메라 기능을 제공하지 않습니다. 반면, UIKit의 `AVFoundation`은 카메라 세션, 사진 촬영, 전환 등 복잡한 기능을 완벽히 지원합니다.
+ </br>
+ 
+ 2. 성능 최적화 및 유연성
+ - AVCaptureSession과 AVCapturePhotoOutput을 통해 실시간 미리보기와 사진 캡처를 효율적으로 구현 가능
+ - 복잡한 커스텀 레이아웃(셔터 버튼, 전환 버튼 등)을 구성하기 위해 UIKit의 UIView와 SnapKit을 사용
+</br>
+
+ 3. SwiftUI와의 완벽한 통합
+ - UIViewControllerRepresentable을 사용하여 SwiftUI의 장점(데이터 바인딩, 선언형 UI)과 UIKit의 강력한 기능을 결합
