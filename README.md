@@ -412,6 +412,7 @@ class CameraPreview: UIView {
 }
 
 ```
+</br>
 
  ### 4-4. 왜 카메라 구현에 UIKit을 선택했는가?
  1. 정교한 카메라 제어 필요
@@ -425,3 +426,111 @@ class CameraPreview: UIView {
 
  3. SwiftUI와의 완벽한 통합
  - UIViewControllerRepresentable을 사용하여 SwiftUI의 장점(데이터 바인딩, 선언형 UI)과 UIKit의 강력한 기능을 결합
+</br>
+
+### 5. 친구들의 낮잠 기록과 상태를 확인할 수 있는 피드 기능
+Naptune 앱은 친구들의 낮잠 기록과 상태를 한눈에 확인할 수 있는 소셜 피드 기능을 제공합니다. 사용자는 친구들의 낮잠 시간, 상태, 그리고 관련 코멘트를 확인하며 서로의 경험을 공유할 수 있습니다. 이 기능은 Firebase Firestore와 Storage를 기반으로 데이터를 관리하며, SwiftUI로 사용자 친화적인 UI를 구현했습니다.
+</br>
+
+<img src="https://github.com/user-attachments/assets/72cfc865-434f-4dec-969b-2760edc308d9" width="100%">
+</br>
+
+### 5-1. FireStore 데이터 연동
+ - FeedViewModel에서 Firebase Firestore의 posts 컬렉션 데이터를 실시간으로 가져와 SwiftUI 뷰에 반영
+ - 데이터는 @Published 변수를 통해 자동 업데이트되어 사용자에게 최신 정보를 제공
+ 
+``` swift
+struct Post: Codable {
+    let id: String
+    let nickname: String
+    let profileImageUrl: String
+    let imageUrl: String
+    let sleepComent: String
+    let sleepStatusLevel: Double
+    let sleepTime: Double
+    let date: Date
+}
+```
+</br>
+
+- FeedViewModel은 Firestore에서 데이터를 가져와 posts 배열로 관리
+ 
+``` swift
+class FeedViewModel: ObservableObject {
+    @Published var posts: [Post] = []
+
+    init() {
+        fetchPosts()
+    }
+
+    func fetchPosts() {
+        let db = Firestore.firestore()
+        db.collection("posts")
+          .order(by: "date", descending: true)
+          .getDocuments { snapshot, error in
+            if let error = error {
+                print("Error getting documents: \(error)")
+                return
+            }
+            self.posts = snapshot?.documents.compactMap { document -> Post? in
+                try? document.data(as: Post.self)
+            } ?? []
+        }
+    }
+}
+
+```
+
+### 5-2. 포스트 등록 및 업로드
+- FeedRegisterViewModel은 사용자가 등록한 데이터를 Firebase에 업로드하는 로직을 관리
+
+``` swift
+class FeedRegisterViewModel {
+    var selectedImage: UIImage?
+    var sleepComent: String? = ""
+    var sleepStatusLevel: Double?
+
+    func uploadPost(capturedImage: UIImage?, sleepComent: String, sleepStatusLevel: Double, sleepTime: Double) async {
+        let nickname = UserDefaults.standard.string(forKey: "nickname") ?? "Unknown"
+        let profileImageUrl = UserDefaults.standard.string(forKey: "profileImageUrl") ?? ""
+        
+        guard let capturedImage = capturedImage else { return }
+        guard let imageUrl = await uploadImage(uiImage: capturedImage) else { return }
+        
+        // 현재 로그인된 사용자의 UID 가져오기
+        guard let currentUserID = Auth.auth().currentUser?.uid else {
+            print("Error: No current user ID found.")
+            return
+        }
+        
+        // Firestore에 저장할 Post 객체 생성
+        let post = Post(id: UUID().uuidString, nickname: nickname, profileImageUrl: profileImageUrl, imageUrl: imageUrl, sleepComent: sleepComent, sleepStatusLevel: sleepStatusLevel, sleepTime: sleepTime, date: Date())
+        
+        // Firestore에 문서 ID를 사용자 UID로 설정하고 데이터 저장
+        let postReference = Firestore.firestore().collection("posts").document(UUID().uuidString)
+        
+        do {
+            let encodedData = try Firestore.Encoder().encode(post)
+            try await postReference.setData(encodedData)
+        } catch {
+            print("DEBUG: Failed to upload post with error \(error.localizedDescription)")
+        }
+    }
+    
+    func uploadImage(uiImage: UIImage) async -> String? {
+        guard let imageData = uiImage.jpegData(compressionQuality: 0.5) else { return nil }
+        let fileName = UUID().uuidString
+        let reference = Storage.storage().reference(withPath: "/images/\(fileName).jpg")
+        
+        do {
+            let _ = try await reference.putDataAsync(imageData)
+            let url = try await reference.downloadURL()
+            return url.absoluteString
+        } catch {
+            print("DEBUG: Failed to upload image with error \(error.localizedDescription)")
+            return nil
+        }
+    }
+}
+
+```
