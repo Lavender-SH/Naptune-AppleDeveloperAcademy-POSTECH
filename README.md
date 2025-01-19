@@ -336,7 +336,6 @@ Naptune 앱은 낮잠 후 사용자가 기상 상태를 기록할 수 있도록 
 ### 4-1. 일어나기 버튼을 누르면 카메라 화면으로 전환
  - `SwiftUI`의 UIViewControllerRepresentable을 사용하여 `UIKit`의 UIViewController를 `SwiftUI` 뷰에 통합
  - NapPhotoView가 커스텀 카메라 화면을 제공하며, 카메라 제어는 CameraCoordinator에서 관리
- </br>
  
  ``` swift
  struct NapPhotoView: UIViewControllerRepresentable {
@@ -366,7 +365,6 @@ Naptune 앱은 낮잠 후 사용자가 기상 상태를 기록할 수 있도록 
  - `AVFoundation`을 사용하여 전면/후면 카메라를 설정하고, 사진 캡처 및 실시간 미리보기 화면 제공
  - 사용자 편의를 위한 커스텀 UI(셔터 버튼, 카메라 전환 버튼 등) 제공
  - CameraCoordinator는 카메라 제어 로직을 담당
-</br>
  
 ``` swift
 class CameraCoordinator: NSObject, AVCapturePhotoCaptureDelegate {
@@ -534,17 +532,17 @@ class FeedRegisterViewModel {
 }
 
 ```
+</br>
 
 ### 6. 다이나믹 아일랜드와 라이브 액티비티를 활용하여 백그라운드 모드에서도 남은 낮잠 시간을 실시간으로 확인하는 기능
 Naptune 앱은 Dynamic Island와 Live Activities를 활용하여 앱이 백그라운드 상태에서도 남은 낮잠 시간을 실시간으로 확인할 수 있는 기능을 제공합니다. 사용자는 잠자는 동안 iPhone 화면을 볼 필요 없이 Dynamic Island나 잠금 화면에서 바로 남은 시간을 확인할 수 있습니다.
 </br>
 
 <img src="https://github.com/user-attachments/assets/b67d7427-0881-4140-86b7-62ff22c60159" width="30%">
-</br>
+
 
 ### 6-1. ActivityKit의 Activity 객체를 사용해 남은 낮잠 시간을 실시간으로 업데이트합니다.
  - NapStatusAttributes와 ContentState를 통해 상태 데이터를 관리
- </br>
  
  ``` swift
  struct NapStatusAttributes: ActivityAttributes {
@@ -557,7 +555,6 @@ Naptune 앱은 Dynamic Island와 Live Activities를 활용하여 앱이 백그�
 
 ### 6-2. Live Activity 구현
  - NapStatusLiveActivity는 Dynamic Island와 잠금 화면에서 표시될 UI를 정의
- </br>
  
  ``` swift
 struct NapStatusLiveActivity: Widget {
