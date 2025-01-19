@@ -176,4 +176,10 @@ Naptune은 사용자가 낮잠 모드에 진입하면 친구들에게 푸시 알
  <video src="https://github.com/user-attachments/assets/b1d21365-ecff-4e02-b6ac-9e1c2c3ac828" width="49"></video>
  <p>
  </br>
+ 
+ <p>
+  <img src="https://github.com/user-attachments/assets/43414d63-e03e-44ce-acaf-f2c28d2d4a14" style="width:49%; display:inline-block; vertical-align:top;">
+  <video src="https://github.com/user-attachments/assets/b1d21365-ecff-4e02-b6ac-9e1c2c3ac828" style="width:49%; display:inline-block; vertical-align:top;" controls></video>
+</p>
+
 
