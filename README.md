@@ -169,17 +169,96 @@ struct KDCircularProgressView: UIViewRepresentable {
 ### 2. 낮잠 모드에 진입하면 친구에게 알림(Notification)을 보내 낮잠 상태를 공유하는 기능
 Naptune은 사용자가 낮잠 모드에 진입하면 친구들에게 푸시 알림을 보내 낮잠 상태를 실시간으로 공유하는 기능을 제공합니다. 알림은 Firebase Cloud Messaging(FCM)을 통해 전달되며, 사용자와 친구 간의 소셜 인터랙션을 강화하는 데 중점을 두었습니다. 알림에는 낮잠 시작 및 종료 시간이 포함되어 친구가 사용자에게 전화나 메시지로 알림을 보낼 수 있도록 유도합니다.</br>
 
-
 <p>
 <img src="https://github.com/user-attachments/assets/43414d63-e03e-44ce-acaf-f2c28d2d4a14" width="49%">
 
  <video src="https://github.com/user-attachments/assets/b1d21365-ecff-4e02-b6ac-9e1c2c3ac828" width="49"></video>
  <p>
  </br>
+
+1. 푸시 알림 설정 및 전송
+ - Firebase를 활용해 사용자 인증 및 푸시 알림 토큰 관리
+ - Firebase Functions를 사용해 알림 전송 로직 처리
+
+2. 알림 내용 구성
+ - 사용자가 설정한 낮잠 종료 시간과 개인화된 메시지를 포함하여 친구들에게 직관적인 정보를 제공
+ - 알림 제목: "친구가 잠들었어요!"
+ - 알림 내용: "오전 10:30에 전화로 낮잠을 깨워주세요!"
  
- <p>
-  <img src="https://github.com/user-attachments/assets/43414d63-e03e-44ce-acaf-f2c28d2d4a14" style="width:49%; display:inline-block; vertical-align:top;">
-  <video src="https://github.com/user-attachments/assets/b1d21365-ecff-4e02-b6ac-9e1c2c3ac828" style="width:49%; display:inline-block; vertical-align:top;" controls></video>
-</p>
+ 3. 사용자 경험 개선
+  - 낮잠 모드 진입 시 무음 모드 해제를 유도하여 알림을 놓치지 않도록 안내
+  - 알림 전송 성공 여부를 실시간으로 확인하여 사용자 신뢰도 증대</br>
+  
+  - 푸시 알림 전송 로직
+``` swift
+func sendPushNotification(authToken: String?) {
+    guard let authToken = authToken else {
+        resultMessage = "No auth token available"
+        return
+    }
+    
+    let functions = Functions.functions(region: "asia-northeast3")
+    let data: [String: Any] = [
+        "token": "사용자 고유 FCM 토큰", 
+        "title": "친구가 잠들었어요!",
+        "body": "\(wakeupTime().formatted(date: .omitted, time: .shortened))에 전화로 낮잠을 깨워주세요!"
+    ]
+    
+    functions.httpsCallable("sendPushNotification").call(data) { result, error in
+        if let error = error as NSError? {
+            print("Error sending push notification: \(error.localizedDescription)")
+            DispatchQueue.main.async {
+                resultMessage = "Error sending push notification: \(error.localizedDescription)"
+            }
+            return
+        }
+        
+        if let response = result?.data as? [String: Any], let responseMessage = response["response"] as? String {
+            DispatchQueue.main.async {
+                resultMessage = responseMessage
+            }
+        } else {
+            DispatchQueue.main.async {
+                resultMessage = "Unknown response"
+            }
+        }
+    }
+}
 
+```
+</br>
 
+ - 낮잠 모드 진입 시 알림 트리거
+```swift
+func moveNextAndNoti() {
+    moveNext = true
+    fetchAuthToken { token in
+        self.authToken = token
+        sendPushNotification(authToken: token)
+    }
+}
+
+```
+</br>
+
+ - 알림을 위한 Firebase 인증 토큰 획득
+ 
+```swift
+func fetchAuthToken(completion: @escaping (String?) -> Void) {
+    if let currentUser = Auth.auth().currentUser {
+        currentUser.getIDToken { token, error in
+            if let error = error {
+                print("Error fetching ID token: \(error.localizedDescription)")
+                completion(nil)
+            } else {
+                completion(token)
+            }
+        }
+    } else {
+        print("No user is signed in")
+        completion(nil)
+    }
+}
+
+```
+</br>
