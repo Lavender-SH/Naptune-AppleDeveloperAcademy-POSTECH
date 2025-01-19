@@ -170,7 +170,7 @@ struct KDCircularProgressView: UIViewRepresentable {
 Naptune은 사용자가 낮잠 모드에 진입하면 친구들에게 푸시 알림을 보내 낮잠 상태를 실시간으로 공유하는 기능을 제공합니다. 알림은 Firebase Cloud Messaging(FCM)을 통해 전달되며, 사용자와 친구 간의 소셜 인터랙션을 강화하는 데 중점을 두었습니다. 알림에는 낮잠 시작 및 종료 시간이 포함되어 친구가 사용자에게 전화나 메시지로 알림을 보낼 수 있도록 유도합니다.</br>
 
 <p>
-<img src="https://github.com/user-attachments/assets/43414d63-e03e-44ce-acaf-f2c28d2d4a14" width="49%">
+<img src="https://github.com/user-attachments/assets/9188c97b-8c20-4675-a26e-24afb5db5396" width="30%">
 
  <video src="https://github.com/user-attachments/assets/b1d21365-ecff-4e02-b6ac-9e1c2c3ac828" width="49"></video>
  <p>
@@ -266,8 +266,9 @@ func fetchAuthToken(completion: @escaping (String?) -> Void) {
 
 ### 3. 정해진 낮잠 시간이 종료되면 CallKit을 통해 알림 전화를 제공하는 기능
 Naptune 앱의 독특한 기능 중 하나는 낮잠 시간이 종료되었을 때 `CallKit`을 사용하여 알림 전화를 제공하는 것입니다. 이 기능은 사용자가 낮잠에서 깨어나야 할 시간을 놓치지 않도록 돕는 동시에, 사용자 경험을 풍부하게 만듭니다.
+</br>
 
-<img src="https://github.com/user-attachments/assets/40a7033e-822f-4b6e-a2e9-4d82bdeef769" width="50%">
+<img src="https://github.com/user-attachments/assets/40a7033e-822f-4b6e-a2e9-4d82bdeef769" width="30%">
 
  1. 타이머 시간 종료 이벤트 감지
  - 앱은 설정된 낮잠 시간이 종료되었을 때 startCall() 메서드를 실행
@@ -328,6 +329,8 @@ Naptune 앱의 독특한 기능 중 하나는 낮잠 시간이 종료되었을 �
 
 ### 4. 일어나기 버튼을 누르면 커스텀 카메라 화면으로 이동하는 기능
 Naptune 앱은 낮잠 후 사용자가 기상 상태를 기록할 수 있도록 커스텀 카메라 화면으로 이동하는 기능을 제공합니다. 이 기능은 사용자가 기상 사진을 촬영하고 이를 앱 피드에 업로드하여 친구들과 공유할 수 있는 독특한 경험을 제공합니다.
+</br>
+
 <img src="https://github.com/user-attachments/assets/e489700f-17c5-4452-a63d-180582c161f3" width="30%">
 
 ### 4-1. 일어나기 버튼을 누르면 카메라 화면으로 전환
